@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     "online ingilizce",
     "seviye tespit",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+    shortcut: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

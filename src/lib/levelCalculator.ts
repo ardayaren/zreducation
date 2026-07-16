@@ -1,76 +1,104 @@
-import type { CEFRLevel } from "@/data/placementQuestions";
-import { placementQuestions } from "@/data/placementQuestions";
+import type { CEFRLevel, HubLevel } from "@/data/placementQuestions";
+import {
+  hubLevelConfig,
+  hubLevelOrder,
+  placementQuestions,
+} from "@/data/placementQuestions";
 
-const levelOrder: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
-
-const difficultyWeights: Record<CEFRLevel, number> = {
-  A1: 1,
-  A2: 2,
-  B1: 3,
-  B2: 4,
-  C1: 5,
-  C2: 6,
-};
+export interface WrongAnswer {
+  questionId: number;
+  userAnswer: string;
+  correctAnswer: string;
+}
 
 export interface TestResult {
   level: CEFRLevel;
+  hubLevel: HubLevel;
+  hubLabel: string;
   score: number;
   totalQuestions: number;
   correctAnswers: number;
+  incorrectAnswers: number;
   percentage: number;
-  breakdown: Record<CEFRLevel, { correct: number; total: number }>;
+  breakdown: Record<
+    HubLevel,
+    { correct: number; total: number; label: string; labelTr: string }
+  >;
+  wrongAnswers: WrongAnswer[];
 }
 
 export function calculateLevel(
   answers: Record<number, string>
 ): TestResult {
   let correctAnswers = 0;
-  const breakdown = levelOrder.reduce(
+  const wrongAnswers: WrongAnswer[] = [];
+
+  const breakdown = hubLevelOrder.reduce(
     (acc, level) => {
-      acc[level] = { correct: 0, total: 0 };
+      acc[level] = {
+        correct: 0,
+        total: 0,
+        label: hubLevelConfig[level].label,
+        labelTr: hubLevelConfig[level].labelTr,
+      };
       return acc;
     },
-    {} as Record<CEFRLevel, { correct: number; total: number }>
+    {} as TestResult["breakdown"]
   );
 
-  let weightedScore = 0;
-
   placementQuestions.forEach((q) => {
-    breakdown[q.difficulty].total++;
+    breakdown[q.hubLevel].total++;
 
     const userAnswer = answers[q.id];
     if (userAnswer === q.correctAnswer) {
       correctAnswers++;
-      breakdown[q.difficulty].correct++;
-      weightedScore += difficultyWeights[q.difficulty];
+      breakdown[q.hubLevel].correct++;
+    } else if (userAnswer) {
+      wrongAnswers.push({
+        questionId: q.id,
+        userAnswer,
+        correctAnswer: q.correctAnswer,
+      });
     }
   });
 
-  const percentage = Math.round(
-    (correctAnswers / placementQuestions.length) * 100
-  );
-
-  const level = determineLevel(correctAnswers, percentage, breakdown);
+  const totalQuestions = placementQuestions.length;
+  const incorrectAnswers = totalQuestions - correctAnswers;
+  const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+  const { level, hubLevel } = determineLevel(correctAnswers);
 
   return {
     level,
-    score: weightedScore,
-    totalQuestions: placementQuestions.length,
+    hubLevel,
+    hubLabel: hubLevelConfig[hubLevel].label,
+    score: correctAnswers,
+    totalQuestions,
     correctAnswers,
+    incorrectAnswers,
     percentage,
     breakdown,
+    wrongAnswers,
   };
 }
 
-function determineLevel(
-  correct: number,
-  percentage: number,
-  breakdown: Record<CEFRLevel, { correct: number; total: number }>
-): CEFRLevel {
-  if (percentage >= 90 && breakdown.C2.correct >= 3) return "C2";
-  if (percentage >= 80 && breakdown.C1.correct >= 3) return "C1";
-  if (percentage >= 65 && breakdown.B2.correct >= 3) return "B2";
-  if (percentage >= 50 && breakdown.B1.correct >= 3) return "B1";
-  if (percentage >= 35 && breakdown.A2.correct >= 3) return "A2";
-  return "A1";
+function determineLevel(correct: number): {
+  level: CEFRLevel;
+  hubLevel: HubLevel;
+} {
+  if (correct >= 60) {
+    return { level: "C2", hubLevel: "advanced" };
+  }
+  if (correct >= 49) {
+    return { level: "C1", hubLevel: "upper-intermediate" };
+  }
+  if (correct >= 35) {
+    return { level: "B2", hubLevel: "intermediate" };
+  }
+  if (correct >= 18) {
+    return { level: "B1", hubLevel: "pre-intermediate" };
+  }
+  if (correct >= 7) {
+    return { level: "A2", hubLevel: "elementary" };
+  }
+  return { level: "A1", hubLevel: "beginner" };
 }

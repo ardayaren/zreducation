@@ -39,7 +39,7 @@ export default function CTASection() {
                   transition={transition.default}
                   className="text-white/65 text-sm leading-relaxed"
                 >
-                  30 soruluk sınav ile mevcut seviyenizi öğrenin. Sonuçlar
+                  70 soruluk Language Hub sınavı ile mevcut seviyenizi öğrenin. Sonuçlar
                   anında paylaşılır, kurumumuza davet mesajı ile birlikte
                   program önerisi alırsınız.
                 </motion.p>

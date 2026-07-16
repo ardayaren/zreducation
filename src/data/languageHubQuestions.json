@@ -1,0 +1,1682 @@
+[
+  {
+    "id": 1,
+    "passage": "Manager: Where's Mr Davidson?\nAssistant: Oh, he's ___ London today.",
+    "options": [
+      {
+        "key": "A",
+        "text": "in"
+      },
+      {
+        "key": "B",
+        "text": "on"
+      },
+      {
+        "key": "C",
+        "text": "to"
+      },
+      {
+        "key": "D",
+        "text": "at"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "beginner"
+  },
+  {
+    "id": 2,
+    "passage": "Amirah: Do you like cats?\nChris: No, but there ___ lots of other animals I like.",
+    "options": [
+      {
+        "key": "A",
+        "text": "is"
+      },
+      {
+        "key": "B",
+        "text": "be"
+      },
+      {
+        "key": "C",
+        "text": "are"
+      },
+      {
+        "key": "D",
+        "text": "was"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "beginner"
+  },
+  {
+    "id": 3,
+    "passage": "Andrew: Where ___ Alicia come from?\nMartin: I think she's from the United States.",
+    "options": [
+      {
+        "key": "A",
+        "text": "is"
+      },
+      {
+        "key": "B",
+        "text": "do"
+      },
+      {
+        "key": "C",
+        "text": "are"
+      },
+      {
+        "key": "D",
+        "text": "does"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "beginner"
+  },
+  {
+    "id": 4,
+    "passage": "Teacher: Tell me something about your parents, Lucas.\nStudent: My mother and father ___ both very tall.",
+    "options": [
+      {
+        "key": "A",
+        "text": "is"
+      },
+      {
+        "key": "B",
+        "text": "isn't"
+      },
+      {
+        "key": "C",
+        "text": "are"
+      },
+      {
+        "key": "D",
+        "text": "aren't"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "beginner"
+  },
+  {
+    "id": 5,
+    "passage": "Ayla: That's a nice table, Sophie! Is it new?\nSophie: Oh no, it's my ___ old dining table.",
+    "options": [
+      {
+        "key": "A",
+        "text": "mother"
+      },
+      {
+        "key": "B",
+        "text": "mothers"
+      },
+      {
+        "key": "C",
+        "text": "mother's"
+      },
+      {
+        "key": "D",
+        "text": "mothers'"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "beginner"
+  },
+  {
+    "id": 6,
+    "passage": "Emma: What do you do after school?\nChloe: I see my friends. Do you visit people, too?\nEmma: No, I ___ go out.",
+    "options": [
+      {
+        "key": "A",
+        "text": "often"
+      },
+      {
+        "key": "B",
+        "text": "never"
+      },
+      {
+        "key": "C",
+        "text": "always"
+      },
+      {
+        "key": "D",
+        "text": "sometimes"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "beginner"
+  },
+  {
+    "id": 7,
+    "passage": "Katie: Is Charlotte at school today?\nLaura: No, she ___. She's not well today.",
+    "options": [
+      {
+        "key": "A",
+        "text": "isn't"
+      },
+      {
+        "key": "B",
+        "text": "aren't"
+      },
+      {
+        "key": "C",
+        "text": "doesn't"
+      },
+      {
+        "key": "D",
+        "text": "hasn't"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 8,
+    "passage": "Alex: I'd like to make a cake. ___ eggs have we got?\nAndrea: Three, I think. Let me check.",
+    "options": [
+      {
+        "key": "A",
+        "text": "How big"
+      },
+      {
+        "key": "B",
+        "text": "How much"
+      },
+      {
+        "key": "C",
+        "text": "How many"
+      },
+      {
+        "key": "D",
+        "text": "How long"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 9,
+    "passage": "Ifrah: Which bus goes to the hospital?\nAntonia: ___ the 236. It stops outside.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Get"
+      },
+      {
+        "key": "B",
+        "text": "Got"
+      },
+      {
+        "key": "C",
+        "text": "Gets"
+      },
+      {
+        "key": "D",
+        "text": "Getting"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 10,
+    "passage": "Father: Are we ready to go?\nDaughter: No, Mum can't find ___ hat.",
+    "options": [
+      {
+        "key": "A",
+        "text": "its"
+      },
+      {
+        "key": "B",
+        "text": "his"
+      },
+      {
+        "key": "C",
+        "text": "her"
+      },
+      {
+        "key": "D",
+        "text": "their"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 11,
+    "passage": "Shop Assistant: Can I help you?\nCustomer: Yes, I'd like to buy ___ trousers.",
+    "options": [
+      {
+        "key": "A",
+        "text": "a"
+      },
+      {
+        "key": "B",
+        "text": "an"
+      },
+      {
+        "key": "C",
+        "text": "this"
+      },
+      {
+        "key": "D",
+        "text": "these"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 12,
+    "passage": "Mother: Where's that fish I bought? It was on the table.\nDaughter: Oh no! The cat ___ it.",
+    "options": [
+      {
+        "key": "A",
+        "text": "eat"
+      },
+      {
+        "key": "B",
+        "text": "eats"
+      },
+      {
+        "key": "C",
+        "text": "is eating"
+      },
+      {
+        "key": "D",
+        "text": "are eating"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 13,
+    "passage": "Amanda: I like your new sofa.\nFahima: Thanks. It's ___ comfortable than the other one we had.",
+    "options": [
+      {
+        "key": "A",
+        "text": "too"
+      },
+      {
+        "key": "B",
+        "text": "very"
+      },
+      {
+        "key": "C",
+        "text": "much"
+      },
+      {
+        "key": "D",
+        "text": "more"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 14,
+    "passage": "Alicia: I'm going to the supermarket. Do you want anything?\nPeter: Could you get ___ milk, please?",
+    "options": [
+      {
+        "key": "A",
+        "text": "a"
+      },
+      {
+        "key": "B",
+        "text": "any"
+      },
+      {
+        "key": "C",
+        "text": "some"
+      },
+      {
+        "key": "D",
+        "text": "every"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 15,
+    "passage": "Karina: When do you want to play football?\nAniqa: I ___ to play tomorrow, because I don't need to go to work.",
+    "options": [
+      {
+        "key": "A",
+        "text": "like"
+      },
+      {
+        "key": "B",
+        "text": "likes"
+      },
+      {
+        "key": "C",
+        "text": "liked"
+      },
+      {
+        "key": "D",
+        "text": "'d like"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 16,
+    "passage": "Manisha: What did you do at the weekend?\nNicola: I ___ tennis with my friend on Saturday.",
+    "options": [
+      {
+        "key": "A",
+        "text": "play"
+      },
+      {
+        "key": "B",
+        "text": "played"
+      },
+      {
+        "key": "C",
+        "text": "plays"
+      },
+      {
+        "key": "D",
+        "text": "playing"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 17,
+    "passage": "Wife: Have we got any cheese in the fridge?\nHusband: No, we haven't. I'm ___ buy some this afternoon.",
+    "options": [
+      {
+        "key": "A",
+        "text": "go"
+      },
+      {
+        "key": "B",
+        "text": "go to"
+      },
+      {
+        "key": "C",
+        "text": "going"
+      },
+      {
+        "key": "D",
+        "text": "going to"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 18,
+    "passage": "Laura: Where ___ you last Tuesday? I tried to phone you.\nBeatriz: Oh, I was visiting my grandmother. I didn't have my phone with me.",
+    "options": [
+      {
+        "key": "A",
+        "text": "were"
+      },
+      {
+        "key": "B",
+        "text": "was"
+      },
+      {
+        "key": "C",
+        "text": "are"
+      },
+      {
+        "key": "D",
+        "text": "is"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 19,
+    "passage": "Miriam: Are you coming to my party on Tuesday?\nBrian: I'm really sorry, but I ___ to take my daughter to the airport.",
+    "options": [
+      {
+        "key": "A",
+        "text": "has"
+      },
+      {
+        "key": "B",
+        "text": "had"
+      },
+      {
+        "key": "C",
+        "text": "have"
+      },
+      {
+        "key": "D",
+        "text": "having"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 20,
+    "passage": "Saif: Why do you like running?\nIsabella: Because it's ___ way to keep fit.",
+    "options": [
+      {
+        "key": "A",
+        "text": "best"
+      },
+      {
+        "key": "B",
+        "text": "better"
+      },
+      {
+        "key": "C",
+        "text": "the best"
+      },
+      {
+        "key": "D",
+        "text": "the better"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "elementary"
+  },
+  {
+    "id": 21,
+    "passage": "Anna: Have you lived here a long time?\nStefan: Yes, over 40 years. I know ___ of people in this town.",
+    "options": [
+      {
+        "key": "A",
+        "text": "any"
+      },
+      {
+        "key": "B",
+        "text": "lots"
+      },
+      {
+        "key": "C",
+        "text": "more"
+      },
+      {
+        "key": "D",
+        "text": "most"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 22,
+    "passage": "Josef: Why didn't you come to the cinema last week?\nChloe: I wanted to but I couldn't. I ___ studying for that test we had on Monday.",
+    "options": [
+      {
+        "key": "A",
+        "text": "was"
+      },
+      {
+        "key": "B",
+        "text": "were"
+      },
+      {
+        "key": "C",
+        "text": "am"
+      },
+      {
+        "key": "D",
+        "text": "been"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 23,
+    "passage": "Anna: That bird's on the garden table again. I think it's hungry.\nJuliana: Yes, look! It ___ eat the bread we put there.",
+    "options": [
+      {
+        "key": "A",
+        "text": "is"
+      },
+      {
+        "key": "B",
+        "text": "will"
+      },
+      {
+        "key": "C",
+        "text": "goes to"
+      },
+      {
+        "key": "D",
+        "text": "is going to"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 24,
+    "passage": "Sophie: How long ___ married?\nYing Yue: Two years. I met my husband when I was working in New York.",
+    "options": [
+      {
+        "key": "A",
+        "text": "had you got"
+      },
+      {
+        "key": "B",
+        "text": "did you get"
+      },
+      {
+        "key": "C",
+        "text": "have you been"
+      },
+      {
+        "key": "D",
+        "text": "are you being"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 25,
+    "passage": "David: Have you ___ that new film yet?\nSusanna: No, I haven't. We could go on Thursday if you like?",
+    "options": [
+      {
+        "key": "A",
+        "text": "see"
+      },
+      {
+        "key": "B",
+        "text": "saw"
+      },
+      {
+        "key": "C",
+        "text": "seen"
+      },
+      {
+        "key": "D",
+        "text": "seeing"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 26,
+    "passage": "Shop Assistant: Excuse me, please. Could I get past?\nCustomer: Oh, I'm sorry. I'm getting in the way, ___ I?",
+    "options": [
+      {
+        "key": "A",
+        "text": "don't"
+      },
+      {
+        "key": "B",
+        "text": "aren't"
+      },
+      {
+        "key": "C",
+        "text": "can't"
+      },
+      {
+        "key": "D",
+        "text": "haven't"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 27,
+    "passage": "Wife: Advertising is a big business for musicians.\nHusband: Yes, musicians ___ a lot of money for writing short pieces of music.",
+    "options": [
+      {
+        "key": "A",
+        "text": "pay"
+      },
+      {
+        "key": "B",
+        "text": "paid"
+      },
+      {
+        "key": "C",
+        "text": "are paid"
+      },
+      {
+        "key": "D",
+        "text": "are paying"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 28,
+    "passage": "Son: Mum, I'd really like a guitar. Can I have one?\nMother: OK, but if we buy one you ___ have to practise playing it.",
+    "options": [
+      {
+        "key": "A",
+        "text": "will"
+      },
+      {
+        "key": "B",
+        "text": "can"
+      },
+      {
+        "key": "C",
+        "text": "could"
+      },
+      {
+        "key": "D",
+        "text": "must"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 29,
+    "passage": "Juliana: Do you like Brazilian coffee?\nMiriodere: No I don't, because it's ___ strong.",
+    "options": [
+      {
+        "key": "A",
+        "text": "too"
+      },
+      {
+        "key": "B",
+        "text": "such"
+      },
+      {
+        "key": "C",
+        "text": "much"
+      },
+      {
+        "key": "D",
+        "text": "enough"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 30,
+    "passage": "Matthew: Would you like anything from the shop?\nAlicia: Yes, I'd like one of ___ celebrity magazines, please.",
+    "options": [
+      {
+        "key": "A",
+        "text": "most recent"
+      },
+      {
+        "key": "B",
+        "text": "more recent"
+      },
+      {
+        "key": "C",
+        "text": "the most recent"
+      },
+      {
+        "key": "D",
+        "text": "the more recent"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 31,
+    "passage": "Daughter: Mum, my computer is broken again. I really need a new one.\nMother: I ___ buy one if we had the money, but it's not possible right now.",
+    "options": [
+      {
+        "key": "A",
+        "text": "will"
+      },
+      {
+        "key": "B",
+        "text": "may"
+      },
+      {
+        "key": "C",
+        "text": "should"
+      },
+      {
+        "key": "D",
+        "text": "would"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 32,
+    "passage": "Mother: ___ you packed your suitcase yet? We're leaving early tomorrow morning.\nSon: I'll do it later. It won't take long.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Did"
+      },
+      {
+        "key": "B",
+        "text": "Have"
+      },
+      {
+        "key": "C",
+        "text": "Will"
+      },
+      {
+        "key": "D",
+        "text": "Are"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 33,
+    "passage": "Lucas: Do you play the piano, Natasha?\nNatasha: Well, I ___ play when I was younger, but I'm not sure I remember now.",
+    "options": [
+      {
+        "key": "A",
+        "text": "can"
+      },
+      {
+        "key": "B",
+        "text": "can't"
+      },
+      {
+        "key": "C",
+        "text": "could"
+      },
+      {
+        "key": "D",
+        "text": "couldn't"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 34,
+    "passage": "Martina: What did the doctor say about your stomach pains?\nPadma: He asked me what I ___ for the last two days.",
+    "options": [
+      {
+        "key": "A",
+        "text": "eat"
+      },
+      {
+        "key": "B",
+        "text": "had eaten"
+      },
+      {
+        "key": "C",
+        "text": "was eating"
+      },
+      {
+        "key": "D",
+        "text": "would eat"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "pre-intermediate"
+  },
+  {
+    "id": 35,
+    "passage": "Daughter: Everyone has arrived apart from Pamela.\nMother: Don't worry, she phoned me this morning and said she ___ be a bit late.",
+    "options": [
+      {
+        "key": "A",
+        "text": "can"
+      },
+      {
+        "key": "B",
+        "text": "must"
+      },
+      {
+        "key": "C",
+        "text": "should"
+      },
+      {
+        "key": "D",
+        "text": "would"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 36,
+    "passage": "Vincent: Did you see the weather forecast? It's going to be extremely hot this weekend.\nPauline: I know, I can't believe it! It ___ since Monday.",
+    "options": [
+      {
+        "key": "A",
+        "text": "rains"
+      },
+      {
+        "key": "B",
+        "text": "has been raining"
+      },
+      {
+        "key": "C",
+        "text": "is raining"
+      },
+      {
+        "key": "D",
+        "text": "was raining"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 37,
+    "passage": "Ameena: What colour are you going to paint the living room?\nCharlotte: I ___ probably choose something bright, like yellow.",
+    "options": [
+      {
+        "key": "A",
+        "text": "will"
+      },
+      {
+        "key": "B",
+        "text": "may"
+      },
+      {
+        "key": "C",
+        "text": "can"
+      },
+      {
+        "key": "D",
+        "text": "might"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 38,
+    "passage": "Victor: I'd love to go back in history to see how people lived hundreds of years ago.\nSimon: Me too! If I ___ choose, I'd probably travel to ancient Rome.",
+    "options": [
+      {
+        "key": "A",
+        "text": "can"
+      },
+      {
+        "key": "B",
+        "text": "will"
+      },
+      {
+        "key": "C",
+        "text": "could"
+      },
+      {
+        "key": "D",
+        "text": "would"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 39,
+    "passage": "Stephen: The concert was fantastic yesterday. You ___ have come.\nYuuto: I know. I wanted to, but I had to work late.",
+    "options": [
+      {
+        "key": "A",
+        "text": "must"
+      },
+      {
+        "key": "B",
+        "text": "could"
+      },
+      {
+        "key": "C",
+        "text": "ought"
+      },
+      {
+        "key": "D",
+        "text": "should"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 40,
+    "passage": "Katie: Would you like to go sightseeing or to the beach this afternoon?\nMatthew: I don't mind, I'll let you decide.\nKatie: OK, let's go sightseeing, ___ we?",
+    "options": [
+      {
+        "key": "A",
+        "text": "should"
+      },
+      {
+        "key": "B",
+        "text": "shall"
+      },
+      {
+        "key": "C",
+        "text": "might"
+      },
+      {
+        "key": "D",
+        "text": "would"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 41,
+    "passage": "Amanda: It said on the news that the president also owns all the national newspapers.\nAndrew: That ___ be right! I don't think that's true.",
+    "options": [
+      {
+        "key": "A",
+        "text": "must"
+      },
+      {
+        "key": "B",
+        "text": "can't"
+      },
+      {
+        "key": "C",
+        "text": "won't"
+      },
+      {
+        "key": "D",
+        "text": "would"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 42,
+    "passage": "Assistant: That meeting was really difficult. What would you have done if you ___ in my position?\nManager: Oh, I think you managed it very well.",
+    "options": [
+      {
+        "key": "A",
+        "text": "are"
+      },
+      {
+        "key": "B",
+        "text": "were"
+      },
+      {
+        "key": "C",
+        "text": "had been"
+      },
+      {
+        "key": "D",
+        "text": "would be"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 43,
+    "passage": "Natalia: My new smartphone doesn't seem to work.\nKatie: Oh dear! Perhaps you should take it ___ and ask for a refund.",
+    "options": [
+      {
+        "key": "A",
+        "text": "up"
+      },
+      {
+        "key": "B",
+        "text": "out"
+      },
+      {
+        "key": "C",
+        "text": "away"
+      },
+      {
+        "key": "D",
+        "text": "back"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 44,
+    "passage": "Chris: I wish I could be with our cousins …\nAlison: Me too! By this time tomorrow they ___ on a Greek beach while we're revising for our history test.",
+    "options": [
+      {
+        "key": "A",
+        "text": "sunbathe"
+      },
+      {
+        "key": "B",
+        "text": "will sunbathe"
+      },
+      {
+        "key": "C",
+        "text": "will be sunbathing"
+      },
+      {
+        "key": "D",
+        "text": "will have sunbathed"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 45,
+    "passage": "Son: Are you OK, Mum? You don't seem very relaxed.\nMother: I just wish I ___ an aisle seat so that I could get up and walk around more easily.",
+    "options": [
+      {
+        "key": "A",
+        "text": "had chosen"
+      },
+      {
+        "key": "B",
+        "text": "have chosen"
+      },
+      {
+        "key": "C",
+        "text": "would choose"
+      },
+      {
+        "key": "D",
+        "text": "should choose"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 46,
+    "passage": "Nicola: I love this picture, but won't it cost a fortune?\nVictor: No, it's just a copy. The original, ___ is a portrait of the artist's friend, sold for €4 million!",
+    "options": [
+      {
+        "key": "A",
+        "text": "whose"
+      },
+      {
+        "key": "B",
+        "text": "which"
+      },
+      {
+        "key": "C",
+        "text": "whom"
+      },
+      {
+        "key": "D",
+        "text": "that"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 47,
+    "passage": "Laura: I can't believe how talented this artist was.\nEmily: I know, it's amazing. ___ he was almost 90 when he did them, his paintings are beautiful.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Since"
+      },
+      {
+        "key": "B",
+        "text": "Besides"
+      },
+      {
+        "key": "C",
+        "text": "Although"
+      },
+      {
+        "key": "D",
+        "text": "Therefore"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 48,
+    "passage": "Andrea: I want to buy some new shoes for the winter.\nShan: Well, I ___ looking for a new pair of boots for weeks, but I can't find anything I like.",
+    "options": [
+      {
+        "key": "A",
+        "text": "am"
+      },
+      {
+        "key": "B",
+        "text": "was"
+      },
+      {
+        "key": "C",
+        "text": "had been"
+      },
+      {
+        "key": "D",
+        "text": "have been"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "intermediate"
+  },
+  {
+    "id": 49,
+    "passage": "Client: I don't have much money – just enough to ___.\nAccountant: Well, let me suggest a way of helping you save more.",
+    "options": [
+      {
+        "key": "A",
+        "text": "get by"
+      },
+      {
+        "key": "B",
+        "text": "pay off"
+      },
+      {
+        "key": "C",
+        "text": "do with"
+      },
+      {
+        "key": "D",
+        "text": "make up"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 50,
+    "passage": "Pablo: In April next year I ___ here for ten years exactly.\nAlison: Wow! It really doesn't seem that long.",
+    "options": [
+      {
+        "key": "A",
+        "text": "will live"
+      },
+      {
+        "key": "B",
+        "text": "will be living"
+      },
+      {
+        "key": "C",
+        "text": "am going to live"
+      },
+      {
+        "key": "D",
+        "text": "will have been living"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 51,
+    "passage": "Student: Is it true that it took Bell and Watson ages to invent the telephone?\nTeacher: Yes. When they finally succeeded, they ___ on it for about 30 years.",
+    "options": [
+      {
+        "key": "A",
+        "text": "must work"
+      },
+      {
+        "key": "B",
+        "text": "had been working"
+      },
+      {
+        "key": "C",
+        "text": "have worked"
+      },
+      {
+        "key": "D",
+        "text": "would be working"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 52,
+    "passage": "Rachel: This would be a lovely place to sit on a dry day.\nNatasha: Yes, I know. I just wish the rain ___.",
+    "options": [
+      {
+        "key": "A",
+        "text": "would stop"
+      },
+      {
+        "key": "B",
+        "text": "has stopped"
+      },
+      {
+        "key": "C",
+        "text": "will have stopped"
+      },
+      {
+        "key": "D",
+        "text": "would be stopping"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 53,
+    "passage": "Student: What's today's lesson going to be about?\nTeacher: Today we're going to learn about a tribe ___ descendants live in Lima, the capital of Peru.",
+    "options": [
+      {
+        "key": "A",
+        "text": "who"
+      },
+      {
+        "key": "B",
+        "text": "which"
+      },
+      {
+        "key": "C",
+        "text": "whose"
+      },
+      {
+        "key": "D",
+        "text": "whom"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 54,
+    "passage": "Andrea: Did your town have a good market?\nKatie: Yes. When I was young we ___ there every Saturday looking for bargains.",
+    "options": [
+      {
+        "key": "A",
+        "text": "had gone"
+      },
+      {
+        "key": "B",
+        "text": "would go"
+      },
+      {
+        "key": "C",
+        "text": "were going"
+      },
+      {
+        "key": "D",
+        "text": "had been going"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 55,
+    "passage": "Daughter: Joanna has been really supportive. I'm so lucky to have her as a friend.\nMother: Yes. Just think – if you hadn't sat next to her in class at school, you ___ so close now.",
+    "options": [
+      {
+        "key": "A",
+        "text": "won't be"
+      },
+      {
+        "key": "B",
+        "text": "wouldn't be"
+      },
+      {
+        "key": "C",
+        "text": "wouldn't have been"
+      },
+      {
+        "key": "D",
+        "text": "aren't"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 56,
+    "passage": "David: Did you see the headline this evening?\nNicola: Yes – the Prime Minister was ___ to resign today.",
+    "options": [
+      {
+        "key": "A",
+        "text": "charged"
+      },
+      {
+        "key": "B",
+        "text": "argued"
+      },
+      {
+        "key": "C",
+        "text": "struggled"
+      },
+      {
+        "key": "D",
+        "text": "forced"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 57,
+    "passage": "Student: I'm concerned about the chemical test results I've just had from the river.\nProfessor: It ___ be a good idea to check the acid levels as well then.",
+    "options": [
+      {
+        "key": "A",
+        "text": "must"
+      },
+      {
+        "key": "B",
+        "text": "should"
+      },
+      {
+        "key": "C",
+        "text": "might"
+      },
+      {
+        "key": "D",
+        "text": "ought"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 58,
+    "passage": "Aamir: They've just announced that our train has been delayed.\nLaura: That's annoying. We ___ have rushed to get here after all.",
+    "options": [
+      {
+        "key": "A",
+        "text": "needn't"
+      },
+      {
+        "key": "B",
+        "text": "could"
+      },
+      {
+        "key": "C",
+        "text": "should"
+      },
+      {
+        "key": "D",
+        "text": "mustn't"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 59,
+    "passage": "Liam: So, your Dad's got a laptop!\nCian: Yes, I bought it for him last year – until then he ___ a typewriter!",
+    "options": [
+      {
+        "key": "A",
+        "text": "used"
+      },
+      {
+        "key": "B",
+        "text": "has used"
+      },
+      {
+        "key": "C",
+        "text": "has been using"
+      },
+      {
+        "key": "D",
+        "text": "had been using"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 60,
+    "passage": "Isabella: The flight is fully booked, so I won't be able to go to Barbados next week.\nSafia: If you ___ the ticket sooner, you'd have found a seat.",
+    "options": [
+      {
+        "key": "A",
+        "text": "had booked"
+      },
+      {
+        "key": "B",
+        "text": "were booking"
+      },
+      {
+        "key": "C",
+        "text": "booked"
+      },
+      {
+        "key": "D",
+        "text": "would have booked"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 61,
+    "passage": "Receptionist: You ___ taken a taxi to the hotel since you arrived so late.\nCustomer: It was OK, actually. There was a direct bus service from the airport.",
+    "options": [
+      {
+        "key": "A",
+        "text": "will have"
+      },
+      {
+        "key": "B",
+        "text": "should have"
+      },
+      {
+        "key": "C",
+        "text": "might have"
+      },
+      {
+        "key": "D",
+        "text": "would have"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 62,
+    "passage": "Sophie: Have they finished interviewing for the manager's position yet?\nRafi: No, but they ___ all the candidates by next Friday.",
+    "options": [
+      {
+        "key": "A",
+        "text": "won't see"
+      },
+      {
+        "key": "B",
+        "text": "would see"
+      },
+      {
+        "key": "C",
+        "text": "haven't seen"
+      },
+      {
+        "key": "D",
+        "text": "will have seen"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "upper-intermediate"
+  },
+  {
+    "id": 63,
+    "passage": "Athlete: ___ hard I try, I can't run any faster.\nCoach: You've improved a lot. I wouldn't worry about it.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Though"
+      },
+      {
+        "key": "B",
+        "text": "Whereas"
+      },
+      {
+        "key": "C",
+        "text": "However"
+      },
+      {
+        "key": "D",
+        "text": "Considering"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 64,
+    "passage": "Laura: That's a really beautiful painting. The colours are so vivid.\nJeremy: Yes, it's amazing to think it was lost for years and ___.",
+    "options": [
+      {
+        "key": "A",
+        "text": "must be restored"
+      },
+      {
+        "key": "B",
+        "text": "had to be restored"
+      },
+      {
+        "key": "C",
+        "text": "has been restoring"
+      },
+      {
+        "key": "D",
+        "text": "would be restoring"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 65,
+    "passage": "Charlotte: I saw the photos from the film festival. Was that you with the actor from The Hobbit?\nNiall: Yes, it was! ___ did I imagine I would ever actually meet him.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Not"
+      },
+      {
+        "key": "B",
+        "text": "Much"
+      },
+      {
+        "key": "C",
+        "text": "Hardly"
+      },
+      {
+        "key": "D",
+        "text": "Little"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 66,
+    "passage": "Pauline: I hear you got soaked on the golf course this morning.\nChris: Yes. I wish I ___ listened to the weather forecast.",
+    "options": [
+      {
+        "key": "A",
+        "text": "had"
+      },
+      {
+        "key": "B",
+        "text": "have"
+      },
+      {
+        "key": "C",
+        "text": "would have"
+      },
+      {
+        "key": "D",
+        "text": "should have"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 67,
+    "passage": "Laura: How was the meeting?\nRicardo: It finished late because Victor didn't arrive until 5 pm. He told me he ___ been given the wrong directions.",
+    "options": [
+      {
+        "key": "A",
+        "text": "has"
+      },
+      {
+        "key": "B",
+        "text": "had"
+      },
+      {
+        "key": "C",
+        "text": "should have"
+      },
+      {
+        "key": "D",
+        "text": "would have"
+      }
+    ],
+    "correctAnswer": "B",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 68,
+    "passage": "Andrew: I picked up some of that cat food you wanted.\nPedro: Oh good. Once ___ to these new cat biscuits, they won't want to go back to the other stuff.",
+    "options": [
+      {
+        "key": "A",
+        "text": "we've switched"
+      },
+      {
+        "key": "B",
+        "text": "we'll be switching"
+      },
+      {
+        "key": "C",
+        "text": "we'll have switched"
+      },
+      {
+        "key": "D",
+        "text": "we've been switched"
+      }
+    ],
+    "correctAnswer": "A",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 69,
+    "passage": "Antonia: Has your son done well in his exams?\nPhillip: Yes. Only once ___ he wasn't sufficiently prepared, but he can take that one again.",
+    "options": [
+      {
+        "key": "A",
+        "text": "he found"
+      },
+      {
+        "key": "B",
+        "text": "he has found"
+      },
+      {
+        "key": "C",
+        "text": "did he find"
+      },
+      {
+        "key": "D",
+        "text": "could he find"
+      }
+    ],
+    "correctAnswer": "C",
+    "hubLevel": "advanced"
+  },
+  {
+    "id": 70,
+    "passage": "Son: I had a bit of a stomach ache this morning.\nMother: Oh dear! Well, I did say you ___ eaten that chicken last night.",
+    "options": [
+      {
+        "key": "A",
+        "text": "wouldn't have"
+      },
+      {
+        "key": "B",
+        "text": "couldn't have"
+      },
+      {
+        "key": "C",
+        "text": "mustn't have"
+      },
+      {
+        "key": "D",
+        "text": "shouldn't have"
+      }
+    ],
+    "correctAnswer": "D",
+    "hubLevel": "advanced"
+  }
+]

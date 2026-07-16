@@ -16,7 +16,7 @@ export default function SeviyeTespitPage() {
         subtitle="Ücretsiz"
       >
         <p>
-          30 soruluk kapsamlı sınavımızla İngilizce seviyenizi belirleyin.
+          70 soruluk Language Hub sınavımızla İngilizce seviyenizi belirleyin.
           Sonuçlarınızı anında görün ve kurumumuza davet edilin.
         </p>
       </PageHero>

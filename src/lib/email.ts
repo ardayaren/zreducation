@@ -30,21 +30,37 @@ export async function sendAdminNotification(
     return;
   }
 
-  const answerDetails = Object.entries(answers)
-    .map(([id, answer]) => `Soru ${id}: ${answer}`)
+  const breakdownText = Object.values(result.breakdown)
+    .map((data) => `${data.label}: ${data.correct}/${data.total} doğru`)
     .join("\n");
 
-  const breakdownText = Object.entries(result.breakdown)
-    .map(
-      ([level, data]) =>
-        `${level}: ${data.correct}/${data.total} doğru`
-    )
+  const answerDetails = Object.entries(answers)
+    .sort(([a], [b]) => Number(a) - Number(b))
+    .map(([id, answer]) => {
+      const wrong = result.wrongAnswers.find(
+        (w) => w.questionId === Number(id)
+      );
+      if (wrong) {
+        return `Soru ${id}: ${answer} ✗ (Doğru: ${wrong.correctAnswer})`;
+      }
+      return `Soru ${id}: ${answer} ✓`;
+    })
     .join("\n");
+
+  const wrongSummary =
+    result.wrongAnswers.length > 0
+      ? result.wrongAnswers
+          .map(
+            (w) =>
+              `Soru ${w.questionId}: Verilen ${w.userAnswer}, Doğru ${w.correctAnswer}`
+          )
+          .join("\n")
+      : "Tüm cevaplar doğru.";
 
   await transporter.sendMail({
     from: `"Zreducation Sınav Sistemi" <${process.env.SMTP_USER}>`,
     to: adminEmail,
-    subject: `Yeni Seviye Tespit Sınavı - ${user.name} (${result.level})`,
+    subject: `Yeni Seviye Tespit Sınavı - ${user.name} (${result.level} / ${result.hubLabel})`,
     text: `
 YENİ SEVİYE TESPİT SINAVI SONUCU
 ================================
@@ -55,14 +71,19 @@ YENİ SEVİYE TESPİT SINAVI SONUCU
 - Telefon: ${user.phone}
 
 Sınav Sonucu:
-- Seviye: ${result.level} - ${levelDescriptions[result.level].title}
-- Doğru Cevap: ${result.correctAnswers}/${result.totalQuestions}
+- CEFR Seviyesi: ${result.level} - ${levelDescriptions[result.level].title}
+- Language Hub Seviyesi: ${result.hubLabel}
+- Doğru: ${result.correctAnswers}/${result.totalQuestions}
+- Yanlış: ${result.incorrectAnswers}/${result.totalQuestions}
 - Başarı Oranı: %${result.percentage}
 
-Seviye Dağılımı:
+Bölüm Dağılımı:
 ${breakdownText}
 
-Cevaplar:
+Yanlış Cevaplar:
+${wrongSummary}
+
+Tüm Cevaplar:
 ${answerDetails}
 
 ---
@@ -72,7 +93,7 @@ Bu e-posta Zreducation web sitesi seviye tespit sınavından otomatik gönderilm
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: #0b1d3a; padding: 24px; text-align: center;">
           <h1 style="color: #d4af37; margin: 0;">Zreducation</h1>
-          <p style="color: #fff; margin: 8px 0 0;">Seviye Tespit Sınavı Sonucu</p>
+          <p style="color: #fff; margin: 8px 0 0;">Language Hub Seviye Tespit Sınavı</p>
         </div>
         <div style="padding: 24px; background: #f7f8fa;">
           <h2 style="color: #0b1d3a;">Öğrenci Bilgileri</h2>
@@ -82,12 +103,19 @@ Bu e-posta Zreducation web sitesi seviye tespit sınavından otomatik gönderilm
           
           <h2 style="color: #0b1d3a; margin-top: 24px;">Sınav Sonucu</h2>
           <div style="background: #0b1d3a; color: #d4af37; padding: 16px; border-radius: 8px; text-align: center; font-size: 24px; font-weight: bold;">
-            ${result.level} - ${levelDescriptions[result.level].title}
+            ${result.level} — ${result.hubLabel}
           </div>
-          <p style="margin-top: 16px;"><strong>Doğru:</strong> ${result.correctAnswers}/${result.totalQuestions} (%${result.percentage})</p>
+          <p style="margin-top: 16px;">
+            <strong>Doğru:</strong> ${result.correctAnswers} |
+            <strong>Yanlış:</strong> ${result.incorrectAnswers} |
+            <strong>Oran:</strong> %${result.percentage}
+          </p>
           
-          <h3 style="color: #0b1d3a;">Seviye Dağılımı</h3>
+          <h3 style="color: #0b1d3a;">Bölüm Dağılımı</h3>
           <pre style="background: #fff; padding: 12px; border-radius: 4px;">${breakdownText}</pre>
+
+          <h3 style="color: #0b1d3a;">Yanlış Cevaplar (${result.incorrectAnswers})</h3>
+          <pre style="background: #fff; padding: 12px; border-radius: 4px; font-size: 12px;">${wrongSummary}</pre>
         </div>
       </div>
     `,

@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy-950: #081526;
+  --navy-900: #0e2240;
+  --navy-800: #153054;
+  --navy-700: #1e3d63;
+  --navy-600: #2a5080;
+  --navy-500: #3d6594;
+  --slate: #5c6d82;
+  --slate-light: #8d9aab;
+  --gold-700: #9a7828;
+  --gold-600: #b8942e;
+  --gold-500: #c9a83a;
+  --gold-400: #dbb84f;
+  --gold-300: #e8cc72;
+  --gold-100: #faf5e8;
+  --gold-50: #fdf9f0;
+  --white: #ffffff;
+  --surface: #f8fafc;
+  --surface-2: #f1f5f9;
+  --border: #e5eaf0;
+  --border-dark: #2a5080;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-500: var(--navy-500);
+  --color-slate: var(--slate);
+  --color-slate-light: var(--slate-light);
+  --color-gold-700: var(--gold-700);
+  --color-gold-600: var(--gold-600);
+  --color-gold-500: var(--gold-500);
+  --color-gold-400: var(--gold-400);
+  --color-gold-300: var(--gold-300);
+  --color-gold-100: var(--gold-100);
+  --color-gold-50: var(--gold-50);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
+  --font-sans: var(--font-source);
+  --font-heading: var(--font-jakarta);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--navy-700);
+  font-family: var(--font-source), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-heading {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.font-heading-normal {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--gold-400);
+  color: var(--navy-950);
+}
+
+.surface-navy {
+  background: linear-gradient(
+    165deg,
+    var(--navy-900) 0%,
+    #0c1e38 50%,
+    var(--navy-950) 100%
+  );
+}
+
+.surface-light {
+  background: var(--surface);
+}
+
+.accent-bar {
+  width: 52px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-600), var(--gold-400));
+  border-radius: 2px;
+}
+
+.accent-bar-vertical {
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold-600), var(--gold-400));
+  border-radius: 2px;
+}
+
+.card-corporate {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-corporate:hover {
+  border-color: var(--gold-400);
+  box-shadow: 0 4px 20px rgba(14, 34, 64, 0.06);
+}
+
+.label-caps {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gold-glow {
+  box-shadow: 0 2px 12px rgba(201, 168, 58, 0.25);
 }

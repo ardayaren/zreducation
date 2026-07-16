@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
+import StatCard from "@/components/ui/StatCard";
+import { performanceStats } from "@/data/services";
 import {
   fadeUp,
   slideInLeft,
@@ -10,19 +12,13 @@ import {
   staggerContainer,
   transition,
 } from "@/lib/motion";
+import { getStatValueClass } from "@/lib/statTone";
 
 const highlights = [
-  "15+ Yıllık Deneyim",
-  "CEFR Uyumlu Müfredat",
-  "30+ Partner Üniversite",
-  "Ücretsiz Seviye Tespit",
-];
-
-const stats = [
-  { label: "Mezun Öğrenci", value: "5.000+" },
-  { label: "Partner Üniversite", value: "30+" },
-  { label: "Uzman Eğitmen", value: "50+" },
-  { label: "Memnuniyet Oranı", value: "%94" },
+  { text: "15+ Yıllık Deneyim", tone: "gold" as const },
+  { text: "CEFR Uyumlu Müfredat", tone: "neutral" as const },
+  { text: "30+ Partner Üniversite", tone: "positive" as const },
+  { text: "Ücretsiz Seviye Tespit", tone: "positive" as const },
 ];
 
 export default function Hero() {
@@ -83,13 +79,21 @@ export default function Hero() {
             >
               {highlights.map((item) => (
                 <motion.li
-                  key={item}
+                  key={item.text}
                   variants={fadeUp}
                   transition={transition.fast}
                   className="flex items-center gap-2 text-sm text-slate bg-surface/80 rounded-full px-3 py-1.5"
                 >
-                  <span className="w-1.5 h-1.5 bg-gold-500 rounded-full shrink-0" />
-                  {item}
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                      item.tone === "positive"
+                        ? "bg-emerald-500"
+                        : item.tone === "gold"
+                          ? "bg-gold-500"
+                          : "bg-navy-400"
+                    }`}
+                  />
+                  {item.text}
                 </motion.li>
               ))}
             </motion.ul>
@@ -103,49 +107,68 @@ export default function Hero() {
           transition={{ delayChildren: 0.2 }}
           className="flex flex-col justify-center px-4 sm:px-6 lg:px-10 py-16 lg:py-12 relative"
         >
-          <div className="surface-navy navy-panel-inset flex flex-col justify-center px-5 sm:px-8 py-14 lg:py-16 h-full m-4 sm:m-6 lg:m-8">
-          <div className="max-w-md mx-auto lg:mx-0 lg:mr-auto lg:pl-4 w-full">
-            <motion.span
-              variants={fadeUp}
-              transition={transition.fast}
-              className="label-caps text-gold-400 mb-6 block"
-            >
-              Kurumsal Veriler
-            </motion.span>
+          <div className="surface-navy navy-panel-inset relative overflow-hidden flex flex-col justify-center px-5 sm:px-8 py-14 lg:py-16 h-full m-4 sm:m-6 lg:m-8">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-25"
+              style={{ backgroundImage: "url(/images/harvard.jpg)" }}
+              aria-hidden
+            />
+            <div className="absolute inset-0 bg-navy-950/55" aria-hidden />
 
-            <motion.div
-              variants={slideInRight}
-              transition={transition.slow}
-              className="space-y-2"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    ...transition.default,
-                    delay: 0.35 + index * 0.08,
-                  }}
-                  className="flex items-center justify-between px-5 py-4 navy-card-glass"
+            <div className="relative max-w-md mx-auto lg:mx-0 lg:mr-auto lg:pl-4 w-full">
+              <motion.span
+                variants={fadeUp}
+                transition={transition.fast}
+                className="label-caps text-gold-400 mb-6 block"
+              >
+                Kurumsal Veriler
+              </motion.span>
+
+              <motion.div
+                variants={slideInRight}
+                transition={transition.slow}
+                className="grid grid-cols-2 gap-2 mb-4"
+              >
+                {performanceStats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      ...transition.default,
+                      delay: 0.35 + index * 0.08,
+                    }}
+                  >
+                    <StatCard stat={stat} onDark size="sm" showDot />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ ...transition.default, delay: 0.7 }}
+                className="flex items-center justify-between px-5 py-4 navy-card-glass"
+              >
+                <span className="text-sm text-white/60">Genel Başarı Skoru</span>
+                <span
+                  className={`font-heading-normal text-xl font-bold tabular-nums ${getStatValueClass("positive", true)}`}
                 >
-                  <span className="text-sm text-white/60">{stat.label}</span>
-                  <span className="font-heading-normal text-xl font-bold text-gold-400 tabular-nums">
-                    {stat.value}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
+                  %91
+                </span>
+              </motion.div>
 
-            <motion.p
-              variants={fadeUp}
-              transition={{ ...transition.default, delay: 0.65 }}
-              className="mt-6 text-sm text-white/50 leading-relaxed navy-card-glass px-5 py-4"
-            >
-              Ücretsiz seviye tespit sınavı ile İngilizce yeterliliğinizi
-              ölçün, size özel program önerisi alın.
-            </motion.p>
-          </div>
+              <motion.p
+                variants={fadeUp}
+                transition={{ ...transition.default, delay: 0.8 }}
+                className="mt-4 text-sm text-white/50 leading-relaxed navy-card-glass px-5 py-4"
+              >
+                <span className="text-emerald-400 font-semibold">%94 memnuniyet</span>{" "}
+                ve{" "}
+                <span className="text-red-400 font-semibold">%6 vize red</span>{" "}
+                oranlarıyla şeffaf performans takibi sunuyoruz.
+              </motion.p>
+            </div>
           </div>
         </motion.div>
       </div>

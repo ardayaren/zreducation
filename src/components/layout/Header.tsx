@@ -6,6 +6,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/data/navigation";
 import Button from "@/components/ui/Button";
+import { contactInfo } from "@/data/contact";
 import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
 export default function Header() {
@@ -67,11 +68,11 @@ export default function Header() {
             className="hidden lg:flex items-center gap-6"
           >
             <a
-              href="tel:+902121234567"
+              href={contactInfo.phone.href}
               className="flex items-center gap-2 text-sm font-medium text-slate hover:text-navy-900 transition-colors"
             >
               <Phone className="w-4 h-4 text-gold-600" />
-              +90 (212) 123 45 67
+              {contactInfo.phone.display}
             </a>
             <Button href="/seviye-tespit" size="sm">
               Seviye Tespit

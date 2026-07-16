@@ -23,6 +23,7 @@ import {
 import type { TestResult } from "@/lib/levelCalculator";
 import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
+import { contactInfo } from "@/data/contact";
 
 const inputClass =
   "w-full px-5 py-3.5 rounded-3xl border-0 bg-white/90 text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04),0_2px_12px_rgba(14,34,64,0.04)] transition-all duration-200 focus:ring-4 focus:ring-gold-500/20 focus:outline-none placeholder:text-slate-light";
@@ -530,15 +531,15 @@ export default function PlacementTest() {
               <div className="grid sm:grid-cols-2 gap-3 text-sm text-white/60 mb-6 relative">
                 <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <MapPin className="w-4 h-4 text-gold-500 shrink-0" />
-                  Levent, Beşiktaş / İstanbul
+                  {contactInfo.address.line2}
                 </div>
                 <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <Phone className="w-4 h-4 text-gold-500 shrink-0" />
-                  +90 (212) 123 45 67
+                  {contactInfo.phone.display}
                 </div>
                 <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <Mail className="w-4 h-4 text-gold-500 shrink-0" />
-                  info@zreducation.com
+                  {contactInfo.email.display}
                 </div>
                 <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <Calendar className="w-4 h-4 text-gold-500 shrink-0" />

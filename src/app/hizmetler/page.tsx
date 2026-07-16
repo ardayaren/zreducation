@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import { ExpandableList } from "@/components/ui/ExpandablePanel";
 import ServiceAccordionBlock from "@/components/ui/ServiceAccordionBlock";
 import { services } from "@/data/services";
+import { getStatCardClass, getStatValueClass, inferStatTone } from "@/lib/statTone";
 import {
   serviceAccordionSections,
   onlineProgramDetails,
@@ -72,19 +73,24 @@ export default function HizmetlerPage() {
                           {service.detailIntro}
                         </p>
                         <div className="flex flex-wrap gap-2">
-                          {service.highlights.map((h) => (
-                            <span
-                              key={h.label}
-                              className="inline-flex flex-col rounded-2xl bg-white px-3 py-2 shadow-sm"
-                            >
-                              <span className="text-[10px] text-slate uppercase tracking-wide">
-                                {h.label}
+                          {service.highlights.map((h) => {
+                            const tone = h.tone ?? inferStatTone(h.label, h.value);
+                            return (
+                              <span
+                                key={h.label}
+                                className={`inline-flex flex-col rounded-2xl px-3 py-2 shadow-sm ${getStatCardClass(tone)}`}
+                              >
+                                <span className="text-[10px] text-slate uppercase tracking-wide">
+                                  {h.label}
+                                </span>
+                                <span
+                                  className={`text-xs font-semibold ${getStatValueClass(tone)}`}
+                                >
+                                  {h.value}
+                                </span>
                               </span>
-                              <span className="text-xs font-semibold text-navy-900">
-                                {h.value}
-                              </span>
-                            </span>
-                          ))}
+                            );
+                          })}
                         </div>
                       </div>
 

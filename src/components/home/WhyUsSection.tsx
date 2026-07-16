@@ -1,5 +1,7 @@
 import { AnimatedItem, AnimatedStagger } from "@/components/ui/AnimatedStagger";
 import SectionTitle from "@/components/ui/SectionTitle";
+import { performanceStats } from "@/data/services";
+import { getStatValueClass } from "@/lib/statTone";
 
 const reasons = [
   {
@@ -33,6 +35,26 @@ export default function WhyUsSection() {
           title="Neden Zreducation?"
           description="Eğitimde kalite, güven ve ölçülebilir sonuç odaklı kurumsal yaklaşım."
         />
+
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {performanceStats.map((stat) => (
+            <span
+              key={stat.label}
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium border ${
+                stat.tone === "negative"
+                  ? "bg-red-50 border-red-200 text-red-600"
+                  : "bg-emerald-50 border-emerald-200 text-emerald-700"
+              }`}
+            >
+              <span
+                className={`font-bold tabular-nums ${getStatValueClass(stat.tone)}`}
+              >
+                {stat.value}
+              </span>
+              {stat.label}
+            </span>
+          ))}
+        </div>
 
         <AnimatedStagger className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {reasons.map((reason) => (

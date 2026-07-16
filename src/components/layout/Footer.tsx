@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { footerLinks } from "@/data/navigation";
+import { contactInfo } from "@/data/contact";
 
 export default function Footer() {
   return (
@@ -61,32 +62,61 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gold-500 shrink-0 mt-0.5" />
-                <span className="text-sm text-white/60">
-                  Levent Mah. Eğitim Cad. No:42
+                <a
+                  href={contactInfo.maps.openUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  {contactInfo.address.line1}
                   <br />
-                  Beşiktaş / İstanbul
-                </span>
+                  {contactInfo.address.line2}
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-gold-500 shrink-0" />
                 <a
-                  href="tel:+902121234567"
+                  href={contactInfo.phone.href}
                   className="text-sm text-white/60 hover:text-white transition-colors"
                 >
-                  +90 (212) 123 45 67
+                  {contactInfo.phone.display}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-gold-500 shrink-0" />
                 <a
-                  href="mailto:info@zreducation.com"
+                  href={contactInfo.email.href}
                   className="text-sm text-white/60 hover:text-white transition-colors"
                 >
-                  info@zreducation.com
+                  {contactInfo.email.display}
                 </a>
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="mt-10">
+          <h3 className="label-caps text-gold-300 mb-4">Konum</h3>
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
+            <iframe
+              title="Zreducation Denizli Ofis Konumu"
+              src={contactInfo.maps.embedUrl}
+              className="w-full h-64 md:h-72 border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-white/40 text-xs mt-3">
+            <a
+              href={contactInfo.maps.openUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gold-400 transition-colors"
+            >
+              Google Maps&apos;te aç →
+            </a>
+          </p>
         </div>
 
         <div className="mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 relative">

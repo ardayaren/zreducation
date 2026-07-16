@@ -35,9 +35,22 @@ export default function TestimonialsSection() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={transition.fast}
                 >
-                  <p className="text-navy-700 text-base leading-relaxed mb-8">
+                  <p className="text-navy-700 text-base leading-relaxed mb-6">
                     {testimonials[current].content}
                   </p>
+                  <div className="flex items-center gap-1 mb-8">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span
+                        key={i}
+                        className={`text-sm ${i < 5 ? "text-emerald-500" : "text-slate-light"}`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                    <span className="ml-2 text-xs font-semibold text-emerald-600">
+                      %94 Memnuniyet
+                    </span>
+                  </div>
                   <div className="flex items-center justify-between border-t border-border pt-6">
                     <div>
                       <div className="font-heading-normal text-sm font-bold text-navy-900">

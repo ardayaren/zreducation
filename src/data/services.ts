@@ -7,6 +7,7 @@ import {
   Award,
   type LucideIcon,
 } from "lucide-react";
+import type { StatItem } from "@/lib/statTone";
 
 export interface ServiceFeature {
   title: string;
@@ -16,6 +17,7 @@ export interface ServiceFeature {
 export interface ServiceHighlight {
   label: string;
   value: string;
+  tone?: StatItem["tone"];
 }
 
 export interface Service {
@@ -63,9 +65,10 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Partner Üniversite", value: "30+" },
-      { label: "Ülke", value: "12" },
-      { label: "Danışmanlık", value: "Ücretsiz İlk Görüşme" },
+      { label: "Partner Üniversite", value: "30+", tone: "neutral" },
+      { label: "Ülke", value: "12", tone: "neutral" },
+      { label: "İlk Tercih Yerleşme", value: "%87", tone: "positive" },
+      { label: "Danışmanlık", value: "Ücretsiz", tone: "gold" },
     ],
     href: "/yurt-disi",
   },
@@ -101,9 +104,10 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Seviye", value: "A1 – C2" },
-      { label: "Sınıf Mevcudu", value: "Max 8" },
-      { label: "Ders Süresi", value: "48–96 Saat / Seviye" },
+      { label: "Seviye", value: "A1 – C2", tone: "neutral" },
+      { label: "Sınıf Mevcudu", value: "Max 8", tone: "neutral" },
+      { label: "6 Ay Seviye Geçişi", value: "%78", tone: "positive" },
+      { label: "Ders Süresi", value: "48–96 Saat", tone: "gold" },
     ],
     href: "/ingilizce-egitimi",
   },
@@ -139,9 +143,9 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Platform", value: "Zoom / Teams" },
-      { label: "Erişim", value: "7/24 Arşiv" },
-      { label: "Grup", value: "Birebir veya 4 Kişi" },
+      { label: "Platform", value: "Zoom / Teams", tone: "neutral" },
+      { label: "Erişim", value: "7/24 Arşiv", tone: "positive" },
+      { label: "Grup", value: "Birebir / 4 Kişi", tone: "neutral" },
     ],
     href: "/hizmetler#online",
   },
@@ -177,9 +181,9 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Sınıf", value: "Max 8 Kişi" },
-      { label: "Program", value: "3–4 Gün / Hafta" },
-      { label: "Avantaj", value: "%35 Tasarruf" },
+      { label: "Sınıf", value: "Max 8 Kişi", tone: "neutral" },
+      { label: "Program", value: "3–4 Gün / Hafta", tone: "neutral" },
+      { label: "Maliyet Avantajı", value: "%35", tone: "positive" },
     ],
     href: "/hizmetler#grup",
   },
@@ -215,9 +219,9 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Konum", value: "Levent, İstanbul" },
-      { label: "Çalışma Alanı", value: "Kütüphane & Lab" },
-      { label: "Saat", value: "Pzt–Cmt 09:00–19:00" },
+      { label: "Konum", value: "Levent, İstanbul", tone: "neutral" },
+      { label: "Çalışma Alanı", value: "Kütüphane & Lab", tone: "positive" },
+      { label: "Saat", value: "Pzt–Cmt 09–19", tone: "gold" },
     ],
     href: "/hizmetler#yuz-yuze",
   },
@@ -253,19 +257,26 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "IELTS Ort.", value: "Band 6.5" },
-      { label: "Program", value: "8–14 Hafta" },
-      { label: "Format", value: "Online / Yüz Yüze" },
+      { label: "IELTS Ort.", value: "Band 6.5", tone: "positive" },
+      { label: "Program", value: "8–14 Hafta", tone: "neutral" },
+      { label: "Format", value: "Online / Yüz Yüze", tone: "gold" },
     ],
     href: "/ingilizce-egitimi#sinav",
   },
 ];
 
-export const stats = [
-  { value: "15+", label: "Yıllık Deneyim" },
-  { value: "5000+", label: "Mezun Öğrenci" },
-  { value: "30+", label: "Partner Üniversite" },
-  { value: "%94", label: "Memnuniyet Oranı" },
+export const stats: StatItem[] = [
+  { value: "15+", label: "Yıllık Deneyim", tone: "gold" },
+  { value: "5000+", label: "Mezun Öğrenci", tone: "positive" },
+  { value: "30+", label: "Partner Üniversite", tone: "neutral" },
+  { value: "%94", label: "Memnuniyet Oranı", tone: "positive" },
+];
+
+export const performanceStats: StatItem[] = [
+  { value: "%94", label: "Memnuniyet Oranı", tone: "positive", hint: "Sektör ort. %82" },
+  { value: "%87", label: "İlk Tercih Yerleşme", tone: "positive", hint: "Yurt dışı başvuru" },
+  { value: "%78", label: "6 Ay Seviye Geçişi", tone: "positive", hint: "İngilizce programı" },
+  { value: "%6", label: "Vize Red Oranı", tone: "negative", hint: "Sektör ort. %14" },
 ];
 
 export const levels = [

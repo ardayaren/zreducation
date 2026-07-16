@@ -4,7 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ClipboardCheck, Sparkles } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
-import { services, stats } from "@/data/services";
+import StatCard from "@/components/ui/StatCard";
+import { services, performanceStats } from "@/data/services";
 import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
 type BentoVariant = "navy" | "gold" | "light" | "surface";
@@ -56,6 +57,13 @@ const variantStyles: Record<
   },
 };
 
+const imageOverlays: Record<BentoVariant, string> = {
+  navy: "bg-gradient-to-t from-navy-950/95 via-navy-900/72 to-navy-900/35",
+  gold: "bg-gradient-to-t from-navy-950/92 via-navy-900/68 to-navy-800/30",
+  light: "bg-gradient-to-t from-navy-950/94 via-navy-900/70 to-navy-900/32",
+  surface: "bg-gradient-to-t from-navy-950/94 via-navy-900/70 to-navy-900/32",
+};
+
 const serviceById = Object.fromEntries(services.map((s) => [s.id, s]));
 
 function fromService(
@@ -77,6 +85,7 @@ const tiles: BentoTile[] = [
     span: "md:col-span-1 lg:col-span-5",
     variant: "light",
     eyebrow: "A1 – C2",
+    backgroundImage: "/images/english-classroom.jpg",
   }),
   {
     id: "seviye-tespit",
@@ -88,23 +97,28 @@ const tiles: BentoTile[] = [
     variant: "gold",
     eyebrow: "Ücretsiz",
     stat: "~30 dk",
+    backgroundImage: "/images/exam-prep.jpg",
   },
   fromService("online", {
     span: "lg:col-span-4",
     variant: "surface",
+    backgroundImage: "/images/online-learning.jpg",
   }),
   fromService("grup", {
     span: "lg:col-span-4",
     variant: "light",
+    backgroundImage: "/images/group-class.jpg",
   }),
   fromService("yuz-yuze", {
     span: "lg:col-span-4",
     variant: "surface",
+    backgroundImage: "/images/campus-classroom.jpg",
   }),
   fromService("sertifika", {
     span: "md:col-span-2 lg:col-span-6",
     variant: "navy",
     eyebrow: "IELTS · TOEFL · YDS",
+    backgroundImage: "/images/exam-prep.jpg",
   }),
 ];
 
@@ -117,71 +131,84 @@ function BentoCard({
 }) {
   const styles = variantStyles[tile.variant];
   const Icon = tile.icon;
+  const hasImage = Boolean(tile.backgroundImage);
 
   return (
     <Link href={tile.href} className="block h-full group">
       <div
-        className={`relative h-full overflow-hidden rounded-3xl p-6 md:p-7 flex flex-col transition-all duration-500 ease-out group-hover:scale-[1.01] group-hover:shadow-[0_20px_48px_rgba(14,34,64,0.12)] ${tile.backgroundImage ? "text-white" : styles.tile} ${large ? "min-h-[300px] lg:min-h-full" : "min-h-[160px]"}`}
+        className={`relative h-full overflow-hidden rounded-3xl p-6 md:p-7 flex flex-col transition-all duration-500 ease-out group-hover:scale-[1.01] group-hover:shadow-[0_20px_48px_rgba(14,34,64,0.12)] ${hasImage ? "text-white" : styles.tile} ${large ? "min-h-[300px] lg:min-h-full" : "min-h-[160px]"}`}
       >
-        {tile.backgroundImage && (
+        {hasImage && tile.backgroundImage && (
           <>
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
               style={{ backgroundImage: `url(${tile.backgroundImage})` }}
               aria-hidden
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-900/70 to-navy-900/35" aria-hidden />
+            <div
+              className={`absolute inset-0 ${imageOverlays[tile.variant]}`}
+              aria-hidden
+            />
           </>
         )}
 
-        {tile.variant === "navy" && !tile.backgroundImage && (
+        {tile.variant === "navy" && !hasImage && (
           <div className="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
         )}
-        {tile.variant === "gold" && (
+        {tile.variant === "gold" && !hasImage && (
           <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/20 rounded-full blur-2xl pointer-events-none" />
         )}
 
         <div className="relative flex items-start justify-between gap-4 mb-auto">
           <div className="space-y-1">
             {tile.eyebrow && (
-              <span className={`label-caps text-[10px] block ${tile.backgroundImage ? "text-white/80" : "opacity-70"}`}>
+              <span
+                className={`label-caps text-[10px] block ${hasImage ? "text-white/80" : "opacity-70"}`}
+              >
                 {tile.eyebrow}
               </span>
             )}
             {tile.stat && large && (
-              <span className={`inline-flex badge-pill text-[10px] mt-1 ${tile.backgroundImage ? "bg-white/15 text-gold-300" : "bg-white/10 text-gold-300"}`}>
+              <span
+                className={`inline-flex badge-pill text-[10px] mt-1 ${hasImage ? "bg-white/15 text-gold-300" : "bg-white/10 text-gold-300"}`}
+              >
                 {tile.stat}
               </span>
             )}
           </div>
           <div
-            className={`shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ${tile.backgroundImage ? "bg-white/15 backdrop-blur-sm" : tile.variant === "navy" ? "navy-card-glass" : tile.variant === "gold" ? "bg-white/25" : "bg-gold-50"}`}
+            className={`shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ${hasImage ? "bg-white/15 backdrop-blur-sm" : tile.variant === "navy" ? "navy-card-glass" : tile.variant === "gold" ? "bg-white/25" : "bg-gold-50"}`}
           >
-            <Icon className={`w-5 h-5 ${tile.backgroundImage ? "text-gold-400" : styles.icon}`} strokeWidth={1.5} />
+            <Icon
+              className={`w-5 h-5 ${hasImage ? "text-gold-400" : styles.icon}`}
+              strokeWidth={1.5}
+            />
           </div>
         </div>
 
         <div className="relative mt-6">
           <h3
-            className={`font-heading-normal font-bold tracking-tight mb-2 ${tile.backgroundImage ? "text-white" : styles.title} ${large ? "text-2xl md:text-3xl" : "text-lg md:text-xl"}`}
+            className={`font-heading-normal font-bold tracking-tight mb-2 ${hasImage ? "text-white" : styles.title} ${large ? "text-2xl md:text-3xl" : "text-lg md:text-xl"}`}
           >
             {tile.title}
           </h3>
           <p
-            className={`text-sm leading-relaxed ${tile.backgroundImage ? "text-white/75 max-w-md" : styles.text} ${large && !tile.backgroundImage ? "max-w-md" : !tile.backgroundImage ? "line-clamp-2" : ""}`}
+            className={`text-sm leading-relaxed ${hasImage ? "text-white/75 max-w-md" : styles.text} ${large && !hasImage ? "max-w-md" : !hasImage ? "line-clamp-2" : ""}`}
           >
             {tile.description}
           </p>
 
           <div className="flex items-center justify-between mt-5">
             <span
-              className={`label-caps inline-flex items-center gap-1.5 text-[10px] transition-colors ${tile.backgroundImage ? "text-gold-300 hover:text-gold-200" : styles.link}`}
+              className={`label-caps inline-flex items-center gap-1.5 text-[10px] transition-colors ${hasImage ? "text-gold-300 hover:text-gold-200" : styles.link}`}
             >
               Keşfet
               <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
             </span>
             {tile.stat && !large && (
-              <span className={`text-xs font-semibold tabular-nums ${styles.text}`}>
+              <span
+                className={`text-xs font-semibold tabular-nums ${hasImage ? "text-white/70" : styles.text}`}
+              >
                 {tile.stat}
               </span>
             )}
@@ -225,27 +252,26 @@ export default function BentoGridSection() {
             transition={{ ...transition.default, delay: 0.4 }}
             className="md:col-span-2 lg:col-span-6"
           >
-            <div className="h-full min-h-[160px] rounded-3xl bg-white shadow-[0_4px_24px_rgba(14,34,64,0.06)] p-6 md:p-7 flex flex-col justify-between">
-              <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-4 h-4 text-gold-600" />
-                <span className="label-caps text-gold-600 text-[10px]">
-                  Rakamlarla Zreducation
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-2xl bg-surface/80 px-4 py-3 text-center"
-                  >
-                    <div className="font-heading-normal text-xl md:text-2xl font-bold text-navy-900 tabular-nums">
-                      {stat.value}
-                    </div>
-                    <div className="text-[10px] text-slate mt-0.5">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+            <div className="relative h-full min-h-[160px] rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(14,34,64,0.06)] p-6 md:p-7 flex flex-col justify-between">
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-20"
+                style={{ backgroundImage: "url(/images/campus-classroom.jpg)" }}
+                aria-hidden
+              />
+              <div className="absolute inset-0 bg-white/92" aria-hidden />
+
+              <div className="relative">
+                <div className="flex items-center gap-2 mb-4">
+                  <Sparkles className="w-4 h-4 text-gold-600" />
+                  <span className="label-caps text-gold-600 text-[10px]">
+                    Rakamlarla Zreducation
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {performanceStats.map((stat) => (
+                    <StatCard key={stat.label} stat={stat} size="sm" showDot />
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>

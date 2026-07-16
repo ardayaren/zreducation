@@ -6,6 +6,7 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import { contactInfo } from "@/data/contact";
 import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
 const inputClass =
@@ -48,19 +49,20 @@ export default function ContactForm() {
                 {
                   icon: MapPin,
                   title: "Adres",
-                  content: "Levent Mah. Eğitim Cad. No:42\nBeşiktaş / İstanbul",
+                  content: `${contactInfo.address.line1}\n${contactInfo.address.line2}`,
+                  href: contactInfo.maps.openUrl,
                 },
                 {
                   icon: Phone,
                   title: "Telefon",
-                  content: "+90 (212) 123 45 67",
-                  href: "tel:+902121234567",
+                  content: contactInfo.phone.display,
+                  href: contactInfo.phone.href,
                 },
                 {
                   icon: Mail,
                   title: "E-posta",
-                  content: "info@zreducation.com",
-                  href: "mailto:info@zreducation.com",
+                  content: contactInfo.email.display,
+                  href: contactInfo.email.href,
                 },
                 {
                   icon: Clock,
@@ -82,6 +84,12 @@ export default function ContactForm() {
                     {item.href ? (
                       <a
                         href={item.href}
+                        target={item.title === "Adres" ? "_blank" : undefined}
+                        rel={
+                          item.title === "Adres"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="text-sm text-slate hover:text-navy-900 transition-colors whitespace-pre-line"
                       >
                         {item.content}
@@ -95,6 +103,17 @@ export default function ContactForm() {
                 </motion.div>
               ))}
             </motion.div>
+
+            <div className="mt-8 rounded-3xl overflow-hidden border border-border shadow-sm">
+              <iframe
+                title="Zreducation Denizli Ofis Konumu"
+                src={contactInfo.maps.embedUrl}
+                className="w-full h-56 border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
           </AnimatedSection>
 
           <AnimatedSection variant="slideRight" delay={0.1}>

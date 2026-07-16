@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
+import StatCard from "@/components/ui/StatCard";
 import { ExpandableList } from "@/components/ui/ExpandablePanel";
 import {
   hakkimizdaValueDetails,
   hakkimizdaTeamDetails,
 } from "@/data/expandableContent";
+import { stats } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Hakkımızda",
@@ -58,21 +60,8 @@ export default function HakkimizdaPage() {
 
             <AnimatedSection delay={0.2}>
               <div className="grid grid-cols-2 gap-4">
-                {[
-                  { value: "2009", label: "Kuruluş Yılı" },
-                  { value: "5000+", label: "Mezun Öğrenci" },
-                  { value: "50+", label: "Uzman Kadro" },
-                  { value: "30+", label: "Partner Üniversite" },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="bg-surface p-8 text-center border border-border"
-                  >
-                    <div className="text-3xl font-bold text-gold-500 font-heading-normal">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-slate mt-2">{stat.label}</div>
-                  </div>
+                {stats.map((stat) => (
+                  <StatCard key={stat.label} stat={stat} size="md" showDot />
                 ))}
               </div>
             </AnimatedSection>

@@ -19,6 +19,7 @@ interface BentoTile {
   variant: BentoVariant;
   eyebrow?: string;
   stat?: string;
+  backgroundImage?: string;
 }
 
 const variantStyles: Record<
@@ -70,6 +71,7 @@ const tiles: BentoTile[] = [
     variant: "navy",
     eyebrow: "Öne Çıkan",
     stat: "30+ Üniversite",
+    backgroundImage: "/images/harvard.jpg",
   }),
   fromService("ingilizce", {
     span: "md:col-span-1 lg:col-span-5",
@@ -119,9 +121,20 @@ function BentoCard({
   return (
     <Link href={tile.href} className="block h-full group">
       <div
-        className={`relative h-full overflow-hidden rounded-3xl p-6 md:p-7 flex flex-col transition-all duration-500 ease-out group-hover:scale-[1.01] group-hover:shadow-[0_20px_48px_rgba(14,34,64,0.12)] ${styles.tile} ${large ? "min-h-[300px] lg:min-h-full" : "min-h-[160px]"}`}
+        className={`relative h-full overflow-hidden rounded-3xl p-6 md:p-7 flex flex-col transition-all duration-500 ease-out group-hover:scale-[1.01] group-hover:shadow-[0_20px_48px_rgba(14,34,64,0.12)] ${tile.backgroundImage ? "text-white" : styles.tile} ${large ? "min-h-[300px] lg:min-h-full" : "min-h-[160px]"}`}
       >
-        {tile.variant === "navy" && (
+        {tile.backgroundImage && (
+          <>
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              style={{ backgroundImage: `url(${tile.backgroundImage})` }}
+              aria-hidden
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-900/70 to-navy-900/35" aria-hidden />
+          </>
+        )}
+
+        {tile.variant === "navy" && !tile.backgroundImage && (
           <div className="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
         )}
         {tile.variant === "gold" && (
@@ -131,38 +144,38 @@ function BentoCard({
         <div className="relative flex items-start justify-between gap-4 mb-auto">
           <div className="space-y-1">
             {tile.eyebrow && (
-              <span className="label-caps text-[10px] opacity-70 block">
+              <span className={`label-caps text-[10px] block ${tile.backgroundImage ? "text-white/80" : "opacity-70"}`}>
                 {tile.eyebrow}
               </span>
             )}
             {tile.stat && large && (
-              <span className="inline-flex badge-pill bg-white/10 text-gold-300 text-[10px] mt-1">
+              <span className={`inline-flex badge-pill text-[10px] mt-1 ${tile.backgroundImage ? "bg-white/15 text-gold-300" : "bg-white/10 text-gold-300"}`}>
                 {tile.stat}
               </span>
             )}
           </div>
           <div
-            className={`shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ${tile.variant === "navy" ? "navy-card-glass" : tile.variant === "gold" ? "bg-white/25" : "bg-gold-50"}`}
+            className={`shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ${tile.backgroundImage ? "bg-white/15 backdrop-blur-sm" : tile.variant === "navy" ? "navy-card-glass" : tile.variant === "gold" ? "bg-white/25" : "bg-gold-50"}`}
           >
-            <Icon className={`w-5 h-5 ${styles.icon}`} strokeWidth={1.5} />
+            <Icon className={`w-5 h-5 ${tile.backgroundImage ? "text-gold-400" : styles.icon}`} strokeWidth={1.5} />
           </div>
         </div>
 
         <div className="relative mt-6">
           <h3
-            className={`font-heading-normal font-bold tracking-tight mb-2 ${styles.title} ${large ? "text-2xl md:text-3xl" : "text-lg md:text-xl"}`}
+            className={`font-heading-normal font-bold tracking-tight mb-2 ${tile.backgroundImage ? "text-white" : styles.title} ${large ? "text-2xl md:text-3xl" : "text-lg md:text-xl"}`}
           >
             {tile.title}
           </h3>
           <p
-            className={`text-sm leading-relaxed ${styles.text} ${large ? "max-w-md" : "line-clamp-2"}`}
+            className={`text-sm leading-relaxed ${tile.backgroundImage ? "text-white/75 max-w-md" : styles.text} ${large && !tile.backgroundImage ? "max-w-md" : !tile.backgroundImage ? "line-clamp-2" : ""}`}
           >
             {tile.description}
           </p>
 
           <div className="flex items-center justify-between mt-5">
             <span
-              className={`label-caps inline-flex items-center gap-1.5 text-[10px] transition-colors ${styles.link}`}
+              className={`label-caps inline-flex items-center gap-1.5 text-[10px] transition-colors ${tile.backgroundImage ? "text-gold-300 hover:text-gold-200" : styles.link}`}
             >
               Keşfet
               <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />

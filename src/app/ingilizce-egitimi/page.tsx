@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { levels } from "@/data/services";
@@ -66,7 +67,7 @@ export default function IngilizceEgitimiPage() {
               <AnimatedSection key={level.code} delay={index * 0.08}>
                 <div className="bg-surface p-8 border border-border hover:border-gold-400 hover:shadow-sm transition-all group">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="w-14 h-14 rounded-2xl surface-navy flex items-center justify-center font-heading-normal text-xl font-bold text-gold-400">
+                    <span className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center font-heading-normal text-xl font-bold text-gold-400 shadow-md">
                       {level.code}
                     </span>
                     <div>
@@ -123,9 +124,8 @@ export default function IngilizceEgitimiPage() {
         </div>
       </section>
 
-      <section className="py-20 surface-navy">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
+      <NavySection>
+        <SectionTitle
               subtitle="Metodoloji"
               title="Öğretim Yaklaşımımız"
               description="Modern ve etkili öğretim metodları ile kalıcı öğrenme sağlıyoruz."
@@ -135,14 +135,13 @@ export default function IngilizceEgitimiPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {methods.map((method, index) => (
               <AnimatedSection key={method} delay={index * 0.05}>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-white/90">
+                <div className="navy-card-glass p-5 text-white/90">
                   {method}
                 </div>
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
+      </NavySection>
     </PageLayout>
   );
 }

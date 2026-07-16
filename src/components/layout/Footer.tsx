@@ -4,7 +4,7 @@ import { footerLinks } from "@/data/navigation";
 
 export default function Footer() {
   return (
-    <footer className="surface-navy text-white border-t-[3px] border-gold-500">
+    <footer className="surface-navy footer-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
@@ -89,7 +89,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 relative">
+          <div className="absolute top-0 left-[15%] right-[15%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <p className="text-white/40 text-xs">
             © {new Date().getFullYear()} Zreducation. Tüm hakları saklıdır.
           </p>

@@ -219,7 +219,7 @@ export default function PlacementTest() {
         <div className="max-w-3xl mx-auto">
           <div className="soft-card mb-6 p-5 md:p-6">
             <div className="flex justify-between items-center mb-4">
-              <span className="badge-pill bg-navy-900 text-white">
+              <span className="badge-pill bg-gradient-to-r from-navy-700 to-navy-900 text-white shadow-sm">
                 Soru {currentQuestion + 1} / {placementQuestions.length}
               </span>
               <span className="text-sm text-slate">
@@ -417,7 +417,7 @@ export default function PlacementTest() {
           transition={transition.default}
           className="max-w-3xl mx-auto soft-card overflow-hidden"
         >
-          <div className="surface-navy p-8 md:p-10 relative overflow-hidden">
+          <div className="surface-navy navy-panel p-8 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-3xl" />
             <span className="badge-pill bg-white/10 text-gold-300 mb-4 relative">
               Sınav Sonucu
@@ -515,7 +515,7 @@ export default function PlacementTest() {
               </p>
             </div>
 
-            <div className="surface-navy rounded-3xl p-8 md:p-10 relative overflow-hidden">
+            <div className="surface-navy navy-panel p-8 md:p-10 relative overflow-hidden">
               <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl" />
               <h3 className="font-heading-normal text-base font-bold text-white mb-3 relative">
                 Kuruma Davet

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 
@@ -125,20 +126,19 @@ export default function YurtDisiPage() {
         </div>
       </section>
 
-      <section className="py-20 surface-navy">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
+      <NavySection>
+        <SectionTitle
               subtitle="Süreç"
               title="Başvuru Sürecimiz"
               description="6 adımda yurt dışı eğitim hayalinizi gerçekleştirin."
               light
             />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {process.map((step, index) => (
               <AnimatedSection key={step.title} delay={index * 0.1}>
-                <div className="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors">
-                  <div className="w-12 h-12 rounded-2xl bg-gold-600 flex items-center justify-center mb-4">
+                <div className="navy-card-glass p-8 hover:bg-white/10 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center mb-4 shadow-md">
                     <step.icon className="w-6 h-6 text-navy-950" />
                   </div>
                   <h3 className="font-heading-normal text-lg font-bold text-white mb-2">
@@ -151,8 +151,7 @@ export default function YurtDisiPage() {
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
+      </NavySection>
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

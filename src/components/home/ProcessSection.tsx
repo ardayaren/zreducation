@@ -1,4 +1,5 @@
 import { AnimatedItem, AnimatedStagger } from "@/components/ui/AnimatedStagger";
+import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 const steps = [
@@ -30,9 +31,8 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-20 surface-navy border-t-[3px] border-gold-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
+    <NavySection>
+      <SectionTitle
           subtitle="Süreç"
           title="Çalışma Metodolojimiz"
           description="Başvurudan tamamlanmaya kadar her aşamada tanımlı ve izlenebilir süreçler."
@@ -42,7 +42,7 @@ export default function ProcessSection() {
         <AnimatedStagger className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((item) => (
             <AnimatedItem key={item.step}>
-              <div className="bg-navy-800/50 backdrop-blur-sm rounded-3xl p-8 h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="navy-card-glass rounded-3xl p-8 h-full hover:bg-white/10 transition-all duration-300">
                 <span className="label-caps text-gold-500 block mb-4">
                   Adım {item.step}
                 </span>
@@ -56,7 +56,6 @@ export default function ProcessSection() {
             </AnimatedItem>
           ))}
         </AnimatedStagger>
-      </div>
-    </section>
+    </NavySection>
   );
 }

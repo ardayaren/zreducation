@@ -16,7 +16,7 @@ export default function CTASection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={staggerContainer}
-            className="surface-navy rounded-3xl p-8 md:p-12 shadow-[0_12px_48px_rgba(14,34,64,0.15)]"
+            className="surface-navy navy-panel p-8 md:p-12"
           >
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>

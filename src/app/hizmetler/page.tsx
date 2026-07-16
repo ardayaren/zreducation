@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { services } from "@/data/services";
@@ -63,7 +64,7 @@ export default function HizmetlerPage() {
                   className="grid lg:grid-cols-3 gap-8 bg-surface p-8 border border-border scroll-mt-28"
                 >
                   <div className="lg:col-span-1">
-                    <div className="w-14 h-14 rounded-2xl surface-navy flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center mb-4 shadow-md">
                       <service.icon className="w-7 h-7 text-gold-400" />
                     </div>
                     <h3 className="font-heading-normal text-2xl font-bold text-navy-900 mb-3">
@@ -98,9 +99,8 @@ export default function HizmetlerPage() {
         </div>
       </section>
 
-      <section id="online" className="py-20 surface-navy scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
+      <NavySection id="online" className="scroll-mt-20">
+        <SectionTitle
               subtitle="Online Eğitim"
               title="Her Yerden Öğrenin"
               description="Esnek programlarla evinizin konforunda, canlı dersler ve interaktif materyallerle İngilizce öğrenin."
@@ -110,14 +110,13 @@ export default function HizmetlerPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {onlineFeatures.map((feature, index) => (
               <AnimatedSection key={feature} delay={index * 0.05}>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-white/90">
+                <div className="navy-card-glass p-5 text-white/90">
                   {feature}
                 </div>
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
+      </NavySection>
 
       <section id="yuz-yuze" className="py-20 bg-surface scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

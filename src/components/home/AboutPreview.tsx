@@ -18,15 +18,15 @@ export default function AboutPreview() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="surface-navy rounded-3xl shadow-lg"
+              className="surface-navy navy-panel overflow-hidden"
             >
-              <div className="grid grid-cols-2 divide-x divide-y divide-border-dark">
+              <div className="grid grid-cols-2 gap-3 p-4">
                 {stats.map((stat) => (
                   <motion.div
                     key={stat.label}
                     variants={fadeUp}
                     transition={transition.default}
-                    className="p-8 text-center"
+                    className="navy-card-glass p-8 text-center"
                   >
                     <div className="font-heading-normal text-3xl font-bold text-gold-400 tabular-nums">
                       {stat.value}

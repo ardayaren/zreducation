@@ -22,12 +22,12 @@ export default function Header() {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
-        className="h-1 bg-gradient-to-r from-gold-700 via-gold-500 to-gold-400 origin-left"
+        className="h-0.5 bg-gradient-to-r from-transparent via-gold-500/80 to-transparent origin-left"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-navy-900 flex items-center justify-center shadow-md">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center shadow-md">
               <span className="font-heading text-gold-400 text-sm font-bold">
                 ZR
               </span>

@@ -1,6 +1,6 @@
 import PageLayout from "@/components/layout/PageLayout";
 import Hero from "@/components/home/Hero";
-import ServicesSection from "@/components/home/ServicesSection";
+import BentoGridSection from "@/components/home/BentoGridSection";
 import AboutPreview from "@/components/home/AboutPreview";
 import WhyUsSection from "@/components/home/WhyUsSection";
 import ProcessSection from "@/components/home/ProcessSection";
@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <PageLayout>
       <Hero />
-      <ServicesSection />
+      <BentoGridSection />
       <AboutPreview />
       <WhyUsSection />
       <ProcessSection />

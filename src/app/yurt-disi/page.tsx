@@ -20,44 +20,86 @@ export const metadata: Metadata = {
 };
 
 const countries = [
-  { name: "İngiltere", universities: "Oxford, Cambridge, LSE, UCL", flag: "🇬🇧" },
-  { name: "Amerika", universities: "MIT, Harvard, Stanford, UCLA", flag: "🇺🇸" },
-  { name: "Kanada", universities: "Toronto, UBC, McGill", flag: "🇨🇦" },
-  { name: "Avustralya", universities: "Melbourne, Sydney, ANU", flag: "🇦🇺" },
-  { name: "Almanya", universities: "LMU, TU Munich, Heidelberg", flag: "🇩🇪" },
-  { name: "Hollanda", universities: "Amsterdam, Delft, Leiden", flag: "🇳🇱" },
+  {
+    name: "İngiltere",
+    universities: "Oxford, Cambridge, LSE, UCL",
+    flag: "🇬🇧",
+    detail:
+      "1 yıllık foundation veya doğrudan lisans başvurusu. UCAS süreci, personal statement ve IELTS 6.0–7.0 gereksinimleri danışmanlarımız tarafından yönetilir.",
+  },
+  {
+    name: "Amerika",
+    universities: "MIT, Harvard, Stanford, UCLA",
+    flag: "🇺🇸",
+    detail:
+      "SAT/ACT hazırlığı, Common App başvurusu ve F-1 vize süreci. Burs ve finansal destek seçenekleri için ayrı danışmanlık sunulur.",
+  },
+  {
+    name: "Kanada",
+    universities: "Toronto, UBC, McGill",
+    flag: "🇨🇦",
+    detail:
+      "PGWP sonrası çalışma imkânı ve göçmenlik yolları açısından avantajlı. DIL/PG programları ve lisans başvurularında tam destek.",
+  },
+  {
+    name: "Avustralya",
+    universities: "Melbourne, Sydney, ANU",
+    flag: "🇦🇺",
+    detail:
+      "Şubat ve Temmuz dönemleri. CRICOS onaylı kurumlar, OSHC sağlık sigortası ve Part-time çalışma izni konularında rehberlik.",
+  },
+  {
+    name: "Almanya",
+    universities: "LMU, TU Munich, Heidelberg",
+    flag: "🇩🇪",
+    detail:
+      "Devlet üniversitelerinde düşük öğrenim ücreti. TestAS sınavı, blocked account ve Almanca/İngilizce program seçenekleri.",
+  },
+  {
+    name: "Hollanda",
+    universities: "Amsterdam, Delft, Leiden",
+    flag: "🇳🇱",
+    detail:
+      "İngilizce lisans ve yüksek lisans programları. Studielink başvurusu, Nuffic diploma denklik ve konaklama desteği.",
+  },
 ];
 
 const process = [
   {
     icon: BookOpen,
     title: "Danışmanlık & Planlama",
-    description: "Hedeflerinizi belirliyor, ülke ve üniversite seçimi yapıyoruz.",
+    description:
+      "Ücretsiz ilk görüşmede akademik geçmiş, bütçe ve kariyer hedefleriniz analiz edilir. Size özel ülke ve üniversite shortlist'i hazırlanır.",
   },
   {
     icon: FileCheck,
     title: "Başvuru Hazırlığı",
-    description: "Motivasyon mektubu, referanslar ve tüm belgeleri hazırlıyoruz.",
+    description:
+      "Motivasyon mektubu, CV, referans mektupları ve portfolyo native danışman kontrolünden geçer. Her belge üniversite formatına uyarlanır.",
   },
   {
     icon: GraduationCap,
     title: "Kabul & Kayıt",
-    description: "Başvuru takibi, kabul mektubu ve kayıt işlemlerini yönetiyoruz.",
+    description:
+      "Online başvuru takibi, ek belge talepleri ve kabul mektubu sonrası kayıt işlemleri adım adım yönetilir. Burs başvuruları da dahildir.",
   },
   {
     icon: Plane,
     title: "Vize Süreci",
-    description: "Vize başvurusu, mülakat hazırlığı ve belge kontrolü.",
+    description:
+      "Finansal belgeler, sağlık sigortası ve mülakat provası dahil eksiksiz vize dosyası hazırlanır. Randevu planlaması yapılır.",
   },
   {
     icon: Home,
     title: "Yerleşim Desteği",
-    description: "Konaklama, havaalanı karşılama ve oryantasyon programı.",
+    description:
+      "Yurt, homestay veya paylaşımlı daire seçenekleri sunulur. Havaalanı karşılama ve ilk hafta oryantasyon programı organize edilir.",
   },
   {
     icon: Globe,
     title: "Sürekli Destek",
-    description: "Yurt dışındayken de 7/24 öğrenci destek hattımız aktif.",
+    description:
+      "Yurt dışına vardıktan sonra da WhatsApp destek hattımız ve aylık check-in görüşmeleriyle yanınızdayız. Mezuniyet sonrası kariyer danışmanlığı sunulur.",
   },
 ];
 
@@ -98,7 +140,10 @@ export default function YurtDisiPage() {
                       {country.name}
                     </h3>
                   </div>
-                  <p className="text-slate text-sm">{country.universities}</p>
+                  <p className="text-slate text-sm mb-3">{country.universities}</p>
+                  <p className="text-slate text-xs leading-relaxed">
+                    {country.detail}
+                  </p>
                 </div>
               </AnimatedSection>
             ))}

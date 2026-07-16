@@ -34,11 +34,11 @@ export default function ServicesSection() {
                 <ul className="space-y-1.5 mb-6">
                   {service.features.slice(0, 3).map((feature) => (
                     <li
-                      key={feature}
+                      key={feature.title}
                       className="text-xs text-slate flex items-center gap-2"
                     >
                       <span className="w-1 h-1 bg-gold-600 shrink-0" />
-                      {feature}
+                      {feature.title}
                     </li>
                   ))}
                 </ul>

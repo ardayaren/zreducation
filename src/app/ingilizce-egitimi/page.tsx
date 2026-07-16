@@ -16,32 +16,54 @@ const examPrograms = [
   {
     name: "IELTS Hazırlık",
     duration: "8-12 Hafta",
-    description: "Academic ve General Training modülleri, deneme sınavları ve birebir koçluk.",
+    description:
+      "Academic ve General Training modülleri için ayrı strateji dersleri. Haftalık full mock exam, Writing birebir düzeltme ve Speaking mock interview dahil. Hedef: Band 6.5–7.5.",
   },
   {
     name: "TOEFL iBT Hazırlık",
     duration: "8-12 Hafta",
-    description: "Reading, Listening, Speaking ve Writing bölümlerine özel strateji eğitimi.",
+    description:
+      "Reading, Listening, Speaking ve Writing bölümlerine özel zaman yönetimi teknikleri. ETS formatında deneme sınavları ve integrated task pratiği. Hedef: 90–100+ puan.",
   },
   {
     name: "YDS Hazırlık",
     duration: "10-14 Hafta",
-    description: "Kamu personeli için YDS sınavına yönelik kapsamlı hazırlık programı.",
+    description:
+      "Kamu personeline özel kelime listeleri, cloze test stratejileri ve çeviri teknikleri. Haftalık deneme ve bölüm bazlı analiz raporu. Hedef: 80+ puan.",
   },
   {
     name: "İş İngilizcesi",
     duration: "6-8 Hafta",
-    description: "Profesyonel iletişim, toplantı, sunum ve e-posta yazım becerileri.",
+    description:
+      "Toplantı yönetimi, sunum teknikleri, e-posta ve rapor yazımı, müzakere kalıpları. Sektöre özel (finans, IT, sağlık) modüller mevcuttur.",
   },
 ];
 
 const methods = [
-  "İletişim odaklı öğretim (CLT)",
-  "Gerçek hayat senaryoları ve vaka çalışmaları",
-  "Multimedya destekli ders materyalleri",
-  "Haftalık konuşma kulüpleri",
-  "Kişiselleştirilmiş öğrenme planları",
-  "Düzenli ilerleme raporları",
+  {
+    title: "İletişim Odaklı Öğretim (CLT)",
+    text: "Öğrenci merkezli derslerde konuşma ve etkileşim ön plandadır; ezber yerine kullanım öğretilir.",
+  },
+  {
+    title: "Gerçek Hayat Senaryoları",
+    text: "Havaalanı, iş görüşmesi, üniversite sunumu gibi gerçek durumlar sınıfta canlandırılır.",
+  },
+  {
+    title: "Multimedya Materyaller",
+    text: "Podcast, video, interaktif quiz ve dijital okuma metinleriyle dört beceri desteklenir.",
+  },
+  {
+    title: "Konuşma Kulüpleri",
+    text: "Haftalık ücretsiz kulüp oturumlarında native speaker eşliğinde tartışma ve debate pratiği.",
+  },
+  {
+    title: "Kişisel Öğrenme Planı",
+    text: "Placement test sonuçlarına göre zayıf alanlara yönelik ek materyal ve birebir destek.",
+  },
+  {
+    title: "İlerleme Raporları",
+    text: "Her 4 haftada bir yazılı gelişim raporu; ebeveyn ve kurumsal müşterilerle paylaşılabilir.",
+  },
 ];
 
 export default function IngilizceEgitimiPage() {
@@ -134,9 +156,14 @@ export default function IngilizceEgitimiPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {methods.map((method, index) => (
-              <AnimatedSection key={method} delay={index * 0.05}>
-                <div className="navy-card-glass p-5 text-white/90">
-                  {method}
+              <AnimatedSection key={method.title} delay={index * 0.05}>
+                <div className="navy-card-glass p-5 h-full">
+                  <h4 className="text-sm font-semibold text-white mb-2">
+                    {method.title}
+                  </h4>
+                  <p className="text-xs text-white/70 leading-relaxed">
+                    {method.text}
+                  </p>
                 </div>
               </AnimatedSection>
             ))}

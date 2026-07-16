@@ -4,67 +4,18 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
-import { levels } from "@/data/services";
+import { ExpandableList } from "@/components/ui/ExpandablePanel";
+import {
+  ingilizceLevelDetails,
+  ingilizceExamDetails,
+  ingilizceMethodDetails,
+} from "@/data/expandableContent";
 
 export const metadata: Metadata = {
   title: "İngilizce Eğitimi",
   description:
     "A1'den C2'ye kadar CEFR uyumlu İngilizce eğitim programları, IELTS ve TOEFL hazırlık kursları.",
 };
-
-const examPrograms = [
-  {
-    name: "IELTS Hazırlık",
-    duration: "8-12 Hafta",
-    description:
-      "Academic ve General Training modülleri için ayrı strateji dersleri. Haftalık full mock exam, Writing birebir düzeltme ve Speaking mock interview dahil. Hedef: Band 6.5–7.5.",
-  },
-  {
-    name: "TOEFL iBT Hazırlık",
-    duration: "8-12 Hafta",
-    description:
-      "Reading, Listening, Speaking ve Writing bölümlerine özel zaman yönetimi teknikleri. ETS formatında deneme sınavları ve integrated task pratiği. Hedef: 90–100+ puan.",
-  },
-  {
-    name: "YDS Hazırlık",
-    duration: "10-14 Hafta",
-    description:
-      "Kamu personeline özel kelime listeleri, cloze test stratejileri ve çeviri teknikleri. Haftalık deneme ve bölüm bazlı analiz raporu. Hedef: 80+ puan.",
-  },
-  {
-    name: "İş İngilizcesi",
-    duration: "6-8 Hafta",
-    description:
-      "Toplantı yönetimi, sunum teknikleri, e-posta ve rapor yazımı, müzakere kalıpları. Sektöre özel (finans, IT, sağlık) modüller mevcuttur.",
-  },
-];
-
-const methods = [
-  {
-    title: "İletişim Odaklı Öğretim (CLT)",
-    text: "Öğrenci merkezli derslerde konuşma ve etkileşim ön plandadır; ezber yerine kullanım öğretilir.",
-  },
-  {
-    title: "Gerçek Hayat Senaryoları",
-    text: "Havaalanı, iş görüşmesi, üniversite sunumu gibi gerçek durumlar sınıfta canlandırılır.",
-  },
-  {
-    title: "Multimedya Materyaller",
-    text: "Podcast, video, interaktif quiz ve dijital okuma metinleriyle dört beceri desteklenir.",
-  },
-  {
-    title: "Konuşma Kulüpleri",
-    text: "Haftalık ücretsiz kulüp oturumlarında native speaker eşliğinde tartışma ve debate pratiği.",
-  },
-  {
-    title: "Kişisel Öğrenme Planı",
-    text: "Placement test sonuçlarına göre zayıf alanlara yönelik ek materyal ve birebir destek.",
-  },
-  {
-    title: "İlerleme Raporları",
-    text: "Her 4 haftada bir yazılı gelişim raporu; ebeveyn ve kurumsal müşterilerle paylaşılabilir.",
-  },
-];
 
 export default function IngilizceEgitimiPage() {
   return (
@@ -79,32 +30,18 @@ export default function IngilizceEgitimiPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-              subtitle="Seviyeler"
-              title="CEFR Seviye Programları"
-              description="Avrupa Ortak Dil Referans Çerçevesi standartlarına uygun, kademeli eğitim programları."
-            />
+            subtitle="Seviyeler"
+            title="CEFR Seviye Programları"
+            description="Avrupa Ortak Dil Referans Çerçevesi standartlarına uygun, kademeli eğitim programları. Seviye detayları için tıklayın."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {levels.map((level, index) => (
-              <AnimatedSection key={level.code} delay={index * 0.08}>
-                <div className="bg-surface p-8 border border-border hover:border-gold-400 hover:shadow-sm transition-all group">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center font-heading-normal text-xl font-bold text-gold-400 shadow-md">
-                      {level.code}
-                    </span>
-                    <div>
-                      <h3 className="font-heading-normal text-lg font-bold text-navy-900">
-                        {level.name}
-                      </h3>
-                    </div>
-                  </div>
-                  <p className="text-slate text-sm leading-relaxed">
-                    {level.description}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AnimatedSection>
+            <ExpandableList
+              items={ingilizceLevelDetails}
+              variant="surface"
+              defaultOpenIndex={0}
+            />
+          </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
             <div className="text-center mt-12">
@@ -119,55 +56,36 @@ export default function IngilizceEgitimiPage() {
       <section id="sinav" className="py-20 bg-surface scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-              subtitle="Sınav Hazırlık"
-              title="Sınav & Sertifika Programları"
-              description="Uluslararası sınavlara yönelik özel hazırlık programları ile hedef puanınıza ulaşın."
-            />
+            subtitle="Sınav Hazırlık"
+            title="Sınav & Sertifika Programları"
+            description="Uluslararası sınavlara yönelik özel hazırlık programları ile hedef puanınıza ulaşın."
+          />
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {examPrograms.map((program, index) => (
-              <AnimatedSection key={program.name} delay={index * 0.1}>
-                <div className="bg-white p-8 border border-border">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-heading-normal text-xl font-bold text-navy-900">
-                      {program.name}
-                    </h3>
-                    <span className="label-caps px-2 py-1 border border-gold-600 text-gold-600">
-                      {program.duration}
-                    </span>
-                  </div>
-                  <p className="text-slate leading-relaxed">
-                    {program.description}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AnimatedSection>
+            <ExpandableList
+              items={ingilizceExamDetails}
+              variant="light"
+              defaultOpenIndex={0}
+            />
+          </AnimatedSection>
         </div>
       </section>
 
       <NavySection>
         <SectionTitle
-              subtitle="Metodoloji"
-              title="Öğretim Yaklaşımımız"
-              description="Modern ve etkili öğretim metodları ile kalıcı öğrenme sağlıyoruz."
-              light
-            />
+          subtitle="Metodoloji"
+          title="Öğretim Yaklaşımımız"
+          description="Modern ve etkili öğretim metodları ile kalıcı öğrenme sağlıyoruz."
+          light
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {methods.map((method, index) => (
-              <AnimatedSection key={method.title} delay={index * 0.05}>
-                <div className="navy-card-glass p-5 h-full">
-                  <h4 className="text-sm font-semibold text-white mb-2">
-                    {method.title}
-                  </h4>
-                  <p className="text-xs text-white/70 leading-relaxed">
-                    {method.text}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+        <AnimatedSection>
+          <ExpandableList
+            items={ingilizceMethodDetails}
+            variant="navy"
+            defaultOpenIndex={0}
+          />
+        </AnimatedSection>
       </NavySection>
     </PageLayout>
   );

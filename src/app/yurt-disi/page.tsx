@@ -1,116 +1,21 @@
 import type { Metadata } from "next";
-import {
-  Globe,
-  GraduationCap,
-  FileCheck,
-  Home,
-  Plane,
-  BookOpen,
-} from "lucide-react";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import { ExpandableList } from "@/components/ui/ExpandablePanel";
+import {
+  yurtDisiCountryDetails,
+  yurtDisiProgramDetails,
+  yurtDisiProcessDetails,
+} from "@/data/expandableContent";
 
 export const metadata: Metadata = {
   title: "Yurt Dışı Eğitim",
   description:
     "Amerika, İngiltere, Kanada, Avustralya ve Avrupa üniversitelerine öğrenci yerleştirme danışmanlığı.",
 };
-
-const countries = [
-  {
-    name: "İngiltere",
-    universities: "Oxford, Cambridge, LSE, UCL",
-    flag: "🇬🇧",
-    detail:
-      "1 yıllık foundation veya doğrudan lisans başvurusu. UCAS süreci, personal statement ve IELTS 6.0–7.0 gereksinimleri danışmanlarımız tarafından yönetilir.",
-  },
-  {
-    name: "Amerika",
-    universities: "MIT, Harvard, Stanford, UCLA",
-    flag: "🇺🇸",
-    detail:
-      "SAT/ACT hazırlığı, Common App başvurusu ve F-1 vize süreci. Burs ve finansal destek seçenekleri için ayrı danışmanlık sunulur.",
-  },
-  {
-    name: "Kanada",
-    universities: "Toronto, UBC, McGill",
-    flag: "🇨🇦",
-    detail:
-      "PGWP sonrası çalışma imkânı ve göçmenlik yolları açısından avantajlı. DIL/PG programları ve lisans başvurularında tam destek.",
-  },
-  {
-    name: "Avustralya",
-    universities: "Melbourne, Sydney, ANU",
-    flag: "🇦🇺",
-    detail:
-      "Şubat ve Temmuz dönemleri. CRICOS onaylı kurumlar, OSHC sağlık sigortası ve Part-time çalışma izni konularında rehberlik.",
-  },
-  {
-    name: "Almanya",
-    universities: "LMU, TU Munich, Heidelberg",
-    flag: "🇩🇪",
-    detail:
-      "Devlet üniversitelerinde düşük öğrenim ücreti. TestAS sınavı, blocked account ve Almanca/İngilizce program seçenekleri.",
-  },
-  {
-    name: "Hollanda",
-    universities: "Amsterdam, Delft, Leiden",
-    flag: "🇳🇱",
-    detail:
-      "İngilizce lisans ve yüksek lisans programları. Studielink başvurusu, Nuffic diploma denklik ve konaklama desteği.",
-  },
-];
-
-const process = [
-  {
-    icon: BookOpen,
-    title: "Danışmanlık & Planlama",
-    description:
-      "Ücretsiz ilk görüşmede akademik geçmiş, bütçe ve kariyer hedefleriniz analiz edilir. Size özel ülke ve üniversite shortlist'i hazırlanır.",
-  },
-  {
-    icon: FileCheck,
-    title: "Başvuru Hazırlığı",
-    description:
-      "Motivasyon mektubu, CV, referans mektupları ve portfolyo native danışman kontrolünden geçer. Her belge üniversite formatına uyarlanır.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Kabul & Kayıt",
-    description:
-      "Online başvuru takibi, ek belge talepleri ve kabul mektubu sonrası kayıt işlemleri adım adım yönetilir. Burs başvuruları da dahildir.",
-  },
-  {
-    icon: Plane,
-    title: "Vize Süreci",
-    description:
-      "Finansal belgeler, sağlık sigortası ve mülakat provası dahil eksiksiz vize dosyası hazırlanır. Randevu planlaması yapılır.",
-  },
-  {
-    icon: Home,
-    title: "Yerleşim Desteği",
-    description:
-      "Yurt, homestay veya paylaşımlı daire seçenekleri sunulur. Havaalanı karşılama ve ilk hafta oryantasyon programı organize edilir.",
-  },
-  {
-    icon: Globe,
-    title: "Sürekli Destek",
-    description:
-      "Yurt dışına vardıktan sonra da WhatsApp destek hattımız ve aylık check-in görüşmeleriyle yanınızdayız. Mezuniyet sonrası kariyer danışmanlığı sunulur.",
-  },
-];
-
-const programs = [
-  "Lisans Programları (Undergraduate)",
-  "Yüksek Lisans (Master's)",
-  "Doktora Programları (PhD)",
-  "Dil Okulu & Pathway Programları",
-  "Yaz Okulu Programları",
-  "Staj & Work & Travel",
-];
 
 export default function YurtDisiPage() {
   return (
@@ -125,77 +30,54 @@ export default function YurtDisiPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-              subtitle="Ülkeler"
-              title="Eğitim Destinasyonları"
-              description="30'dan fazla partner üniversitemizle dünyanın dört bir yanına öğrenci gönderiyoruz."
-            />
+            subtitle="Ülkeler"
+            title="Eğitim Destinasyonları"
+            description="30'dan fazla partner üniversitemizle dünyanın dört bir yanına öğrenci gönderiyoruz. Ülke detayları için başlıklara tıklayın."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {countries.map((country, index) => (
-              <AnimatedSection key={country.name} delay={index * 0.08}>
-                <div className="bg-surface p-6 border border-border hover:border-gold-600 transition-colors">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">{country.flag}</span>
-                    <h3 className="font-heading-normal text-xl font-bold text-navy-900">
-                      {country.name}
-                    </h3>
-                  </div>
-                  <p className="text-slate text-sm mb-3">{country.universities}</p>
-                  <p className="text-slate text-xs leading-relaxed">
-                    {country.detail}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AnimatedSection>
+            <ExpandableList
+              items={yurtDisiCountryDetails}
+              variant="surface"
+              defaultOpenIndex={0}
+            />
+          </AnimatedSection>
         </div>
       </section>
 
       <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-              subtitle="Programlar"
-              title="Eğitim Programları"
-            />
+            subtitle="Programlar"
+            title="Eğitim Programları"
+            description="Lisans'tan doktoraya, dil okulundan staja kadar tüm program türleri."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {programs.map((program, index) => (
-              <AnimatedSection key={program} delay={index * 0.05}>
-                <div className="bg-white rounded-2xl p-6 border border-border flex items-center gap-3">
-                  <span className="w-1 h-1 bg-gold-600 shrink-0" />
-                  <span className="text-navy-700 font-medium">{program}</span>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AnimatedSection>
+            <ExpandableList
+              items={yurtDisiProgramDetails}
+              variant="light"
+              defaultOpenIndex={0}
+            />
+          </AnimatedSection>
         </div>
       </section>
 
       <NavySection>
         <SectionTitle
-              subtitle="Süreç"
-              title="Başvuru Sürecimiz"
-              description="6 adımda yurt dışı eğitim hayalinizi gerçekleştirin."
-              light
-            />
+          subtitle="Süreç"
+          title="Başvuru Sürecimiz"
+          description="6 adımda yurt dışı eğitim hayalinizi gerçekleştirin. Her adımın detayını açarak inceleyin."
+          light
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {process.map((step, index) => (
-              <AnimatedSection key={step.title} delay={index * 0.1}>
-                <div className="navy-card-glass p-8 hover:bg-white/10 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center mb-4 shadow-md">
-                    <step.icon className="w-6 h-6 text-navy-950" />
-                  </div>
-                  <h3 className="font-heading-normal text-lg font-bold text-white mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-white/70 text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+        <AnimatedSection>
+          <ExpandableList
+            items={yurtDisiProcessDetails}
+            variant="navy"
+            defaultOpenIndex={0}
+          />
+        </AnimatedSection>
       </NavySection>
 
       <section className="py-20 bg-white">

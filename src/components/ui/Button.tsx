@@ -14,18 +14,18 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-gold-600 text-white hover:bg-gold-500 border border-gold-600 hover:border-gold-500 shadow-sm hover:shadow-[0_4px_16px_rgba(201,168,58,0.28)]",
+    "bg-gradient-to-r from-gold-600 to-gold-500 text-white hover:from-gold-500 hover:to-gold-400 border border-transparent shadow-[0_4px_16px_rgba(201,168,58,0.3)] hover:shadow-[0_6px_24px_rgba(201,168,58,0.38)] hover:-translate-y-0.5",
   secondary:
-    "bg-navy-900 text-white hover:bg-navy-800 border border-navy-800 hover:border-navy-700 shadow-sm hover:shadow-md",
+    "bg-navy-900 text-white hover:bg-navy-800 border border-transparent shadow-[0_4px_16px_rgba(14,34,64,0.2)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.28)] hover:-translate-y-0.5",
   outline:
-    "border border-navy-600/40 text-navy-700 hover:bg-navy-900 hover:text-white hover:border-navy-900",
-  ghost: "text-navy-700 hover:text-gold-600",
+    "border border-navy-600/25 text-navy-700 hover:bg-navy-900 hover:text-white hover:border-navy-900 bg-white/80",
+  ghost: "text-navy-700 hover:text-gold-600 hover:bg-gold-50/60",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-xs font-semibold tracking-wide",
-  md: "px-6 py-2.5 text-sm font-semibold tracking-wide",
-  lg: "px-8 py-3 text-sm font-semibold tracking-wide",
+  sm: "px-4 py-2 text-xs font-semibold tracking-wide rounded-xl",
+  md: "px-6 py-2.5 text-sm font-semibold tracking-wide rounded-xl",
+  lg: "px-8 py-3.5 text-sm font-semibold tracking-wide rounded-2xl",
 };
 
 export default function Button({
@@ -38,7 +38,7 @@ export default function Button({
   type = "button",
   disabled = false,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-md transition-all duration-250 ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
+  const classes = `inline-flex items-center justify-center gap-2 transition-all duration-300 ease-out ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed hover:translate-y-0 hover:shadow-none" : ""}`;
 
   if (href) {
     return (

@@ -25,7 +25,9 @@ import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
 
 const inputClass =
-  "w-full px-4 py-2.5 border border-border bg-white text-sm focus:border-gold-600 focus:outline-none";
+  "w-full px-4 py-3 rounded-xl border border-border/70 bg-white/90 text-sm shadow-sm transition-all duration-200 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/15 focus:outline-none placeholder:text-slate-light";
+
+const optionSpring = { type: "spring" as const, stiffness: 400, damping: 28 };
 
 type Step = "info" | "test" | "result";
 
@@ -135,14 +137,14 @@ export default function PlacementTest() {
     if (step === "info") {
       return (
         <div className="max-w-lg mx-auto">
-          <div className="bg-white border border-border p-8 md:p-10">
-            <span className="label-caps text-gold-600 block mb-3">
+          <div className="soft-card p-8 md:p-10">
+            <span className="badge-pill bg-gold-100 text-gold-700 mb-4">
               Başvuru Formu
             </span>
-            <h2 className="font-heading-normal text-xl font-bold text-navy-900 mb-2">
+            <h2 className="font-heading-normal text-2xl font-bold text-navy-900 mb-2">
               Sınava Başlamadan Önce
             </h2>
-            <p className="text-slate text-sm mb-8">
+            <p className="text-slate text-sm mb-8 leading-relaxed">
               Bilgilerinizi girin ve 70 soruluk Language Hub seviye tespit
               sınavına başlayın.
             </p>
@@ -191,14 +193,18 @@ export default function PlacementTest() {
                 />
               </div>
 
-              {error && <p className="text-red-600 text-xs">{error}</p>}
+              {error && (
+                <p className="text-red-600 text-xs bg-red-50 rounded-xl px-4 py-2.5">
+                  {error}
+                </p>
+              )}
 
               <Button type="submit" className="w-full" size="lg">
                 Sınava Başla
               </Button>
             </form>
 
-            <p className="text-xs text-slate-light mt-6 border-t border-border pt-4">
+            <p className="text-xs text-slate-light mt-6 pt-4 border-t border-border/50 leading-relaxed">
               Sınav yaklaşık 30 dakika sürer. Her soru için A, B, C, D
               seçeneklerinden birini veya &quot;Boş bırak&quot; seçeneğini
               işaretlemeniz gerekmektedir.
@@ -211,19 +217,22 @@ export default function PlacementTest() {
     if (step === "test") {
       return (
         <div className="max-w-3xl mx-auto">
-          <div className="mb-6 border border-border bg-white p-4">
-            <div className="flex justify-between label-caps text-slate mb-3">
-              <span>
+          <div className="soft-card mb-6 p-5 md:p-6">
+            <div className="flex justify-between items-center mb-4">
+              <span className="badge-pill bg-navy-900 text-white">
                 Soru {currentQuestion + 1} / {placementQuestions.length}
               </span>
-              <span>{answeredCount} cevaplandı</span>
+              <span className="text-sm text-slate">
+                <span className="font-semibold text-navy-900">{answeredCount}</span>{" "}
+                cevaplandı
+              </span>
             </div>
-            <div className="h-1 bg-surface-2">
+            <div className="progress-track h-2.5">
               <motion.div
-                className="h-full bg-gold-600"
+                className="progress-fill h-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               />
             </div>
           </div>
@@ -231,43 +240,48 @@ export default function PlacementTest() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQuestion}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
+              initial={{ opacity: 0, y: 10, scale: 0.99 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.99 }}
               transition={transition.fast}
-              className="bg-white border border-border p-8 md:p-10"
+              className="soft-card p-8 md:p-10"
             >
               <div className="flex flex-wrap items-center gap-2 mb-6">
-                <span className="label-caps text-gold-600">
+                <span className="badge-pill bg-gradient-to-r from-gold-600 to-gold-500 text-white shadow-sm">
                   {hubInfo.label}
                 </span>
-                <span className="text-xs text-slate-light">
-                  ({hubInfo.labelTr} · {hubInfo.cefr} · Soru {hubInfo.itemRange})
+                <span className="text-xs text-slate-light bg-surface px-3 py-1 rounded-full">
+                  {hubInfo.labelTr} · {hubInfo.cefr} · Soru {hubInfo.itemRange}
                 </span>
               </div>
 
-              <div className="space-y-2 mb-8 p-4 bg-surface border border-border">
+              <div className="soft-panel space-y-2 mb-8 p-5 md:p-6">
                 {renderPassage(question.passage)}
               </div>
 
-              <div className="space-y-2">
-                {question.options.map((option) => {
+              <div className="space-y-3">
+                {question.options.map((option, index) => {
                   const isSelected = answers[question.id] === option.key;
                   return (
-                    <button
+                    <motion.button
                       key={option.key}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.04, ...optionSpring }}
+                      whileHover={{ scale: isSelected ? 1 : 1.01 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => selectAnswer(option.key)}
-                      className={`w-full flex items-center gap-4 p-4 border text-left transition-colors ${
+                      className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left transition-all duration-200 ${
                         isSelected
-                          ? "border-gold-600 bg-gold-100/40"
-                          : "border-border hover:border-gold-600/50 bg-white"
+                          ? "bg-gradient-to-r from-gold-100 to-gold-50 shadow-[0_4px_20px_rgba(201,168,58,0.2)] ring-2 ring-gold-500/40"
+                          : "bg-white hover:bg-surface shadow-sm hover:shadow-md ring-1 ring-border/60 hover:ring-gold-400/30"
                       }`}
                     >
                       <span
-                        className={`w-8 h-8 flex items-center justify-center text-xs font-bold shrink-0 border ${
+                        className={`w-10 h-10 flex items-center justify-center text-sm font-bold shrink-0 rounded-xl transition-all duration-200 ${
                           isSelected
-                            ? "bg-gold-600 text-white border-gold-600"
-                            : "bg-surface text-slate border-border"
+                            ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md"
+                            : "bg-surface text-slate"
                         }`}
                       >
                         {option.key}
@@ -281,22 +295,27 @@ export default function PlacementTest() {
                       >
                         {option.text}
                       </span>
-                    </button>
+                    </motion.button>
                   );
                 })}
-                <button
+                <motion.button
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: question.options.length * 0.04, ...optionSpring }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={selectBlank}
-                  className={`w-full flex items-center gap-4 p-4 border text-left transition-colors ${
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left transition-all duration-200 ${
                     isBlankAnswer(answers[question.id])
-                      ? "border-slate-400 bg-slate-100"
-                      : "border-border hover:border-slate-400/50 bg-white"
+                      ? "bg-slate-100 shadow-sm ring-2 ring-slate-300/50"
+                      : "bg-white hover:bg-surface shadow-sm hover:shadow-md ring-1 ring-border/60 hover:ring-slate-300/40"
                   }`}
                 >
                   <span
-                    className={`w-8 h-8 flex items-center justify-center text-xs font-bold shrink-0 border ${
+                    className={`w-10 h-10 flex items-center justify-center text-sm font-bold shrink-0 rounded-xl ${
                       isBlankAnswer(answers[question.id])
-                        ? "bg-slate-500 text-white border-slate-500"
-                        : "bg-surface text-slate border-border"
+                        ? "bg-slate-500 text-white"
+                        : "bg-surface text-slate"
                     }`}
                   >
                     —
@@ -310,14 +329,18 @@ export default function PlacementTest() {
                   >
                     Boş bırak
                   </span>
-                </button>
+                </motion.button>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {error && <p className="text-red-600 text-xs mt-4">{error}</p>}
+          {error && (
+            <p className="text-red-600 text-xs mt-4 bg-red-50 rounded-xl px-4 py-2.5">
+              {error}
+            </p>
+          )}
 
-          <div className="flex justify-between mt-6">
+          <div className="flex justify-between mt-6 gap-3">
             <Button
               variant="secondary"
               onClick={() => setCurrentQuestion((c) => Math.max(0, c - 1))}
@@ -353,7 +376,9 @@ export default function PlacementTest() {
             )}
           </div>
 
-          <div className="flex flex-wrap gap-1 mt-6 border-t border-border pt-6 max-h-32 overflow-y-auto">
+          <div className="soft-card mt-6 p-4">
+            <p className="label-caps text-slate-light mb-3">Soru Haritası</p>
+            <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto">
             {placementQuestions.map((q, i) => {
               const answered = isQuestionAnswered(answers, q.id);
               const blank = isBlankAnswer(answers[q.id]);
@@ -362,20 +387,21 @@ export default function PlacementTest() {
               <button
                 key={q.id}
                 onClick={() => setCurrentQuestion(i)}
-                className={`w-6 h-6 text-[9px] font-medium border transition-colors ${
+                className={`w-7 h-7 text-[9px] font-semibold rounded-full transition-all duration-200 ${
                   i === currentQuestion
-                    ? "bg-gold-600 text-white border-gold-600"
+                    ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md scale-110"
                     : answered && blank
-                      ? "bg-slate-400 text-white border-slate-400"
+                      ? "bg-slate-300 text-white hover:bg-slate-400"
                       : answered
-                        ? "bg-navy-900 text-white border-navy-900"
-                        : "bg-white text-slate border-border hover:border-gold-600"
+                        ? "bg-navy-800 text-white hover:bg-navy-700"
+                        : "bg-surface text-slate hover:bg-gold-100 hover:text-gold-700"
                 }`}
               >
                 {i + 1}
               </button>
             );
             })}
+            </div>
           </div>
         </div>
       );
@@ -385,23 +411,34 @@ export default function PlacementTest() {
       const levelInfo = levelDescriptions[result.level];
 
       return (
-        <div className="max-w-3xl mx-auto border border-border bg-white">
-          <div className="surface-navy border-b-4 border-gold-600 p-8 md:p-10">
-            <span className="label-caps text-gold-400 block mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={transition.default}
+          className="max-w-3xl mx-auto soft-card overflow-hidden"
+        >
+          <div className="surface-navy p-8 md:p-10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-3xl" />
+            <span className="badge-pill bg-white/10 text-gold-300 mb-4 relative">
               Sınav Sonucu
             </span>
-            <div className="flex items-end gap-6 flex-wrap">
-              <span className="font-heading-normal text-5xl font-bold text-gold-400 tabular-nums">
+            <div className="flex items-end gap-6 flex-wrap relative">
+              <motion.span
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.15, ...optionSpring }}
+                className="font-heading-normal text-5xl md:text-6xl font-bold text-gold-400 tabular-nums"
+              >
                 {result.level}
-              </span>
+              </motion.span>
               <div>
-                <h2 className="font-heading-normal text-xl font-bold text-white">
+                <h2 className="font-heading-normal text-xl md:text-2xl font-bold text-white">
                   {levelInfo.title}
                 </h2>
                 <p className="text-gold-400 text-sm mt-1">
                   Language Hub: {result.hubLabel}
                 </p>
-                <p className="text-white/60 text-sm mt-2 max-w-md">
+                <p className="text-white/60 text-sm mt-2 max-w-md leading-relaxed">
                   {levelInfo.description}
                 </p>
               </div>
@@ -409,89 +446,101 @@ export default function PlacementTest() {
           </div>
 
           <div className="p-8 md:p-10">
-            <div className="grid grid-cols-2 sm:grid-cols-5 border border-border divide-x divide-y sm:divide-y-0 divide-border mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
               {[
-                { label: "Doğru", value: result.correctAnswers },
-                { label: "Yanlış", value: result.incorrectAnswers },
-                { label: "Boş", value: result.blankAnswers },
-                { label: "Toplam", value: result.totalQuestions },
-                { label: "Oran", value: `%${result.percentage}` },
-              ].map((item) => (
-                <div key={item.label} className="p-4 text-center">
-                  <div className="font-heading-normal text-xl font-bold text-navy-900 tabular-nums">
+                { label: "Doğru", value: result.correctAnswers, color: "from-emerald-500/10 to-emerald-500/5 text-emerald-700" },
+                { label: "Yanlış", value: result.incorrectAnswers, color: "from-red-500/10 to-red-500/5 text-red-600" },
+                { label: "Boş", value: result.blankAnswers, color: "from-slate-500/10 to-slate-500/5 text-slate-600" },
+                { label: "Toplam", value: result.totalQuestions, color: "from-navy-500/10 to-navy-500/5 text-navy-800" },
+                { label: "Oran", value: `%${result.percentage}`, color: "from-gold-500/15 to-gold-500/5 text-gold-700" },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06, ...optionSpring }}
+                  className={`rounded-2xl bg-gradient-to-br ${item.color} p-4 text-center`}
+                >
+                  <div className="font-heading-normal text-xl font-bold tabular-nums">
                     {item.value}
                   </div>
-                  <div className="label-caps text-slate-light mt-1">
+                  <div className="label-caps opacity-70 mt-1 text-[10px]">
                     {item.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             <div className="mb-8">
               <h3 className="label-caps text-gold-600 mb-4">Bölüm Dağılımı</h3>
-              <div className="space-y-2">
-                {hubLevelOrder.map((level) => {
+              <div className="space-y-3">
+                {hubLevelOrder.map((level, i) => {
                   const data = result.breakdown[level];
                   const bandPercent =
                     data.total > 0
                       ? Math.round((data.correct / data.total) * 100)
                       : 0;
                   return (
-                    <div
+                    <motion.div
                       key={level}
-                      className="flex items-center gap-3 text-sm border border-border p-3"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05, ...optionSpring }}
+                      className="flex items-center gap-3 text-sm rounded-2xl bg-surface/80 p-4"
                     >
-                      <span className="w-36 shrink-0 font-medium text-navy-900">
+                      <span className="w-32 shrink-0 font-medium text-navy-900 text-xs sm:text-sm">
                         {data.label}
                       </span>
-                      <div className="flex-1 h-1.5 bg-surface-2">
-                        <div
-                          className="h-full bg-gold-600"
-                          style={{ width: `${bandPercent}%` }}
+                      <div className="flex-1 progress-track h-2">
+                        <motion.div
+                          className="progress-fill h-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${bandPercent}%` }}
+                          transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
                         />
                       </div>
-                      <span className="w-16 text-right text-slate tabular-nums">
+                      <span className="w-14 text-right text-slate tabular-nums text-xs font-medium">
                         {data.correct}/{data.total}
                       </span>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
             </div>
 
-            <div className="border-l-2 border-gold-600 pl-4 mb-8">
+            <div className="rounded-2xl bg-gradient-to-br from-gold-50 to-white p-5 mb-8">
               <h3 className="label-caps text-gold-600 mb-2">Program Önerisi</h3>
               <p className="text-sm text-slate leading-relaxed">
                 {levelInfo.recommendation}
               </p>
             </div>
 
-            <div className="surface-navy p-8 border-l-4 border-gold-600">
-              <h3 className="font-heading-normal text-base font-bold text-white mb-3">
+            <div className="surface-navy rounded-2xl p-8 relative overflow-hidden">
+              <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl" />
+              <h3 className="font-heading-normal text-base font-bold text-white mb-3 relative">
                 Kuruma Davet
               </h3>
-              <p className="text-white/65 text-sm leading-relaxed mb-6">
+              <p className="text-white/65 text-sm leading-relaxed mb-6 relative">
                 Sayın {userInfo.name}, sınavınızı tamamladınız. Size özel eğitim
                 programını paylaşmak ve tanışmak için sizi merkezimize davet
                 ediyoruz. Danışmanlarımız en kısa sürede sizinle iletişime
                 geçecektir.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-3 text-sm text-white/60 mb-6">
-                <div className="flex items-center gap-2">
+              <div className="grid sm:grid-cols-2 gap-3 text-sm text-white/60 mb-6 relative">
+                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
                   <MapPin className="w-4 h-4 text-gold-500 shrink-0" />
                   Levent, Beşiktaş / İstanbul
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
                   <Phone className="w-4 h-4 text-gold-500 shrink-0" />
                   +90 (212) 123 45 67
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
                   <Mail className="w-4 h-4 text-gold-500 shrink-0" />
                   info@zreducation.com
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
                   <Calendar className="w-4 h-4 text-gold-500 shrink-0" />
                   Pzt–Cmt 09:00–19:00
                 </div>
@@ -502,7 +551,7 @@ export default function PlacementTest() {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       );
     }
 
@@ -513,10 +562,10 @@ export default function PlacementTest() {
     <AnimatePresence mode="wait">
       <motion.div
         key={step}
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={transition.default}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       >
         {renderStep()}
       </motion.div>

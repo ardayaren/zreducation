@@ -21,8 +21,10 @@ export default function SeviyeTespitPage() {
         </p>
       </PageHero>
 
-      <section className="py-16 md:py-20 bg-surface border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 test-section-bg relative overflow-hidden">
+        <div className="absolute top-20 left-[10%] w-64 h-64 bg-gold-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-[5%] w-80 h-80 bg-navy-600/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <PlacementTest />
         </div>
       </section>

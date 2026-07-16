@@ -22,7 +22,8 @@ export default function AnimatedPageHero({
   children,
 }: AnimatedPageHeroProps) {
   return (
-    <section className="relative pt-[104px] pb-16 surface-navy border-b-[3px] border-gold-500 overflow-hidden">
+    <section className="relative pt-[104px] pb-16 surface-navy overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gold-500/15 to-transparent pointer-events-none" />
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}

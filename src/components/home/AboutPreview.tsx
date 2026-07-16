@@ -18,7 +18,7 @@ export default function AboutPreview() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="surface-navy border border-border-dark/70 rounded-md"
+              className="surface-navy rounded-3xl shadow-lg"
             >
               <div className="grid grid-cols-2 divide-x divide-y divide-border-dark">
                 {stats.map((stat) => (

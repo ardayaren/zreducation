@@ -26,7 +26,7 @@ export default function TestimonialsSection() {
 
         <AnimatedSection delay={0.1}>
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white border border-border rounded-md p-8 md:p-10 overflow-hidden shadow-sm">
+            <div className="bg-white rounded-3xl p-8 md:p-10 overflow-hidden shadow-[0_8px_32px_rgba(14,34,64,0.06)]">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={current}

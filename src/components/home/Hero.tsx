@@ -115,7 +115,7 @@ export default function Hero() {
             <motion.div
               variants={slideInRight}
               transition={transition.slow}
-              className="border border-border-dark/70 rounded-md divide-y divide-border-dark/50 overflow-hidden"
+              className="rounded-3xl bg-white/5 backdrop-blur-sm divide-y divide-white/10 overflow-hidden shadow-lg"
             >
               {stats.map((stat, index) => (
                 <motion.div
@@ -139,7 +139,7 @@ export default function Hero() {
             <motion.p
               variants={fadeUp}
               transition={{ ...transition.default, delay: 0.65 }}
-              className="mt-6 text-sm text-white/50 leading-relaxed border-l-2 border-gold-600 pl-4"
+              className="mt-6 text-sm text-white/50 leading-relaxed bg-white/5 rounded-2xl px-5 py-4"
             >
               Ücretsiz seviye tespit sınavı ile İngilizce yeterliliğinizi
               ölçün, size özel program önerisi alın.

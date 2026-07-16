@@ -115,7 +115,7 @@ export default function YurtDisiPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {programs.map((program, index) => (
               <AnimatedSection key={program} delay={index * 0.05}>
-                <div className="bg-white rounded-sm p-6 border border-border flex items-center gap-3">
+                <div className="bg-white rounded-2xl p-6 border border-border flex items-center gap-3">
                   <span className="w-1 h-1 bg-gold-600 shrink-0" />
                   <span className="text-navy-700 font-medium">{program}</span>
                 </div>
@@ -138,7 +138,7 @@ export default function YurtDisiPage() {
             {process.map((step, index) => (
               <AnimatedSection key={step.title} delay={index * 0.1}>
                 <div className="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors">
-                  <div className="w-12 h-12 rounded-sm bg-gold-600 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gold-600 flex items-center justify-center mb-4">
                     <step.icon className="w-6 h-6 text-navy-950" />
                   </div>
                   <h3 className="font-heading-normal text-lg font-bold text-white mb-2">

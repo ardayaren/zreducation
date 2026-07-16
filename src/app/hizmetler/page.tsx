@@ -63,7 +63,7 @@ export default function HizmetlerPage() {
                   className="grid lg:grid-cols-3 gap-8 bg-surface p-8 border border-border scroll-mt-28"
                 >
                   <div className="lg:col-span-1">
-                    <div className="w-14 h-14 rounded-sm surface-navy flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 rounded-2xl surface-navy flex items-center justify-center mb-4">
                       <service.icon className="w-7 h-7 text-gold-400" />
                     </div>
                     <h3 className="font-heading-normal text-2xl font-bold text-navy-900 mb-3">
@@ -110,7 +110,7 @@ export default function HizmetlerPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {onlineFeatures.map((feature, index) => (
               <AnimatedSection key={feature} delay={index * 0.05}>
-                <div className="bg-white/5 border border-white/10 rounded-sm p-5 text-white/90">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-white/90">
                   {feature}
                 </div>
               </AnimatedSection>
@@ -130,7 +130,7 @@ export default function HizmetlerPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {yuzYuzeFeatures.map((feature, index) => (
               <AnimatedSection key={feature} delay={index * 0.05}>
-                <div className="bg-white rounded-sm p-5 border border-border text-navy-700">
+                <div className="bg-white rounded-2xl p-5 border border-border text-navy-700">
                   {feature}
                 </div>
               </AnimatedSection>
@@ -150,7 +150,7 @@ export default function HizmetlerPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {grupFeatures.map((feature, index) => (
               <AnimatedSection key={feature} delay={index * 0.05}>
-                <div className="bg-surface rounded-sm p-5 border border-border text-navy-700">
+                <div className="bg-surface rounded-2xl p-5 border border-border text-navy-700">
                   {feature}
                 </div>
               </AnimatedSection>

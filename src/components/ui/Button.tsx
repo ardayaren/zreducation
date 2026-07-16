@@ -23,9 +23,9 @@ const variants = {
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-xs font-semibold tracking-wide rounded-xl",
-  md: "px-6 py-2.5 text-sm font-semibold tracking-wide rounded-xl",
-  lg: "px-8 py-3.5 text-sm font-semibold tracking-wide rounded-2xl",
+  sm: "px-5 py-2.5 text-xs font-semibold tracking-wide rounded-full",
+  md: "px-7 py-3 text-sm font-semibold tracking-wide rounded-full",
+  lg: "px-9 py-4 text-sm font-semibold tracking-wide rounded-full",
 };
 
 export default function Button({

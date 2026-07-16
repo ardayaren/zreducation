@@ -25,7 +25,7 @@ import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-border/70 bg-white/90 text-sm shadow-sm transition-all duration-200 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/15 focus:outline-none placeholder:text-slate-light";
+  "w-full px-5 py-3.5 rounded-3xl border-0 bg-white/90 text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04),0_2px_12px_rgba(14,34,64,0.04)] transition-all duration-200 focus:ring-4 focus:ring-gold-500/20 focus:outline-none placeholder:text-slate-light";
 
 const optionSpring = { type: "spring" as const, stiffness: 400, damping: 28 };
 
@@ -194,7 +194,7 @@ export default function PlacementTest() {
               </div>
 
               {error && (
-                <p className="text-red-600 text-xs bg-red-50 rounded-xl px-4 py-2.5">
+                <p className="text-red-600 text-xs bg-red-50/80 rounded-3xl px-5 py-3">
                   {error}
                 </p>
               )}
@@ -204,7 +204,7 @@ export default function PlacementTest() {
               </Button>
             </form>
 
-            <p className="text-xs text-slate-light mt-6 pt-4 border-t border-border/50 leading-relaxed">
+            <p className="text-xs text-slate-light mt-6 pt-4 leading-relaxed">
               Sınav yaklaşık 30 dakika sürer. Her soru için A, B, C, D
               seçeneklerinden birini veya &quot;Boş bırak&quot; seçeneğini
               işaretlemeniz gerekmektedir.
@@ -271,14 +271,14 @@ export default function PlacementTest() {
                       whileHover={{ scale: isSelected ? 1 : 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => selectAnswer(option.key)}
-                      className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left transition-all duration-200 ${
+                      className={`w-full flex items-center gap-4 p-4 rounded-3xl text-left transition-all duration-300 ${
                         isSelected
-                          ? "bg-gradient-to-r from-gold-100 to-gold-50 shadow-[0_4px_20px_rgba(201,168,58,0.2)] ring-2 ring-gold-500/40"
-                          : "bg-white hover:bg-surface shadow-sm hover:shadow-md ring-1 ring-border/60 hover:ring-gold-400/30"
+                          ? "bg-gradient-to-r from-gold-100/90 to-gold-50 shadow-[0_6px_24px_rgba(201,168,58,0.18)]"
+                          : "bg-white/80 hover:bg-white shadow-[0_2px_12px_rgba(14,34,64,0.05)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.08)]"
                       }`}
                     >
                       <span
-                        className={`w-10 h-10 flex items-center justify-center text-sm font-bold shrink-0 rounded-xl transition-all duration-200 ${
+                        className={`w-11 h-11 flex items-center justify-center text-sm font-bold shrink-0 rounded-2xl transition-all duration-300 ${
                           isSelected
                             ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md"
                             : "bg-surface text-slate"
@@ -305,14 +305,14 @@ export default function PlacementTest() {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={selectBlank}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left transition-all duration-200 ${
+                  className={`w-full flex items-center gap-4 p-4 rounded-3xl text-left transition-all duration-300 ${
                     isBlankAnswer(answers[question.id])
-                      ? "bg-slate-100 shadow-sm ring-2 ring-slate-300/50"
-                      : "bg-white hover:bg-surface shadow-sm hover:shadow-md ring-1 ring-border/60 hover:ring-slate-300/40"
+                      ? "bg-slate-100/80 shadow-[0_4px_16px_rgba(14,34,64,0.06)]"
+                      : "bg-white/80 hover:bg-white shadow-[0_2px_12px_rgba(14,34,64,0.05)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.08)]"
                   }`}
                 >
                   <span
-                    className={`w-10 h-10 flex items-center justify-center text-sm font-bold shrink-0 rounded-xl ${
+                    className={`w-11 h-11 flex items-center justify-center text-sm font-bold shrink-0 rounded-2xl ${
                       isBlankAnswer(answers[question.id])
                         ? "bg-slate-500 text-white"
                         : "bg-surface text-slate"
@@ -335,7 +335,7 @@ export default function PlacementTest() {
           </AnimatePresence>
 
           {error && (
-            <p className="text-red-600 text-xs mt-4 bg-red-50 rounded-xl px-4 py-2.5">
+            <p className="text-red-600 text-xs mt-4 bg-red-50/80 rounded-3xl px-5 py-3">
               {error}
             </p>
           )}
@@ -376,7 +376,7 @@ export default function PlacementTest() {
             )}
           </div>
 
-          <div className="soft-card mt-6 p-4">
+          <div className="soft-card mt-6 p-5 rounded-3xl">
             <p className="label-caps text-slate-light mb-3">Soru Haritası</p>
             <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto">
             {placementQuestions.map((q, i) => {
@@ -459,7 +459,7 @@ export default function PlacementTest() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06, ...optionSpring }}
-                  className={`rounded-2xl bg-gradient-to-br ${item.color} p-4 text-center`}
+                  className={`rounded-3xl bg-gradient-to-br ${item.color} p-5 text-center shadow-sm`}
                 >
                   <div className="font-heading-normal text-xl font-bold tabular-nums">
                     {item.value}
@@ -486,7 +486,7 @@ export default function PlacementTest() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05, ...optionSpring }}
-                      className="flex items-center gap-3 text-sm rounded-2xl bg-surface/80 p-4"
+                      className="flex items-center gap-3 text-sm rounded-3xl bg-surface/60 p-4 shadow-sm"
                     >
                       <span className="w-32 shrink-0 font-medium text-navy-900 text-xs sm:text-sm">
                         {data.label}
@@ -508,14 +508,14 @@ export default function PlacementTest() {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-gradient-to-br from-gold-50 to-white p-5 mb-8">
+            <div className="rounded-3xl bg-gradient-to-br from-gold-50/80 to-white p-6 mb-8 shadow-sm">
               <h3 className="label-caps text-gold-600 mb-2">Program Önerisi</h3>
               <p className="text-sm text-slate leading-relaxed">
                 {levelInfo.recommendation}
               </p>
             </div>
 
-            <div className="surface-navy rounded-2xl p-8 relative overflow-hidden">
+            <div className="surface-navy rounded-3xl p-8 md:p-10 relative overflow-hidden">
               <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl" />
               <h3 className="font-heading-normal text-base font-bold text-white mb-3 relative">
                 Kuruma Davet
@@ -528,19 +528,19 @@ export default function PlacementTest() {
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 text-sm text-white/60 mb-6 relative">
-                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
+                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <MapPin className="w-4 h-4 text-gold-500 shrink-0" />
                   Levent, Beşiktaş / İstanbul
                 </div>
-                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
+                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <Phone className="w-4 h-4 text-gold-500 shrink-0" />
                   +90 (212) 123 45 67
                 </div>
-                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
+                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <Mail className="w-4 h-4 text-gold-500 shrink-0" />
                   info@zreducation.com
                 </div>
-                <div className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2">
+                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
                   <Calendar className="w-4 h-4 text-gold-500 shrink-0" />
                   Pzt–Cmt 09:00–19:00
                 </div>

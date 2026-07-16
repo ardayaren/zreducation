@@ -66,7 +66,7 @@ export default function IngilizceEgitimiPage() {
               <AnimatedSection key={level.code} delay={index * 0.08}>
                 <div className="bg-surface p-8 border border-border hover:border-gold-400 hover:shadow-sm transition-all group">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="w-14 h-14 rounded-md surface-navy flex items-center justify-center font-heading-normal text-xl font-bold text-gold-400">
+                    <span className="w-14 h-14 rounded-2xl surface-navy flex items-center justify-center font-heading-normal text-xl font-bold text-gold-400">
                       {level.code}
                     </span>
                     <div>
@@ -135,7 +135,7 @@ export default function IngilizceEgitimiPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {methods.map((method, index) => (
               <AnimatedSection key={method} delay={index * 0.05}>
-                <div className="bg-white/5 border border-white/10 rounded-sm p-5 text-white/90">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-white/90">
                   {method}
                 </div>
               </AnimatedSection>

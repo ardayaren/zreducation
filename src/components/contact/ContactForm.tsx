@@ -9,7 +9,7 @@ import Button from "@/components/ui/Button";
 import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
 const inputClass =
-  "w-full px-4 py-2.5 border border-border bg-white text-sm focus:border-gold-600 focus:outline-none";
+  "w-full px-5 py-3 rounded-2xl border-0 bg-surface text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04)] focus:ring-4 focus:ring-gold-500/15 focus:outline-none";
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -103,7 +103,7 @@ export default function ContactForm() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={transition.default}
-              className="border border-border p-8"
+              className="soft-card p-8 md:p-10"
             >
               <h3 className="font-heading-normal text-base font-bold text-navy-900 mb-6">
                 Mesaj Formu
@@ -114,7 +114,7 @@ export default function ContactForm() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={transition.fast}
-                  className="py-12 border border-border bg-surface text-center"
+                  className="py-12 rounded-3xl bg-surface/80 text-center shadow-inner"
                 >
                   <Send className="w-6 h-6 text-gold-600 mx-auto mb-3" />
                   <h4 className="font-heading-normal text-sm font-bold text-navy-900 mb-2">

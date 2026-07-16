@@ -16,7 +16,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border shadow-[0_1px_12px_rgba(14,34,64,0.04)]"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-[0_4px_24px_rgba(14,34,64,0.06)]"
     >
       <motion.div
         initial={{ scaleX: 0 }}
@@ -27,7 +27,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-md bg-navy-900 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-navy-900 flex items-center justify-center shadow-md">
               <span className="font-heading text-gold-400 text-sm font-bold">
                 ZR
               </span>
@@ -95,7 +95,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:hidden bg-white border-t border-border overflow-hidden"
+            className="lg:hidden bg-white/95 backdrop-blur-md overflow-hidden rounded-b-3xl shadow-lg"
           >
             <motion.nav
               initial="hidden"

@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import type { TestResult } from "@/lib/levelCalculator";
-import { levelDescriptions } from "@/data/placementQuestions";
+import { levelDescriptions, isBlankAnswer } from "@/data/placementQuestions";
 
 interface UserInfo {
   name: string;
@@ -37,6 +37,10 @@ export async function sendAdminNotification(
   const answerDetails = Object.entries(answers)
     .sort(([a], [b]) => Number(a) - Number(b))
     .map(([id, answer]) => {
+      if (isBlankAnswer(answer)) {
+        return `Soru ${id}: Boş bırakıldı —`;
+      }
+
       const wrong = result.wrongAnswers.find(
         (w) => w.questionId === Number(id)
       );
@@ -48,13 +52,16 @@ export async function sendAdminNotification(
     .join("\n");
 
   const wrongSummary =
-    result.wrongAnswers.length > 0
-      ? result.wrongAnswers
-          .map(
+    result.wrongAnswers.length > 0 || result.blankAnswers > 0
+      ? [
+          ...result.wrongAnswers.map(
             (w) =>
               `Soru ${w.questionId}: Verilen ${w.userAnswer}, Doğru ${w.correctAnswer}`
-          )
-          .join("\n")
+          ),
+          ...(result.blankAnswers > 0
+            ? [`Boş bırakılan soru sayısı: ${result.blankAnswers}`]
+            : []),
+        ].join("\n")
       : "Tüm cevaplar doğru.";
 
   await transporter.sendMail({
@@ -75,6 +82,7 @@ Sınav Sonucu:
 - Language Hub Seviyesi: ${result.hubLabel}
 - Doğru: ${result.correctAnswers}/${result.totalQuestions}
 - Yanlış: ${result.incorrectAnswers}/${result.totalQuestions}
+- Boş: ${result.blankAnswers}/${result.totalQuestions}
 - Başarı Oranı: %${result.percentage}
 
 Bölüm Dağılımı:
@@ -108,6 +116,7 @@ Bu e-posta Zreducation web sitesi seviye tespit sınavından otomatik gönderilm
           <p style="margin-top: 16px;">
             <strong>Doğru:</strong> ${result.correctAnswers} |
             <strong>Yanlış:</strong> ${result.incorrectAnswers} |
+            <strong>Boş:</strong> ${result.blankAnswers} |
             <strong>Oran:</strong> %${result.percentage}
           </p>
           

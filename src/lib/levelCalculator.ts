@@ -1,7 +1,9 @@
 import type { CEFRLevel, HubLevel } from "@/data/placementQuestions";
 import {
+  BLANK_ANSWER,
   hubLevelConfig,
   hubLevelOrder,
+  isBlankAnswer,
   placementQuestions,
 } from "@/data/placementQuestions";
 
@@ -19,6 +21,7 @@ export interface TestResult {
   totalQuestions: number;
   correctAnswers: number;
   incorrectAnswers: number;
+  blankAnswers: number;
   percentage: number;
   breakdown: Record<
     HubLevel,
@@ -31,6 +34,7 @@ export function calculateLevel(
   answers: Record<number, string>
 ): TestResult {
   let correctAnswers = 0;
+  let blankAnswers = 0;
   const wrongAnswers: WrongAnswer[] = [];
 
   const breakdown = hubLevelOrder.reduce(
@@ -50,6 +54,12 @@ export function calculateLevel(
     breakdown[q.hubLevel].total++;
 
     const userAnswer = answers[q.id];
+
+    if (isBlankAnswer(userAnswer)) {
+      blankAnswers++;
+      return;
+    }
+
     if (userAnswer === q.correctAnswer) {
       correctAnswers++;
       breakdown[q.hubLevel].correct++;
@@ -63,7 +73,8 @@ export function calculateLevel(
   });
 
   const totalQuestions = placementQuestions.length;
-  const incorrectAnswers = totalQuestions - correctAnswers;
+  const incorrectAnswers =
+    totalQuestions - correctAnswers - blankAnswers;
   const percentage = Math.round((correctAnswers / totalQuestions) * 100);
   const { level, hubLevel } = determineLevel(correctAnswers);
 
@@ -75,6 +86,7 @@ export function calculateLevel(
     totalQuestions,
     correctAnswers,
     incorrectAnswers,
+    blankAnswers,
     percentage,
     breakdown,
     wrongAnswers,

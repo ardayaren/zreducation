@@ -15,9 +15,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!answers || Object.keys(answers).length !== placementQuestions.length) {
+    const allQuestionsMarked = placementQuestions.every(
+      (q) => q.id in answers
+    );
+
+    if (!answers || !allQuestionsMarked) {
       return NextResponse.json(
-        { error: "Tüm sorular cevaplanmalıdır" },
+        { error: "Her soru için bir seçenek veya boş bırak işaretlenmelidir" },
         { status: 400 }
       );
     }

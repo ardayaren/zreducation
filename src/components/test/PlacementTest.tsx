@@ -16,6 +16,9 @@ import {
   levelDescriptions,
   hubLevelConfig,
   hubLevelOrder,
+  BLANK_ANSWER,
+  isQuestionAnswered,
+  isBlankAnswer,
 } from "@/data/placementQuestions";
 import type { TestResult } from "@/lib/levelCalculator";
 import { transition } from "@/lib/motion";
@@ -69,7 +72,9 @@ export default function PlacementTest() {
   const question = placementQuestions[currentQuestion];
   const hubInfo = hubLevelConfig[question.hubLevel];
   const progress = ((currentQuestion + 1) / placementQuestions.length) * 100;
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = placementQuestions.filter((q) =>
+    isQuestionAnswered(answers, q.id)
+  ).length;
 
   const handleInfoSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,9 +90,19 @@ export default function PlacementTest() {
     setAnswers((prev) => ({ ...prev, [question.id]: answer }));
   };
 
+  const selectBlank = () => {
+    setAnswers((prev) => ({ ...prev, [question.id]: BLANK_ANSWER }));
+  };
+
   const submitTest = async () => {
-    if (answeredCount < placementQuestions.length) {
-      setError("Lütfen tüm soruları cevaplayın.");
+    const unanswered = placementQuestions.filter(
+      (q) => !isQuestionAnswered(answers, q.id)
+    );
+
+    if (unanswered.length > 0) {
+      setError(
+        `Lütfen tüm soruları işaretleyin. (${unanswered.length} soru kaldı)`
+      );
       return;
     }
 
@@ -184,8 +199,9 @@ export default function PlacementTest() {
             </form>
 
             <p className="text-xs text-slate-light mt-6 border-t border-border pt-4">
-              Sınav yaklaşık 30 dakika sürer. Tüm soruların cevaplanması
-              gerekmektedir. Her soru için A, B, C veya D seçeneğini işaretleyin.
+              Sınav yaklaşık 30 dakika sürer. Her soru için A, B, C, D
+              seçeneklerinden birini veya &quot;Boş bırak&quot; seçeneğini
+              işaretlemeniz gerekmektedir.
             </p>
           </div>
         </div>
@@ -268,6 +284,33 @@ export default function PlacementTest() {
                     </button>
                   );
                 })}
+                <button
+                  onClick={selectBlank}
+                  className={`w-full flex items-center gap-4 p-4 border text-left transition-colors ${
+                    isBlankAnswer(answers[question.id])
+                      ? "border-slate-400 bg-slate-100"
+                      : "border-border hover:border-slate-400/50 bg-white"
+                  }`}
+                >
+                  <span
+                    className={`w-8 h-8 flex items-center justify-center text-xs font-bold shrink-0 border ${
+                      isBlankAnswer(answers[question.id])
+                        ? "bg-slate-500 text-white border-slate-500"
+                        : "bg-surface text-slate border-border"
+                    }`}
+                  >
+                    —
+                  </span>
+                  <span
+                    className={`text-sm ${
+                      isBlankAnswer(answers[question.id])
+                        ? "text-navy-900 font-medium"
+                        : "text-slate"
+                    }`}
+                  >
+                    Boş bırak
+                  </span>
+                </button>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -291,7 +334,7 @@ export default function PlacementTest() {
                     Math.min(placementQuestions.length - 1, c + 1)
                   )
                 }
-                disabled={!answers[question.id]}
+                disabled={!isQuestionAnswered(answers, question.id)}
               >
                 Sonraki
                 <ChevronRight className="w-4 h-4" />
@@ -311,21 +354,28 @@ export default function PlacementTest() {
           </div>
 
           <div className="flex flex-wrap gap-1 mt-6 border-t border-border pt-6 max-h-32 overflow-y-auto">
-            {placementQuestions.map((q, i) => (
+            {placementQuestions.map((q, i) => {
+              const answered = isQuestionAnswered(answers, q.id);
+              const blank = isBlankAnswer(answers[q.id]);
+
+              return (
               <button
                 key={q.id}
                 onClick={() => setCurrentQuestion(i)}
                 className={`w-6 h-6 text-[9px] font-medium border transition-colors ${
                   i === currentQuestion
                     ? "bg-gold-600 text-white border-gold-600"
-                    : answers[q.id]
-                      ? "bg-navy-900 text-white border-navy-900"
-                      : "bg-white text-slate border-border hover:border-gold-600"
+                    : answered && blank
+                      ? "bg-slate-400 text-white border-slate-400"
+                      : answered
+                        ? "bg-navy-900 text-white border-navy-900"
+                        : "bg-white text-slate border-border hover:border-gold-600"
                 }`}
               >
                 {i + 1}
               </button>
-            ))}
+            );
+            })}
           </div>
         </div>
       );
@@ -359,10 +409,11 @@ export default function PlacementTest() {
           </div>
 
           <div className="p-8 md:p-10">
-            <div className="grid grid-cols-2 sm:grid-cols-4 border border-border divide-x divide-y sm:divide-y-0 divide-border mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-5 border border-border divide-x divide-y sm:divide-y-0 divide-border mb-8">
               {[
                 { label: "Doğru", value: result.correctAnswers },
                 { label: "Yanlış", value: result.incorrectAnswers },
+                { label: "Boş", value: result.blankAnswers },
                 { label: "Toplam", value: result.totalQuestions },
                 { label: "Oran", value: `%${result.percentage}` },
               ].map((item) => (

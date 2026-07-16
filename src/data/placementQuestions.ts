@@ -10,6 +10,19 @@ export type HubLevel =
 
 export type CEFRLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 
+export const BLANK_ANSWER = "";
+
+export function isQuestionAnswered(
+  answers: Record<number, string>,
+  id: number
+): boolean {
+  return id in answers;
+}
+
+export function isBlankAnswer(answer: string | undefined): boolean {
+  return answer === BLANK_ANSWER;
+}
+
 export interface PlacementQuestion {
   id: number;
   passage: string;

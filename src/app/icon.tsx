@@ -1,33 +1,30 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-export default function Icon() {
+export default async function Icon() {
+  const file = await readFile(
+    join(process.cwd(), "public/images/logo-favicon.png")
+  );
+  const src = `data:image/png;base64,${file.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
         style={{
-          width: "100%",
-          height: "100%",
+          width: 32,
+          height: 32,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(145deg, #1e3d63 0%, #0e2240 50%, #081526 100%)",
-          borderRadius: 8,
+          background: "#081526",
+          borderRadius: "50%",
         }}
       >
-        <div
-          style={{
-            fontSize: 13,
-            fontWeight: 700,
-            color: "#dbb84f",
-            letterSpacing: "0.06em",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
-          ZR
-        </div>
+        <img src={src} width={32} height={32} alt="" />
       </div>
     ),
     { ...size }

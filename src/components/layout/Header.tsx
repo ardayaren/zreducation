@@ -6,6 +6,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/data/navigation";
 import Button from "@/components/ui/Button";
+import Logo from "@/components/ui/Logo";
 import { contactInfo } from "@/data/contact";
 import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
@@ -28,11 +29,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center shadow-md">
-              <span className="font-heading text-gold-400 text-sm font-bold">
-                ZR
-              </span>
-            </div>
+            <Logo size={48} priority />
             <div>
               <span className="font-heading-normal text-lg font-bold text-navy-900 tracking-wide block leading-none">
                 Zreducation

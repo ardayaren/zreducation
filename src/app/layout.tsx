@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
+import { brandLogo } from "@/data/brand";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -34,11 +35,12 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/icon", type: "image/png", sizes: "32x32" },
+      { url: brandLogo.icon, type: "image/png", sizes: "64x64" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
     apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
-    shortcut: "/favicon.svg",
+    shortcut: brandLogo.icon,
   },
 };
 

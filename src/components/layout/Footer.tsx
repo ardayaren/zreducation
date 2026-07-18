@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { footerLinks } from "@/data/navigation";
 import { contactInfo } from "@/data/contact";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   return (
@@ -10,11 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link href="/" className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-gold-600 to-gold-400 flex items-center justify-center shadow-md">
-                <span className="font-heading text-white text-sm font-bold">
-                  ZR
-                </span>
-              </div>
+              <Logo size={48} />
               <span className="font-heading-normal text-lg font-bold tracking-wide">
                 Zreducation
               </span>

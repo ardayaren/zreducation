@@ -6,11 +6,26 @@ import {
   isBlankAnswer,
   placementQuestions,
 } from "@/data/placementQuestions";
+import {
+  bandRules,
+  determineLevelFromBands,
+  getBandProgress,
+} from "@/data/bandScoring";
 
 export interface WrongAnswer {
   questionId: number;
   userAnswer: string;
   correctAnswer: string;
+}
+
+export interface BandProgress {
+  level: CEFRLevel;
+  hubLevel: HubLevel;
+  correct: number;
+  total: number;
+  required: number;
+  passed: boolean;
+  label: string;
 }
 
 export interface TestResult {
@@ -19,6 +34,7 @@ export interface TestResult {
   hubLabel: string;
   score: number;
   totalQuestions: number;
+  answeredCount: number;
   correctAnswers: number;
   incorrectAnswers: number;
   blankAnswers: number;
@@ -27,14 +43,20 @@ export interface TestResult {
     HubLevel,
     { correct: number; total: number; label: string; labelTr: string }
   >;
+  bandProgress: BandProgress[];
   wrongAnswers: WrongAnswer[];
 }
+
+const answerKeyMap = new Map(
+  placementQuestions.map((q) => [q.id, q.correctAnswer])
+);
 
 export function calculateLevel(
   answers: Record<number, string>
 ): TestResult {
   let correctAnswers = 0;
   let blankAnswers = 0;
+  let answeredCount = 0;
   const wrongAnswers: WrongAnswer[] = [];
 
   const breakdown = hubLevelOrder.reduce(
@@ -55,15 +77,17 @@ export function calculateLevel(
 
     const userAnswer = answers[q.id];
 
-    if (isBlankAnswer(userAnswer)) {
-      blankAnswers++;
+    if (!userAnswer || isBlankAnswer(userAnswer)) {
+      if (userAnswer === BLANK_ANSWER) blankAnswers++;
       return;
     }
+
+    answeredCount++;
 
     if (userAnswer === q.correctAnswer) {
       correctAnswers++;
       breakdown[q.hubLevel].correct++;
-    } else if (userAnswer) {
+    } else {
       wrongAnswers.push({
         questionId: q.id,
         userAnswer,
@@ -73,10 +97,22 @@ export function calculateLevel(
   });
 
   const totalQuestions = placementQuestions.length;
-  const incorrectAnswers =
-    totalQuestions - correctAnswers - blankAnswers;
-  const percentage = Math.round((correctAnswers / totalQuestions) * 100);
-  const { level, hubLevel } = determineLevel(correctAnswers);
+  const incorrectAnswers = answeredCount - correctAnswers;
+  const percentage =
+    answeredCount > 0
+      ? Math.round((correctAnswers / answeredCount) * 100)
+      : 0;
+
+  const { level, hubLevel } = determineLevelFromBands(answers, answerKeyMap);
+
+  const bandProgress: BandProgress[] = bandRules.map((rule) => {
+    const progress = getBandProgress(answers, answerKeyMap, rule);
+    return {
+      level: rule.level,
+      hubLevel: rule.hubLevel,
+      ...progress,
+    };
+  });
 
   return {
     level,
@@ -84,33 +120,20 @@ export function calculateLevel(
     hubLabel: hubLevelConfig[hubLevel].label,
     score: correctAnswers,
     totalQuestions,
+    answeredCount,
     correctAnswers,
     incorrectAnswers,
     blankAnswers,
     percentage,
     breakdown,
+    bandProgress,
     wrongAnswers,
   };
 }
 
-function determineLevel(correct: number): {
-  level: CEFRLevel;
-  hubLevel: HubLevel;
-} {
-  if (correct >= 60) {
-    return { level: "C2", hubLevel: "advanced" };
-  }
-  if (correct >= 49) {
-    return { level: "C1", hubLevel: "upper-intermediate" };
-  }
-  if (correct >= 35) {
-    return { level: "B2", hubLevel: "intermediate" };
-  }
-  if (correct >= 18) {
-    return { level: "B1", hubLevel: "pre-intermediate" };
-  }
-  if (correct >= 7) {
-    return { level: "A2", hubLevel: "elementary" };
-  }
-  return { level: "A1", hubLevel: "beginner" };
+export function hasMinimumAnswers(answers: Record<number, string>): boolean {
+  const answered = Object.values(answers).filter(
+    (a) => a !== undefined && a !== BLANK_ANSWER && a !== ""
+  ).length;
+  return answered >= 6;
 }

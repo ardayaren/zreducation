@@ -38,13 +38,13 @@ export const services: Service[] = [
     icon: Globe,
     title: "Yurt Dışı Öğrenci Gönderimi",
     description:
-      "Amerika, İngiltere, Kanada, Avustralya ve Avrupa'nın önde gelen üniversitelerine öğrenci yerleştirme danışmanlığı.",
+      "İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı. Denizli merkezli Zreducation.",
     detailIntro:
-      "Lisans, yüksek lisans ve dil okulu başvurularınızı baştan sona yönetiyoruz. Her öğrenciye özel yol haritası çıkarıyor, bütçe ve akademik hedeflere uygun ülke–üniversite eşleştirmesi yapıyoruz.",
+      "İtalya ve Almanya odaklı yurt dışı danışmanlığımızla lisans, yüksek lisans ve pathway başvurularınızı Denizli merkezimizden yönetiyoruz.",
     details: [
-      "İlk görüşmede akademik geçmişiniz, kariyer hedefleriniz ve finansal planınız değerlendirilir. Ardından size özel bir ülke ve program listesi hazırlanır.",
-      "Motivasyon mektubu, CV, referans ve portfolyo gibi başvuru belgeleriniz native danışman kontrolünden geçer. Her dosya üniversite formatına göre düzenlenir.",
-      "Kabul mektubu sonrası vize randevusu, konaklama seçimi ve varış öncesi oryantasyon dahil tüm süreçte yanınızdayız. Öğrencilerimizin %87'si ilk tercihlerine yerleşmektedir.",
+      "İlk görüşmede akademik geçmişiniz, kariyer hedefleriniz ve finansal planınız değerlendirilir. İtalya veya Almanya için kişisel program listesi hazırlanır.",
+      "Motivasyon mektubu, CV ve referans belgeleriniz ülke formatına uygun hazırlanır. Uni-Assist, Uni-Italia ve universitaly.it süreçleri takip edilir.",
+      "Vize randevusu, blocked account, konaklama ve varış öncesi oryantasyon dahil uçtan uca destek sunulur.",
     ],
     features: [
       {
@@ -65,8 +65,8 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Partner Üniversite", value: "30+", tone: "neutral" },
-      { label: "Ülke", value: "12", tone: "neutral" },
+      { label: "Ülke", value: "İtalya & Almanya", tone: "neutral" },
+      { label: "Partner Üniversite", value: "40+", tone: "positive" },
       { label: "İlk Tercih Yerleşme", value: "%87", tone: "positive" },
       { label: "Danışmanlık", value: "Ücretsiz", tone: "gold" },
     ],
@@ -116,7 +116,7 @@ export const services: Service[] = [
     icon: Monitor,
     title: "Online Eğitim",
     description:
-      "Canlı dersler, kayıt arşivi ve dijital platform ile İstanbul dışından da aynı kalitede eğitim.",
+      "Canlı dersler, kayıt arşivi ve dijital platform ile Denizli dışından da aynı kalitede eğitim.",
     detailIntro:
       "Zoom ve Teams üzerinden interaktif canlı dersler, 7/24 erişilebilir kayıt arşivi ve ödev takip paneli ile fiziksel sınıf deneyimini eve taşıyoruz. Türkiye'nin her yerinden ve yurt dışından katılım mümkündür.",
     details: [
@@ -147,7 +147,7 @@ export const services: Service[] = [
       { label: "Erişim", value: "7/24 Arşiv", tone: "positive" },
       { label: "Grup", value: "Birebir / 4 Kişi", tone: "neutral" },
     ],
-    href: "/hizmetler#online",
+    href: "/online-egitim",
   },
   {
     id: "grup",
@@ -192,9 +192,9 @@ export const services: Service[] = [
     icon: BookOpen,
     title: "Yüz Yüze Eğitim",
     description:
-      "İstanbul Levent merkezimizde akıllı sınıflar, kütüphane ve konuşma alanlarıyla tam donanımlı eğitim.",
+      "Denizli Kınıklı merkezimizde akıllı sınıflar, kütüphane ve konuşma alanlarıyla tam donanımlı eğitim.",
     detailIntro:
-      "Beşiktaş Levent'teki merkezimizde akıllı tahta, multimedya laboratuvarı ve sessiz çalışma alanlarıyla odaklanmış bir öğrenme ortamı sunuyoruz. Birebir ve grup dersleri aynı kampüste yürütülür.",
+      "Denizli merkezimizde akıllı tahta, multimedya laboratuvarı ve sessiz çalışma alanlarıyla odaklanmış bir öğrenme ortamı sunuyoruz. Birebir ve grup dersleri aynı kampüste yürütülür.",
     details: [
       "Sınıflarımız gün ışığı alan, ergonomik oturma düzenine sahip ve en fazla 8 kişiliktir. Her öğrenci için dijital materyal erişimi ve ücretsiz çay–kahve ikramı sağlanır.",
       "Haftalık konuşma atölyeleri, film geceleri ve debate kulübü gibi sosyal aktivitelerle İngilizceyi sınıf dışında da yaşarsınız. Kütüphanemizde CEFR seviyesine göre kitap ve kaynak önerileri sunulur.",
@@ -203,7 +203,7 @@ export const services: Service[] = [
     features: [
       {
         title: "Merkez Lokasyon",
-        text: "Levent metro ve otobüs hatlarına 5 dakika yürüme mesafesinde, ulaşımı kolay kampüs.",
+        text: "Denizli Kınıklı merkezimiz; ulaşımı kolay, tam donanımlı kampüs.",
       },
       {
         title: "Akıllı Sınıf Teknolojisi",
@@ -219,7 +219,7 @@ export const services: Service[] = [
       },
     ],
     highlights: [
-      { label: "Konum", value: "Levent, İstanbul", tone: "neutral" },
+      { label: "Konum", value: "Denizli Merkez", tone: "neutral" },
       { label: "Çalışma Alanı", value: "Kütüphane & Lab", tone: "positive" },
       { label: "Saat", value: "Pzt–Cmt 09–19", tone: "gold" },
     ],
@@ -268,7 +268,7 @@ export const services: Service[] = [
 export const stats: StatItem[] = [
   { value: "15+", label: "Yıllık Deneyim", tone: "gold" },
   { value: "5000+", label: "Mezun Öğrenci", tone: "positive" },
-  { value: "30+", label: "Partner Üniversite", tone: "neutral" },
+  { value: "40+", label: "Partner Üniversite", tone: "positive" },
   { value: "%94", label: "Memnuniyet Oranı", tone: "positive" },
 ];
 

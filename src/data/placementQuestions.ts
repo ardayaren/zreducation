@@ -40,37 +40,37 @@ export const hubLevelConfig: Record<
     label: "Beginner",
     labelTr: "Başlangıç",
     cefr: "A1",
-    itemRange: "1–6",
+    itemRange: "1–6 (min. 4 doğru)",
   },
   elementary: {
     label: "Elementary",
     labelTr: "Temel",
     cefr: "A2",
-    itemRange: "7–20",
+    itemRange: "7–20 (min. 12 doğru)",
   },
   "pre-intermediate": {
     label: "Pre-Intermediate",
     labelTr: "Orta Alt",
     cefr: "B1",
-    itemRange: "21–34",
+    itemRange: "21–34 (min. 12 doğru)",
   },
   intermediate: {
     label: "Intermediate",
     labelTr: "Orta",
     cefr: "B2",
-    itemRange: "35–48",
+    itemRange: "35–48 (min. 12 doğru)",
   },
   "upper-intermediate": {
     label: "Upper Intermediate",
     labelTr: "Orta Üst",
     cefr: "C1",
-    itemRange: "49–62",
+    itemRange: "49–62 (min. 12 doğru)",
   },
   advanced: {
     label: "Advanced",
     labelTr: "İleri",
     cefr: "C2",
-    itemRange: "63–70",
+    itemRange: "63–70 (min. 6 doğru)",
   },
 };
 

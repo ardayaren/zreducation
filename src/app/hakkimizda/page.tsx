@@ -9,57 +9,61 @@ import {
   hakkimizdaTeamDetails,
 } from "@/data/expandableContent";
 import { stats } from "@/data/services";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "Zreducation hakkında bilgi edinin. 15 yıllık deneyim, vizyon, misyon ve uzman ekibimiz.",
+    "Denizli Kınıklı merkezli Zreducation — İtalya & Almanya yurt dışı danışmanlık, online ve yüz yüze İngilizce eğitimi.",
+  openGraph: {
+    title: "Hakkımızda | Zreducation Denizli",
+    description:
+      "Denizli'den İtalya ve Almanya'ya öğrenci gönderimi, online İngilizce kursları.",
+  },
 };
 
 export default function HakkimizdaPage() {
   return (
     <PageLayout>
-      <PageHero title="Hakkımızda" subtitle="Kurumsal">
+      <PageHero title="Hakkımızda" subtitle="Denizli Merkez">
         <p>
-          2009&apos;dan bu yana eğitimde mükemmelliği hedefleyen, binlerce
-          öğrencinin hayallerine ulaşmasına yardımcı olan güvenilir eğitim
-          partneriniz.
+          Denizli&apos;den Türkiye&apos;nin ve Avrupa&apos;nın dört bir yanına
+          ulaşan güvenilir eğitim partneriniz — online ve yüz yüze.
         </p>
       </PageHero>
 
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <AnimatedSection>
               <SectionTitle
                 subtitle="Hikayemiz"
-                title="15 Yıllık Eğitim Yolculuğu"
+                title="Denizli'den Dünyaya"
                 align="left"
               />
-              <div className="space-y-4 text-slate leading-relaxed">
+              <div className="space-y-4 text-slate leading-relaxed text-sm md:text-base">
                 <p>
-                  Zreducation, 2009 yılında İstanbul&apos;da küçük bir dil
-                  okulu olarak kuruldu. Kurucularımızın eğitimde kalite ve
-                  güvenilirlik vizyonu, kısa sürede binlerce öğrencinin
-                  tercih ettiği bir kuruma dönüşmemizi sağladı.
+                  Zreducation, Denizli Kınıklı&apos;da kurulmuş; İtalya ve
+                  Almanya odaklı yurt dışı eğitim danışmanlığı ile A1&apos;den
+                  C2&apos;ye online ve yüz yüze İngilizce eğitimi sunan bir
+                  kurumdur.
                 </p>
                 <p>
-                  Bugün 50&apos;den fazla uzman eğitmen ve danışmandan oluşan
-                  kadromuzla, yurt dışı öğrenci gönderimi, A1&apos;den C2&apos;ye
-                  kadar İngilizce eğitimi, online ve yüz yüze grup dersleri
-                  sunuyoruz.
+                  {siteConfig.address} adresindeki merkezimizde yüz yüze
+                  dersler; Zoom ve dijital platform üzerinden tüm Türkiye&apos;ye
+                  online eğitim veriyoruz.
                 </p>
                 <p>
-                  30&apos;dan fazla partner üniversitemiz, CEFR uyumlu
-                  müfredatımız ve %94 öğrenci memnuniyet oranımızla
-                  Türkiye&apos;nin önde gelen eğitim danışmanlık kurumlarından
-                  biri olmaktan gurur duyuyoruz.
+                  İtalya ve Almanya partner üniversite ağımız, CEFR uyumlu
+                  Language Hub müfredatımız ve %94 öğrenci memnuniyet oranımızla
+                  Denizli&apos;nin güvenilir eğitim markası olmaktan gurur
+                  duyuyoruz.
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {stats.map((stat) => (
                   <StatCard key={stat.label} stat={stat} size="md" showDot />
                 ))}
@@ -69,13 +73,13 @@ export default function HakkimizdaPage() {
         </div>
       </section>
 
-      <section id="vizyon" className="py-20 bg-surface">
+      <section id="vizyon" className="py-16 md:py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-              subtitle="Vizyon & Misyon"
-              title="Neye İnanıyoruz?"
-              description="Kurumsal değerlerimiz ve hedeflerimiz. Detaylar için başlıklara tıklayın."
-            />
+            subtitle="Vizyon & Misyon"
+            title="Neye İnanıyoruz?"
+            description="Kurumsal değerlerimiz ve hedeflerimiz."
+          />
 
           <AnimatedSection>
             <ExpandableList
@@ -87,13 +91,13 @@ export default function HakkimizdaPage() {
         </div>
       </section>
 
-      <section id="ekip" className="py-20 bg-white">
+      <section id="ekip" className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-              subtitle="Ekibimiz"
-              title="Uzman Kadromuz"
-              description="Alanında deneyimli, uluslararası sertifikalı eğitmen ve danışmanlarımızla hizmetinizdeyiz."
-            />
+            subtitle="Ekibimiz"
+            title="Denizli Uzman Kadromuz"
+            description="Yurt dışı danışmanlık ve online eğitim alanında deneyimli ekip."
+          />
 
           <AnimatedSection>
             <ExpandableList

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PromoBanner from "@/components/layout/PromoBanner";
 import AnimatedPageHero from "@/components/layout/AnimatedPageHero";
 
 interface PageHeroProps {
@@ -20,6 +21,7 @@ export function PageHero({ title, subtitle, children }: PageHeroProps) {
 export default function PageLayout({ children }: { children: ReactNode }) {
   return (
     <>
+      <PromoBanner />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

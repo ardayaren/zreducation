@@ -12,27 +12,33 @@ import {
 } from "@/data/expandableContent";
 
 export const metadata: Metadata = {
-  title: "Yurt Dışı Eğitim",
+  title: "Yurt Dışı Eğitim — İtalya & Almanya",
   description:
-    "Amerika, İngiltere, Kanada, Avustralya ve Avrupa üniversitelerine öğrenci yerleştirme danışmanlığı.",
+    "İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı. Denizli merkezli Zreducation.",
+  keywords: [
+    "italya üniversite başvurusu",
+    "almanya öğrenci vizesi",
+    "yurt dışı eğitim denizli",
+    "uni-assist danışmanlık",
+  ],
 };
 
 export default function YurtDisiPage() {
   return (
     <PageLayout>
-      <PageHero title="Yurt Dışı Eğitim" subtitle="Öğrenci Gönderimi">
+      <PageHero title="Yurt Dışı Eğitim" subtitle="İtalya & Almanya">
         <p>
-          Dünyanın en prestijli üniversitelerine öğrenci yerleştirme
-          danışmanlığı. Başvurudan mezuniyete kadar yanınızdayız.
+          İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı.
+          Denizli merkezimizden başvurudan vizeye kadar yanınızdayız.
         </p>
       </PageHero>
 
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Ülkeler"
             title="Eğitim Destinasyonları"
-            description="30'dan fazla partner üniversitemizle dünyanın dört bir yanına öğrenci gönderiyoruz. Ülke detayları için başlıklara tıklayın."
+            description="Yalnızca İtalya ve Almanya — uzmanlaştığımız iki ülke, güçlü partner ağı."
           />
 
           <AnimatedSection>

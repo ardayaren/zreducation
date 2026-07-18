@@ -45,14 +45,13 @@ export default function AboutPreview() {
           <AnimatedSection variant="slideLeft" delay={0.1}>
             <SectionTitle
               subtitle="Hakkımızda"
-              title="15 Yıllık Kurumsal Deneyim"
-              description="2009'dan bu yana öğrencilerin yurt dışı eğitim ve İngilizce hedeflerine ulaşmasına destek oluyoruz."
+              title="Denizli Merkez, Türkiye Geneli Online"
+              description="Kınıklı merkezimizden İtalya & Almanya danışmanlığı ve online İngilizce."
               align="left"
             />
             <p className="text-slate text-sm leading-relaxed mb-4">
-              Deneyimli kadromuz, uluslararası akreditasyonlarımız ve öğrenci
-              odaklı yaklaşımımızla güvenilir bir eğitim danışmanlık kurumu
-              olarak hizmet veriyoruz.
+              Denizli&apos;de yüz yüze, Türkiye&apos;nin her yerinde online —
+              aynı kalite, aynı CEFR müfredat.
             </p>
             <p className="text-slate text-sm leading-relaxed mb-6">
               CEFR uyumlu müfredat, kontrollü sınıf mevcutları ve

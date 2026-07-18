@@ -34,6 +34,13 @@ export async function sendAdminNotification(
     .map((data) => `${data.label}: ${data.correct}/${data.total} doğru`)
     .join("\n");
 
+  const bandProgressText = result.bandProgress
+    .map(
+      (band) =>
+        `${band.level} (${band.label}): ${band.correct}/${band.total} — min. ${band.required}${band.passed ? " ✓" : ""}`
+    )
+    .join("\n");
+
   const answerDetails = Object.entries(answers)
     .sort(([a], [b]) => Number(a) - Number(b))
     .map(([id, answer]) => {
@@ -88,6 +95,9 @@ Sınav Sonucu:
 Bölüm Dağılımı:
 ${breakdownText}
 
+Band Geçiş Durumu:
+${bandProgressText}
+
 Yanlış Cevaplar:
 ${wrongSummary}
 
@@ -122,6 +132,9 @@ Bu e-posta Zreducation web sitesi seviye tespit sınavından otomatik gönderilm
           
           <h3 style="color: #0b1d3a;">Bölüm Dağılımı</h3>
           <pre style="background: #fff; padding: 12px; border-radius: 4px;">${breakdownText}</pre>
+
+          <h3 style="color: #0b1d3a;">Band Geçiş Durumu</h3>
+          <pre style="background: #fff; padding: 12px; border-radius: 4px;">${bandProgressText}</pre>
 
           <h3 style="color: #0b1d3a;">Yanlış Cevaplar (${result.incorrectAnswers})</h3>
           <pre style="background: #fff; padding: 12px; border-radius: 4px; font-size: 12px;">${wrongSummary}</pre>

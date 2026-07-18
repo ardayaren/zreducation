@@ -1,18 +1,18 @@
 export const navLinks = [
   { href: "/", label: "Ana Sayfa" },
-  { href: "/hizmetler", label: "Hizmetler" },
-  { href: "/yurt-disi", label: "Yurt Dışı Eğitim" },
-  { href: "/ingilizce-egitimi", label: "İngilizce Eğitimi" },
+  { href: "/online-egitim", label: "Online Eğitim" },
+  { href: "/yurt-disi", label: "Yurt Dışı" },
+  { href: "/ingilizce-egitimi", label: "İngilizce" },
   { href: "/hakkimizda", label: "Hakkımızda" },
   { href: "/iletisim", label: "İletişim" },
 ];
 
 export const footerLinks = {
   hizmetler: [
-    { href: "/yurt-disi", label: "Yurt Dışı Öğrenci Gönderimi" },
+    { href: "/online-egitim", label: "Online Eğitim Paketleri" },
+    { href: "/yurt-disi", label: "İtalya & Almanya Danışmanlık" },
     { href: "/ingilizce-egitimi", label: "İngilizce Eğitimi" },
-    { href: "/hizmetler#online", label: "Online Eğitim" },
-    { href: "/hizmetler#yuz-yuze", label: "Yüz Yüze Eğitim" },
+    { href: "/hizmetler#yuz-yuze", label: "Denizli Yüz Yüze" },
     { href: "/seviye-tespit", label: "Seviye Tespit Sınavı" },
   ],
   kurumsal: [

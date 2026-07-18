@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { calculateLevel } from "@/lib/levelCalculator";
+import { calculateLevel, hasMinimumAnswers } from "@/lib/levelCalculator";
 import { sendAdminNotification } from "@/lib/email";
-import { placementQuestions } from "@/data/placementQuestions";
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,13 +14,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const allQuestionsMarked = placementQuestions.every(
-      (q) => q.id in answers
-    );
-
-    if (!answers || !allQuestionsMarked) {
+    if (!answers || !hasMinimumAnswers(answers)) {
       return NextResponse.json(
-        { error: "Her soru için bir seçenek veya boş bırak işaretlenmelidir" },
+        { error: "Sınavı bitirmek için en az 6 soru cevaplanmalıdır" },
         { status: 400 }
       );
     }

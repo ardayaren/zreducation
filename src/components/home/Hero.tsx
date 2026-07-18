@@ -15,15 +15,15 @@ import {
 import { getStatValueClass } from "@/lib/statTone";
 
 const highlights = [
-  { text: "15+ Yıllık Deneyim", tone: "gold" as const },
+  { text: "Denizli Merkez Kampüs", tone: "gold" as const },
   { text: "CEFR Uyumlu Müfredat", tone: "neutral" as const },
-  { text: "30+ Partner Üniversite", tone: "positive" as const },
+  { text: "İtalya & Almanya Danışmanlık", tone: "positive" as const },
   { text: "Ücretsiz Seviye Tespit", tone: "positive" as const },
 ];
 
 export default function Hero() {
   return (
-    <section className="pt-[104px] min-h-[85vh] flex items-stretch overflow-hidden bg-gradient-to-b from-white to-surface">
+    <section className="pt-[128px] min-h-[85vh] flex items-stretch overflow-hidden bg-gradient-to-b from-white to-surface">
       <div className="w-full grid lg:grid-cols-2">
         <motion.div
           initial="hidden"
@@ -54,8 +54,8 @@ export default function Hero() {
               transition={transition.default}
               className="text-slate text-base leading-relaxed mb-8 max-w-lg"
             >
-              Öğrenci yerleştirmeden A1–C2 İngilizce eğitimine, online ve yüz
-              yüze grup derslerine kadar uçtan uca profesyonel hizmet
+              Öğrenci yerleştirmeden A1–C2 İngilizce eğitimine, online paketlerden
+              Denizli yüz yüze derslere kadar uçtan uca profesyonel hizmet
               sunuyoruz.
             </motion.p>
 

@@ -78,7 +78,7 @@ const tiles: BentoTile[] = [
     span: "md:col-span-2 lg:col-span-7 lg:row-span-2",
     variant: "navy",
     eyebrow: "Öne Çıkan",
-    stat: "30+ Üniversite",
+    stat: "İtalya & Almanya",
     backgroundImage: "/images/harvard.jpg",
   }),
   fromService("ingilizce", {

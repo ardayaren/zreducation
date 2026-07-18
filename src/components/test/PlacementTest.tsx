@@ -21,6 +21,7 @@ import {
   isBlankAnswer,
 } from "@/data/placementQuestions";
 import type { TestResult } from "@/lib/levelCalculator";
+import { hasMinimumAnswers } from "@/lib/levelCalculator";
 import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
 import { contactInfo } from "@/data/contact";
@@ -98,14 +99,8 @@ export default function PlacementTest() {
   };
 
   const submitTest = async () => {
-    const unanswered = placementQuestions.filter(
-      (q) => !isQuestionAnswered(answers, q.id)
-    );
-
-    if (unanswered.length > 0) {
-      setError(
-        `Lütfen tüm soruları işaretleyin. (${unanswered.length} soru kaldı)`
-      );
+    if (!hasMinimumAnswers(answers)) {
+      setError("Sınavı bitirmek için en az 6 soru cevaplamanız yeterlidir.");
       return;
     }
 
@@ -206,9 +201,9 @@ export default function PlacementTest() {
             </form>
 
             <p className="text-xs text-slate-light mt-6 pt-4 leading-relaxed">
-              Sınav yaklaşık 30 dakika sürer. Her soru için A, B, C, D
-              seçeneklerinden birini veya &quot;Boş bırak&quot; seçeneğini
-              işaretlemeniz gerekmektedir.
+              70 soruluk Language Hub testi. Tüm soruları çözmeniz gerekmez;
+              en az 6 soru cevaplayarak sınavı bitirebilirsiniz. Seviye, barem
+              kurallarına göre belirlenir (ör. ilk 20 soruda 15 doğru → A1).
             </p>
           </div>
         </div>
@@ -341,7 +336,7 @@ export default function PlacementTest() {
             </p>
           )}
 
-          <div className="flex justify-between mt-6 gap-3">
+          <div className="flex flex-col sm:flex-row justify-between mt-6 gap-3">
             <Button
               variant="secondary"
               onClick={() => setCurrentQuestion((c) => Math.max(0, c - 1))}
@@ -351,30 +346,49 @@ export default function PlacementTest() {
               Önceki
             </Button>
 
-            {currentQuestion < placementQuestions.length - 1 ? (
+            <div className="flex flex-wrap gap-2 sm:justify-end">
               <Button
-                onClick={() =>
-                  setCurrentQuestion((c) =>
-                    Math.min(placementQuestions.length - 1, c + 1)
-                  )
-                }
-                disabled={!isQuestionAnswered(answers, question.id)}
+                variant="outline"
+                onClick={submitTest}
+                disabled={loading || !hasMinimumAnswers(answers)}
               >
-                Sonraki
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            ) : (
-              <Button onClick={submitTest} disabled={loading}>
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
                     Gönderiliyor
                   </>
                 ) : (
-                  "Sınavı Tamamla"
+                  "Sınavı Bitir"
                 )}
               </Button>
-            )}
+
+              {currentQuestion < placementQuestions.length - 1 ? (
+                <Button
+                  onClick={() =>
+                    setCurrentQuestion((c) =>
+                      Math.min(placementQuestions.length - 1, c + 1)
+                    )
+                  }
+                >
+                  Sonraki
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={submitTest}
+                  disabled={loading || !hasMinimumAnswers(answers)}
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Gönderiliyor
+                    </>
+                  ) : (
+                    "Sonuçları Gör"
+                  )}
+                </Button>
+              )}
+            </div>
           </div>
 
           <div className="soft-card mt-6 p-5 rounded-3xl">
@@ -470,6 +484,32 @@ export default function PlacementTest() {
                   </div>
                 </motion.div>
               ))}
+            </div>
+
+            <div className="mb-8">
+              <h3 className="label-caps text-gold-600 mb-4">Barem Sonuçları</h3>
+              <div className="space-y-2">
+                {result.bandProgress.map((band) => (
+                  <div
+                    key={band.level}
+                    className={`flex flex-wrap items-center justify-between gap-2 rounded-2xl px-4 py-3 text-sm ${
+                      band.passed
+                        ? "bg-emerald-50 border border-emerald-200"
+                        : "bg-surface border border-border"
+                    }`}
+                  >
+                    <span className="font-semibold text-navy-900">
+                      {band.level} · {band.label}
+                    </span>
+                    <span
+                      className={`tabular-nums ${band.passed ? "text-emerald-700" : "text-slate"}`}
+                    >
+                      {band.correct}/{band.total} (min. {band.required})
+                      {band.passed ? " ✓" : ""}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="mb-8">

@@ -38,13 +38,13 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
           title: "Vize & Evrak Yönetimi",
           summary: "Finansal belgeler, sigorta ve mülakat provası dahil tam vize dosyası.",
           content:
-            "Ülkeye göre değişen vize gereksinimleri (I-20, CAS, CoE vb.) takip edilir. Banka dökümü, sponsor mektubu ve sağlık sigortası belgeleri kontrol listesine göre hazırlanır.",
+            "Ülkeye göre değişen vize gereksinimleri (Schengen tip D, blocked account vb.) takip edilir. Banka dökümü, sponsor mektubu ve sağlık sigortası belgeleri kontrol listesine göre hazırlanır.",
           bullets: [
             "Vize randevu planlaması ve belge kontrol listesi",
-            "Mülakat simülasyonu (ABD F-1, İngiltere credibility interview)",
+            "Mülakat simülasyonu (Almanya ve İtalya konsolosluk görüşmeleri)",
             "Red durumunda itiraz ve yeniden başvuru danışmanlığı",
           ],
-          related: "Yüz Yüze Eğitim — Vize mülakatı için Speaking pratiği kampüsümüzde yapılabilir",
+          related: "Yüz Yüze Eğitim — Vize mülakatı için Speaking pratiği Denizli merkezde",
         },
         {
           title: "Yerleşim & Konaklama",
@@ -189,7 +189,7 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
             "Film gecesi ve kitap kulübü etkinlikleri",
             "Grup projelerinde peer feedback sistemi",
           ],
-          related: "Yüz Yüze Eğitim — Kulüp oturumları Levent kampüsünde",
+          related: "Yüz Yüze Eğitim — Kulüp oturumları Denizli merkezde",
         },
         {
           title: "Ekonomik Avantaj",
@@ -206,12 +206,12 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
       heading: "Kampüs & Sınıf Detayları",
       items: [
         {
-          title: "Levent Merkez Kampüs",
-          summary: "Beşiktaş Levent — metro ve otobüs hatlarına 5 dk.",
+          title: "Denizli Kınıklı Merkez Kampüs",
+          summary: "Denizli Merkez — ulaşımı kolay eğitim merkezi.",
           content:
-            "Levent Mah. Eğitim Cad. üzerindeki merkezimiz 600 m² alanda 8 derslik, kütüphane, konuşma lounge ve danışmanlık ofislerinden oluşur. Pzt–Cmt 09:00–19:00 açıktır.",
+            "Kınıklı, 6017. Sk. No:11 adresindeki merkezimiz 8 derslik, kütüphane, konuşma lounge ve danışmanlık ofislerinden oluşur. Pzt–Cmt 09:00–19:00 açıktır.",
           bullets: [
-            "Levent metro çıkışına 5 dakika yürüme",
+            "Denizli merkeze kolay ulaşım",
             "Ücretsiz çay–kahve ve çalışma alanı",
             "Engelli erişimine uygun tasarım",
           ],
@@ -255,7 +255,7 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
           summary: "Integrated task stratejileri ve ETS format denemeleri.",
           content:
             "Reading passage analizi, Listening note-taking teknikleri ve Speaking independent/integrated görevler ayrı çalışılır. Hedef: 90–100+ puan.",
-          related: "Yurt Dışı Eğitim — ABD ve Kanada başvuruları için TOEFL",
+          related: "Yurt Dışı Eğitim — İtalya ve Almanya başvuruları için TOEFL",
         },
         {
           title: "YDS & İş İngilizcesi",
@@ -321,12 +321,12 @@ export const onlineProgramDetails: ExpandableDetail[] = [
 
 export const yuzYuzeProgramDetails: ExpandableDetail[] = [
   {
-    title: "Levent Merkez Kampüs",
-    summary: "Metro ve otobüse 5 dakika; 600 m² eğitim alanı.",
+    title: "Denizli Kınıklı Merkez Kampüs",
+    summary: "Denizli Merkez — tam donanımlı eğitim alanı.",
     content:
-      "Beşiktaş Levent'teki kampüsümüz 8 derslik, kütüphane, konuşma lounge ve danışmanlık ofislerinden oluşur. Öğrenciler ders aralarında ücretsiz çalışma alanını kullanabilir.",
+      "Denizli Kınıklı'daki kampüsümüz 8 derslik, kütüphane, konuşma lounge ve danışmanlık ofislerinden oluşur. Öğrenciler ders aralarında ücretsiz çalışma alanını kullanabilir.",
     bullets: [
-      "Levent metro istasyonuna 5 dk yürüme",
+      "Kınıklı merkeze kolay ulaşım",
       "Pzt–Cmt 09:00–19:00 açık",
       "Ücretsiz Wi-Fi ve çay–kahve ikramı",
     ],
@@ -416,76 +416,30 @@ export const grupProgramDetails: ExpandableDetail[] = [
 
 export const yurtDisiCountryDetails: ExpandableDetail[] = [
   {
-    title: "🇬🇧 İngiltere",
-    summary: "Oxford, Cambridge, LSE, UCL — UCAS ve IELTS 6.0–7.0",
+    title: "🇮🇹 İtalya",
+    summary: "Politecnico Milano, Bologna, Sapienza — İngilizce master programları",
     content:
-      "İngiltere lisans programları genellikle 3 yıl sürer. Foundation yılı ile A-Level şartını karşılamayan öğrenciler de başvurabilir. UCAS üzerinden en fazla 5 tercih yapılır.",
+      "İtalya'da devlet üniversitelerinde düşük öğrenim ücreti ve zengin burs imkânları bulunur. Uni-Italia ve universitaly.it üzerinden pre-enrolment süreci yönetilir.",
     bullets: [
-      "Personal Statement ve referans mektubu native kontrolü",
-      "Credibility interview hazırlığı (vize aşaması)",
-      "Burs: Chevening, üniversite merit bursları",
+      "Dichiarazione di Valore / CIMEA denklik",
+      "Burs: DSU, Invest Your Talent in Italy",
+      "İngilizce ve İtalyanca program seçenekleri",
+      "Konaklama: DSU yurtları ve özel yurt",
     ],
-    related: "İngilizce Eğitimi — IELTS Academic hazırlık programı",
-  },
-  {
-    title: "🇺🇸 Amerika",
-    summary: "MIT, Harvard, Stanford, UCLA — Common App ve F-1 vize",
-    content:
-      "Lisans başvuruları Common Application üzerinden yapılır. SAT/ACT skorları birçok üniversite için hâlâ önemlidir. Early Decision ve Regular Decision takvimleri farklıdır.",
-    bullets: [
-      "Essay ve supplemental essay yazım desteği",
-      "F-1 vize mülakat simülasyonu",
-      "Finansal destek ve burs araştırması",
-    ],
-    related: "Sınav Hazırlık — TOEFL iBT hazırlık programı",
-  },
-  {
-    title: "🇨🇦 Kanada",
-    summary: "Toronto, UBC, McGill — PGWP ve göçmenlik avantajı",
-    content:
-      "Kanada, mezuniyet sonrası çalışma izni (PGWP) ve kalıcı oturum yolları sunar. DIL/PG programları dil yeterliliği düşük öğrenciler için idealdir.",
-    bullets: [
-      "Study permit başvuru dosyası hazırlığı",
-      "Co-op ve staj programlı bölüm seçimi",
-      "Konaklama: üniversite yurdu veya homestay",
-    ],
-    related: "Yüz Yüze Eğitim — IELTS hazırlığı kampüste",
-  },
-  {
-    title: "🇦🇺 Avustralya",
-    summary: "Melbourne, Sydney, ANU — Şubat ve Temmuz dönemleri",
-    content:
-      "CRICOS onaylı kurumlar zorunludur. OSHC sağlık sigortası ve part-time çalışma izni (haftada 48 saat) öğrenciler için avantaj sağlar.",
-    bullets: [
-      "Genuine Temporary Entrant (GTE) mektubu hazırlığı",
-      "CoE (Confirmation of Enrolment) süreci",
-      "Post-study work visa danışmanlığı",
-    ],
-    related: "Online Eğitim — Avustralya saatine uygun dersler",
+    related: "Online Eğitim — İtalya başvurusu öncesi B2 hazırlık",
   },
   {
     title: "🇩🇪 Almanya",
-    summary: "LMU, TU Munich, Heidelberg — Düşük öğrenim ücreti",
+    summary: "TU Munich, LMU, Heidelberg — Düşük öğrenim ücreti",
     content:
-      "Devlet üniversitelerinde dönemlik öğrenim ücreti 150–350 € civarındadır. İngilizce programlar artmakla birlikte Almanca A2–B1 birçok program için yeterlidir.",
+      "Almanya devlet üniversitelerinde dönemlik harç 150–350 € civarındadır. Uni-Assist başvurusu, blocked account ve vize süreci danışmanlarımız tarafından yönetilir.",
     bullets: [
+      "Uni-Assist ve doğrudan başvuru koordinasyonu",
       "Blocked account (Sperrkonto) açılış desteği",
-      "TestAS sınavı hazırlığı",
-      "Anabin diploma denklik kontrolü",
+      "TestAS ve APS (gerekli durumlarda)",
+      "Studienkolleg ve pathway programları",
     ],
-    related: "Grup Dersleri — Almanca yanında İngilizce hazırlık",
-  },
-  {
-    title: "🇳🇱 Hollanda",
-    summary: "Amsterdam, Delft, Leiden — İngilizce lisans ve yüksek lisans",
-    content:
-      "Hollanda'da 2.000+ İngilizce program bulunur. Studielink başvuru sistemi ve Nuffic diploma denklik süreci danışmanlarımız tarafından yönetilir.",
-    bullets: [
-      "Numerus fixus (kontenjanlı) bölüm stratejisi",
-      "Konaklama: DUO öğrenci yurdu veya özel yurt",
-      "Orientation Year (zoekjaar) mezuniyet sonrası vize",
-    ],
-    related: "Yurt Dışı Eğitim — Ücretsiz ilk danışmanlık görüşmesi",
+    related: "Yüz Yüze Eğitim — Denizli merkezde Almanca/İngilizce hazırlık",
   },
 ];
 
@@ -522,14 +476,14 @@ export const yurtDisiProgramDetails: ExpandableDetail[] = [
     title: "Yaz Okulu Programları",
     summary: "4–8 haftalık yaz dönemi dil ve kültür programları.",
     content:
-      "Lise ve üniversite öğrencileri için İngiltere, Amerika ve Kanada'da yaz okulu seçenekleri. Konaklama ve sosyal aktivite paketleri dahildir.",
+      "Lise ve üniversite öğrencileri için İtalya ve Almanya'da yaz okulu seçenekleri. Konaklama ve sosyal aktivite paketleri dahildir.",
     related: "Yüz Yüze Eğitim — Yaz öncesi hazırlık dersleri",
   },
   {
-    title: "Staj & Work & Travel",
-    summary: "Yaz dönemi staj ve çalışma–seyahat programları.",
+    title: "Staj & Erasmus+",
+    summary: "Yaz dönemi staj ve Erasmus+ programları.",
     content:
-      "Amerika J-1 Work & Travel, Avrupa staj programları ve sektörel staj yerleştirmeleri. CV ve mülakat hazırlığı dahil tam destek sunulur.",
+      "İtalya ve Almanya'da sektörel staj yerleştirmeleri ve Erasmus+ staj programları. CV ve mülakat hazırlığı dahil tam destek sunulur.",
     related: "İş İngilizcesi — Staj mülakatı hazırlığı",
   },
 ];
@@ -558,7 +512,7 @@ export const yurtDisiProcessDetails: ExpandableDetail[] = [
     title: "3. Kabul & Kayıt",
     summary: "Online başvuru takibi ve kabul mektubu sonrası kayıt.",
     content:
-      "UCAS, Common App, Studielink gibi platformlarda başvuru takibi yapılır. Ek belge talepleri ve burs başvuruları koordine edilir.",
+      "Uni-Assist, Uni-Italia ve universitaly.it platformlarında başvuru takibi yapılır. Ek belge talepleri ve burs başvuruları koordine edilir.",
     related: "Yurt Dışı Eğitim — Partner üniversite ağı",
   },
   {
@@ -568,7 +522,7 @@ export const yurtDisiProcessDetails: ExpandableDetail[] = [
       "Ülkeye özel vize dosyası hazırlanır. Banka dökümü, sponsor mektubu ve sağlık sigortası kontrol listesine göre düzenlenir.",
     bullets: [
       "Vize randevu planlaması",
-      "Mülakat simülasyonu (F-1, Tier 4, vb.)",
+      "Mülakat simülasyonu (Almanya ve İtalya konsolosluk görüşmeleri)",
       "Red durumunda itiraz danışmanlığı",
     ],
     related: "Yüz Yüze Eğitim — Vize mülakatı Speaking pratiği",
@@ -682,7 +636,7 @@ export const ingilizceExamDetails: ExpandableDetail[] = [
       "Integrated writing ve speaking pratiği",
       "Zaman yönetimi atölyeleri",
     ],
-    related: "Yurt Dışı Eğitim — ABD ve Kanada başvuruları",
+    related: "Yurt Dışı Eğitim — İtalya ve Almanya başvuruları",
   },
   {
     title: "YDS Hazırlık",
@@ -732,7 +686,7 @@ export const ingilizceMethodDetails: ExpandableDetail[] = [
     summary: "Haftalık ücretsiz kulüp; native speaker eşliğinde debate.",
     content:
       "Her Çarşamba 18:00'de konuşma kulübü düzenlenir. Tüm seviye öğrencilerine açıktır; ders dışı pratik fırsatı sunar.",
-    related: "Yüz Yüze Eğitim — Kulüp oturumları Levent kampüsünde",
+    related: "Yüz Yüze Eğitim — Kulüp oturumları Denizli merkezde",
   },
   {
     title: "Kişisel Öğrenme Planı",
@@ -768,7 +722,7 @@ export const hakkimizdaValueDetails: ExpandableDetail[] = [
     summary: "Türkiye'nin en güvenilir eğitim danışmanlık kurumu olmak.",
     content:
       "Global eğitim standartlarını yerel erişilebilirlikle buluşturarak, her öğrencinin dünya standartlarında eğitime ulaşmasını sağlamayı hedefliyoruz.",
-    related: "Yurt Dışı Eğitim — 30+ partner üniversite ağı",
+    related: "Yurt Dışı Eğitim — İtalya & Almanya partner ağı",
   },
   {
     title: "Değerlerimiz",
@@ -789,7 +743,7 @@ export const hakkimizdaTeamDetails: ExpandableDetail[] = [
     title: "Dr. Ayşe Yıldız — Kurucu & Genel Müdür",
     summary: "Eğitim Yönetimi — 15+ yıl sektör deneyimi",
     content:
-      "Boğaziçi Üniversitesi Eğitim Bilimleri doktorası. 2009'da Zreducation'ı kurdu; kurumsal strateji ve kalite standartlarından sorumlu.",
+      "Pamukkale Üniversitesi Eğitim Bilimleri doktorası. 2009'da Zreducation'ı Denizli'de kurdu; kurumsal strateji ve kalite standartlarından sorumlu.",
     related: "Hakkımızda — 2009'dan bu yana eğitim yolculuğu",
   },
   {
@@ -801,9 +755,9 @@ export const hakkimizdaTeamDetails: ExpandableDetail[] = [
   },
   {
     title: "Mehmet Arslan — Yurt Dışı Eğitim Müdürü",
-    summary: "Üniversite Danışmanlığı — 12 ülke deneyimi",
+    summary: "Üniversite Danışmanlığı — İtalya & Almanya uzmanı",
     content:
-      "500+ başarılı yerleştirme. UCAS, Common App ve Studielink süreçlerinde uzman. Burs ve finansal planlama danışmanlığı sunar.",
+      "500+ başarılı yerleştirme. Uni-Assist, Uni-Italia ve universitaly.it süreçlerinde uzman. Burs ve finansal planlama danışmanlığı sunar.",
     related: "Yurt Dışı Eğitim — Ücretsiz danışmanlık randevusu",
   },
   {

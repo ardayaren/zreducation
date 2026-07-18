@@ -144,7 +144,7 @@ export default function HizmetlerPage() {
         </div>
       </section>
 
-      <NavySection id="online" className="scroll-mt-20">
+      <NavySection id="online" className="scroll-mt-28">
         <SectionTitle
           subtitle="Online Eğitim"
           title="Her Yerden Öğrenin"
@@ -161,12 +161,12 @@ export default function HizmetlerPage() {
         </AnimatedSection>
       </NavySection>
 
-      <section id="yuz-yuze" className="py-20 md:py-24 bg-surface scroll-mt-20">
+      <section id="yuz-yuze" className="py-20 md:py-24 bg-surface scroll-mt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Yüz Yüze Eğitim"
-            title="Levent Kampüsümüz"
-            description="İstanbul'un kalbinde, ulaşımı kolay ve tam donanımlı merkezimizde yüz yüze eğitim deneyimi."
+            title="Denizli Merkez Kampüsümüz"
+            description="Kınıklı'da ulaşımı kolay, tam donanımlı merkezimizde yüz yüze eğitim deneyimi."
           />
 
           <AnimatedSection>
@@ -179,7 +179,7 @@ export default function HizmetlerPage() {
         </div>
       </section>
 
-      <section id="grup" className="py-20 md:py-24 bg-white scroll-mt-20">
+      <section id="grup" className="py-20 md:py-24 bg-white scroll-mt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Grup Dersleri"

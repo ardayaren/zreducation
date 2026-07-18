@@ -131,9 +131,12 @@ export function calculateLevel(
   };
 }
 
-export function hasMinimumAnswers(answers: Record<number, string>): boolean {
-  const answered = Object.values(answers).filter(
-    (a) => a !== undefined && a !== BLANK_ANSWER && a !== ""
+export function countRealAnswers(answers: Record<number, string>): number {
+  return Object.values(answers).filter(
+    (a) => a !== undefined && !isBlankAnswer(a)
   ).length;
-  return answered >= 6;
+}
+
+export function hasMinimumAnswers(answers: Record<number, string>): boolean {
+  return countRealAnswers(answers) >= 1;
 }

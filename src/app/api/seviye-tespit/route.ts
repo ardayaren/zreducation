@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     if (!answers || !hasMinimumAnswers(answers)) {
       return NextResponse.json(
-        { error: "Sınavı bitirmek için en az 6 soru cevaplanmalıdır" },
+        { error: "Sınavı bitirmek için en az 1 soru cevaplanmalıdır" },
         { status: 400 }
       );
     }

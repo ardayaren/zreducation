@@ -21,7 +21,10 @@ import {
   isBlankAnswer,
 } from "@/data/placementQuestions";
 import type { TestResult } from "@/lib/levelCalculator";
-import { hasMinimumAnswers } from "@/lib/levelCalculator";
+import {
+  countRealAnswers,
+  hasMinimumAnswers,
+} from "@/lib/levelCalculator";
 import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
 import { contactInfo } from "@/data/contact";
@@ -76,7 +79,8 @@ export default function PlacementTest() {
   const question = placementQuestions[currentQuestion];
   const hubInfo = hubLevelConfig[question.hubLevel];
   const progress = ((currentQuestion + 1) / placementQuestions.length) * 100;
-  const answeredCount = placementQuestions.filter((q) =>
+  const realAnswerCount = countRealAnswers(answers);
+  const markedCount = placementQuestions.filter((q) =>
     isQuestionAnswered(answers, q.id)
   ).length;
 
@@ -100,8 +104,16 @@ export default function PlacementTest() {
 
   const submitTest = async () => {
     if (!hasMinimumAnswers(answers)) {
-      setError("Sınavı bitirmek için en az 6 soru cevaplamanız yeterlidir.");
+      setError("Sınavı bitirmek için en az 1 soru cevaplamanız yeterlidir.");
       return;
+    }
+
+    const remaining = placementQuestions.length - markedCount;
+    if (remaining > 0) {
+      const confirmed = window.confirm(
+        `${realAnswerCount} soru cevapladınız, ${remaining} soru henüz işaretlenmedi. Sınavı yine de bitirmek istiyor musunuz?`
+      );
+      if (!confirmed) return;
     }
 
     setLoading(true);
@@ -202,8 +214,9 @@ export default function PlacementTest() {
 
             <p className="text-xs text-slate-light mt-6 pt-4 leading-relaxed">
               70 soruluk Language Hub testi. Tüm soruları çözmeniz gerekmez;
-              en az 6 soru cevaplayarak sınavı bitirebilirsiniz. Seviye, barem
-              kurallarına göre belirlenir (ör. ilk 20 soruda 15 doğru → A1).
+              istediğiniz zaman &quot;Sınavı Bitir&quot; ile erken
+              tamamlayabilirsiniz. Seviye, barem kurallarına göre belirlenir
+              (ör. ilk 20 soruda 15 doğru → A1).
             </p>
           </div>
         </div>
@@ -219,8 +232,19 @@ export default function PlacementTest() {
                 Soru {currentQuestion + 1} / {placementQuestions.length}
               </span>
               <span className="text-sm text-slate">
-                <span className="font-semibold text-navy-900">{answeredCount}</span>{" "}
-                cevaplandı
+                <span className="font-semibold text-navy-900">
+                  {realAnswerCount}
+                </span>{" "}
+                cevap
+                {markedCount > realAnswerCount ? (
+                  <>
+                    {" "}
+                    ·{" "}
+                    <span className="text-slate-light">
+                      {markedCount - realAnswerCount} boş
+                    </span>
+                  </>
+                ) : null}
               </span>
             </div>
             <div className="progress-track h-2.5">
@@ -350,7 +374,7 @@ export default function PlacementTest() {
               <Button
                 variant="outline"
                 onClick={submitTest}
-                disabled={loading || !hasMinimumAnswers(answers)}
+                disabled={loading}
               >
                 {loading ? (
                   <>
@@ -374,10 +398,7 @@ export default function PlacementTest() {
                   <ChevronRight className="w-4 h-4" />
                 </Button>
               ) : (
-                <Button
-                  onClick={submitTest}
-                  disabled={loading || !hasMinimumAnswers(answers)}
-                >
+                <Button onClick={submitTest} disabled={loading}>
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />

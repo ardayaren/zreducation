@@ -23,7 +23,7 @@ const highlights = [
 
 export default function Hero() {
   return (
-    <section className="pt-[128px] min-h-[85vh] flex items-stretch overflow-hidden bg-gradient-to-b from-white to-surface">
+    <section className="pt-[128px] min-h-[85vh] flex items-stretch overflow-hidden bg-gradient-to-b from-white to-surface section-flow">
       <div className="w-full grid lg:grid-cols-2">
         <motion.div
           initial="hidden"
@@ -107,9 +107,9 @@ export default function Hero() {
           transition={{ delayChildren: 0.2 }}
           className="flex flex-col justify-center px-4 sm:px-6 lg:px-10 py-16 lg:py-12 relative"
         >
-          <div className="surface-navy navy-panel-inset relative overflow-hidden flex flex-col justify-center px-5 sm:px-8 py-14 lg:py-16 h-full m-4 sm:m-6 lg:m-8">
+          <div className="surface-navy navy-panel-inset relative overflow-hidden flex flex-col justify-center px-5 sm:px-8 py-14 lg:py-16 h-full m-4 sm:m-6 lg:m-8 gpu-layer">
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-25"
+              className="absolute inset-0 bg-cover bg-center opacity-25 gpu-layer"
               style={{ backgroundImage: "url(/images/harvard.jpg)" }}
               aria-hidden
             />
@@ -129,25 +129,14 @@ export default function Hero() {
                 transition={transition.slow}
                 className="grid grid-cols-2 gap-2 mb-4"
               >
-                {performanceStats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      ...transition.default,
-                      delay: 0.35 + index * 0.08,
-                    }}
-                  >
-                    <StatCard stat={stat} onDark size="sm" showDot />
-                  </motion.div>
+                {performanceStats.map((stat) => (
+                  <StatCard key={stat.label} stat={stat} onDark size="sm" showDot />
                 ))}
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ ...transition.default, delay: 0.7 }}
+                variants={fadeUp}
+                transition={transition.default}
                 className="flex items-center justify-between px-5 py-4 navy-card-glass"
               >
                 <span className="text-sm text-white/60">Genel Başarı Skoru</span>
@@ -160,7 +149,7 @@ export default function Hero() {
 
               <motion.p
                 variants={fadeUp}
-                transition={{ ...transition.default, delay: 0.8 }}
+                transition={transition.default}
                 className="mt-4 text-sm text-white/50 leading-relaxed navy-card-glass px-5 py-4"
               >
                 <span className="text-emerald-400 font-semibold">%94 memnuniyet</span>{" "}

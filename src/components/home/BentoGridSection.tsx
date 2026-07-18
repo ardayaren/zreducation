@@ -6,7 +6,7 @@ import { ArrowRight, ClipboardCheck, Sparkles } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import StatCard from "@/components/ui/StatCard";
 import { services, performanceStats } from "@/data/services";
-import { fadeUp, staggerContainer, transition } from "@/lib/motion";
+import { fadeUp, staggerContainer, transition, viewportOnce } from "@/lib/motion";
 
 type BentoVariant = "navy" | "gold" | "light" | "surface";
 
@@ -134,14 +134,14 @@ function BentoCard({
   const hasImage = Boolean(tile.backgroundImage);
 
   return (
-    <Link href={tile.href} className="block h-full group">
+    <Link href={tile.href} className="block h-full group gpu-layer">
       <div
-        className={`relative h-full overflow-hidden rounded-3xl p-6 md:p-7 flex flex-col transition-all duration-500 ease-out group-hover:scale-[1.01] group-hover:shadow-[0_20px_48px_rgba(14,34,64,0.12)] ${hasImage ? "text-white" : styles.tile} ${large ? "min-h-[300px] lg:min-h-full" : "min-h-[160px]"}`}
+        className={`relative h-full overflow-hidden rounded-3xl p-6 md:p-7 flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.012] ${hasImage ? "text-white" : styles.tile} ${large ? "min-h-[300px] lg:min-h-full" : "min-h-[160px]"}`}
       >
         {hasImage && tile.backgroundImage && (
           <>
             <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] gpu-layer"
               style={{ backgroundImage: `url(${tile.backgroundImage})` }}
               aria-hidden
             />
@@ -177,7 +177,7 @@ function BentoCard({
             )}
           </div>
           <div
-            className={`shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ${hasImage ? "bg-white/15 backdrop-blur-sm" : tile.variant === "navy" ? "navy-card-glass" : tile.variant === "gold" ? "bg-white/25" : "bg-gold-50"}`}
+            className={`shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ${hasImage ? "bg-white/15" : tile.variant === "navy" ? "navy-card-glass" : tile.variant === "gold" ? "bg-white/25" : "bg-gold-50"}`}
           >
             <Icon
               className={`w-5 h-5 ${hasImage ? "text-gold-400" : styles.icon}`}
@@ -221,7 +221,7 @@ function BentoCard({
 
 export default function BentoGridSection() {
   return (
-    <section className="py-20 md:py-24 bg-gradient-to-b from-white via-surface/40 to-surface">
+    <section className="py-20 md:py-24 bg-gradient-to-b from-white via-surface/40 to-surface section-flow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Programlar"
@@ -232,7 +232,7 @@ export default function BentoGridSection() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={viewportOnce}
           variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4"
         >

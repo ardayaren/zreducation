@@ -12,7 +12,7 @@ function ReviewCard({
 }) {
   return (
     <article
-      className="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-3xl p-5 shadow-[0_4px_24px_rgba(14,34,64,0.06)] border border-border/50"
+      className="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-3xl p-5 shadow-[0_4px_24px_rgba(14,34,64,0.06)] border border-border/50 gpu-layer"
       aria-hidden={duplicate}
     >
       <div className="flex gap-0.5 mb-3">
@@ -40,7 +40,7 @@ export default function ScrollingTestimonials() {
   const items = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-16 md:py-20 bg-surface border-t border-border overflow-hidden">
+    <section className="py-16 md:py-20 bg-surface border-t border-border overflow-hidden section-flow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <SectionTitle
           subtitle="Referanslar"
@@ -50,7 +50,15 @@ export default function ScrollingTestimonials() {
       </div>
 
       <div className="relative">
-        <div className="flex gap-4 animate-marquee-slow w-max">
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-surface to-transparent"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-surface to-transparent"
+          aria-hidden
+        />
+        <div className="flex gap-4 animate-marquee-slow gpu-marquee w-max">
           {items.map((item, index) => (
             <ReviewCard
               key={`${item.name}-${index}`}

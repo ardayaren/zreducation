@@ -6,6 +6,7 @@ import {
   type MotionVariant,
   transition,
   variantMap,
+  viewportOnce,
 } from "@/lib/motion";
 
 interface AnimatedSectionProps {
@@ -27,10 +28,10 @@ export default function AnimatedSection({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: "-50px" }}
+      viewport={once ? viewportOnce : { once: false, amount: 0.12 }}
       variants={variantMap[variant]}
       transition={{ ...transition.default, delay }}
-      className={className}
+      className={`gpu-layer ${className}`}
     >
       {children}
     </motion.div>

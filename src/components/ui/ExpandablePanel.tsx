@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 export interface ExpandableDetail {
@@ -63,7 +63,7 @@ export function ExpandablePanel({
   const styles = variantStyles[variant];
 
   return (
-    <div className={`rounded-2xl overflow-hidden transition-shadow duration-300 ${styles.wrapper}`}>
+    <div className={`rounded-2xl overflow-hidden ${styles.wrapper}`}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -80,49 +80,50 @@ export function ExpandablePanel({
         </div>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className={`shrink-0 mt-0.5 ${variant === "navy" ? "text-gold-400" : "text-gold-600"}`}
         >
           <ChevronDown className="w-5 h-5" />
         </motion.span>
       </button>
 
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden"
+      <div
+        className="accordion-grid"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+      >
+        <div className="accordion-inner">
+          <div
+            className={`px-5 pb-5 pt-0 border-t ${variant === "navy" ? "border-white/10" : "border-border/40"}`}
           >
-            <div className={`px-5 pb-5 pt-0 border-t ${variant === "navy" ? "border-white/10" : "border-border/40"}`}>
-              <p className={`text-xs leading-relaxed mb-3 ${styles.body}`}>
-                {item.content}
+            <p className={`text-xs leading-relaxed mb-3 ${styles.body}`}>
+              {item.content}
+            </p>
+            {item.bullets && item.bullets.length > 0 && (
+              <ul className="space-y-1.5 mb-3">
+                {item.bullets.map((bullet) => (
+                  <li
+                    key={bullet}
+                    className={`flex items-start gap-2 text-xs leading-relaxed ${styles.body}`}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 ${variant === "navy" ? "bg-gold-400" : "bg-gold-600"}`}
+                    />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {item.related && (
+              <p
+                className={`text-[11px] leading-relaxed rounded-xl px-3 py-2 ${styles.related}`}
+              >
+                <span className="font-semibold">İlgili hizmet: </span>
+                {item.related}
               </p>
-              {item.bullets && item.bullets.length > 0 && (
-                <ul className="space-y-1.5 mb-3">
-                  {item.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className={`flex items-start gap-2 text-xs leading-relaxed ${styles.body}`}
-                    >
-                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 ${variant === "navy" ? "bg-gold-400" : "bg-gold-600"}`} />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {item.related && (
-                <p className={`text-[11px] leading-relaxed rounded-xl px-3 py-2 ${styles.related}`}>
-                  <span className="font-semibold">İlgili hizmet: </span>
-                  {item.related}
-                </p>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

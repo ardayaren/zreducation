@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
-import { staggerContainer, transition } from "@/lib/motion";
+import { staggerContainer, transition, viewportOnce } from "@/lib/motion";
 
 interface AnimatedStaggerProps {
   children: ReactNode;
@@ -21,10 +21,10 @@ export function AnimatedStagger({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: "-40px" }}
+      viewport={once ? viewportOnce : { once: false, amount: 0.12 }}
       variants={staggerContainer}
       transition={{ ...transition.default, delayChildren: delay }}
-      className={className}
+      className={`gpu-layer ${className}`}
     >
       {children}
     </motion.div>

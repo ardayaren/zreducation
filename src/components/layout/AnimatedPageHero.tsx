@@ -22,12 +22,12 @@ export default function AnimatedPageHero({
   children,
 }: AnimatedPageHeroProps) {
   return (
-    <section className="relative pt-[128px] pb-16 surface-navy page-hero-navy overflow-hidden">
+    <section className="relative pt-[128px] pb-16 surface-navy page-hero-navy overflow-hidden gpu-layer">
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gold-500/15 to-transparent pointer-events-none" />
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
         className="absolute bottom-0 left-0 right-0 h-px bg-border-dark origin-left"
       />
 
@@ -69,7 +69,7 @@ export default function AnimatedPageHero({
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition.default, delay: 0.35 }}
+            transition={{ ...transition.default, delay: 0.2 }}
             className="mt-6 max-w-2xl text-white/70 text-base leading-relaxed"
           >
             {children}

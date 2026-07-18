@@ -38,7 +38,7 @@ export default function Button({
   type = "button",
   disabled = false,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 transition-all duration-300 ease-out ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed hover:translate-y-0 hover:shadow-none" : ""}`;
+  const classes = `inline-flex items-center justify-center gap-2 transition-transform duration-200 ease-out ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed hover:translate-y-0" : ""}`;
 
   if (href) {
     return (

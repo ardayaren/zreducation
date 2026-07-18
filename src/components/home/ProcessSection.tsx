@@ -42,7 +42,7 @@ export default function ProcessSection() {
         <AnimatedStagger className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((item) => (
             <AnimatedItem key={item.step}>
-              <div className="navy-card-glass rounded-3xl p-8 h-full hover:bg-white/10 transition-all duration-300">
+              <div className="navy-card-glass rounded-3xl p-8 h-full transition-transform duration-300 hover:translate-y-[-2px] gpu-layer">
                 <span className="label-caps text-gold-500 block mb-4">
                   Adım {item.step}
                 </span>

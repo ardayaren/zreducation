@@ -8,7 +8,7 @@ import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
 export default function CTASection() {
   return (
-    <section className="py-20 bg-white border-t border-border">
+    <section className="py-20 bg-white border-t border-border section-flow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <motion.div

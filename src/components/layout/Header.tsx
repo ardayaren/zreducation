@@ -18,7 +18,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed top-9 left-0 right-0 z-50 surface-navy shadow-[0_4px_24px_rgba(0,0,0,0.22)] gpu-layer border-b border-white/10"
+      className="fixed top-9 left-0 right-0 z-50 bg-white/[0.97] shadow-[0_4px_24px_rgba(14,34,64,0.08)] gpu-layer border-b border-border/60"
     >
       <motion.div
         initial={{ scaleX: 0 }}
@@ -31,10 +31,10 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-3 min-w-0 shrink-0">
             <Logo size={52} priority className="sm:w-14 sm:h-14" />
             <div>
-              <span className="font-heading-normal text-lg font-bold text-white tracking-wide block leading-none">
+              <span className="font-heading-normal text-lg font-bold text-navy-900 tracking-wide block leading-none">
                 Zreducation
               </span>
-              <span className="label-caps text-gold-300/90 mt-1 block">
+              <span className="label-caps text-slate-light mt-1 block">
                 Eğitim & Danışmanlık
               </span>
             </div>
@@ -50,7 +50,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-white/75 hover:text-white border-b-2 border-transparent hover:border-gold-400 transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-slate hover:text-navy-900 border-b-2 border-transparent hover:border-gold-500 transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -66,9 +66,9 @@ export default function Header() {
           >
             <a
               href={contactInfo.phone.href}
-              className="flex items-center gap-2 text-sm font-medium text-white/75 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-sm font-medium text-slate hover:text-navy-900 transition-colors"
             >
-              <Phone className="w-4 h-4 text-gold-400" />
+              <Phone className="w-4 h-4 text-gold-600" />
               {contactInfo.phone.display}
             </a>
             <Button href="/seviye-tespit" size="sm">
@@ -78,7 +78,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-white"
+            className="lg:hidden p-2 text-navy-900"
             aria-label="Menü"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -93,7 +93,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:hidden surface-navy overflow-hidden rounded-b-3xl shadow-lg gpu-layer border-t border-white/10"
+            className="lg:hidden bg-white/[0.98] overflow-hidden rounded-b-3xl shadow-lg gpu-layer border-t border-border/60"
           >
             <motion.nav
               initial="hidden"
@@ -106,7 +106,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 font-medium border-b border-white/10 last:border-0"
+                    className="block px-4 py-3 text-navy-700 hover:text-navy-900 hover:bg-surface font-medium border-b border-border last:border-0"
                   >
                     {link.label}
                   </Link>

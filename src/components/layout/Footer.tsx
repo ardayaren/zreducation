@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link href="/" className="flex items-center gap-3 min-w-0">
-              <Logo size={54} className="sm:h-[58px] sm:w-[58px]" />
+              <Logo size={52} className="sm:w-14 sm:h-14" />
               <span className="font-heading-normal text-lg font-bold tracking-wide">
                 Zreducation
               </span>

@@ -8,19 +8,23 @@ interface LogoProps {
 }
 
 export default function Logo({
-  size = 56,
+  size = 52,
   className = "",
   priority = false,
 }: LogoProps) {
   return (
-    <Image
-      src={brandLogo.mark}
-      alt="Zreducation — Learn Lead Succeed"
-      width={size}
-      height={size}
-      priority={priority}
-      className={`shrink-0 rounded-2xl object-contain ${className}`}
+    <span
+      className={`inline-flex items-center justify-center shrink-0 ${className}`}
       style={{ width: size, height: size }}
-    />
+    >
+      <Image
+        src={brandLogo.mark}
+        alt="Zreducation"
+        width={size}
+        height={size}
+        priority={priority}
+        className="w-full h-full object-contain object-center"
+      />
+    </span>
   );
 }

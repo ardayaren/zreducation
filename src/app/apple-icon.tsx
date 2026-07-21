@@ -20,11 +20,15 @@ export default async function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#081526",
-          borderRadius: "50%",
         }}
       >
-        <img src={src} width={180} height={180} alt="" />
+        <img
+          src={src}
+          width={168}
+          height={168}
+          alt=""
+          style={{ objectFit: "contain" }}
+        />
       </div>
     ),
     { ...size }

@@ -40,7 +40,7 @@ export const defaultMetadata: Metadata = {
     siteName: siteConfig.name,
     title: "Zreducation — Denizli Online İngilizce & İtalya/Almanya Danışmanlık",
     description: siteConfig.description,
-    images: [{ url: brandLogo.mark, width: 1371, height: 1371, alt: "Zreducation Logo" }],
+    images: [{ url: brandLogo.mark, width: 533, height: 533, alt: "Zreducation Logo" }],
   },
   twitter: {
     card: "summary_large_image",

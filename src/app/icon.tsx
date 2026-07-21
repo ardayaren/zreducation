@@ -20,11 +20,15 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#081526",
-          borderRadius: "50%",
         }}
       >
-        <img src={src} width={32} height={32} alt="" />
+        <img
+          src={src}
+          width={30}
+          height={30}
+          alt=""
+          style={{ objectFit: "contain" }}
+        />
       </div>
     ),
     { ...size }

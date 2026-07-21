@@ -28,8 +28,8 @@ export default function Header() {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
-          <Link href="/" className="flex items-center gap-3 min-w-0">
-            <Logo size={54} priority className="sm:h-[58px] sm:w-[58px]" />
+          <Link href="/" className="flex items-center gap-3 min-w-0 shrink-0">
+            <Logo size={52} priority className="sm:w-14 sm:h-14" />
             <div>
               <span className="font-heading-normal text-lg font-bold text-navy-900 tracking-wide block leading-none">
                 Zreducation

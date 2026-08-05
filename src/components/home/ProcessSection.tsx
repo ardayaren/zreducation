@@ -23,9 +23,9 @@ const steps = [
   },
   {
     step: "04",
-    title: "Yerleştirme",
+    title: "Sertifikasyon",
     description:
-      "Başvuru, vize ve yerleşim süreçlerinde uçtan uca danışmanlık sunuyoruz.",
+      "Yazılı test ve speaking sınavını tamamlayıp CEFR uyumlu sertifikanızı alırsınız; yurt dışı hedefiniz varsa danışmanlık sürecine geçeriz.",
   },
 ];
 

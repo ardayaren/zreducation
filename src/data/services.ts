@@ -2,7 +2,6 @@ import {
   Globe,
   GraduationCap,
   Monitor,
-  Users,
   BookOpen,
   Award,
   type LucideIcon,
@@ -34,80 +33,41 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    id: "yurt-disi",
-    icon: Globe,
-    title: "Yurt Dışı Öğrenci Gönderimi",
-    description:
-      "İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı. Denizli merkezli Zreducation.",
-    detailIntro:
-      "İtalya ve Almanya odaklı yurt dışı danışmanlığımızla lisans, yüksek lisans ve pathway başvurularınızı Denizli merkezimizden yönetiyoruz.",
-    details: [
-      "İlk görüşmede akademik geçmişiniz, kariyer hedefleriniz ve finansal planınız değerlendirilir. İtalya veya Almanya için kişisel program listesi hazırlanır.",
-      "Motivasyon mektubu, CV ve referans belgeleriniz ülke formatına uygun hazırlanır. Uni-Assist, Uni-Italia ve universitaly.it süreçleri takip edilir.",
-      "Vize randevusu, blocked account, konaklama ve varış öncesi oryantasyon dahil uçtan uca destek sunulur.",
-    ],
-    features: [
-      {
-        title: "Üniversite & Bölüm Danışmanlığı",
-        text: "QS sıralaması, bölüm uygunluğu ve mezuniyet sonrası iş imkânlarına göre kişisel shortlist oluşturulur.",
-      },
-      {
-        title: "Başvuru Dosyası Hazırlığı",
-        text: "Essay, SOP ve referans mektupları üniversite beklentilerine göre yazılır ve çok aşamalı kontrol edilir.",
-      },
-      {
-        title: "Vize & Evrak Yönetimi",
-        text: "Finansal belgeler, sağlık sigortası ve mülakat provası dahil eksiksiz vize dosyası hazırlanır.",
-      },
-      {
-        title: "Yerleşim & Konaklama",
-        text: "Yurt, homestay veya paylaşımlı daire seçenekleri sunulur; havaalanı karşılama organize edilir.",
-      },
-    ],
-    highlights: [
-      { label: "Ülke", value: "İtalya & Almanya", tone: "neutral" },
-      { label: "Partner Üniversite", value: "40+", tone: "positive" },
-      { label: "İlk Tercih Yerleşme", value: "%87", tone: "positive" },
-      { label: "Danışmanlık", value: "Ücretsiz", tone: "gold" },
-    ],
-    href: "/yurt-disi",
-  },
-  {
     id: "ingilizce",
     icon: GraduationCap,
-    title: "İngilizce Eğitimi",
+    title: "İngilizce Eğitimi — Konuşma Odaklı",
     description:
-      "A1'den C2'ye CEFR uyumlu, ölçülebilir sonuç odaklı İngilizce eğitim programları.",
+      "A1'den C2'ye, konuşma pratiğini merkeze alan CEFR uyumlu İngilizce eğitim programları. 3 ayda, 90 derste 0'dan akıcı konuşmaya.",
     detailIntro:
-      "Macmillan Language Hub müfredatı ve uluslararası standartlara dayalı ders planlarımızla dört beceri (okuma, yazma, dinleme, konuşma) dengeli gelişir. Her seviye sonunda resmi seviye tespit sınavı uygulanır.",
+      "Macmillan Language Hub müfredatı ve konuşma odaklı ders planlarımızla dört temel beceri (Speaking, Listening, Reading, Writing) dengeli gelişir; ancak önceliğimiz her öğrencinin sınıfta aktif olarak konuşması. Her seviye sonunda resmi seviye tespit sınavı uygulanır.",
     details: [
       "Yeni başlayanlardan ileri düzeye kadar her öğrenci, ücretsiz Language Hub placement testi ile doğru sınıfa yerleştirilir. Böylece zaman kaybı olmadan hedef seviyeye ulaşırsınız.",
-      "Dersler iletişim odaklıdır: gerçek hayat senaryoları, rol oyunları ve proje tabanlı ödevlerle kalıcı öğrenme sağlanır. Haftalık ilerleme raporu ile gelişiminizi takip edersiniz.",
+      "Dersler konuşma odaklıdır: gerçek hayat senaryoları, rol oyunları ve proje tabanlı ödevlerle kalıcı öğrenme sağlanır. Haftalık ilerleme raporu ile gelişiminizi takip edersiniz.",
       "İş İngilizcesi, akademik yazım ve sınav hazırlık modülleri ana programa entegre edilebilir. Mezun öğrencilerimizin %78'i bir üst CEFR seviyesine 6 ay içinde geçmektedir.",
     ],
     features: [
       {
-        title: "CEFR Uyumlu Müfredat",
-        text: "A1–C2 tüm seviyelerde uluslararası geçerliliği olan, ölçülebilir kazanımlara dayalı ders içerikleri.",
+        title: "Konuşma Önceliği",
+        text: "Her ders en az yarı yarıya konuşma pratiğine ayrılır; hedefimiz sınıfta susan öğrenci bırakmamak.",
       },
       {
         title: "Dört Beceri Dengesi",
-        text: "Her derste konuşma, dinleme, okuma ve yazma becerileri eşit ağırlıkta çalışılır.",
+        text: "Speaking, Listening, Reading ve Writing becerileri konuşma önceliğiyle birlikte dengeli işlenir.",
       },
       {
         title: "Sınav Hazırlık Modülleri",
         text: "IELTS, TOEFL ve YDS için ayrı strateji dersleri ve deneme sınavları sunulur.",
       },
       {
-        title: "Kişisel Öğrenme Planı",
-        text: "Zayıf alanlarınıza göre ek materyal ve birebir destek oturumları planlanır.",
+        title: "Birebir & Grup Seçenekleri",
+        text: "Online ve yüz yüze programlarımızda birebir ders ya da maks. 8–10 kişilik grup dersi seçebilirsiniz.",
       },
     ],
     highlights: [
       { label: "Seviye", value: "A1 – C2", tone: "neutral" },
-      { label: "Sınıf Mevcudu", value: "Max 8", tone: "neutral" },
+      { label: "Sınıf Mevcudu", value: "Maks 8–10 Kişi", tone: "neutral" },
+      { label: "Program", value: "3 Ay / 90 Ders", tone: "gold" },
       { label: "6 Ay Seviye Geçişi", value: "%78", tone: "positive" },
-      { label: "Ders Süresi", value: "48–96 Saat", tone: "gold" },
     ],
     href: "/ingilizce-egitimi",
   },
@@ -116,18 +76,22 @@ export const services: Service[] = [
     icon: Monitor,
     title: "Online Eğitim",
     description:
-      "Canlı dersler, kayıt arşivi ve dijital platform ile Denizli dışından da aynı kalitede eğitim.",
+      "Canlı dersler, kayıt arşivi ve dijital platform ile Türkiye'nin ve dünyanın her yerinden aynı kalitede, konuşma odaklı eğitim.",
     detailIntro:
-      "Zoom ve Teams üzerinden interaktif canlı dersler, 7/24 erişilebilir kayıt arşivi ve ödev takip paneli ile fiziksel sınıf deneyimini eve taşıyoruz. Türkiye'nin her yerinden ve yurt dışından katılım mümkündür.",
+      "Zoom ve Teams üzerinden interaktif canlı dersler, 7/24 erişilebilir kayıt arşivi ve ödev takip paneli ile fiziksel sınıf deneyimini eve taşıyoruz. Birebir ve grup (maks. 8–10 kişi) seçenekleri ana başlık altında sunulur.",
     details: [
-      "Canlı derslerde breakout room aktiviteleri, dijital tahta ve anlık quiz uygulamalarıyla aktif katılım sağlanır. Ders kaçıran öğrenciler kayıtlardan telafi edebilir.",
-      "Öğrenme platformumuzda haftalık ödevler, kelime listeleri ve seviye testleri dijital ortamda takip edilir. Eğitmen geri bildirimi 48 saat içinde paylaşılır.",
-      "Birebir ve küçük grup (4 kişi) online seçenekleri yoğun çalışan profesyoneller ve yurt dışındaki öğrenciler için idealdir. Ders saatleri Türkiye saati ve Avrupa saatine göre planlanabilir.",
+      "Birebir Ders: Tamamen size özel program, eğitmeninizle esnek saatlerde, hedefinize göre kişiselleştirilmiş içerik.",
+      "Grup Dersi (Maks 8–10 Kişi): Sosyal ve ekonomik avantajlı, seviyesi eşleştirilmiş küçük gruplarda konuşma pratiği ağırlıklı dersler.",
+      "Öğrenme platformumuzda haftalık ödevler, kelime listeleri ve seviye testleri dijital ortamda takip edilir. Eğitmen geri bildirimi 48 saat içinde paylaşılır. Ders saatleri Türkiye saati ve Avrupa saatine göre planlanabilir.",
     ],
     features: [
       {
-        title: "Canlı İnteraktif Dersler",
-        text: "Gerçek zamanlı konuşma pratiği, ekran paylaşımı ve grup çalışmalarıyla yüz yüze ders kalitesi.",
+        title: "Birebir Ders",
+        text: "Bireysel program, esnek saat ve tamamen size özel konuşma ağırlıklı müfredat.",
+      },
+      {
+        title: "Grup Dersi (Maks 8–10 Kişi)",
+        text: "Sosyal öğrenme deneyimi, ekonomik avantaj ve seviyesi eşleştirilmiş küçük sınıflar.",
       },
       {
         title: "Kayıt Arşivi",
@@ -137,93 +101,51 @@ export const services: Service[] = [
         title: "Dijital Öğrenme Paneli",
         text: "Ödev teslimi, seviye testleri ve ilerleme grafikleri tek panelden yönetilir.",
       },
-      {
-        title: "Esnek Program",
-        text: "Sabah, akşam ve hafta sonu seansları; yoğun tempoya uygun ders planlaması.",
-      },
     ],
     highlights: [
       { label: "Platform", value: "Zoom / Teams", tone: "neutral" },
-      { label: "Erişim", value: "7/24 Arşiv", tone: "positive" },
-      { label: "Grup", value: "Birebir / 4 Kişi", tone: "neutral" },
+      { label: "Erişim", value: "7/24 Arşiv & Destek", tone: "positive" },
+      { label: "Ders Şekli", value: "Birebir / Grup", tone: "neutral" },
     ],
     href: "/online-egitim",
-  },
-  {
-    id: "grup",
-    icon: Users,
-    title: "Grup Dersleri",
-    description:
-      "Maksimum 8 kişilik sınıflarda, sosyal ve ekonomik öğrenme deneyimi.",
-    detailIntro:
-      "Grup derslerimiz konuşma pratiğini hızlandırır ve motivasyonu yüksek tutar. Aynı seviyedeki öğrencilerle eşleştirilir, haftalık konuşma kulüplerine ücretsiz katılım hakkı kazanırsınız.",
-    details: [
-      "Sınıflar placement test sonuçlarına göre oluşturulur; farklı seviyelerden öğrenci aynı gruba alınmaz. Bu sayede her ders verimli ve akıcı ilerler.",
-      "Grup projeleri, sunumlar ve tartışma oturumlarıyla pasif dinlemeden aktif üretime geçilir. Öğrenciler birbirinden öğrenerek özgüven kazanır.",
-      "Yoğun iş temposundaki katılımcılar için haftada 3 veya 4 gün seçenekleri sunulur. Grup dersleri birebir eğitime göre %35'e varan maliyet avantajı sağlar.",
-    ],
-    features: [
-      {
-        title: "Küçük Sınıf Ortamı",
-        text: "Maksimum 8 kişiyle her öğrenci söz hakkı bulur; eğitmen bireysel geri bildirim verir.",
-      },
-      {
-        title: "Seviye Eşleştirmesi",
-        text: "Language Hub testi ve sözlü değerlendirme ile homojen gruplar oluşturulur.",
-      },
-      {
-        title: "Konuşma Kulübü",
-        text: "Haftalık ücretsiz kulüp oturumlarında native speaker eşliğinde pratik yapılır.",
-      },
-      {
-        title: "Sosyal Öğrenme",
-        text: "Grup projeleri ve rol oyunlarıyla gerçek iletişim ortamı simüle edilir.",
-      },
-    ],
-    highlights: [
-      { label: "Sınıf", value: "Max 8 Kişi", tone: "neutral" },
-      { label: "Program", value: "3–4 Gün / Hafta", tone: "neutral" },
-      { label: "Maliyet Avantajı", value: "%35", tone: "positive" },
-    ],
-    href: "/hizmetler#grup",
   },
   {
     id: "yuz-yuze",
     icon: BookOpen,
     title: "Yüz Yüze Eğitim",
     description:
-      "Denizli Kınıklı merkezimizde akıllı sınıflar, kütüphane ve konuşma alanlarıyla tam donanımlı eğitim.",
+      "Denizli Kınıklı merkezimizde akıllı sınıflar, kütüphane ve konuşma alanlarıyla tam donanımlı, birebir ve grup ders seçenekli eğitim.",
     detailIntro:
-      "Denizli merkezimizde akıllı tahta, multimedya laboratuvarı ve sessiz çalışma alanlarıyla odaklanmış bir öğrenme ortamı sunuyoruz. Birebir ve grup dersleri aynı kampüste yürütülür.",
+      "Denizli merkezimizde akıllı tahta, multimedya laboratuvarı ve sessiz çalışma alanlarıyla odaklanmış bir öğrenme ortamı sunuyoruz. Birebir ve grup dersleri (maks. 8–10 kişi) aynı kampüste, ana başlık altında yürütülür.",
     details: [
-      "Sınıflarımız gün ışığı alan, ergonomik oturma düzenine sahip ve en fazla 8 kişiliktir. Her öğrenci için dijital materyal erişimi ve ücretsiz çay–kahve ikramı sağlanır.",
-      "Haftalık konuşma atölyeleri, film geceleri ve debate kulübü gibi sosyal aktivitelerle İngilizceyi sınıf dışında da yaşarsınız. Kütüphanemizde CEFR seviyesine göre kitap ve kaynak önerileri sunulur.",
-      "Seviye tamamlama sertifikası, devam oranı ve sınav sonuçlarına göre verilir. Kurumsal firmalar için özel sınıf ve şirket içi eğitim paketleri de mevcuttur.",
+      "Birebir Ders: Eğitmeninizle tamamen size özel oturumlar, hızlı ilerleme ve anında geri bildirim.",
+      "Grup Dersi (Maks 8–10 Kişi): Homojen seviye grupları, sosyal öğrenme ve haftalık konuşma kulübü katılımı ile ekonomik avantaj.",
+      "Sınıflarımız gün ışığı alan, ergonomik oturma düzenine sahiptir. Her öğrenci için dijital materyal erişimi ve ücretsiz çay–kahve ikramı sağlanır. Kurumsal firmalar için özel sınıf ve şirket içi eğitim paketleri de mevcuttur.",
     ],
     features: [
       {
-        title: "Merkez Lokasyon",
-        text: "Denizli Kınıklı merkezimiz; ulaşımı kolay, tam donanımlı kampüs.",
+        title: "Birebir Ders",
+        text: "Eğitmeninizle tamamen size özel oturumlar; her 4 derste bir bireysel gelişim görüşmesi.",
+      },
+      {
+        title: "Grup Dersi (Maks 8–10 Kişi)",
+        text: "Homojen seviye grupları, sosyal öğrenme ve %35'e varan maliyet avantajı.",
       },
       {
         title: "Akıllı Sınıf Teknolojisi",
         text: "İnteraktif tahta, kablosuz sunum ve dijital ödev sistemiyle modern ders ortamı.",
       },
       {
-        title: "Birebir Geri Bildirim",
-        text: "Her 4 derste bir bireysel gelişim görüşmesi ve yazılı performans raporu.",
-      },
-      {
-        title: "Sertifika & Devam Takibi",
-        text: "CEFR uyumlu bitirme sertifikası ve dijital devam çizelgesi ile şeffaf süreç.",
+        title: "Konuşma Kulübü",
+        text: "Haftalık ücretsiz kulüp oturumlarında native speaker eşliğinde pratik yapılır.",
       },
     ],
     highlights: [
       { label: "Konum", value: "Denizli Merkez", tone: "neutral" },
-      { label: "Çalışma Alanı", value: "Kütüphane & Lab", tone: "positive" },
+      { label: "Sınıf Mevcudu", value: "Maks 8–10 Kişi", tone: "neutral" },
       { label: "Saat", value: "Pzt–Cmt 09–19", tone: "gold" },
     ],
-    href: "/hizmetler#yuz-yuze",
+    href: "/egitimlerimiz#yuz-yuze",
   },
   {
     id: "sertifika",
@@ -263,20 +185,91 @@ export const services: Service[] = [
     ],
     href: "/ingilizce-egitimi#sinav",
   },
+  {
+    id: "yurt-disi",
+    icon: Globe,
+    title: "Yurt Dışı Eğitim Danışmanlığı",
+    description:
+      "İtalya ve Almanya üniversitelerinde eğitim almak isteyenlere Denizli merkezli danışmanlık. Öncelik her zaman doğru eğitim planı.",
+    detailIntro:
+      "İtalya ve Almanya odaklı danışmanlığımızla önce doğru eğitim planını ve İngilizce/Almanca seviyenizi netleştiriyor, ardından lisans, yüksek lisans ve pathway başvurularınızı Denizli merkezimizden yönetiyoruz.",
+    details: [
+      "İlk görüşmede akademik geçmişiniz, eğitim hedefleriniz ve dil seviyeniz değerlendirilir. İtalya veya Almanya için kişisel eğitim ve program listesi hazırlanır.",
+      "Motivasyon mektubu, CV ve referans belgeleriniz ülke formatına uygun hazırlanır. Uni-Assist, Uni-Italia ve universitaly.it süreçleri takip edilir.",
+      "Vize randevusu, blocked account, konaklama ve varış öncesi oryantasyon dahil uçtan uca destek sunulur.",
+    ],
+    features: [
+      {
+        title: "Eğitim Planı & Dil Hazırlığı",
+        text: "Hedef ülkeye göre gereken dil seviyesi belirlenir, İngilizce/Almanca eğitim programınız planlanır.",
+      },
+      {
+        title: "Üniversite & Bölüm Danışmanlığı",
+        text: "QS sıralaması, bölüm uygunluğu ve mezuniyet sonrası imkânlara göre kişisel shortlist oluşturulur.",
+      },
+      {
+        title: "Vize & Evrak Yönetimi",
+        text: "Finansal belgeler, sağlık sigortası ve mülakat provası dahil eksiksiz vize dosyası hazırlanır.",
+      },
+      {
+        title: "Yerleşim & Konaklama",
+        text: "Yurt, homestay veya paylaşımlı daire seçenekleri sunulur; havaalanı karşılama organize edilir.",
+      },
+    ],
+    highlights: [
+      { label: "Ülke", value: "İtalya & Almanya", tone: "neutral" },
+      { label: "Partner Üniversite", value: "40+", tone: "positive" },
+      { label: "İlk Tercih Yerleşme", value: "%87", tone: "positive" },
+      { label: "Danışmanlık", value: "Ücretsiz", tone: "gold" },
+    ],
+    href: "/yurt-disi",
+  },
 ];
 
 export const stats: StatItem[] = [
   { value: "15+", label: "Yıllık Deneyim", tone: "gold" },
   { value: "5000+", label: "Mezun Öğrenci", tone: "positive" },
-  { value: "40+", label: "Partner Üniversite", tone: "positive" },
+  { value: "3 Ay", label: "90 Derste Akıcı Konuşma", tone: "positive" },
   { value: "%94", label: "Memnuniyet Oranı", tone: "positive" },
 ];
 
 export const performanceStats: StatItem[] = [
   { value: "%94", label: "Memnuniyet Oranı", tone: "positive", hint: "Sektör ort. %82" },
-  { value: "%87", label: "İlk Tercih Yerleşme", tone: "positive", hint: "Yurt dışı başvuru" },
   { value: "%78", label: "6 Ay Seviye Geçişi", tone: "positive", hint: "İngilizce programı" },
+  { value: "%87", label: "İlk Tercih Yerleşme", tone: "positive", hint: "Yurt dışı başvuru" },
   { value: "%6", label: "Vize Red Oranı", tone: "negative", hint: "Sektör ort. %14" },
+];
+
+export const coreSkills = [
+  {
+    key: "speaking",
+    title: "Speaking",
+    titleTr: "Konuşma",
+    description:
+      "Her dersin merkezinde konuşma pratiği vardır. Hedefimiz sınıfta susan öğrenci bırakmamak.",
+    priority: true,
+  },
+  {
+    key: "listening",
+    title: "Listening",
+    titleTr: "Dinleme",
+    description:
+      "Gerçek konuşma kayıtları ve podcast tabanlı materyallerle doğal İngilizceyi anlama becerisi gelişir.",
+  },
+  {
+    key: "reading",
+    title: "Reading",
+    titleTr: "Okuma",
+    description:
+      "Seviyeye uygun metinlerle kelime hazinesi ve okuduğunu anlama hızı artırılır.",
+  },
+  {
+    key: "writing",
+    title: "Writing",
+    titleTr: "Yazma",
+    description:
+      "Günlük yazışmadan akademik metne, yapılandırılmış yazma çalışmalarıyla ifade gücü kazandırılır.",
+  },
 ];
 
 export const levels = [

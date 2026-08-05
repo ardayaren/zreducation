@@ -36,7 +36,8 @@ export default function OnlineEgitimPage() {
       <PageHero title="Online Eğitim" subtitle="Canlı & Kayıtlı">
         <p>
           Canlı Zoom dersleri, dijital materyaller ve kayıt arşivi ile evden
-          profesyonel İngilizce eğitimi. Paket satın alın, hemen başlayın.
+          konuşma odaklı İngilizce eğitimi. 3 ayda 90 derste 0&apos;dan akıcı
+          konuşmaya — birebir veya maks 8–10 kişilik grup dersiyle.
         </p>
       </PageHero>
 
@@ -61,8 +62,8 @@ export default function OnlineEgitimPage() {
 
           <SectionTitle
             subtitle="Paketler"
-            title="Online Eğitim Paketleri"
-            description="Tüm paketlerde %30 indirim aktif. Seviye tespit sonrası ek %10."
+            title="Online Eğitim Paketleri — Birebir & Grup"
+            description="Tüm paketlerde %30 indirim aktif. Seviye tespit sonrası ek %10. Güncel kampanya fiyatları için bizi arayın veya WhatsApp'tan yazın."
           />
 
           <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
@@ -82,6 +83,15 @@ export default function OnlineEgitimPage() {
                   )}
 
                   <div className="p-5 md:p-6 flex flex-col flex-1">
+                    <span
+                      className={`badge-pill w-fit mb-3 text-[10px] ${
+                        course.format === "Birebir Ders"
+                          ? "bg-navy-900 text-white"
+                          : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                      }`}
+                    >
+                      {course.format}
+                    </span>
                     <span className="label-caps text-gold-600 mb-2">
                       {course.level} · {course.duration}
                     </span>
@@ -164,12 +174,12 @@ export default function OnlineEgitimPage() {
               Ücretsiz Seviye Tespit
             </Button>
             <Button
-              href={contactInfo.phone.href}
+              href={contactInfo.whatsapp.href}
               variant="outline"
               size="lg"
               className="border-white/30 text-white hover:bg-white/10"
             >
-              WhatsApp: {contactInfo.phone.display}
+              WhatsApp: {contactInfo.whatsapp.display}
             </Button>
           </div>
         </div>

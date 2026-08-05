@@ -146,4 +146,74 @@ export const testimonials: Testimonial[] = [
       "Hem İtalya hem Almanya seçeneklerini birlikte değerlendirdik. Doğru ülkeyi bulduk.",
     rating: 5,
   },
+  {
+    name: "Yusuf Bilgin",
+    role: "Denizli — Birebir Ders",
+    content:
+      "8 yıldır İngilizce öğrenmeye çalışıyordum ama hiçbir zaman konuşamıyordum. Burada birebir derslerde eğitmenim beni sürekli konuşturdu, artık toplantılarda İngilizce sunum yapabiliyorum.",
+    rating: 5,
+  },
+  {
+    name: "Aslı Yamaner",
+    role: "Online Grup — Maks 8 Kişi",
+    content:
+      "Grup küçük olunca kaybolmuyorsun. Herkes her derste en az 2-3 kez konuşuyor, bu da özgüveni çok hızlı artırdı.",
+    rating: 5,
+  },
+  {
+    name: "Berk Sönmez",
+    role: "İzmir — Online B1",
+    content:
+      "İzmir'de yaşıyorum ama Denizli'deki bu ekiple online çalışıyorum. WhatsApp'tan istediğim saatte soru sorabiliyorum, bu çok rahatlatıcı.",
+    rating: 5,
+  },
+  {
+    name: "Nazlı Ertem",
+    role: "Denizli Kampüs — Grup A2",
+    content:
+      "Konuşma kulübüne katıldıktan sonra İngilizce konuşurken artık heyecanlanmıyorum. Native speaker'larla pratik yapmak çok işe yaradı.",
+    rating: 4,
+  },
+  {
+    name: "Onur Kılıç",
+    role: "Speaking Sınavı Sonrası Kayıt",
+    content:
+      "Seviye tespit sınavından sonra speaking görüşmesine katıldım, gerçek seviyemi orada gördüm. Yazılıda B2 gibiydim ama konuşmada B1 çıktım; doğru gruba yerleştirildim.",
+    rating: 5,
+  },
+  {
+    name: "Pınar Doğan",
+    role: "Ankara — Online İş İngilizcesi",
+    content:
+      "Ankara'dan online katılıyorum, iş toplantılarımda artık çok daha rahatım. 6 haftalık program beklediğimden fazlasını verdi.",
+    rating: 5,
+  },
+  {
+    name: "Serkan Avcı",
+    role: "Denizli — Grup Dersi Velisi",
+    content:
+      "Kızım grup dersine başladığından beri evde de İngilizce konuşmaya çalışıyor. Maks 8 kişilik sınıf sayesinde eğitmen her öğrenciyle ilgileniyor.",
+    rating: 5,
+  },
+  {
+    name: "İrem Başak",
+    role: "Online Birebir — Yurt Dışı Hazırlık",
+    content:
+      "Almanya'ya gitmeden önce 3 aylık birebir programla konuşma pratiğimi ciddi şekilde geliştirdim. Şimdi orada rahatça iletişim kurabiliyorum.",
+    rating: 5,
+  },
+  {
+    name: "Ahmet Karasu",
+    role: "Bursa — Online Grup C1",
+    content:
+      "İleri seviyede bile konuşma odaklı çalışmak fark yaratıyor. Akademik yazım kadar tartışma becerilerim de gelişti.",
+    rating: 4,
+  },
+  {
+    name: "Buse Yener",
+    role: "Denizli — 3 Ayda 90 Ders Programı",
+    content:
+      "0'dan başladım, 3 aylık yoğun programın sonunda gerçekten akıcı konuşabiliyorum. Her ders konuşma ağırlıklı geçti, hiç sıkılmadım.",
+    rating: 5,
+  },
 ];

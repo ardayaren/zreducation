@@ -5,9 +5,14 @@ import { getStatValueClass } from "@/lib/statTone";
 
 const reasons = [
   {
-    title: "Güvenilirlik",
+    title: "Konuşma Önceliği",
     description:
-      "15 yıllık operasyonel deneyim ve şeffaf süreç yönetimi.",
+      "Her ders en az yarı yarıya konuşma pratiğine ayrılır; hedefimiz sınıfta susan öğrenci bırakmamak.",
+  },
+  {
+    title: "Küçük Sınıflar",
+    description:
+      "Maks 8–10 kişilik gruplar veya birebir dersle her öğrenci aktif söz alır.",
   },
   {
     title: "Uzman Kadro",
@@ -15,14 +20,9 @@ const reasons = [
       "Sertifikalı eğitmenler ve yurt dışı eğitim danışmanlarından oluşan ekip.",
   },
   {
-    title: "Akredite Müfredat",
+    title: "7/24 Destek Hattı",
     description:
-      "CEFR standartlarına uygun, uluslararası geçerliliği olan programlar.",
-  },
-  {
-    title: "Sürekli Destek",
-    description:
-      "Eğitim süreci boyunca erişilebilir öğrenci danışmanlık hattı.",
+      "WhatsApp destek hattımızdan istediğiniz an sorularınıza anında yanıt alın.",
   },
 ];
 
@@ -33,7 +33,7 @@ export default function WhyUsSection() {
         <SectionTitle
           subtitle="Kurumsal Avantajlar"
           title="Neden Zreducation?"
-          description="Eğitimde kalite, güven ve ölçülebilir sonuç odaklı kurumsal yaklaşım."
+          description="Konuşma odaklı eğitimde kalite, güven ve ölçülebilir sonuç odaklı kurumsal yaklaşım."
         />
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">

@@ -45,17 +45,17 @@ export default function AboutPreview() {
           <AnimatedSection variant="slideLeft" delay={0.1}>
             <SectionTitle
               subtitle="Hakkımızda"
-              title="Denizli Merkez, Türkiye Geneli Online"
-              description="Kınıklı merkezimizden İtalya & Almanya danışmanlığı ve online İngilizce."
+              title="Denizli Merkez, Konuşma Odaklı Eğitim"
+              description="Kınıklı merkezimizden online ve yüz yüze konuşma odaklı İngilizce eğitimi, gerektiğinde İtalya & Almanya danışmanlığı."
               align="left"
             />
             <p className="text-slate text-sm leading-relaxed mb-4">
               Denizli&apos;de yüz yüze, Türkiye&apos;nin her yerinde online —
-              aynı kalite, aynı CEFR müfredat.
+              aynı kalite, aynı konuşma odaklı müfredat.
             </p>
             <p className="text-slate text-sm leading-relaxed mb-6">
-              CEFR uyumlu müfredat, kontrollü sınıf mevcutları ve
-              kişiselleştirilmiş öğrenme planları ile ölçülebilir sonuçlar
+              Kişiselleştirilmiş öğrenme planları ve maks. 8–10 kişilik
+              sınıflarla, 3 ayda 90 derste 0&apos;dan akıcı konuşmayı
               hedefliyoruz.
             </p>
 
@@ -66,11 +66,11 @@ export default function AboutPreview() {
               </span>
               <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-xs text-emerald-700 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                %87 İlk Tercih Yerleşme
+                %78 6 Ay Seviye Geçişi
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-red-50 border border-red-200 px-3 py-1.5 text-xs text-red-600 font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                %6 Vize Red
+              <span className="inline-flex items-center gap-2 rounded-full bg-gold-50 border border-gold-200 px-3 py-1.5 text-xs text-gold-700 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold-500" />
+                İtalya & Almanya Danışmanlık
               </span>
             </div>
 

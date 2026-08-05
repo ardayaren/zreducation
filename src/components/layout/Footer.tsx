@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { footerLinks } from "@/data/navigation";
 import { contactInfo } from "@/data/contact";
 import Logo from "@/components/ui/Logo";
@@ -17,8 +17,13 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-5">
-              Yurt dışı öğrenci gönderimi ve kapsamlı İngilizce eğitim
-              hizmetleri.
+              Konuşma odaklı İngilizce eğitimi, online ve yüz yüze
+              birebir/grup dersleri, sınav hazırlık ve İtalya & Almanya
+              danışmanlığı.
+            </p>
+            <p className="inline-flex items-center gap-2 text-xs text-gold-300 bg-white/5 rounded-full px-3 py-1.5">
+              <MessageCircle className="w-3.5 h-3.5" />
+              WhatsApp destek hattı 7/24 açık
             </p>
           </div>
 
@@ -73,10 +78,10 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-gold-500 shrink-0" />
                 <a
-                  href={contactInfo.phone.href}
+                  href={contactInfo.whatsapp.href}
                   className="text-sm text-white/60 hover:text-white transition-colors"
                 >
-                  {contactInfo.phone.display}
+                  {contactInfo.phone.display} · 7/24 WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -122,13 +127,22 @@ export default function Footer() {
             © {new Date().getFullYear()} Zreducation. Tüm hakları saklıdır.
           </p>
           <div className="flex gap-5 text-xs text-white/40">
-            <Link href="#" className="hover:text-gold-400 transition-colors">
+            <Link
+              href="/gizlilik-politikasi#gizlilik"
+              className="hover:text-gold-400 transition-colors"
+            >
               Gizlilik Politikası
             </Link>
-            <Link href="#" className="hover:text-gold-400 transition-colors">
+            <Link
+              href="/gizlilik-politikasi#kullanim-kosullari"
+              className="hover:text-gold-400 transition-colors"
+            >
               Kullanım Koşulları
             </Link>
-            <Link href="#" className="hover:text-gold-400 transition-colors">
+            <Link
+              href="/gizlilik-politikasi#kvkk"
+              className="hover:text-gold-400 transition-colors"
+            >
               KVKK
             </Link>
           </div>

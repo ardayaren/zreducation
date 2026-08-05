@@ -74,18 +74,18 @@ function fromService(
 }
 
 const tiles: BentoTile[] = [
-  fromService("yurt-disi", {
+  fromService("ingilizce", {
     span: "md:col-span-2 lg:col-span-7 lg:row-span-2",
     variant: "navy",
-    eyebrow: "Öne Çıkan",
-    stat: "İtalya & Almanya",
-    backgroundImage: "/images/harvard.jpg",
+    eyebrow: "Öne Çıkan · Konuşma Odaklı",
+    stat: "3 Ayda 90 Derste Akıcı Konuşma",
+    backgroundImage: "/images/english-classroom.jpg",
   }),
-  fromService("ingilizce", {
+  fromService("yurt-disi", {
     span: "md:col-span-1 lg:col-span-5",
     variant: "light",
-    eyebrow: "A1 – C2",
-    backgroundImage: "/images/english-classroom.jpg",
+    eyebrow: "İtalya & Almanya",
+    backgroundImage: "/images/harvard.jpg",
   }),
   {
     id: "seviye-tespit",
@@ -100,18 +100,15 @@ const tiles: BentoTile[] = [
     backgroundImage: "/images/exam-prep.jpg",
   },
   fromService("online", {
-    span: "lg:col-span-4",
+    span: "lg:col-span-6",
     variant: "surface",
+    eyebrow: "Birebir & Grup",
     backgroundImage: "/images/online-learning.jpg",
   }),
-  fromService("grup", {
-    span: "lg:col-span-4",
-    variant: "light",
-    backgroundImage: "/images/group-class.jpg",
-  }),
   fromService("yuz-yuze", {
-    span: "lg:col-span-4",
+    span: "lg:col-span-6",
     variant: "surface",
+    eyebrow: "Birebir & Grup",
     backgroundImage: "/images/campus-classroom.jpg",
   }),
   fromService("sertifika", {
@@ -243,7 +240,7 @@ export default function BentoGridSection() {
               transition={{ ...transition.default, delay: index * 0.05 }}
               className={tile.span}
             >
-              <BentoCard tile={tile} large={tile.id === "yurt-disi"} />
+              <BentoCard tile={tile} large={tile.id === "ingilizce"} />
             </motion.div>
           ))}
 

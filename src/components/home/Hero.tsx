@@ -15,10 +15,10 @@ import {
 import { getStatValueClass } from "@/lib/statTone";
 
 const highlights = [
-  { text: "Denizli Merkez Kampüs", tone: "gold" as const },
-  { text: "CEFR Uyumlu Müfredat", tone: "neutral" as const },
+  { text: "Konuşma Odaklı Eğitim", tone: "gold" as const },
+  { text: "Maks 8–10 Kişilik Sınıflar", tone: "neutral" as const },
+  { text: "Online & Yüz Yüze (Denizli)", tone: "neutral" as const },
   { text: "İtalya & Almanya Danışmanlık", tone: "positive" as const },
-  { text: "Ücretsiz Seviye Tespit", tone: "positive" as const },
 ];
 
 export default function Hero() {
@@ -37,7 +37,7 @@ export default function Hero() {
               transition={transition.fast}
               className="label-caps text-gold-600 mb-5 block"
             >
-              Eğitim & Danışmanlık Kurumu
+              Denizli Merkezli Eğitim Kurumu
             </motion.span>
 
             <motion.h1
@@ -45,8 +45,7 @@ export default function Hero() {
               transition={transition.slow}
               className="font-heading-normal text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-navy-900 leading-[1.15] tracking-tight mb-6"
             >
-              Yurt Dışı Eğitim ve İngilizce Programlarında Kurumsal Çözüm
-              Ortağınız
+              3 Ayda, 90 Derste 0&apos;dan Akıcı Konuşmaya
             </motion.h1>
 
             <motion.p
@@ -54,9 +53,9 @@ export default function Hero() {
               transition={transition.default}
               className="text-slate text-base leading-relaxed mb-8 max-w-lg"
             >
-              Öğrenci yerleştirmeden A1–C2 İngilizce eğitimine, online paketlerden
-              Denizli yüz yüze derslere kadar uçtan uca profesyonel hizmet
-              sunuyoruz.
+              Konuşma odaklı İngilizce eğitimi, online ve yüz yüze birebir/grup
+              dersleri, sınav hazırlığı ve İtalya & Almanya eğitim
+              danışmanlığıyla yanınızdayız.
             </motion.p>
 
             <motion.div
@@ -68,8 +67,8 @@ export default function Hero() {
                 Seviye Tespit Sınavı
                 <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button href="/hizmetler" variant="outline" size="lg">
-                Hizmetler
+              <Button href="/egitimlerimiz" variant="outline" size="lg">
+                Eğitimlerimiz
               </Button>
             </motion.div>
 

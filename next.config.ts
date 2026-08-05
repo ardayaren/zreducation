@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
         destination: "/icon",
         permanent: true,
       },
+      {
+        source: "/hizmetler",
+        destination: "/egitimlerimiz",
+        permanent: true,
+      },
+      {
+        source: "/hizmetler/:path*",
+        destination: "/egitimlerimiz",
+        permanent: true,
+      },
     ];
   },
 };

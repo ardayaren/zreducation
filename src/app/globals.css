@@ -326,6 +326,19 @@ body {
   animation: marquee 48s linear infinite;
 }
 
+@keyframes marquee-reverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-slow-reverse {
+  animation: marquee-reverse 52s linear infinite;
+}
+
 .accordion-grid {
   display: grid;
   transition: grid-template-rows 0.32s cubic-bezier(0.22, 1, 0.36, 1);
@@ -343,6 +356,7 @@ body {
 
   .animate-marquee,
   .animate-marquee-slow,
+  .animate-marquee-slow-reverse,
   .gpu-hover,
   .card-corporate {
     animation: none;

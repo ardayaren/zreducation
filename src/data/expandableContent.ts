@@ -111,7 +111,7 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
             "Haftalık writing assignment ve eğitmen düzeltmesi",
             "Dinleme materyalleri: podcast, TED Talk, haber kaynakları",
           ],
-          related: "Grup Dersleri — Konuşma pratiği için ideal format",
+          related: "Grup Dersi (Maks 8–10 Kişi) — Konuşma pratiği için ideal format",
         },
         {
           title: "Sınav Hazırlık Modülleri",
@@ -140,11 +140,11 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
           content:
             "Fiziksel sınıftaki pair work ve grup aktiviteleri online ortama uyarlanmıştır. Eğitmen her öğrenciyi ismiyle çağırarak aktif katılım sağlar.",
           bullets: [
-            "Maksimum 6 kişilik online sınıflar",
+            "Grup dersinde maksimum 8–10 kişilik online sınıflar",
             "Breakout room tartışmaları ve rol oyunları",
             "Anlık quiz ve kelime oyunları (Kahoot, Quizlet)",
           ],
-          related: "Grup Dersleri — Yüz yüze alternatif; aynı müfredat",
+          related: "Yüz Yüze Eğitim — Aynı müfredat, kampüste birebir/grup format",
         },
         {
           title: "Kayıt Arşivi & Platform",
@@ -160,43 +160,29 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
         },
         {
           title: "Esnek Program & Birebir",
-          summary: "Sabah, öğle, akşam seansları; birebir veya 4 kişilik grup.",
+          summary: "Sabah, öğle, akşam seansları; birebir veya grup (maks 8–10 kişi).",
           content:
             "Yoğun çalışanlar için 19:30–21:00 akşam grupları; yurt dışındaki öğrenciler için Avrupa saatine uygun seanslar mevcuttur. Birebir dersler tamamen kişisel takvime göre planlanır.",
           related: "Yüz Yüze Eğitim — Hibrit: online + haftada 1 kampüs ziyareti",
         },
       ],
     },
-  ],
-  grup: [
     {
-      heading: "Grup Dersi Detayları",
+      heading: "Online Grup Dersi Detayları (Maks 8–10 Kişi)",
       items: [
         {
-          title: "Küçük Sınıf & Seviye Eşleştirmesi",
-          summary: "Max 8 kişi; homojen seviye grupları.",
+          title: "Seviye Bazlı Gruplandırma",
+          summary: "Placement test + sözlü değerlendirme ile homojen sınıflar.",
           content:
-            "Placement test ve 10 dakikalık sözlü değerlendirme sonrası gruplar oluşturulur. Farklı seviyeden öğrenci aynı sınıfa alınmaz; bu sayede ders temposu verimli kalır.",
+            "Farklı seviyeden öğrenci aynı online gruba alınmaz; bu sayede ders temposu verimli kalır. Gruplar en fazla 8–10 kişiden oluşur.",
           related: "Seviye Tespit Sınavı — Doğru gruba yerleşmek için ilk adım",
-        },
-        {
-          title: "Konuşma Kulübü & Projeler",
-          summary: "Haftalık ücretsiz kulüp ve grup sunum projeleri.",
-          content:
-            "Ders dışında her Çarşamba 18:00'de konuşma kulübü düzenlenir. Ayda bir grup sunum projesi (poster, debate, mini-play) yapılır.",
-          bullets: [
-            "Native speaker eşliğinde debate oturumları",
-            "Film gecesi ve kitap kulübü etkinlikleri",
-            "Grup projelerinde peer feedback sistemi",
-          ],
-          related: "Yüz Yüze Eğitim — Kulüp oturumları Denizli merkezde",
         },
         {
           title: "Ekonomik Avantaj",
           summary: "Birebir'e kıyasla %35 tasarruf; aynı müfredat kalitesi.",
           content:
-            "Grup derslerinde kişi başı saat ücreti birebir dersin yaklaşık üçte ikisidir. Kurumsal firmalar için 4–8 kişilik özel grup paketleri de sunulur.",
-          related: "Online Eğitim — 4 kişilik online grup benzer fiyat avantajı",
+            "Grup derslerinde kişi başı saat ücreti birebir dersin yaklaşık üçte ikisidir. Kurumsal firmalar için 4–10 kişilik özel grup paketleri de sunulur.",
+          related: "Yüz Yüze Eğitim — Aynı fiyat avantajı kampüste de geçerli",
         },
       ],
     },
@@ -215,7 +201,7 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
             "Ücretsiz çay–kahve ve çalışma alanı",
             "Engelli erişimine uygun tasarım",
           ],
-          related: "Grup Dersleri — Tüm grup dersleri bu kampüste",
+          related: "Grup Dersi (Maks 8–10 Kişi) — Tüm grup dersleri bu kampüste",
         },
         {
           title: "Akıllı Sınıf Teknolojisi",
@@ -230,6 +216,30 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
           content:
             "Seviye tamamlama sınavında %70 ve üzeri başarı gösteren öğrencilere CEFR uyumlu bitirme sertifikası verilir. Kurumsal firmalar için özel müfredat ve raporlama sunulur.",
           related: "Sınav Hazırlık — Kurumsal IELTS/TOEFL paketleri",
+        },
+      ],
+    },
+    {
+      heading: "Kampüste Grup Dersi Detayları (Maks 8–10 Kişi)",
+      items: [
+        {
+          title: "Konuşma Kulübü & Projeler",
+          summary: "Haftalık ücretsiz kulüp ve grup sunum projeleri.",
+          content:
+            "Ders dışında her Çarşamba 18:00'de konuşma kulübü düzenlenir. Ayda bir grup sunum projesi (poster, debate, mini-play) yapılır.",
+          bullets: [
+            "Native speaker eşliğinde debate oturumları",
+            "Film gecesi ve kitap kulübü etkinlikleri",
+            "Grup projelerinde peer feedback sistemi",
+          ],
+          related: "Online Eğitim — Kulüp oturumlarına online da katılım mümkün",
+        },
+        {
+          title: "Ekonomik Avantaj",
+          summary: "Birebir'e kıyasla %35 tasarruf; aynı müfredat kalitesi.",
+          content:
+            "Grup derslerinde kişi başı saat ücreti birebir dersin yaklaşık üçte ikisidir. Kurumsal firmalar için 4–10 kişilik özel grup paketleri de sunulur.",
+          related: "Online Eğitim — Benzer fiyat avantajı online grup dersinde de geçerli",
         },
       ],
     },
@@ -280,7 +290,7 @@ export const onlineProgramDetails: ExpandableDetail[] = [
       "Dijital tahta ve ekran paylaşımı",
       "Anlık quiz ile anlama kontrolü",
     ],
-    related: "Grup Dersleri — Aynı müfredat, yüz yüze format",
+    related: "Grup Dersi (Maks 8–10 Kişi) — Aynı müfredat, yüz yüze format",
   },
   {
     title: "Kayıt Arşivi",
@@ -297,18 +307,30 @@ export const onlineProgramDetails: ExpandableDetail[] = [
     related: "Seviye Tespit Sınavı — Online placement test panelden yapılır",
   },
   {
-    title: "Birebir & Küçük Grup Online",
-    summary: "4 kişilik grup veya birebir; esnek saatler.",
+    title: "Birebir Ders",
+    summary: "Tamamen size özel program; esnek saatler.",
     content:
       "Yoğun iş temposundaki profesyoneller ve yurt dışındaki öğrenciler için idealdir. Ders saatleri öğrenci ve eğitmen takvimine göre belirlenir.",
     related: "Yüz Yüze Eğitim — Hibrit paket: online + ayda 2 kampüs dersi",
+  },
+  {
+    title: "Grup Dersi (Maks 8–10 Kişi)",
+    summary: "Seviye bazlı homojen gruplar, %35'e varan maliyet avantajı.",
+    content:
+      "Language Hub placement testi ve kısa sözlü görüşme sonrası maksimum 8–10 kişilik gruplar oluşturulur. Derslerin %60'ı konuşma ve dinleme aktivitelerinden oluşur; havaalanı, restoran, iş görüşmesi gibi senaryolar canlandırılır. Grup dersi saat ücreti birebir dersin yaklaşık %65'idir; 3 ay ve üzeri kayıtlarda ek %10 indirim uygulanır.",
+    bullets: [
+      "Haftada 3 gün × 2 saat veya 4 gün × 2 saat program seçenekleri",
+      "Sabah 10:00 ve akşam 19:00 grup seansları",
+      "Aylık grup projesi: poster sunumu, debate veya kısa video",
+    ],
+    related: "Yüz Yüze Eğitim — Aynı grup dersi politikası kampüste de geçerli",
   },
   {
     title: "Esnek Ders Saatleri",
     summary: "Sabah, öğle ve akşam seansları; hafta sonu yoğun program.",
     content:
       "Hafta içi 09:00, 13:00 ve 19:30 seansları; Cumartesi 10:00 yoğunlaştırılmış program. Ramazan ve yaz döneminde özel saatler açılır.",
-    related: "Grup Dersleri — Akşam grubuna geçiş mümkün",
+    related: "Grup Dersi (Maks 8–10 Kişi) — Akşam grubuna geçiş mümkün",
   },
   {
     title: "Online Seviye Takibi",
@@ -330,7 +352,7 @@ export const yuzYuzeProgramDetails: ExpandableDetail[] = [
       "Pzt–Cmt 09:00–19:00 açık",
       "Ücretsiz Wi-Fi ve çay–kahve ikramı",
     ],
-    related: "Grup Dersleri — Tüm grup dersleri bu kampüste yapılır",
+    related: "Grup Dersi (Maks 8–10 Kişi) — Tüm grup dersleri bu kampüste yapılır",
   },
   {
     title: "Akıllı Sınıflar",
@@ -340,11 +362,23 @@ export const yuzYuzeProgramDetails: ExpandableDetail[] = [
     related: "Online Eğitim — Kampüs dersleri kayıt arşivine eklenir",
   },
   {
-    title: "Küçük Sınıflar",
-    summary: "Maksimum 8 kişi; her öğrenci aktif konuşur.",
+    title: "Birebir Ders",
+    summary: "Eğitmeninizle tamamen size özel oturumlar.",
     content:
-      "Sınıf mevcudu 8'i geçmez. Eğitmen her derste tüm öğrencileri ismiyle çağırır ve bireysel geri bildirim verir.",
-    related: "Grup Dersleri — Aynı mevut politikası geçerli",
+      "Birebir derslerde müfredat tamamen sizin hedeflerinize göre kurgulanır. Her 4 derste bir bireysel gelişim görüşmesi ve yazılı performans raporu paylaşılır.",
+    related: "Online Eğitim — Birebir dersler online da mevcuttur",
+  },
+  {
+    title: "Grup Dersi (Maks 8–10 Kişi)",
+    summary: "Homojen seviye grupları; her öğrenci aktif konuşur.",
+    content:
+      "Sınıf mevcudu 8–10 kişiyi geçmez. Eğitmen her derste tüm öğrencileri ismiyle çağırır ve bireysel geri bildirim verir. Gruplar Language Hub placement testi ve sözlü değerlendirme ile homojen seviyede oluşturulur; aynı seviyedeki öğrenciler bir arada eğitim alır.",
+    bullets: [
+      "Haftalık program: 3 gün × 2 saat veya 4 gün × 2 saat",
+      "Aylık grup projesi ve peer-feedback oturumları",
+      "Birebir'e kıyasla %35'e varan maliyet avantajı",
+    ],
+    related: "Online Eğitim — Aynı program online grup olarak da sunulur",
   },
   {
     title: "Konuşma Kulübü & Atölyeler",
@@ -369,50 +403,6 @@ export const yuzYuzeProgramDetails: ExpandableDetail[] = [
   },
 ];
 
-export const grupProgramDetails: ExpandableDetail[] = [
-  {
-    title: "Seviye Bazlı Gruplandırma",
-    summary: "Placement test + sözlü değerlendirme ile homojen sınıflar.",
-    content:
-      "Language Hub placement testi ve 10 dakikalık sözlü görüşme sonrası gruplar belirlenir. Aynı seviyedeki öğrenciler bir arada eğitim alır.",
-    related: "Seviye Tespit Sınavı — Ücretsiz online placement test",
-  },
-  {
-    title: "Haftalık Program",
-    summary: "3 veya 4 gün; sabah ve akşam grup seçenekleri.",
-    content:
-      "Standart program haftada 3 gün × 2 saat = 6 saat. Yoğun program 4 gün × 2 saat = 8 saat. Sabah 10:00 ve akşam 19:00 grupları mevcuttur.",
-    related: "Online Eğitim — Aynı program online da sunulur",
-  },
-  {
-    title: "Konuşma Odaklı Aktiviteler",
-    summary: "Rol oyunu, tartışma ve simülasyon her derste.",
-    content:
-      "Derslerin %60'ı konuşma ve dinleme aktivitelerinden oluşur. Havaalanı, restoran, iş görüşmesi gibi senaryolar canlandırılır.",
-    related: "Yüz Yüze Eğitim — Konuşma kulübü dersleri destekler",
-  },
-  {
-    title: "Grup Projeleri",
-    summary: "Aylık sunum, poster ve mini-debate projeleri.",
-    content:
-      "Her ay bir grup projesi tamamlanır: poster sunumu, debate veya kısa video projesi. Peer feedback ile öğrenciler birbirini değerlendirir.",
-    related: "İngilizce Eğitimi — Proje notu seviye geçişine dahil",
-  },
-  {
-    title: "Ekonomik Avantaj",
-    summary: "Birebir'e kıyasla %35 tasarruf.",
-    content:
-      "Grup dersi saat ücreti birebir dersin yaklaşık %65'idir. 3 ay ve üzeri kayıtlarda ek %10 indirim uygulanır.",
-    related: "Online Eğitim — 4 kişilik online grup benzer fiyat",
-  },
-  {
-    title: "Sosyal Öğrenme Ortamı",
-    summary: "Benzer hedefli öğrencilerle motivasyon ve ağ kurma.",
-    content:
-      "Grup derslerinde oluşan arkadaşlıklar konuşma kulübü ve sosyal etkinliklere taşınır. Mezun ağımıza otomatik dahil olursunuz.",
-    related: "Yurt Dışı Eğitim — Grup arkadaşlarıyla yurt dışı başvurusu",
-  },
-];
 
 export const yurtDisiCountryDetails: ExpandableDetail[] = [
   {
@@ -470,7 +460,7 @@ export const yurtDisiProgramDetails: ExpandableDetail[] = [
     summary: "Üniversite öncesi dil hazırlığı ve pathway programları.",
     content:
       "Dil yeterliliği yetersiz öğrenciler için 12–24 haftalık dil okulu veya pathway yılları organize edilir. Başarılı tamamlama sonrası doğrudan lisans geçişi sağlanır.",
-    related: "Grup Dersleri — Yoğun İngilizce hazırlık programı",
+    related: "Grup Dersi (Maks 8–10 Kişi) — Yoğun İngilizce hazırlık programı",
   },
   {
     title: "Yaz Okulu Programları",
@@ -566,7 +556,7 @@ export const ingilizceLevelDetails: ExpandableDetail[] = [
       "Kısa e-posta ve mesaj yazımı",
       "Basit okuma parçaları ve anlama",
     ],
-    related: "Grup Dersleri — Konuşma pratiği için ideal",
+    related: "Grup Dersi (Maks 8–10 Kişi) — Konuşma pratiği için ideal",
   },
   {
     title: "B1 — Orta Alt",
@@ -665,7 +655,7 @@ export const ingilizceMethodDetails: ExpandableDetail[] = [
     summary: "Öğrenci merkezli; ezber yerine kullanım odaklı dersler.",
     content:
       "Communicative Language Teaching yaklaşımıyla öğrenciler derste aktif konuşur. Gramer kuralları bağlam içinde, iletişim ihtiyacı doğduğunda öğretilir.",
-    related: "Grup Dersleri — CLT'nin en verimli uygulandığı format",
+    related: "Grup Dersi (Maks 8–10 Kişi) — CLT'nin en verimli uygulandığı format",
   },
   {
     title: "Gerçek Hayat Senaryoları",
@@ -740,11 +730,11 @@ export const hakkimizdaValueDetails: ExpandableDetail[] = [
 
 export const hakkimizdaTeamDetails: ExpandableDetail[] = [
   {
-    title: "Dr. Ayşe Yıldız — Kurucu & Genel Müdür",
+    title: "Yaşar Zararsız — Kurucu & Genel Müdür",
     summary: "Eğitim Yönetimi — 15+ yıl sektör deneyimi",
     content:
-      "Pamukkale Üniversitesi Eğitim Bilimleri doktorası. 2009'da Zreducation'ı Denizli'de kurdu; kurumsal strateji ve kalite standartlarından sorumlu.",
-    related: "Hakkımızda — 2009'dan bu yana eğitim yolculuğu",
+      "Pamukkale Üniversitesi mezunu. 2009'da Zreducation'ı Denizli'de kurdu; kurumsal strateji, eğitim kalitesi ve konuşma odaklı müfredatın gelişiminden sorumlu. Öğrencilerle ve velilerle doğrudan iletişimi sürdürür.",
+    related: "İletişim — Randevu ve sorularınız için doğrudan ulaşın",
   },
   {
     title: "James Mitchell — Akademik Direktör",

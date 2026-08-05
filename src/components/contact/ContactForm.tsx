@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
@@ -12,19 +12,52 @@ import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 const inputClass =
   "w-full px-5 py-3 rounded-2xl border-0 bg-surface text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04)] focus:ring-4 focus:ring-gold-500/15 focus:outline-none";
 
-export default function ContactForm() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
+const initialForm = {
+  name: "",
+  email: "",
+  phone: "",
+  city: "",
+  program: "",
+  format: "",
+  message: "",
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+export default function ContactForm() {
+  const [form, setForm] = useState(initialForm);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!form.name || !form.email || !form.phone || !form.city) {
+      setError("Ad soyad, telefon, e-posta ve şehir bilgisi zorunludur.");
+      return;
+    }
+
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/kayit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Bir hata oluştu");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Kayıt gönderilirken bir hata oluştu"
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,9 +87,9 @@ export default function ContactForm() {
                 },
                 {
                   icon: Phone,
-                  title: "Telefon",
+                  title: "Telefon & WhatsApp",
                   content: contactInfo.phone.display,
-                  href: contactInfo.phone.href,
+                  href: contactInfo.whatsapp.href,
                 },
                 {
                   icon: Mail,
@@ -67,7 +100,7 @@ export default function ContactForm() {
                 {
                   icon: Clock,
                   title: "Çalışma Saatleri",
-                  content: "Pazartesi – Cumartesi: 09:00 – 19:00\nPazar: Kapalı",
+                  content: `${contactInfo.hours.office}\n${contactInfo.hours.support}`,
                 },
               ].map((item) => (
                 <motion.div
@@ -124,9 +157,16 @@ export default function ContactForm() {
               transition={transition.default}
               className="soft-card p-8 md:p-10"
             >
-              <h3 className="font-heading-normal text-base font-bold text-navy-900 mb-6">
-                Mesaj Formu
+              <span className="badge-pill bg-gold-100 text-gold-700 mb-4">
+                Ücretsiz Ön Kayıt
+              </span>
+              <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
+                Kayıt Formu
               </h3>
+              <p className="text-sm text-slate mb-6 leading-relaxed">
+                Bilgilerinizi bırakın, danışmanlarımız size en uygun programı
+                önermek için 7/24 WhatsApp veya arama ile size dönsün.
+              </p>
 
               {submitted ? (
                 <motion.div
@@ -137,10 +177,11 @@ export default function ContactForm() {
                 >
                   <Send className="w-6 h-6 text-gold-600 mx-auto mb-3" />
                   <h4 className="font-heading-normal text-sm font-bold text-navy-900 mb-2">
-                    Mesajınız Alındı
+                    Kayıt Talebiniz Alındı
                   </h4>
                   <p className="text-sm text-slate">
-                    En kısa sürede sizinle iletişime geçeceğiz.
+                    En kısa sürede sizinle iletişime geçeceğiz. Hemen konuşmak
+                    isterseniz sağ alttaki WhatsApp butonunu kullanabilirsiniz.
                   </p>
                 </motion.div>
               ) : (
@@ -175,46 +216,81 @@ export default function ContactForm() {
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="label-caps text-slate block mb-2">
-                      E-posta
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={(e) =>
-                        setForm({ ...form, email: e.target.value })
-                      }
-                      className={inputClass}
-                    />
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="label-caps text-slate block mb-2">
+                        E-posta
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm({ ...form, email: e.target.value })
+                        }
+                        className={inputClass}
+                      />
+                    </div>
+                    <div>
+                      <label className="label-caps text-slate block mb-2">
+                        Yaşadığınız Şehir
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Örn. Denizli"
+                        value={form.city}
+                        onChange={(e) =>
+                          setForm({ ...form, city: e.target.value })
+                        }
+                        className={inputClass}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="label-caps text-slate block mb-2">
+                        İlgilendiğiniz Program
+                      </label>
+                      <select
+                        value={form.program}
+                        onChange={(e) =>
+                          setForm({ ...form, program: e.target.value })
+                        }
+                        className={inputClass}
+                      >
+                        <option value="">Seçiniz</option>
+                        <option value="online-ingilizce">Online İngilizce</option>
+                        <option value="yuz-yuze-ingilizce">Yüz Yüze İngilizce (Denizli)</option>
+                        <option value="sinav-hazirlik">Sınav Hazırlık (IELTS/TOEFL/YDS)</option>
+                        <option value="yurt-disi">Yurt Dışı Danışmanlık</option>
+                        <option value="diger">Diğer</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="label-caps text-slate block mb-2">
+                        Eğitim Şekli
+                      </label>
+                      <select
+                        value={form.format}
+                        onChange={(e) =>
+                          setForm({ ...form, format: e.target.value })
+                        }
+                        className={inputClass}
+                      >
+                        <option value="">Seçiniz</option>
+                        <option value="birebir">Birebir Ders</option>
+                        <option value="grup">Grup Dersi (Maks 8–10 Kişi)</option>
+                        <option value="fark-etmez">Fark Etmez</option>
+                      </select>
+                    </div>
                   </div>
                   <div>
                     <label className="label-caps text-slate block mb-2">
-                      Konu
-                    </label>
-                    <select
-                      value={form.subject}
-                      onChange={(e) =>
-                        setForm({ ...form, subject: e.target.value })
-                      }
-                      className={inputClass}
-                    >
-                      <option value="">Seçiniz</option>
-                      <option value="yurt-disi">Yurt Dışı Eğitim</option>
-                      <option value="ingilizce">İngilizce Eğitimi</option>
-                      <option value="online">Online Eğitim</option>
-                      <option value="sinav">Sınav Hazırlık</option>
-                      <option value="diger">Diğer</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="label-caps text-slate block mb-2">
-                      Mesaj
+                      Mesaj (opsiyonel)
                     </label>
                     <textarea
-                      required
-                      rows={5}
+                      rows={4}
                       value={form.message}
                       onChange={(e) =>
                         setForm({ ...form, message: e.target.value })
@@ -222,9 +298,25 @@ export default function ContactForm() {
                       className={`${inputClass} resize-none`}
                     />
                   </div>
-                  <Button type="submit" className="w-full" size="lg">
-                    <Send className="w-4 h-4" />
-                    Gönder
+
+                  {error && (
+                    <p className="text-red-600 text-xs bg-red-50/80 rounded-3xl px-5 py-3">
+                      {error}
+                    </p>
+                  )}
+
+                  <Button type="submit" className="w-full" size="lg" disabled={loading}>
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Gönderiliyor
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        Kayıt Ol
+                      </>
+                    )}
                   </Button>
                 </form>
               )}

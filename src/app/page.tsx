@@ -6,12 +6,13 @@ import AboutPreview from "@/components/home/AboutPreview";
 import WhyUsSection from "@/components/home/WhyUsSection";
 import ProcessSection from "@/components/home/ProcessSection";
 import ScrollingTestimonials from "@/components/home/ScrollingTestimonials";
+import InstagramGallery from "@/components/home/InstagramGallery";
 import CTASection from "@/components/home/CTASection";
 
 export const metadata: Metadata = {
-  title: "Denizli Online İngilizce & İtalya/Almanya Eğitim Danışmanlığı",
+  title: "Denizli Konuşma Odaklı İngilizce Eğitimi | Online & Yüz Yüze",
   description:
-    "Zreducation Denizli — online İngilizce kursları, seviye tespit sınavı, İtalya ve Almanya üniversite danışmanlığı. Canlı Zoom dersleri ve kayıt arşivi.",
+    "Zreducation Denizli — konuşma odaklı İngilizce eğitimi, 3 ayda 90 derste akıcı konuşma, online ve yüz yüze birebir/grup dersleri, ücretsiz seviye tespit sınavı ve İtalya/Almanya danışmanlığı.",
   alternates: { canonical: "https://zreducation.org" },
 };
 
@@ -24,6 +25,7 @@ export default function HomePage() {
       <WhyUsSection />
       <ProcessSection />
       <ScrollingTestimonials />
+      <InstagramGallery />
       <CTASection />
     </PageLayout>
   );

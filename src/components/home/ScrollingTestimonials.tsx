@@ -36,8 +36,44 @@ function ReviewCard({
   );
 }
 
+function MarqueeRow({
+  rowItems,
+  direction,
+}: {
+  rowItems: typeof testimonials;
+  direction: "left" | "right";
+}) {
+  const items = [...rowItems, ...rowItems];
+  const animationClass =
+    direction === "left" ? "animate-marquee-slow" : "animate-marquee-slow-reverse";
+
+  return (
+    <div className="relative">
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-surface to-transparent"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-surface to-transparent"
+        aria-hidden
+      />
+      <div className={`flex gap-4 ${animationClass} gpu-marquee w-max`}>
+        {items.map((item, index) => (
+          <ReviewCard
+            key={`${item.name}-${index}`}
+            item={item}
+            duplicate={index >= rowItems.length}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ScrollingTestimonials() {
-  const items = [...testimonials, ...testimonials];
+  const half = Math.ceil(testimonials.length / 2);
+  const rowOne = testimonials.slice(0, half);
+  const rowTwo = testimonials.slice(half);
 
   return (
     <section className="py-16 md:py-20 bg-surface border-t border-border overflow-hidden section-flow">
@@ -45,28 +81,13 @@ export default function ScrollingTestimonials() {
         <SectionTitle
           subtitle="Referanslar"
           title="Öğrenci Yorumları"
-          description="20+ gerçek öğrenci deneyimi — Denizli merkezimiz ve online programlarımız."
+          description={`${testimonials.length}+ gerçek öğrenci deneyimi — Denizli merkezimiz ve online programlarımız.`}
         />
       </div>
 
-      <div className="relative">
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-surface to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-surface to-transparent"
-          aria-hidden
-        />
-        <div className="flex gap-4 animate-marquee-slow gpu-marquee w-max">
-          {items.map((item, index) => (
-            <ReviewCard
-              key={`${item.name}-${index}`}
-              item={item}
-              duplicate={index >= testimonials.length}
-            />
-          ))}
-        </div>
+      <div className="space-y-4">
+        <MarqueeRow rowItems={rowOne} direction="left" />
+        <MarqueeRow rowItems={rowTwo} direction="right" />
       </div>
     </section>
   );

@@ -8,12 +8,8 @@ interface UserInfo {
   phone: string;
 }
 
-export async function sendAdminNotification(
-  user: UserInfo,
-  result: TestResult,
-  answers: Record<number, string>
-): Promise<void> {
-  const transporter = nodemailer.createTransport({
+function getTransporter() {
+  return nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: Number(process.env.SMTP_PORT) || 587,
     secure: false,
@@ -22,13 +18,151 @@ export async function sendAdminNotification(
       pass: process.env.SMTP_PASS,
     },
   });
+}
 
-  const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
+function getAdminEmail() {
+  return process.env.ADMIN_EMAIL || process.env.SMTP_USER;
+}
+
+interface RegistrationLead {
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  program: string;
+  format: string;
+  message?: string;
+}
+
+export async function sendRegistrationNotification(
+  lead: RegistrationLead
+): Promise<void> {
+  const adminEmail = getAdminEmail();
+  if (!adminEmail || !process.env.SMTP_USER) {
+    console.warn("Email credentials not configured. Skipping email send.");
+    return;
+  }
+
+  const transporter = getTransporter();
+
+  await transporter.sendMail({
+    from: `"Zreducation Kayıt Formu" <${process.env.SMTP_USER}>`,
+    to: adminEmail,
+    subject: `Yeni Kayıt Talebi — ${lead.name} (${lead.city})`,
+    text: `
+YENİ KAYIT TALEBİ
+=================
+
+Ad Soyad: ${lead.name}
+Telefon: ${lead.phone}
+E-posta: ${lead.email}
+Şehir: ${lead.city}
+İlgilendiği Program: ${lead.program}
+Eğitim Şekli: ${lead.format}
+Mesaj: ${lead.message || "—"}
+
+---
+Bu e-posta Zreducation web sitesi kayıt formundan otomatik gönderilmiştir.
+    `,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #0b1d3a; padding: 24px; text-align: center;">
+          <h1 style="color: #d4af37; margin: 0;">Zreducation</h1>
+          <p style="color: #fff; margin: 8px 0 0;">Yeni Kayıt Talebi</p>
+        </div>
+        <div style="padding: 24px; background: #f7f8fa;">
+          <p><strong>Ad Soyad:</strong> ${lead.name}</p>
+          <p><strong>Telefon:</strong> ${lead.phone}</p>
+          <p><strong>E-posta:</strong> ${lead.email}</p>
+          <p><strong>Şehir:</strong> ${lead.city}</p>
+          <p><strong>İlgilendiği Program:</strong> ${lead.program}</p>
+          <p><strong>Eğitim Şekli:</strong> ${lead.format}</p>
+          <p><strong>Mesaj:</strong> ${lead.message || "—"}</p>
+        </div>
+      </div>
+    `,
+  });
+}
+
+interface SpeakingBookingLead {
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  cefrLevel?: string;
+  platform: string;
+  preferredDay: string;
+  preferredTime: string;
+  note?: string;
+}
+
+export async function sendSpeakingBookingNotification(
+  lead: SpeakingBookingLead
+): Promise<void> {
+  const adminEmail = getAdminEmail();
+  if (!adminEmail || !process.env.SMTP_USER) {
+    console.warn("Email credentials not configured. Skipping email send.");
+    return;
+  }
+
+  const transporter = getTransporter();
+
+  await transporter.sendMail({
+    from: `"Zreducation Speaking Randevu" <${process.env.SMTP_USER}>`,
+    to: adminEmail,
+    subject: `Speaking Sınavı Randevu Talebi — ${lead.name}`,
+    text: `
+SPEAKING SINAVI RANDEVU TALEBİ
+===============================
+
+Ad Soyad: ${lead.name}
+Telefon: ${lead.phone}
+E-posta: ${lead.email}
+Şehir: ${lead.city}
+Yazılı Sınav Seviyesi: ${lead.cefrLevel || "Belirtilmedi"}
+Platform Tercihi: ${lead.platform}
+Tercih Edilen Gün: ${lead.preferredDay}
+Tercih Edilen Saat: ${lead.preferredTime}
+Not: ${lead.note || "—"}
+
+---
+Bu e-posta Zreducation web sitesi speaking randevu formundan otomatik gönderilmiştir.
+    `,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #0b1d3a; padding: 24px; text-align: center;">
+          <h1 style="color: #d4af37; margin: 0;">Zreducation</h1>
+          <p style="color: #fff; margin: 8px 0 0;">Speaking Sınavı Randevu Talebi</p>
+        </div>
+        <div style="padding: 24px; background: #f7f8fa;">
+          <p><strong>Ad Soyad:</strong> ${lead.name}</p>
+          <p><strong>Telefon:</strong> ${lead.phone}</p>
+          <p><strong>E-posta:</strong> ${lead.email}</p>
+          <p><strong>Şehir:</strong> ${lead.city}</p>
+          <p><strong>Yazılı Sınav Seviyesi:</strong> ${lead.cefrLevel || "Belirtilmedi"}</p>
+          <p><strong>Platform Tercihi:</strong> ${lead.platform}</p>
+          <p><strong>Tercih Edilen Gün:</strong> ${lead.preferredDay}</p>
+          <p><strong>Tercih Edilen Saat:</strong> ${lead.preferredTime}</p>
+          <p><strong>Not:</strong> ${lead.note || "—"}</p>
+        </div>
+      </div>
+    `,
+  });
+}
+
+export async function sendAdminNotification(
+  user: UserInfo,
+  result: TestResult,
+  answers: Record<number, string>
+): Promise<void> {
+  const adminEmail = getAdminEmail();
 
   if (!adminEmail || !process.env.SMTP_USER) {
     console.warn("Email credentials not configured. Skipping email send.");
     return;
   }
+
+  const transporter = getTransporter();
 
   const breakdownText = Object.values(result.breakdown)
     .map((data) => `${data.label}: ${data.correct}/${data.total} doğru`)

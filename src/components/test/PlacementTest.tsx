@@ -28,6 +28,7 @@ import {
 import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
 import { contactInfo } from "@/data/contact";
+import SpeakingBookingCard from "@/components/test/SpeakingBookingCard";
 
 const inputClass =
   "w-full px-5 py-3.5 rounded-3xl border-0 bg-white/90 text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04),0_2px_12px_rgba(14,34,64,0.04)] transition-all duration-200 focus:ring-4 focus:ring-gold-500/20 focus:outline-none placeholder:text-slate-light";
@@ -577,37 +578,34 @@ export default function PlacementTest() {
               </p>
             </div>
 
-            <div className="surface-navy navy-panel p-8 md:p-10 relative overflow-hidden">
-              <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl" />
-              <h3 className="font-heading-normal text-base font-bold text-white mb-3 relative">
-                Kuruma Davet
-              </h3>
-              <p className="text-white/65 text-sm leading-relaxed mb-6 relative">
-                Sayın {userInfo.name}, sınavınızı tamamladınız. Size özel eğitim
-                programını paylaşmak ve tanışmak için sizi merkezimize davet
-                ediyoruz. Danışmanlarımız en kısa sürede sizinle iletişime
-                geçecektir.
-              </p>
+            <SpeakingBookingCard userInfo={userInfo} cefrLevel={result.level} />
 
-              <div className="grid sm:grid-cols-2 gap-3 text-sm text-white/60 mb-6 relative">
-                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
-                  <MapPin className="w-4 h-4 text-gold-500 shrink-0" />
+            <div className="mt-6 rounded-3xl bg-surface/60 p-6 md:p-8">
+              <h3 className="font-heading-normal text-sm font-bold text-navy-900 mb-3">
+                Merkezimizi de Ziyaret Edebilirsiniz
+              </h3>
+              <p className="text-slate text-sm leading-relaxed mb-5">
+                Sayın {userInfo.name}, isterseniz sonuçlarınızı yüz yüze
+                değerlendirmek için Denizli merkezimize de bekleriz.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3 text-sm text-slate mb-5">
+                <div className="flex items-center gap-2 bg-white rounded-2xl px-4 py-3 shadow-sm">
+                  <MapPin className="w-4 h-4 text-gold-600 shrink-0" />
                   {contactInfo.address.line2}
                 </div>
-                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
-                  <Phone className="w-4 h-4 text-gold-500 shrink-0" />
+                <div className="flex items-center gap-2 bg-white rounded-2xl px-4 py-3 shadow-sm">
+                  <Phone className="w-4 h-4 text-gold-600 shrink-0" />
                   {contactInfo.phone.display}
                 </div>
-                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
-                  <Mail className="w-4 h-4 text-gold-500 shrink-0" />
+                <div className="flex items-center gap-2 bg-white rounded-2xl px-4 py-3 shadow-sm">
+                  <Mail className="w-4 h-4 text-gold-600 shrink-0" />
                   {contactInfo.email.display}
                 </div>
-                <div className="flex items-center gap-2 bg-white/8 rounded-2xl px-4 py-3">
-                  <Calendar className="w-4 h-4 text-gold-500 shrink-0" />
-                  Pzt–Cmt 09:00–19:00
+                <div className="flex items-center gap-2 bg-white rounded-2xl px-4 py-3 shadow-sm">
+                  <Calendar className="w-4 h-4 text-gold-600 shrink-0" />
+                  {contactInfo.hours.office}
                 </div>
               </div>
-
               <Button href="/iletisim" size="lg">
                 Randevu Al
               </Button>

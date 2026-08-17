@@ -26,10 +26,11 @@ export const metadata: Metadata = {
 };
 
 const milestones = [
-  { year: "2009", text: "Zreducation, Denizli Kınıklı'da kuruldu." },
-  { year: "2014", text: "İtalya & Almanya üniversite partner ağı genişletildi." },
+  { year: "2009", text: "Zreducation, Denizli Kınıklı'da eğitim vermeye başladı." },
+  { year: "2014", text: "Konuşma odaklı İngilizce programı ve grup dersleri genişletildi." },
   { year: "2019", text: "Online eğitim platformu ve canlı Zoom dersleri başlatıldı." },
   { year: "2023", text: "Konuşma odaklı '3 ayda 90 ders' metodolojisi hayata geçti." },
+  { year: "2025", text: "Öğrenci paneli ve 4 haftalık ilerleme raporları devreye alındı." },
 ];
 
 export default function HakkimizdaPage() {
@@ -37,8 +38,10 @@ export default function HakkimizdaPage() {
     <PageLayout>
       <PageHero title="Hakkımızda" subtitle="Denizli Merkez">
         <p>
-          Denizli&apos;den konuşma odaklı İngilizce eğitimiyle Türkiye&apos;nin
-          her yerine ulaşan güvenilir eğitim partneriniz — online ve yüz yüze.
+          Zreducation, Denizli&apos;den konuşma odaklı İngilizce eğitimiyle
+          Türkiye&apos;nin her yerine ulaşan bir eğitim kurumudur. Asıl
+          amacımız öğrencilerimizi İngilizce konuşturmak — online ve yüz
+          yüze, birebir ve grup derslerinde.
         </p>
       </PageHero>
 
@@ -48,25 +51,36 @@ export default function HakkimizdaPage() {
             <AnimatedSection>
               <SectionTitle
                 subtitle="Hikayemiz"
-                title="Denizli'den, Konuşma Odaklı"
+                title="Denizli'den, Konuşma Odaklı Eğitim"
                 align="left"
               />
               <div className="space-y-4 text-slate leading-relaxed text-sm md:text-base">
                 <p>
-                  Zreducation, Denizli Kınıklı&apos;da kurulmuş; konuşma
-                  odaklı, A1&apos;den C2&apos;ye online ve yüz yüze İngilizce
-                  eğitimi sunan; talep halinde İtalya ve Almanya odaklı yurt
-                  dışı eğitim danışmanlığı da veren bir kurumdur.
+                  Zreducation, 2009 yılında Denizli Kınıklı&apos;da kuruldu.
+                  Bugüne dek 5.000&apos;den fazla öğrenciyi İngilizce
+                  konuşturmak için çalıştık. Türkiye&apos;de birçok kurum
+                  gramere odaklanır; biz ise dersin merkezine her zaman
+                  konuşmayı koyarız.
+                </p>
+                <p>
+                  Speaking, Listening, Reading ve Writing olmak üzere dört
+                  temel beceri üzerine kurulu, konuşma ağırlıklı CEFR uyumlu
+                  Language Hub müfredatımızla &quot;3 ayda 90 derste sıfırdan
+                  akıcı konuşma&quot; hedefini öğrencilerimizle birlikte
+                  gerçekleştiriyoruz.
                 </p>
                 <p>
                   {siteConfig.address} adresindeki merkezimizde birebir ve
-                  maks 8–10 kişilik grup dersleri; Zoom ve dijital platform
+                  maks 8–10 kişilik grup dersleri; Zoom ve Microsoft Teams
                   üzerinden tüm Türkiye&apos;ye online eğitim veriyoruz.
+                  Denizli&apos;de yaşayan öğrencilerimizi yüz yüze görüşme ve
+                  ders için kampüsümüze her zaman bekleriz.
                 </p>
                 <p>
-                  CEFR uyumlu Language Hub müfredatımız, &quot;3 ayda 90
-                  derste 0&apos;dan akıcı konuşma&quot; hedefimiz ve %94
-                  öğrenci memnuniyet oranımızla Denizli&apos;nin güvenilir
+                  Öğrenci gelişimini ciddiye alırız: Eğitmenlerimiz her ders
+                  sonrası not tutar, her 4 haftada bir ilerleme raporu
+                  hazırlanır ve öğrencilerimiz panelimizden tüm süreci izler.
+                  %94 öğrenci memnuniyet oranımızla Denizli&apos;nin güvenilir
                   eğitim markası olmaktan gurur duyuyoruz.
                 </p>
               </div>
@@ -92,10 +106,12 @@ export default function HakkimizdaPage() {
                 Kurucudan Mesaj
               </span>
               <p className="text-lg md:text-xl font-heading-normal text-navy-900 leading-relaxed mb-6 max-w-3xl">
-                &quot;Amacımız İngilizceyi ezberden çıkarıp gerçek bir
-                iletişim aracı haline getirmek. Her öğrencimizin sınıfta
-                konuşarak öğrenmesini, kendine güvenerek ilerlemesini
-                istiyoruz. Sorularınız için bize her zaman ulaşabilirsiniz.&quot;
+                &quot;Bizim için İngilizce öğrenmek demek, İngilizce
+                konuşabilmek demektir. Amacımız her öğrencimizin sınıfta en az
+                bir kez söz alması, kendine güvenerek konuşması ve bunu günlük
+                hayata taşımasıdır. Gelişiminizi her 4 haftada bir raporluyor,
+                ders kayıtlarınızı ve ödevlerinizi panelinizden takip
+                ediyoruz. Sorularınız için 7/24 WhatsApp&apos;tayız.&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center text-gold-400 font-heading-normal font-bold">
@@ -166,7 +182,7 @@ export default function HakkimizdaPage() {
           <SectionTitle
             subtitle="Ekibimiz"
             title="Denizli Uzman Kadromuz"
-            description="Konuşma odaklı İngilizce eğitimi, online eğitim ve yurt dışı danışmanlığında deneyimli ekip."
+            description="Konuşma odaklı İngilizce eğitimi, online eğitim, sınav hazırlık ve öğrenci takibi konusunda deneyimli ekip."
           />
 
           <AnimatedSection>

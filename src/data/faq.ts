@@ -18,14 +18,19 @@ export const faqCategories: FaqCategory[] = [
           "Merkezimiz Denizli Kınıklı'dadır. Yüz yüze dersler bu merkezde verilir; online derslere Türkiye'nin ve dünyanın her yerinden Zoom/Teams ile katılabilirsiniz.",
       },
       {
+        question: "Çalışma saatleriniz nedir, hangi saatlerde ulaşabilirim?",
+        answer:
+          "WhatsApp destek hattımız 7/24 açıktır; dilediğiniz saatte bilgi, soru ve kayıt talebi için yazabilirsiniz. Merkez ofisimiz Pazartesi–Cumartesi 09:00–19:00 saatleri arasında yüz yüze görüşmeler içindir.",
+      },
+      {
         question: "Size nasıl ulaşabilirim?",
         answer:
-          "WhatsApp destek hattımız 7/24 açıktır — istediğiniz an yazabilirsiniz. Telefon ve ofis ziyaretleri için çalışma saatlerimiz Pazartesi–Cumartesi 09:00–19:00'dır.",
+          "WhatsApp destek hattımız 7/24 açıktır — istediğiniz an yazabilirsiniz. Öncelikli iletişim kanalımız WhatsApp olup en hızlı dönüşü bu kanaldan alırsınız. Telefon ve ofis ziyaretleri için çalışma saatlerimiz Pazartesi–Cumartesi 09:00–19:00'dır.",
       },
       {
         question: "Seviye tespit sınavı ücretli mi?",
         answer:
-          "Hayır, 70 soruluk Language Hub seviye tespit sınavımız tamamen ücretsizdir. Tüm soruları çözmeniz de gerekmez; istediğiniz an sınavı bitirebilirsiniz.",
+          "Hayır, 70 soruluk Language Hub seviye tespit sınavımız tamamen ücretsizdir. Sınav iki aşamalıdır: önce çoktan seçmeli yazılı test, ardından Zoom/Teams üzerinden online speaking (konuşma) görüşmesi. Tüm soruları çözmeniz de gerekmez; istediğiniz an sınavı bitirebilirsiniz.",
       },
     ],
   },
@@ -56,6 +61,16 @@ export const faqCategories: FaqCategory[] = [
         question: "Hangi sınavlara hazırlık desteği veriyorsunuz?",
         answer:
           "IELTS, TOEFL, YDS ve Cambridge sınavlarına yönelik yoğunlaştırılmış hazırlık programlarımız mevcuttur. Haftalık deneme sınavları ve birebir Writing/Speaking koçluğu programa dahildir.",
+      },
+      {
+        question: "Öğrenci paneli nedir ve öğrenciler gelişimini nasıl takip eder?",
+        answer:
+          "Öğrenci panelinde ders kayıtları, devamsızlık durumu, verilen ödevler ve kursun bitişine kalan süre listelenir. Eğitmenlerimiz her ders sonrası not tutar; her 4 haftada bir dört beceri (Speaking, Listening, Reading, Writing) bazında hazırlanan ilerleme raporu panele yüklenir.",
+      },
+      {
+        question: "Kurs fiyatları ve güncel kampanyaları nasıl öğrenirim?",
+        answer:
+          "Eğitimlerimiz sayfasındaki paketlerden uygun olanı seçip 'Bilgi Al & Kayıt Ol' butonuna tıklayarak kayıt formumuza ulaşabilirsiniz. Güncel fiyat, kontenjan ve kampanya bilgileri için WhatsApp hattımızdan 7/24 yazabilirsiniz.",
       },
     ],
   },

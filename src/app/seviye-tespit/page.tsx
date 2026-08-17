@@ -16,8 +16,11 @@ export default function SeviyeTespitPage() {
         subtitle="Ücretsiz"
       >
         <p>
-          70 soruluk Language Hub sınavımızla İngilizce seviyenizi belirleyin.
-          Sonuçlarınızı anında görün ve kurumumuza davet edilin.
+          İki aşamalı ücretsiz sınavımız: Önce 70 soruluk çoktan seçmeli
+          Language Hub yazılı testi, ardından Zoom/Teams üzerinden 15
+          dakikalık online speaking (konuşma) görüşmesi için randevu.
+          Sonucunuzu anında görün ve size en uygun programı birlikte
+          belirleyelim.
         </p>
       </PageHero>
 

@@ -697,28 +697,28 @@ export const ingilizceMethodDetails: ExpandableDetail[] = [
 export const hakkimizdaValueDetails: ExpandableDetail[] = [
   {
     title: "Misyonumuz",
-    summary: "Her öğrencinin potansiyelini uluslararası standartlarda ortaya çıkarmak.",
+    summary: "Her öğrencinin İngilizce konuşarak öğrenmesini sağlamak.",
     content:
-      "Yurt dışı eğitim hayallerini gerçekleştirmek ve İngilizce yeterliliğini CEFR standartlarında sağlamak temel misyonumuzdur. Her öğrenciye kişisel yol haritası sunuyoruz.",
+      "Asıl hedefimiz öğrencilerimizi İngilizce konuşturmak. Speaking, Listening, Reading ve Writing becerilerini konuşma önceliğiyle dengeli geliştirir, her öğrenciye CEFR uyumlu kişisel yol haritası sunarız.",
     bullets: [
-      "Ücretsiz ilk danışmanlık ve seviye tespit",
+      "Ücretsiz iki aşamalı seviye tespit (yazılı + speaking)",
       "Şeffaf süreç ve gerçekçi beklenti yönetimi",
-      "Mezuniyet sonrası kariyer desteği",
+      "Her 4 haftada ilerleme raporu ve öğrenci paneli",
     ],
-    related: "Hizmetlerimiz — Tüm eğitim ve danışmanlık portföyü",
+    related: "Eğitimlerimiz — Programlar ve paketler",
   },
   {
     title: "Vizyonumuz",
-    summary: "Türkiye'nin en güvenilir eğitim danışmanlık kurumu olmak.",
+    summary: "Konuşma odaklı eğitimde Türkiye'nin en güvenilir kurumu olmak.",
     content:
-      "Global eğitim standartlarını yerel erişilebilirlikle buluşturarak, her öğrencinin dünya standartlarında eğitime ulaşmasını sağlamayı hedefliyoruz.",
-    related: "Yurt Dışı Eğitim — İtalya & Almanya partner ağı",
+      "Küresel eğitim standartlarını yerel erişilebilirlikle buluşturarak, her öğrencinin akıcı İngilizce konuşabilmesini sağlamayı hedefliyoruz. 7/24 WhatsApp desteğiyle her an yanınızdayız.",
+    related: "Öğrenci Paneli — Gelişiminizi birlikte takip edelim",
   },
   {
     title: "Değerlerimiz",
     summary: "Şeffaflık, güvenilirlik, öğrenci odaklılık ve sürekli gelişim.",
     content:
-      "Uluslararası kalite standartlarına bağlılık temel değerimizdir. Sözleşme şartları, ücretler ve süreç adımları baştan netleştirilir; gizli maliyet yoktur.",
+      "Öğrenci memnuniyeti temel değerimizdir. Sözleşme koşulları, fiyatlar ve süreç adımları baştan netleştirilir; gizli maliyet yoktur. Eğitmenlerimiz her ders sonrası not tutar.",
     bullets: [
       "Öğrenci memnuniyet oranı: %94",
       "CEFR ve Language Hub müfredat uyumu",

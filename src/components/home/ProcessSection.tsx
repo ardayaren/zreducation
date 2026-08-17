@@ -5,27 +5,27 @@ import SectionTitle from "@/components/ui/SectionTitle";
 const steps = [
   {
     step: "01",
-    title: "Danışmanlık",
+    title: "İletişim & Danışmanlık",
     description:
-      "Hedeflerinizi analiz ediyor, uygun program ve rotayı birlikte belirliyoruz.",
+      "Hedeflerinizi analiz ediyor, uygun programı birlikte belirliyoruz. 7/24 WhatsApp ile hemen başlayın.",
   },
   {
     step: "02",
-    title: "Seviye Tespiti",
+    title: "İki Aşamalı Seviye Tespiti",
     description:
-      "Mevcut yeterliliğinizi ölçüyor, kişisel eğitim planınızı oluşturuyoruz.",
+      "Çoktan seçmeli yazılı test ardından online speaking görüşmesi; gerçek seviyenizi beraber netleştiriyoruz.",
   },
   {
     step: "03",
-    title: "Eğitim Süreci",
+    title: "Konuşma Odaklı Eğitim",
     description:
-      "Online veya yüz yüze programlarla yapılandırılmış eğitime başlıyorsunuz.",
+      "Online veya yüz yüze birebir/grup programlarla her ders konuşarak öğreniyorsunuz; gelişiminiz 4 haftada bir raporlanır.",
   },
   {
     step: "04",
     title: "Sertifikasyon",
     description:
-      "Yazılı test ve speaking sınavını tamamlayıp CEFR uyumlu sertifikanızı alırsınız; yurt dışı hedefiniz varsa danışmanlık sürecine geçeriz.",
+      "Yazılı test ve speaking sınavını tamamlayıp CEFR uyumlu sertifikanızı alıyorsunuz; öğrenci panelinizden tüm süreci takip edersiniz.",
   },
 ];
 

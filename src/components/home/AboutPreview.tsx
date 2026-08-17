@@ -46,7 +46,7 @@ export default function AboutPreview() {
             <SectionTitle
               subtitle="Hakkımızda"
               title="Denizli Merkez, Konuşma Odaklı Eğitim"
-              description="Kınıklı merkezimizden online ve yüz yüze konuşma odaklı İngilizce eğitimi, gerektiğinde İtalya & Almanya danışmanlığı."
+              description="Asıl hedefimiz sizi İngilizce konuşturmak. Kınıklı merkezimizden online ve yüz yüze konuşma odaklı eğitim."
               align="left"
             />
             <p className="text-slate text-sm leading-relaxed mb-4">
@@ -54,9 +54,9 @@ export default function AboutPreview() {
               aynı kalite, aynı konuşma odaklı müfredat.
             </p>
             <p className="text-slate text-sm leading-relaxed mb-6">
-              Kişiselleştirilmiş öğrenme planları ve maks. 8–10 kişilik
-              sınıflarla, 3 ayda 90 derste 0&apos;dan akıcı konuşmayı
-              hedefliyoruz.
+              Speaking, Listening, Reading ve Writing üzerine kurulu; 3 ayda
+              90 derste 0&apos;dan akıcı konuşmayı hedefliyoruz. Eğitmenlerimiz
+              ders sonrası not tutar, gelişiminizi 4 haftada bir raporlar.
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
@@ -70,11 +70,16 @@ export default function AboutPreview() {
               </span>
               <span className="inline-flex items-center gap-2 rounded-full bg-gold-50 border border-gold-200 px-3 py-1.5 text-xs text-gold-700 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold-500" />
-                İtalya & Almanya Danışmanlık
+                7/24 WhatsApp Destek
               </span>
             </div>
 
-            <Button href="/hakkimizda">Kurumsal Profil</Button>
+            <div className="flex flex-wrap gap-3">
+              <Button href="/hakkimizda">Kurumsal Profil</Button>
+              <Button href="/ogrenci-paneli" variant="outline">
+                Öğrenci Paneli
+              </Button>
+            </div>
           </AnimatedSection>
         </div>
       </div>

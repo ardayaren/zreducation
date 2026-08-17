@@ -18,7 +18,7 @@ const highlights = [
   { text: "Konuşma Odaklı Eğitim", tone: "gold" as const },
   { text: "Maks 8–10 Kişilik Sınıflar", tone: "neutral" as const },
   { text: "Online & Yüz Yüze (Denizli)", tone: "neutral" as const },
-  { text: "İtalya & Almanya Danışmanlık", tone: "positive" as const },
+  { text: "7/24 WhatsApp Destek", tone: "positive" as const },
 ];
 
 export default function Hero() {
@@ -32,45 +32,46 @@ export default function Hero() {
           className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-20 bg-transparent relative z-10"
         >
           <div className="max-w-xl mx-auto lg:mx-0 lg:ml-auto lg:pr-12 w-full">
-            <motion.span
-              variants={fadeUp}
-              transition={transition.fast}
-              className="label-caps text-gold-600 mb-5 block"
-            >
-              Denizli Merkezli Eğitim Kurumu
-            </motion.span>
+              <motion.span
+                variants={fadeUp}
+                transition={transition.fast}
+                className="label-caps text-gold-600 mb-5 block"
+              >
+                Denizli Merkezli Eğitim Kurumu
+              </motion.span>
 
-            <motion.h1
-              variants={slideInLeft}
-              transition={transition.slow}
-              className="font-heading-normal text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-navy-900 leading-[1.15] tracking-tight mb-6"
-            >
-              3 Ayda, 90 Derste 0&apos;dan Akıcı Konuşmaya
-            </motion.h1>
+              <motion.h1
+                variants={slideInLeft}
+                transition={transition.slow}
+                className="font-heading-normal text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-navy-900 leading-[1.15] tracking-tight mb-6"
+              >
+                3 Ayda, 90 Derste 0&apos;dan Akıcı Konuşmaya
+              </motion.h1>
 
-            <motion.p
-              variants={fadeUp}
-              transition={transition.default}
-              className="text-slate text-base leading-relaxed mb-8 max-w-lg"
-            >
-              Konuşma odaklı İngilizce eğitimi, online ve yüz yüze birebir/grup
-              dersleri, sınav hazırlığı ve İtalya & Almanya eğitim
-              danışmanlığıyla yanınızdayız.
-            </motion.p>
+              <motion.p
+                variants={fadeUp}
+                transition={transition.default}
+                className="text-slate text-base leading-relaxed mb-8 max-w-lg"
+              >
+                Asıl hedefimiz sizi İngilizce konuşturmak.
+                Speaking, Listening, Reading ve Writing odaklı, konuşma
+                ağırlıklı müfredatla online ve yüz yüze birebir/grup
+                dersleri. 7/24 WhatsApp hattımızdan her an bize ulaşın.
+              </motion.p>
 
-            <motion.div
-              variants={fadeUp}
-              transition={transition.default}
-              className="flex flex-wrap gap-3 mb-10"
-            >
-              <Button href="/seviye-tespit" size="lg">
-                Seviye Tespit Sınavı
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button href="/egitimlerimiz" variant="outline" size="lg">
-                Eğitimlerimiz
-              </Button>
-            </motion.div>
+              <motion.div
+                variants={fadeUp}
+                transition={transition.default}
+                className="flex flex-wrap gap-3 mb-10"
+              >
+                <Button href="/seviye-tespit" size="lg">
+                  Ücretsiz Seviye Tespit
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+                <Button href="/egitimlerimiz" variant="outline" size="lg">
+                  Eğitimlerimiz & Fiyatlar
+                </Button>
+              </motion.div>
 
             <motion.ul
               variants={staggerContainer}

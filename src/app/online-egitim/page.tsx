@@ -63,7 +63,7 @@ export default function OnlineEgitimPage() {
           <SectionTitle
             subtitle="Paketler"
             title="Online Eğitim Paketleri — Birebir & Grup"
-            description="Tüm paketlerde %30 indirim aktif. Seviye tespit sonrası ek %10. Güncel kampanya fiyatları için bizi arayın veya WhatsApp'tan yazın."
+            description="Tüm paketler konuşma odaklıdır; 7/24 kayıt arşivi ve öğrenci paneli dahildir. Güncel fiyat ve kontenjan için 'Bilgi Al' ile bize ulaşın."
           />
 
           <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
@@ -126,7 +126,7 @@ export default function OnlineEgitimPage() {
                       className="w-full"
                       size="sm"
                     >
-                      Satın Al / Bilgi Al
+                      Bilgi Al / Kayıt Ol
                     </Button>
                   </div>
                 </article>
@@ -154,12 +154,12 @@ export default function OnlineEgitimPage() {
               {
                 step: "02",
                 title: "Kayıt Olun",
-                text: "WhatsApp veya iletişim formu ile kayıt; ödeme sonrası platform erişimi.",
+                text: "Kayıt formu üzerinden kayıt; ders platformu ve öğrenci paneli erişimi sağlanır.",
               },
               {
                 step: "03",
-                title: "Derse Katılın",
-                text: "Canlı Zoom derslerine katılın; kaçırdıklarınızı kayıttan izleyin.",
+                title: "Konuşarak Öğrenin",
+                text: "Canlı Zoom/Teams derslerinde aktif konuşun; kaçırdıklarınızı 7/24 kayıttan izleyin.",
               },
             ].map((item) => (
               <div key={item.step} className="navy-card-glass p-5">

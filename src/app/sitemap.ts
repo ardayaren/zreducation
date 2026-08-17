@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/egitimlerimiz",
     "/online-egitim",
     "/ingilizce-egitimi",
+    "/ogrenci-paneli",
     "/yurt-disi",
     "/hakkimizda",
     "/sss",

@@ -4,7 +4,7 @@ import { sendRegistrationNotification } from "@/lib/email";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, city, program, format, message } = body;
+    const { name, email, phone, city, program, format, targetLevel, startPreference, message } = body;
 
     if (!name || !email || !phone || !city) {
       return NextResponse.json(
@@ -21,6 +21,8 @@ export async function POST(request: NextRequest) {
         city,
         program: program || "Belirtilmedi",
         format: format || "Belirtilmedi",
+        targetLevel: targetLevel || "Belirtilmedi",
+        startPreference: startPreference || "Belirtilmedi",
         message,
       });
     } catch (emailError) {

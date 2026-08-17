@@ -28,8 +28,9 @@ export const contactInfo = {
       "https://www.google.com/maps/search/?api=1&query=K%C4%B1n%C4%B1kl%C4%B1,+6017.+Sk.+No%3A11,+20160+Denizli+Merkez%2FDenizli",
   },
   hours: {
-    office: "Pazartesi – Cumartesi: 09:00 – 19:00",
-    support: "WhatsApp destek hattımız 7/24 açık — istediğiniz an yazabilirsiniz.",
+    office: "7/24 Erişilebilir — bilgi ve sorularınız için her an bize ulaşabilirsiniz",
+    support:
+      "WhatsApp destek hattımız 7/24 açık; dilediğiniz saatte bilgi, soru ve kayıt için yazabilirsiniz. Merkez ofis: Pzt–Cmt 09:00–19:00.",
   },
   founder: {
     name: "Yaşar Zararsız",

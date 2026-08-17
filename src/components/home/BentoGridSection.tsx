@@ -81,21 +81,15 @@ const tiles: BentoTile[] = [
     stat: "3 Ayda 90 Derste Akıcı Konuşma",
     backgroundImage: "/images/english-classroom.jpg",
   }),
-  fromService("yurt-disi", {
-    span: "md:col-span-1 lg:col-span-5",
-    variant: "light",
-    eyebrow: "İtalya & Almanya",
-    backgroundImage: "/images/harvard.jpg",
-  }),
   {
     id: "seviye-tespit",
     title: "Seviye Tespit Sınavı",
-    description: "70 soruluk Language Hub testi ile seviyenizi ölçün.",
+    description: "İki aşamalı ücretsiz sınav: çoktan seçmeli test + online speaking görüşmesi.",
     href: "/seviye-tespit",
     icon: ClipboardCheck,
     span: "md:col-span-1 lg:col-span-5",
     variant: "gold",
-    eyebrow: "Ücretsiz",
+    eyebrow: "Ücretsiz · İki Aşamalı",
     stat: "~30 dk",
     backgroundImage: "/images/exam-prep.jpg",
   },
@@ -116,6 +110,12 @@ const tiles: BentoTile[] = [
     variant: "navy",
     eyebrow: "IELTS · TOEFL · YDS",
     backgroundImage: "/images/exam-prep.jpg",
+  }),
+  fromService("ogrenci-paneli", {
+    span: "lg:col-span-6",
+    variant: "surface",
+    eyebrow: "Devamsızlık · Ödev · Rapor",
+    backgroundImage: "/images/online-learning.jpg",
   }),
 ];
 

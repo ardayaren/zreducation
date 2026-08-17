@@ -17,9 +17,10 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-5">
-              Konuşma odaklı İngilizce eğitimi, online ve yüz yüze
-              birebir/grup dersleri, sınav hazırlık ve İtalya & Almanya
-              danışmanlığı.
+              Konuşma odaklı İngilizce eğitimi — Speaking, Listening,
+              Reading ve Writing üzerine kurulu, 3 ayda 90 derste sıfırdan
+              akıcı konuşmaya. Online ve yüz yüze birebir/grup dersleri,
+              7/24 WhatsApp destek.
             </p>
             <p className="inline-flex items-center gap-2 text-xs text-gold-300 bg-white/5 rounded-full px-3 py-1.5">
               <MessageCircle className="w-3.5 h-3.5" />
@@ -79,6 +80,8 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-gold-500 shrink-0" />
                 <a
                   href={contactInfo.whatsapp.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-white/60 hover:text-white transition-colors"
                 >
                   {contactInfo.phone.display} · 7/24 WhatsApp

@@ -31,6 +31,8 @@ interface RegistrationLead {
   city: string;
   program: string;
   format: string;
+  targetLevel?: string;
+  startPreference?: string;
   message?: string;
 }
 
@@ -59,7 +61,9 @@ E-posta: ${lead.email}
 Şehir: ${lead.city}
 İlgilendiği Program: ${lead.program}
 Eğitim Şekli: ${lead.format}
-Mesaj: ${lead.message || "—"}
+Hedef Seviye: ${lead.targetLevel || "Belirtilmedi"}
+Başlangıç Tercihi: ${lead.startPreference || "Belirtilmedi"}
+Ek Not: ${lead.message || "—"}
 
 ---
 Bu e-posta Zreducation web sitesi kayıt formundan otomatik gönderilmiştir.
@@ -77,7 +81,9 @@ Bu e-posta Zreducation web sitesi kayıt formundan otomatik gönderilmiştir.
           <p><strong>Şehir:</strong> ${lead.city}</p>
           <p><strong>İlgilendiği Program:</strong> ${lead.program}</p>
           <p><strong>Eğitim Şekli:</strong> ${lead.format}</p>
-          <p><strong>Mesaj:</strong> ${lead.message || "—"}</p>
+          <p><strong>Hedef Seviye:</strong> ${lead.targetLevel || "Belirtilmedi"}</p>
+          <p><strong>Başlangıç Tercihi:</strong> ${lead.startPreference || "Belirtilmedi"}</p>
+          <p><strong>Ek Not:</strong> ${lead.message || "—"}</p>
         </div>
       </div>
     `,

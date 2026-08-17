@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -12,6 +12,27 @@ import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 const inputClass =
   "w-full px-5 py-3 rounded-2xl border-0 bg-surface text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04)] focus:ring-4 focus:ring-gold-500/15 focus:outline-none";
 
+const programOptions = [
+  { value: "3-ayda-90-ders", label: "3 Ayda 90 Ders Yoğun Program" },
+  { value: "online-ingilizce", label: "Online İngilizce (Birebir / Grup)" },
+  { value: "yuz-yuze-ingilizce", label: "Yüz Yüze İngilizce (Denizli — Birebir / Grup)" },
+  { value: "sinav-hazirlik", label: "Sınav Hazırlık (IELTS/TOEFL/YDS)" },
+  { value: "ogrenci-paneli", label: "Öğrenci Paneli & Ders Kayıtları" },
+  { value: "yurt-disi", label: "Yurt Dışı Eğitim Danışmanlığı" },
+  { value: "diger", label: "Diğer" },
+];
+
+function readPaketParam(): string {
+  if (typeof window === "undefined") return "";
+  const params = new URLSearchParams(window.location.search);
+  const paket = params.get("paket");
+  if (!paket) return "";
+  const match = programOptions.find(
+    (o) => o.value === paket || o.value.startsWith(paket.split("-")[0])
+  );
+  return match ? match.value : "";
+}
+
 const initialForm = {
   name: "",
   email: "",
@@ -19,6 +40,8 @@ const initialForm = {
   city: "",
   program: "",
   format: "",
+  targetLevel: "",
+  startPreference: "",
   message: "",
 };
 
@@ -27,6 +50,20 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paket = params.get("paket");
+    const sehir = params.get("sehir");
+    // URL query parametreleri yalnızca istemci tarafında mevcuttur; başlangıç
+    // state'inin tek seferlik okunması bilinçli bir seçimdir.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setForm((prev) => ({
+      ...prev,
+      program: paket ? readPaketParam() : prev.program,
+      city: sehir || prev.city,
+    }));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,14 +195,16 @@ export default function ContactForm() {
               className="soft-card p-8 md:p-10"
             >
               <span className="badge-pill bg-gold-100 text-gold-700 mb-4">
-                Ücretsiz Ön Kayıt
+                Ücretsiz Kayıt Formu
               </span>
               <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
-                Kayıt Formu
+                Kayıt Başvurusu
               </h3>
               <p className="text-sm text-slate mb-6 leading-relaxed">
-                Bilgilerinizi bırakın, danışmanlarımız size en uygun programı
-                önermek için 7/24 WhatsApp veya arama ile size dönsün.
+                Kayıt formunu doldurun; danışmanlarımız size en uygun programı
+                önererek 7/24 WhatsApp veya arama ile sizinle iletişime
+                geçsin. Denizli&apos;de yaşıyorsanız yüz yüze görüşme için de
+                sizi kampüsümüze davet ederiz.
               </p>
 
               {submitted ? (
@@ -260,11 +299,11 @@ export default function ContactForm() {
                         className={inputClass}
                       >
                         <option value="">Seçiniz</option>
-                        <option value="online-ingilizce">Online İngilizce</option>
-                        <option value="yuz-yuze-ingilizce">Yüz Yüze İngilizce (Denizli)</option>
-                        <option value="sinav-hazirlik">Sınav Hazırlık (IELTS/TOEFL/YDS)</option>
-                        <option value="yurt-disi">Yurt Dışı Danışmanlık</option>
-                        <option value="diger">Diğer</option>
+                        {programOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <div>
@@ -285,12 +324,54 @@ export default function ContactForm() {
                       </select>
                     </div>
                   </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="label-caps text-slate block mb-2">
+                        Hedef Seviyeniz
+                      </label>
+                      <select
+                        value={form.targetLevel}
+                        onChange={(e) =>
+                          setForm({ ...form, targetLevel: e.target.value })
+                        }
+                        className={inputClass}
+                      >
+                        <option value="">Seçiniz</option>
+                        <option value="akici-konusma">Akıcı Konuşma (3 ayda 90 ders)</option>
+                        <option value="a1">A1 — Başlangıç</option>
+                        <option value="a2">A2 — Temel</option>
+                        <option value="b1">B1 — Orta Alt</option>
+                        <option value="b2">B2 — Orta Üst</option>
+                        <option value="c1">C1 — İleri</option>
+                        <option value="c2">C2 — Uzman</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="label-caps text-slate block mb-2">
+                        Ders Başlangıç Tercihi
+                      </label>
+                      <select
+                        value={form.startPreference}
+                        onChange={(e) =>
+                          setForm({ ...form, startPreference: e.target.value })
+                        }
+                        className={inputClass}
+                      >
+                        <option value="">Seçiniz</option>
+                        <option value="hemen">Hemen Başlamak İstiyorum</option>
+                        <option value="1-ay">1 Ay İçinde</option>
+                        <option value="daha-sonra">Daha Sonra</option>
+                        <option value="bilgi-aliyorum">Önce Bilgi Almak İstiyorum</option>
+                      </select>
+                    </div>
+                  </div>
                   <div>
                     <label className="label-caps text-slate block mb-2">
-                      Mesaj (opsiyonel)
+                      Eklemek İstedikleriniz (opsiyonel)
                     </label>
                     <textarea
                       rows={4}
+                      placeholder="Örn. Haftada kaç gün derse katılabilirsiniz, özel bir hedefiniz, daha önce İngilizce eğitimi aldınız mı?"
                       value={form.message}
                       onChange={(e) =>
                         setForm({ ...form, message: e.target.value })

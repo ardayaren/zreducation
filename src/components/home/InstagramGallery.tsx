@@ -17,7 +17,7 @@ export default function InstagramGallery() {
           <SectionTitle
             subtitle="Sosyal Medya"
             title="Zreducation Instagram"
-            description="Sınıflardan, konuşma kulübünden ve öğrenci başarılarından kareler."
+            description="Sınıflardan, konuşma kulübünden, reels videolarından ve öğrenci başarılarından kareler."
           />
           <Button
             href={contactInfo.instagram.href}
@@ -35,7 +35,7 @@ export default function InstagramGallery() {
           whileInView="visible"
           viewport={viewportOnce}
           variants={staggerContainer}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
         >
           {galleryItems.map((item) => (
             <motion.a
@@ -47,13 +47,24 @@ export default function InstagramGallery() {
               transition={transition.fast}
               className="group relative aspect-square rounded-2xl overflow-hidden gpu-layer"
             >
-              <Image
-                src={item.src}
-                alt={item.caption}
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-              />
+              {item.type === "video" ? (
+                <video
+                  src={item.src}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                />
+              ) : (
+                <Image
+                  src={item.src}
+                  alt={item.caption}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {item.type === "video" && (
                 <span className="absolute top-2 right-2 bg-navy-950/60 rounded-full p-1.5">

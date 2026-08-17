@@ -65,11 +65,16 @@ export default function Header() {
             className="hidden lg:flex items-center gap-6"
           >
             <a
-              href={contactInfo.phone.href}
+              href={contactInfo.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-slate hover:text-navy-900 transition-colors"
             >
               <Phone className="w-4 h-4 text-gold-600" />
               {contactInfo.phone.display}
+              <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
+                7/24 WhatsApp
+              </span>
             </a>
             <Button href="/seviye-tespit" size="sm">
               Seviye Tespit

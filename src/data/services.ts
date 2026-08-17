@@ -143,7 +143,7 @@ export const services: Service[] = [
     highlights: [
       { label: "Konum", value: "Denizli Merkez", tone: "neutral" },
       { label: "Sınıf Mevcudu", value: "Maks 8–10 Kişi", tone: "neutral" },
-      { label: "Saat", value: "Pzt–Cmt 09–19", tone: "gold" },
+      { label: "Erişim", value: "7/24 WhatsApp", tone: "gold" },
     ],
     href: "/egitimlerimiz#yuz-yuze",
   },
@@ -186,17 +186,55 @@ export const services: Service[] = [
     href: "/ingilizce-egitimi#sinav",
   },
   {
+    id: "ogrenci-paneli",
+    icon: Award,
+    title: "Öğrenci Paneli & Ders Kayıtları",
+    description:
+      "Ders kayıtları, devamsızlık, ödevler, kursun bitişine kalan süre ve her 4 haftada bir hazırlanan ilerleme raporları tek panelde.",
+    detailIntro:
+      "Eğitmenlerimiz her ders sonrası öğrencinin performansına dair not tutar. Bu notlar, dört beceri (Speaking, Listening, Reading, Writing) bazında her 4 haftada bir hazırlanan ilerleme raporunun temelini oluşturur. Öğrenciler tüm süreci öğrenci panelinden izler.",
+    details: [
+      "Öğrenci panelinde ders kayıtları, devamsızlık durumu, verilen ödevler ve kursun bitişine kalan süre anlık görünür.",
+      "Eğitmen notları her ders sonrası kaydedilir; her 4 haftada bir kapsamlı ilerleme raporu hazırlanır.",
+      "Devamsızlık takibi sayesinde düzenli katılım teşvik edilir; 8–10 kişilik gruplarda her öğrenci düzenli konuşma fırsatı yakalar.",
+    ],
+    features: [
+      {
+        title: "Ders Kayıtları",
+        text: "Katıldığınız ve izleyebileceğiniz tüm dersler tek panelde.",
+      },
+      {
+        title: "Devamsızlık Takibi",
+        text: "Devamsızlık durumunuzu anlık görün, düzenli katılım sağlayın.",
+      },
+      {
+        title: "Ödev & Raporlar",
+        text: "Ödevleriniz, teslimleriniz ve 4 haftalık gelişim raporlarınız.",
+      },
+      {
+        title: "Kalan Süre",
+        text: "Kursun bitişine kalan ders ve süre her an görünür.",
+      },
+    ],
+    highlights: [
+      { label: "Kapsam", value: "Tüm Programlar", tone: "neutral" },
+      { label: "Rapor", value: "4 Haftada Bir", tone: "gold" },
+      { label: "Erişim", value: "7/24", tone: "positive" },
+    ],
+    href: "/ogrenci-paneli",
+  },
+  {
     id: "yurt-disi",
     icon: Globe,
     title: "Yurt Dışı Eğitim Danışmanlığı",
     description:
       "İtalya ve Almanya üniversitelerinde eğitim almak isteyenlere Denizli merkezli danışmanlık. Öncelik her zaman doğru eğitim planı.",
     detailIntro:
-      "İtalya ve Almanya odaklı danışmanlığımızla önce doğru eğitim planını ve İngilizce/Almanca seviyenizi netleştiriyor, ardından lisans, yüksek lisans ve pathway başvurularınızı Denizli merkezimizden yönetiyoruz.",
+      "İtalya ve Almanya odaklı danışmanlığımızla önce doğru eğitim planını ve İngilizce/Almanca seviyenizi netleştiriyor, ardından lisans, yüksek lisans ve pathway başvurularınızı Denizli merkezimizden yönetiyoruz. Eğitim her zaman ön plandadır; dil hazırlığınız konuşma odaklı programlarımızla tamamlanır.",
     details: [
       "İlk görüşmede akademik geçmişiniz, eğitim hedefleriniz ve dil seviyeniz değerlendirilir. İtalya veya Almanya için kişisel eğitim ve program listesi hazırlanır.",
       "Motivasyon mektubu, CV ve referans belgeleriniz ülke formatına uygun hazırlanır. Uni-Assist, Uni-Italia ve universitaly.it süreçleri takip edilir.",
-      "Vize randevusu, blocked account, konaklama ve varış öncesi oryantasyon dahil uçtan uca destek sunulur.",
+      "Eğitim başvurunuzun en kritik bileşeni İngilizce seviyenizdir; bu yüzden konuşma odaklı İngilizce/Almanca hazırlık programlarımız danışmanlığın merkezine yerleştirilir.",
     ],
     features: [
       {
@@ -218,9 +256,8 @@ export const services: Service[] = [
     ],
     highlights: [
       { label: "Ülke", value: "İtalya & Almanya", tone: "neutral" },
-      { label: "Partner Üniversite", value: "40+", tone: "positive" },
+      { label: "Öncelik", value: "Eğitim & Dil", tone: "gold" },
       { label: "İlk Tercih Yerleşme", value: "%87", tone: "positive" },
-      { label: "Danışmanlık", value: "Ücretsiz", tone: "gold" },
     ],
     href: "/yurt-disi",
   },

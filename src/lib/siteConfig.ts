@@ -9,7 +9,7 @@ export const siteConfig = {
   locale: "tr_TR",
   phone: "+905334137030",
   email: "info@zreducation.com",
-  address: "Kınıklı, 6017. Sk. No:11, 20160 Denizli Merkez/Denizli",
+  address: "Kınıklı, 6020. Sk. No:31, 20160 Denizli Merkez/Denizli",
 };
 
 export const defaultMetadata: Metadata = {

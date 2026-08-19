@@ -1,8 +1,8 @@
 export const contactInfo = {
   address: {
-    line1: "Kınıklı, 6017. Sk. No:11",
+    line1: "Kınıklı, 6020. Sk. No:31",
     line2: "20160 Denizli Merkez / Denizli",
-    full: "Kınıklı, 6017. Sk. No:11, 20160 Denizli Merkez/Denizli",
+    full: "Kınıklı, 6020. Sk. No:31, 20160 Denizli Merkez/Denizli",
   },
   phone: {
     display: "+90 533 413 70 30",
@@ -23,9 +23,9 @@ export const contactInfo = {
   },
   maps: {
     embedUrl:
-      "https://maps.google.com/maps?q=K%C4%B1n%C4%B1kl%C4%B1,+6017.+Sk.+No%3A11,+20160+Denizli+Merkez%2FDenizli&hl=tr&z=16&output=embed",
+      "https://maps.google.com/maps?q=K%C4%B1n%C4%B1kl%C4%B1,+6020.+Sk.+No%3A31,+20160+Denizli+Merkez%2FDenizli&hl=tr&z=16&output=embed",
     openUrl:
-      "https://www.google.com/maps/search/?api=1&query=K%C4%B1n%C4%B1kl%C4%B1,+6017.+Sk.+No%3A11,+20160+Denizli+Merkez%2FDenizli",
+      "https://www.google.com/maps/search/?api=1&query=K%C4%B1n%C4%B1kl%C4%B1,+6020.+Sk.+No%3A31,+20160+Denizli+Merkez%2FDenizli",
   },
   hours: {
     office: "7/24 Erişilebilir — bilgi ve sorularınız için her an bize ulaşabilirsiniz",

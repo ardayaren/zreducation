@@ -195,7 +195,7 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
           title: "Denizli Kınıklı Merkez Kampüs",
           summary: "Denizli Merkez — ulaşımı kolay eğitim merkezi.",
           content:
-            "Kınıklı, 6017. Sk. No:11 adresindeki merkezimiz 8 derslik, kütüphane, konuşma lounge ve danışmanlık ofislerinden oluşur. Pzt–Cmt 09:00–19:00 açıktır.",
+            "Kınıklı, 6020. Sk. No:31 adresindeki merkezimiz 8 derslik, kütüphane, konuşma lounge ve danışmanlık ofislerinden oluşur. Pzt–Cmt 09:00–19:00 açıktır.",
           bullets: [
             "Denizli merkeze kolay ulaşım",
             "Ücretsiz çay–kahve ve çalışma alanı",

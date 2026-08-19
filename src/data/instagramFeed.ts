@@ -24,4 +24,4 @@ export const instagramFeedPosts: InstagramFeedPost[] = [
   // },
 ];
 
-export const instagramProfileUrl = "https://www.instagram.com/zreducation";
+export const instagramProfileUrl = "https://www.instagram.com/zreducationn";

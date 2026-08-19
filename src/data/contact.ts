@@ -18,8 +18,8 @@ export const contactInfo = {
     href: "mailto:info@zreducation.com",
   },
   instagram: {
-    handle: "@zreducation",
-    href: "https://www.instagram.com/zreducation",
+    handle: "@zreducationn",
+    href: "https://www.instagram.com/zreducationn",
   },
   maps: {
     embedUrl:

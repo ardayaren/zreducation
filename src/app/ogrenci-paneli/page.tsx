@@ -8,6 +8,8 @@ import {
   LineChart,
   BookOpenCheck,
   UserCheck,
+  ExternalLink,
+  MessageCircle,
 } from "lucide-react";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -15,11 +17,12 @@ import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import StudentPanelDemo from "@/components/panel/StudentPanelDemo";
+import { contactInfo } from "@/data/contact";
 
 export const metadata: Metadata = {
   title: "Öğrenci Paneli & Ders Kayıtları",
   description:
-    "Zreducation öğrenci paneli — ders kayıtlarınız, devamsızlık durumunuz, ödevleriniz, kursun bitiş süresi ve her 4 haftada bir hazırlanan ilerleme raporları. Eğitmenlerin her ders sonrası tuttuğu notları tek panelden görün.",
+    "Zreducation öğrenci paneli — ders kayıtlarınız, devamsızlık durumunuz, ödevleriniz, kursun bitiş süresi ve her 4 haftada bir hazırlanan ilerleme raporları. Panel Yöntek üzerinde çalışır; kişisel giriş kodunuz WhatsApp'tan paylaşılır.",
 };
 
 const features = [
@@ -63,16 +66,82 @@ export default function OgrenciPaneliPage() {
           Öğrencilerimiz ders kayıtları, devamsızlık, ödevler ve kursun
           bitişine kalan süreyi öğrenci panelinden takip eder. Eğitmenlerimiz
           her ders sonrası not tutar, her 4 haftada bir kapsamlı ilerleme
-          raporu hazırlanır.
+          raporu hazırlanır. Paneliniz Yöntek üzerinde çalışır; kişisel giriş
+          kodunuz WhatsApp&apos;tan paylaşılır.
         </p>
       </PageHero>
+
+      <section className="py-16 md:py-20 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="surface-navy navy-panel p-8 md:p-12 relative overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative flex flex-col lg:flex-row lg:items-center gap-8">
+                <div className="flex-1">
+                  <span className="badge-pill bg-white/10 text-gold-300 mb-4 inline-flex items-center gap-1.5">
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    Yöntek Platformu
+                  </span>
+                  <h2 className="font-heading-normal text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+                    Öğrenci Paneliniz Yöntek&apos;te
+                  </h2>
+                  <p className="text-white/65 text-sm md:text-base leading-relaxed max-w-xl">
+                    Ders kayıtlarınız, devamsızlık, ödevler ve 4 haftalık
+                    ilerleme raporlarınız tek panelde — Yöntek üzerinde.
+                    Kişisel giriş kodunuz kayıt sırasında WhatsApp&apos;tan
+                    paylaşılır.
+                  </p>
+                  <ol className="mt-6 space-y-3">
+                    {[
+                      "WhatsApp hattımızdan kişisel giriş kodunuzu isteyin",
+                      `${contactInfo.studentPanel.display} adresine gidin`,
+                      "Kodunuzla giriş yapın, tüm gelişiminizi takip edin",
+                    ].map((step, i) => (
+                      <li
+                        key={step}
+                        className="flex items-start gap-3 text-sm text-white/75"
+                      >
+                        <span className="w-7 h-7 shrink-0 rounded-full bg-gold-500 text-navy-950 flex items-center justify-center text-xs font-bold">
+                          {i + 1}
+                        </span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <div className="shrink-0 lg:text-right space-y-3">
+                  <Button
+                    href={contactInfo.studentPanel.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    size="lg"
+                    className="w-full lg:w-auto"
+                  >
+                    Panele Git
+                    <ExternalLink className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    href={contactInfo.whatsapp.href}
+                    variant="outline"
+                    size="lg"
+                    className="border-white/30 text-white hover:bg-white hover:text-navy-900 hover:border-white w-full lg:w-auto"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Kod Al — WhatsApp
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
 
       <section className="py-16 md:py-20 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Panelin İçi"
             title="Öğrenci Panelinde Neler Var?"
-            description="Ders kayıtları, devamsızlık, ödevler, 4 haftalık ilerleme raporu ve eğitmen notları — hepsi tek panelde. Aşağıdaki örnek görünüm panelin içeriğini gösterir."
+            description="Ders kayıtları, devamsızlık, ödevler, 4 haftalık ilerleme raporu ve eğitmen notları — hepsi tek panelde (Yöntek). Aşağıdaki örnek görünüm panelin içeriğini gösterir."
           />
           <StudentPanelDemo />
         </div>
@@ -111,16 +180,24 @@ export default function OgrenciPaneliPage() {
                     Panele nasıl erişiyorum?
                   </h3>
                   <p className="text-sm text-slate max-w-2xl">
-                    Kayıt olduğunuzda kişisel bağlantınız WhatsApp üzerinden
-                    paylaşılır. Kurs sonuna kadar tüm ders kayıtlarınız ve
-                    raporlarınız tek adresten erişilebilir olur.
+                    Kayıt olduğunuzda kişisel giriş kodunuz WhatsApp üzerinden
+                    paylaşılır. {contactInfo.studentPanel.display} adresine
+                    gidip kodunuzla giriş yaparak ders kayıtlarınızı ve
+                    raporlarınızı takip edersiniz.
                   </p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 shrink-0">
-                <Button href="/iletisim">Kayıt Ol</Button>
-                <Button href="/seviye-tespit" variant="outline">
-                  Seviye Tespit
+                <Button
+                  href={contactInfo.studentPanel.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Panele Git
+                  <ExternalLink className="w-4 h-4" />
+                </Button>
+                <Button href="/iletisim" variant="outline">
+                  Kayıt Ol
                 </Button>
               </div>
             </div>

@@ -10,6 +10,8 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit";
   disabled?: boolean;
+  target?: string;
+  rel?: string;
 }
 
 const variants = {
@@ -37,12 +39,14 @@ export default function Button({
   className = "",
   type = "button",
   disabled = false,
+  target,
+  rel,
 }: ButtonProps) {
   const classes = `inline-flex items-center justify-center gap-2 transition-transform duration-200 ease-out ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed hover:translate-y-0" : ""}`;
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} target={target} rel={rel}>
         {children}
       </Link>
     );

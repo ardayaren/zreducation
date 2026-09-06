@@ -14,9 +14,11 @@ import {
   XCircle,
   Clock,
   FileText,
+  ExternalLink,
 } from "lucide-react";
 import { transition } from "@/lib/motion";
 import Button from "@/components/ui/Button";
+import { contactInfo } from "@/data/contact";
 
 type TabKey = "genel" | "dersler" | "devamsizlik" | "odevler" | "rapor" | "notlar";
 
@@ -446,13 +448,23 @@ export default function StudentPanelDemo() {
       <div className="p-5 md:p-8 bg-surface/60 border-t border-border">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-sm text-slate leading-relaxed max-w-2xl">
-            Bu ekran bir <span className="font-semibold text-navy-900">örnek panel
-            görünümüdür</span>. Kayıt olduğunuzda kişisel bağlantınız WhatsApp
-            üzerinden paylaşılır ve ders kayıtlarınız, raporlarınız tek adresten
-            takip edilebilir.
+            Bu ekran bir <span className="font-semibold text-navy-900">örnek
+            panel görünümüdür</span>. Gerçek öğrenci paneliniz{" "}
+            <span className="font-semibold text-navy-900">
+              {contactInfo.studentPanel.name}
+            </span>{" "}
+            platformu üzerinde çalışır; kişisel giriş kodunuz WhatsApp
+            üzerinden paylaşılır.
           </p>
-          <Button href="/iletisim" size="sm">
-            Kayıt Ol
+          <Button
+            href={contactInfo.studentPanel.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="sm"
+            className="shrink-0"
+          >
+            Panele Git
+            <ExternalLink className="w-4 h-4" />
           </Button>
         </div>
       </div>

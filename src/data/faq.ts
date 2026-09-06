@@ -65,7 +65,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Öğrenci paneli nedir ve öğrenciler gelişimini nasıl takip eder?",
         answer:
-          "Öğrenci panelinde ders kayıtları, devamsızlık durumu, verilen ödevler ve kursun bitişine kalan süre listelenir. Eğitmenlerimiz her ders sonrası not tutar; her 4 haftada bir dört beceri (Speaking, Listening, Reading, Writing) bazında hazırlanan ilerleme raporu panele yüklenir.",
+          "Öğrenci panelinde ders kayıtları, devamsızlık durumu, verilen ödevler ve kursun bitişine kalan süre listelenir. Eğitmenlerimiz her ders sonrası not tutar; her 4 haftada bir dört beceri (Speaking, Listening, Reading, Writing) bazında hazırlanan ilerleme raporu panele yüklenir. Paneliniz Yöntek platformu üzerinde çalışır; kişisel giriş kodunuz kayıt sırasında WhatsApp üzerinden paylaşılır.",
       },
       {
         question: "Kurs fiyatları ve güncel kampanyaları nasıl öğrenirim?",

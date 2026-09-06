@@ -21,6 +21,11 @@ export const contactInfo = {
     handle: "@zreducationn",
     href: "https://www.instagram.com/zreducationn",
   },
+  studentPanel: {
+    name: "Yöntek",
+    url: "https://yöntek.com",
+    display: "yöntek.com",
+  },
   maps: {
     embedUrl:
       "https://maps.google.com/maps?q=K%C4%B1n%C4%B1kl%C4%B1,+6020.+Sk.+No%3A31,+20160+Denizli+Merkez%2FDenizli&hl=tr&z=16&output=embed",

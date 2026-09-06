@@ -192,7 +192,7 @@ export const services: Service[] = [
     description:
       "Ders kayıtları, devamsızlık, ödevler, kursun bitişine kalan süre ve her 4 haftada bir hazırlanan ilerleme raporları tek panelde.",
     detailIntro:
-      "Eğitmenlerimiz her ders sonrası öğrencinin performansına dair not tutar. Bu notlar, dört beceri (Speaking, Listening, Reading, Writing) bazında her 4 haftada bir hazırlanan ilerleme raporunun temelini oluşturur. Öğrenciler tüm süreci öğrenci panelinden izler.",
+      "Eğitmenlerimiz her ders sonrası öğrencinin performansına dair not tutar. Bu notlar, dört beceri (Speaking, Listening, Reading, Writing) bazında her 4 haftada bir hazırlanan ilerleme raporunun temelini oluşturur. Öğrenciler tüm süreci öğrenci panelinden izler; panel Yöntek platformu üzerinde çalışır ve öğrenciler kişisel giriş kodlarıyla erişir.",
     details: [
       "Öğrenci panelinde ders kayıtları, devamsızlık durumu, verilen ödevler ve kursun bitişine kalan süre anlık görünür.",
       "Eğitmen notları her ders sonrası kaydedilir; her 4 haftada bir kapsamlı ilerleme raporu hazırlanır.",

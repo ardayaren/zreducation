@@ -62,7 +62,7 @@ body {
   background: var(--white);
   color: var(--navy-700);
   font-family: var(--font-source), system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   letter-spacing: 0.005em;
   -webkit-font-smoothing: antialiased;
@@ -291,7 +291,7 @@ body {
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
   font-family: var(--font-jakarta), system-ui, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -299,7 +299,7 @@ body {
 
 .label-caps {
   font-family: var(--font-jakarta), system-ui, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;

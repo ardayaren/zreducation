@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -10,6 +10,11 @@ import {
   Mail,
   Calendar,
   Loader2,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  MinusCircle,
+  AlertTriangle,
 } from "lucide-react";
 import {
   placementQuestions,
@@ -30,17 +35,27 @@ import Button from "@/components/ui/Button";
 import { contactInfo } from "@/data/contact";
 import SpeakingBookingCard from "@/components/test/SpeakingBookingCard";
 
+const TEST_DURATION_SECONDS = 30 * 60;
+
 const inputClass =
-  "w-full px-5 py-3.5 rounded-3xl border-0 bg-white/90 text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04),0_2px_12px_rgba(14,34,64,0.04)] transition-all duration-200 focus:ring-4 focus:ring-gold-500/20 focus:outline-none placeholder:text-slate-light";
+  "w-full px-5 py-4 rounded-3xl border-0 bg-white/90 text-base shadow-[inset_0_1px_2px_rgba(14,34,64,0.04),0_2px_12px_rgba(14,34,64,0.04)] transition-all duration-200 focus:ring-4 focus:ring-gold-500/20 focus:outline-none placeholder:text-slate-light";
 
 const optionSpring = { type: "spring" as const, stiffness: 400, damping: 28 };
 
 type Step = "info" | "test" | "result";
 
+type DetailFilter = "all" | "correct" | "wrong" | "blank";
+
 interface UserInfo {
   name: string;
   email: string;
   phone: string;
+}
+
+function formatTime(totalSeconds: number) {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 function renderPassage(passage: string) {
@@ -50,14 +65,17 @@ function renderPassage(passage: string) {
       const speaker = line.slice(0, colonIndex);
       const text = line.slice(colonIndex + 1).trim();
       return (
-        <p key={index} className="text-sm md:text-base leading-relaxed">
+        <p key={index} className="text-[15px] md:text-base leading-relaxed">
           <span className="font-semibold text-navy-900">{speaker}:</span>{" "}
           <span className="text-navy-700">{text}</span>
         </p>
       );
     }
     return (
-      <p key={index} className="text-sm md:text-base text-navy-700 leading-relaxed">
+      <p
+        key={index}
+        className="text-[15px] md:text-base text-navy-700 leading-relaxed"
+      >
         {line}
       </p>
     );
@@ -76,6 +94,11 @@ export default function PlacementTest() {
   const [result, setResult] = useState<TestResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [timeLeft, setTimeLeft] = useState(TEST_DURATION_SECONDS);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [timeUp, setTimeUp] = useState(false);
+  const autoSubmittedRef = useRef(false);
+  const submittingRef = useRef(false);
 
   const question = placementQuestions[currentQuestion];
   const hubInfo = hubLevelConfig[question.hubLevel];
@@ -92,6 +115,7 @@ export default function PlacementTest() {
       return;
     }
     setError("");
+    setTimeLeft(TEST_DURATION_SECONDS);
     setStep("test");
   };
 
@@ -103,20 +127,10 @@ export default function PlacementTest() {
     setAnswers((prev) => ({ ...prev, [question.id]: BLANK_ANSWER }));
   };
 
-  const submitTest = async () => {
-    if (!hasMinimumAnswers(answers)) {
-      setError("Sınavı bitirmek için en az 1 soru cevaplamanız yeterlidir.");
-      return;
-    }
-
-    const remaining = placementQuestions.length - markedCount;
-    if (remaining > 0) {
-      const confirmed = window.confirm(
-        `${realAnswerCount} soru cevapladınız, ${remaining} soru henüz işaretlenmedi. Sınavı yine de bitirmek istiyor musunuz?`
-      );
-      if (!confirmed) return;
-    }
-
+  const doSubmit = async () => {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setShowConfirm(false);
     setLoading(true);
     setError("");
 
@@ -139,8 +153,43 @@ export default function PlacementTest() {
       setError(err instanceof Error ? err.message : "Bir hata oluştu");
     } finally {
       setLoading(false);
+      submittingRef.current = false;
     }
   };
+
+  const submitTest = (force = false) => {
+    if (!hasMinimumAnswers(answers)) {
+      setError("Sınavı bitirmek için en az 1 soru cevaplamanız yeterlidir.");
+      return;
+    }
+
+    const remaining = placementQuestions.length - markedCount;
+    if (remaining > 0 && !force) {
+      setShowConfirm(true);
+      return;
+    }
+
+    void doSubmit();
+  };
+
+  useEffect(() => {
+    if (step !== "test") return;
+
+    if (timeLeft <= 0) {
+      if (!autoSubmittedRef.current) {
+        autoSubmittedRef.current = true;
+        setTimeUp(true);
+        void doSubmit();
+      }
+      return;
+    }
+
+    const timer = setTimeout(() => setTimeLeft((s) => s - 1), 1000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, step]);
+
+  const timerLow = timeLeft <= 5 * 60 && timeLeft > 0;
 
   const renderStep = () => {
     if (step === "info") {
@@ -153,9 +202,11 @@ export default function PlacementTest() {
             <h2 className="font-heading-normal text-2xl font-bold text-navy-900 mb-2">
               Sınava Başlamadan Önce
             </h2>
-            <p className="text-slate text-sm mb-8 leading-relaxed">
+            <p className="text-slate text-sm md:text-base mb-8 leading-relaxed">
               Bilgilerinizi girin ve 70 soruluk Language Hub seviye tespit
-              sınavına başlayın.
+              sınavına başlayın. Sınavınız için{" "}
+              <span className="font-semibold text-navy-900">30 dakika</span>{" "}
+              süreniz var; süre dolunca sınav otomatik teslim edilir.
             </p>
 
             <form onSubmit={handleInfoSubmit} className="space-y-5">
@@ -203,7 +254,7 @@ export default function PlacementTest() {
               </div>
 
               {error && (
-                <p className="text-red-600 text-xs bg-red-50/80 rounded-3xl px-5 py-3">
+                <p className="text-red-600 text-sm bg-red-50/80 rounded-3xl px-5 py-3">
                   {error}
                 </p>
               )}
@@ -213,7 +264,7 @@ export default function PlacementTest() {
               </Button>
             </form>
 
-            <p className="text-xs text-slate-light mt-6 pt-4 leading-relaxed">
+            <p className="text-xs md:text-sm text-slate-light mt-6 pt-4 leading-relaxed">
               70 soruluk Language Hub testi. Tüm soruları çözmeniz gerekmez;
               istediğiniz zaman &quot;Sınavı Bitir&quot; ile erken
               tamamlayabilirsiniz. Seviye, barem kurallarına göre belirlenir
@@ -228,9 +279,20 @@ export default function PlacementTest() {
       return (
         <div className="max-w-3xl mx-auto">
           <div className="soft-card mb-6 p-5 md:p-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-4 gap-3 flex-wrap">
               <span className="badge-pill bg-gradient-to-r from-navy-700 to-navy-900 text-white shadow-sm">
                 Soru {currentQuestion + 1} / {placementQuestions.length}
+              </span>
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-bold tabular-nums ${
+                  timerLow
+                    ? "bg-red-50 text-red-600 border border-red-200 animate-pulse"
+                    : "bg-surface text-navy-800"
+                }`}
+              >
+                <Clock className="w-4 h-4" />
+                {formatTime(timeLeft)}
+                {timeUp && " · Süre Doldu"}
               </span>
               <span className="text-sm text-slate">
                 <span className="font-semibold text-navy-900">
@@ -265,13 +327,13 @@ export default function PlacementTest() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.99 }}
               transition={transition.fast}
-              className="soft-card p-8 md:p-10"
+              className="soft-card p-6 md:p-10"
             >
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 <span className="badge-pill bg-gradient-to-r from-gold-600 to-gold-500 text-white shadow-sm">
                   {hubInfo.label}
                 </span>
-                <span className="text-xs text-slate-light bg-surface px-3 py-1 rounded-full">
+                <span className="text-xs md:text-sm text-slate-light bg-surface px-3 py-1 rounded-full">
                   {hubInfo.labelTr} · {hubInfo.cefr} · Soru {hubInfo.itemRange}
                 </span>
               </div>
@@ -292,14 +354,14 @@ export default function PlacementTest() {
                       whileHover={{ scale: isSelected ? 1 : 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => selectAnswer(option.key)}
-                      className={`w-full flex items-center gap-4 p-4 rounded-3xl text-left transition-all duration-300 ${
+                      className={`w-full flex items-center gap-4 p-4 md:p-5 rounded-3xl text-left transition-all duration-300 min-h-[64px] ${
                         isSelected
                           ? "bg-gradient-to-r from-gold-100/90 to-gold-50 shadow-[0_6px_24px_rgba(201,168,58,0.18)]"
                           : "bg-white/80 hover:bg-white shadow-[0_2px_12px_rgba(14,34,64,0.05)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.08)]"
                       }`}
                     >
                       <span
-                        className={`w-11 h-11 flex items-center justify-center text-sm font-bold shrink-0 rounded-2xl transition-all duration-300 ${
+                        className={`w-11 h-11 md:w-12 md:h-12 flex items-center justify-center text-sm md:text-base font-bold shrink-0 rounded-2xl transition-all duration-300 ${
                           isSelected
                             ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md"
                             : "bg-surface text-slate"
@@ -308,7 +370,7 @@ export default function PlacementTest() {
                         {option.key}
                       </span>
                       <span
-                        className={`text-sm ${
+                        className={`text-[15px] md:text-base leading-relaxed ${
                           isSelected
                             ? "text-navy-900 font-medium"
                             : "text-navy-700"
@@ -322,18 +384,21 @@ export default function PlacementTest() {
                 <motion.button
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: question.options.length * 0.04, ...optionSpring }}
+                  transition={{
+                    delay: question.options.length * 0.04,
+                    ...optionSpring,
+                  }}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={selectBlank}
-                  className={`w-full flex items-center gap-4 p-4 rounded-3xl text-left transition-all duration-300 ${
+                  className={`w-full flex items-center gap-4 p-4 md:p-5 rounded-3xl text-left transition-all duration-300 min-h-[64px] ${
                     isBlankAnswer(answers[question.id])
                       ? "bg-slate-100/80 shadow-[0_4px_16px_rgba(14,34,64,0.06)]"
                       : "bg-white/80 hover:bg-white shadow-[0_2px_12px_rgba(14,34,64,0.05)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.08)]"
                   }`}
                 >
                   <span
-                    className={`w-11 h-11 flex items-center justify-center text-sm font-bold shrink-0 rounded-2xl ${
+                    className={`w-11 h-11 md:w-12 md:h-12 flex items-center justify-center text-sm md:text-base font-bold shrink-0 rounded-2xl ${
                       isBlankAnswer(answers[question.id])
                         ? "bg-slate-500 text-white"
                         : "bg-surface text-slate"
@@ -342,7 +407,7 @@ export default function PlacementTest() {
                     —
                   </span>
                   <span
-                    className={`text-sm ${
+                    className={`text-[15px] md:text-base ${
                       isBlankAnswer(answers[question.id])
                         ? "text-navy-900 font-medium"
                         : "text-slate"
@@ -356,90 +421,145 @@ export default function PlacementTest() {
           </AnimatePresence>
 
           {error && (
-            <p className="text-red-600 text-xs mt-4 bg-red-50/80 rounded-3xl px-5 py-3">
+            <p className="text-red-600 text-sm mt-4 bg-red-50/80 rounded-3xl px-5 py-3">
               {error}
             </p>
           )}
 
-          <div className="flex flex-col sm:flex-row justify-between mt-6 gap-3">
-            <Button
-              variant="secondary"
-              onClick={() => setCurrentQuestion((c) => Math.max(0, c - 1))}
-              disabled={currentQuestion === 0}
-            >
-              <ChevronLeft className="w-4 h-4" />
-              Önceki
-            </Button>
-
-            <div className="flex flex-wrap gap-2 sm:justify-end">
+          <div className="sticky bottom-2 z-30 mt-6">
+            <div className="flex flex-col sm:flex-row justify-between gap-3 p-3 sm:p-4 rounded-3xl bg-white/90 backdrop-blur-md border border-border/60 shadow-[0_8px_32px_rgba(14,34,64,0.12)]">
               <Button
-                variant="outline"
-                onClick={submitTest}
-                disabled={loading}
+                variant="secondary"
+                onClick={() => setCurrentQuestion((c) => Math.max(0, c - 1))}
+                disabled={currentQuestion === 0}
               >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Gönderiliyor
-                  </>
-                ) : (
-                  "Sınavı Bitir"
-                )}
+                <ChevronLeft className="w-4 h-4" />
+                Önceki
               </Button>
 
-              {currentQuestion < placementQuestions.length - 1 ? (
+              <div className="flex flex-wrap gap-2 sm:justify-end">
                 <Button
-                  onClick={() =>
-                    setCurrentQuestion((c) =>
-                      Math.min(placementQuestions.length - 1, c + 1)
-                    )
-                  }
+                  variant="outline"
+                  onClick={() => submitTest(false)}
+                  disabled={loading}
                 >
-                  Sonraki
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              ) : (
-                <Button onClick={submitTest} disabled={loading}>
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
                       Gönderiliyor
                     </>
                   ) : (
-                    "Sonuçları Gör"
+                    "Sınavı Bitir"
                   )}
                 </Button>
-              )}
+
+                {currentQuestion < placementQuestions.length - 1 ? (
+                  <Button
+                    onClick={() =>
+                      setCurrentQuestion((c) =>
+                        Math.min(placementQuestions.length - 1, c + 1)
+                      )
+                    }
+                  >
+                    Sonraki
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                ) : (
+                  <Button onClick={() => submitTest(false)} disabled={loading}>
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Gönderiliyor
+                      </>
+                    ) : (
+                      "Sonuçları Gör"
+                    )}
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
 
-          <div className="soft-card mt-6 p-5 rounded-3xl">
+          <div className="soft-card mt-4 p-5 rounded-3xl">
             <p className="label-caps text-slate-light mb-3">Soru Haritası</p>
-            <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto">
-            {placementQuestions.map((q, i) => {
-              const answered = isQuestionAnswered(answers, q.id);
-              const blank = isBlankAnswer(answers[q.id]);
+            <div className="flex flex-wrap gap-1.5 md:gap-2 max-h-44 overflow-y-auto">
+              {placementQuestions.map((q, i) => {
+                const answered = isQuestionAnswered(answers, q.id);
+                const blank = isBlankAnswer(answers[q.id]);
 
-              return (
-              <button
-                key={q.id}
-                onClick={() => setCurrentQuestion(i)}
-                className={`w-7 h-7 text-[9px] font-semibold rounded-full transition-all duration-200 ${
-                  i === currentQuestion
-                    ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md scale-110"
-                    : answered && blank
-                      ? "bg-slate-300 text-white hover:bg-slate-400"
-                      : answered
-                        ? "bg-navy-800 text-white hover:bg-navy-700"
-                        : "bg-surface text-slate hover:bg-gold-100 hover:text-gold-700"
-                }`}
-              >
-                {i + 1}
-              </button>
-            );
-            })}
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => setCurrentQuestion(i)}
+                    className={`w-9 h-9 md:w-10 md:h-10 text-xs md:text-sm font-semibold rounded-full transition-all duration-200 ${
+                      i === currentQuestion
+                        ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md scale-110"
+                        : answered && blank
+                          ? "bg-slate-300 text-white hover:bg-slate-400"
+                          : answered
+                            ? "bg-navy-800 text-white hover:bg-navy-700"
+                            : "bg-surface text-slate hover:bg-gold-100 hover:text-gold-700"
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                );
+              })}
             </div>
           </div>
+
+          <AnimatePresence>
+            {showConfirm && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[70] bg-navy-950/60 backdrop-blur-sm flex items-center justify-center p-4"
+                onClick={() => setShowConfirm(false)}
+              >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: 12 }}
+                  transition={transition.fast}
+                  onClick={(e) => e.stopPropagation()}
+                  className="soft-card w-full max-w-md p-8 text-center"
+                >
+                  <span className="w-14 h-14 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center mx-auto mb-4">
+                    <AlertTriangle className="w-7 h-7" />
+                  </span>
+                  <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
+                    Sınavı bitirmek istiyor musunuz?
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed mb-6">
+                    {realAnswerCount} soru cevapladınız,{" "}
+                    {placementQuestions.length - markedCount} soru henüz
+                    işaretlenmedi. Yine de sınavı bitirmek istiyor musunuz?
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      variant="outline"
+                      className="flex-1"
+                      onClick={() => setShowConfirm(false)}
+                    >
+                      Devam Et
+                    </Button>
+                    <Button
+                      className="flex-1"
+                      onClick={() => submitTest(true)}
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        "Sınavı Bitir"
+                      )}
+                    </Button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       );
     }
@@ -482,7 +602,7 @@ export default function PlacementTest() {
             </div>
           </div>
 
-          <div className="p-8 md:p-10">
+          <div className="p-6 md:p-10">
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
               {[
                 { label: "Doğru", value: result.correctAnswers, color: "from-emerald-500/10 to-emerald-500/5 text-emerald-700" },
@@ -551,7 +671,7 @@ export default function PlacementTest() {
                       transition={{ delay: i * 0.05, ...optionSpring }}
                       className="flex items-center gap-3 text-sm rounded-3xl bg-surface/60 p-4 shadow-sm"
                     >
-                      <span className="w-32 shrink-0 font-medium text-navy-900 text-xs sm:text-sm">
+                      <span className="w-28 md:w-32 shrink-0 font-medium text-navy-900 text-xs sm:text-sm">
                         {data.label}
                       </span>
                       <div className="flex-1 progress-track h-2">
@@ -570,6 +690,8 @@ export default function PlacementTest() {
                 })}
               </div>
             </div>
+
+            <QuestionDetailReview answers={answers} />
 
             <div className="rounded-3xl bg-gradient-to-br from-gold-50/80 to-white p-6 mb-8 shadow-sm">
               <h3 className="label-caps text-gold-600 mb-2">Program Önerisi</h3>
@@ -630,5 +752,138 @@ export default function PlacementTest() {
         {renderStep()}
       </motion.div>
     </AnimatePresence>
+  );
+}
+
+function QuestionDetailReview({ answers }: { answers: Record<number, string> }) {
+  const [filter, setFilter] = useState<DetailFilter>("all");
+
+  const items = placementQuestions.map((q) => {
+    const userAnswer = answers[q.id];
+    const blank = userAnswer === undefined || isBlankAnswer(userAnswer);
+    const correct = !blank && userAnswer === q.correctAnswer;
+    return { q, userAnswer, blank, correct };
+  });
+
+  const counts = {
+    all: items.length,
+    correct: items.filter((i) => i.correct).length,
+    wrong: items.filter((i) => !i.blank && !i.correct).length,
+    blank: items.filter((i) => i.blank).length,
+  };
+
+  const visibleItems = items.filter((i) => {
+    if (filter === "correct") return i.correct;
+    if (filter === "wrong") return !i.blank && !i.correct;
+    if (filter === "blank") return i.blank;
+    return true;
+  });
+
+  const filters: { key: DetailFilter; label: string }[] = [
+    { key: "all", label: "Tümü" },
+    { key: "correct", label: "Doğru" },
+    { key: "wrong", label: "Yanlış" },
+    { key: "blank", label: "Boş" },
+  ];
+
+  return (
+    <div className="mb-8">
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+        <h3 className="label-caps text-gold-600">Soru Detayı</h3>
+        <div className="flex gap-1.5 flex-wrap">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                filter === f.key
+                  ? "bg-navy-900 text-white"
+                  : "bg-surface text-slate hover:bg-gold-100 hover:text-gold-700"
+              }`}
+            >
+              {f.label} ({counts[f.key]})
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-h-[420px] overflow-y-auto space-y-2 pr-1">
+        {visibleItems.length === 0 ? (
+          <p className="text-sm text-slate-light bg-surface rounded-2xl px-5 py-4">
+            Bu filtrelere uygun soru bulunamadı.
+          </p>
+        ) : (
+          visibleItems.map(({ q, userAnswer, blank, correct }) => {
+            const userOption = q.options.find((o) => o.key === userAnswer);
+            const correctOption = q.options.find(
+              (o) => o.key === q.correctAnswer
+            );
+            return (
+              <div
+                key={q.id}
+                className={`flex items-start gap-3 rounded-2xl border px-4 py-3 ${
+                  blank
+                    ? "bg-surface border-border"
+                    : correct
+                      ? "bg-emerald-50/70 border-emerald-200"
+                      : "bg-red-50/70 border-red-200"
+                }`}
+              >
+                <span
+                  className={`w-8 h-8 md:w-9 md:h-9 shrink-0 rounded-full flex items-center justify-center ${
+                    blank
+                      ? "bg-slate-300 text-white"
+                      : correct
+                        ? "bg-emerald-500 text-white"
+                        : "bg-red-500 text-white"
+                  }`}
+                >
+                  {blank ? (
+                    <MinusCircle className="w-4 h-4" />
+                  ) : correct ? (
+                    <CheckCircle2 className="w-4 h-4" />
+                  ) : (
+                    <XCircle className="w-4 h-4" />
+                  )}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className="text-xs font-bold text-navy-900">
+                      Soru {q.id}
+                    </span>
+                    <span className="text-[10px] uppercase tracking-wide text-slate-light">
+                      {q.hubLevel} · {q.cefrLevel}
+                    </span>
+                  </div>
+                  {blank ? (
+                    <p className="text-sm text-slate-light">
+                      Boş bırakıldı · Doğru cevap:{" "}
+                      <span className="font-semibold text-navy-900">
+                        {q.correctAnswer}. {correctOption?.text}
+                      </span>
+                    </p>
+                  ) : (
+                    <div className="text-sm leading-relaxed space-y-0.5">
+                      <p
+                        className={
+                          correct ? "text-emerald-700" : "text-red-600"
+                        }
+                      >
+                        Cevabınız: {userAnswer}. {userOption?.text}
+                      </p>
+                      {!correct && (
+                        <p className="text-navy-800">
+                          Doğru cevap: {q.correctAnswer}. {correctOption?.text}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>
   );
 }

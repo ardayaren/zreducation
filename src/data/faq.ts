@@ -30,7 +30,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Seviye tespit sınavı ücretli mi?",
         answer:
-          "Hayır, 70 soruluk Language Hub seviye tespit sınavımız tamamen ücretsizdir. Sınav iki aşamalıdır: önce çoktan seçmeli yazılı test, ardından Zoom/Teams üzerinden online speaking (konuşma) görüşmesi. Tüm soruları çözmeniz de gerekmez; istediğiniz an sınavı bitirebilirsiniz.",
+          "Hayır, 70 soruluk Language Hub seviye tespit sınavımız tamamen ücretsizdir. Sınav iki aşamalıdır: önce 30 dakikalık çoktan seçmeli yazılı test (süre dolunca otomatik teslim edilir), ardından Zoom/Teams üzerinden online speaking (konuşma) görüşmesi. Tüm soruları çözmeniz de gerekmez; istediğiniz an sınavı bitirebilirsiniz. Sonuç ekranında hangi soruları doğru/yanlış yaptığınızı soru bazında görürsünüz.",
       },
     ],
   },
@@ -80,7 +80,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Sınav kaç sorudan oluşuyor, tamamını çözmem gerekiyor mu?",
         answer:
-          "Sınavımız 70 sorudan oluşur ancak tamamını çözmeniz gerekmez. En az 1 soruyu cevapladıktan sonra 'Sınavı Bitir' diyerek sonucunuzu görebilirsiniz; barem kurallarına göre seviyeniz belirlenir.",
+          "Sınavımız 70 sorudan oluşur ve içinizde 30 dakikalık süre bulunur; süre dolduğunda sınav otomatik teslim edilir. Tamamını çözmeniz gerekmez, en az 1 soruyu cevapladıktan sonra 'Sınavı Bitir' diyerek sonucunuzu görebilirsiniz; barem kurallarına göre seviyeniz belirlenir.",
       },
       {
         question: "Seviye tespit sınavından sonra ne oluyor?",

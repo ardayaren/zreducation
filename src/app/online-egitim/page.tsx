@@ -26,10 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-function formatPrice(n: number) {
-  return new Intl.NumberFormat("tr-TR").format(n);
-}
-
 export default function OnlineEgitimPage() {
   return (
     <PageLayout>
@@ -112,13 +108,9 @@ export default function OnlineEgitimPage() {
                       ))}
                     </ul>
 
-                    <div className="flex items-end gap-2 mb-4">
-                      <span className="font-heading-normal text-2xl font-bold text-navy-900 tabular-nums">
-                        {formatPrice(course.price)} ₺
-                      </span>
-                      <span className="text-sm text-slate line-through tabular-nums">
-                        {formatPrice(course.originalPrice)} ₺
-                      </span>
+                    <div className="mb-4 rounded-2xl bg-surface-2 px-4 py-3 text-xs text-slate">
+                      Fiyat bilgisi için &quot;Bilgi Al / Kayıt Ol&quot; ile
+                      bize yazın — güncel fiyat ve kontenjanı paylaşalım.
                     </div>
 
                     <Button

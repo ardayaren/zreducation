@@ -14,8 +14,8 @@ export const contactInfo = {
     href: "https://wa.me/905334137030?text=Merhaba%2C%20Zreducation%20e%C4%9Fitim%20programlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.",
   },
   email: {
-    display: "info@zreducation.com",
-    href: "mailto:info@zreducation.com",
+    display: "zreducationn@gmail.com",
+    href: "mailto:zreducationn@gmail.com",
   },
   instagram: {
     handle: "@zreducationn",
@@ -33,7 +33,7 @@ export const contactInfo = {
       "WhatsApp destek hattımız 7/24 açık; dilediğiniz saatte bilgi, soru ve kayıt için yazabilirsiniz. Merkez ofis: Pzt–Cmt 09:00–19:00.",
   },
   founder: {
-    name: "Yaşar Zararsız",
+    name: "Yaşar Zararsızsoy",
     title: "Kurucu & Genel Müdür",
   },
 };

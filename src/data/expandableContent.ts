@@ -179,10 +179,10 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
         },
         {
           title: "Ekonomik Avantaj",
-          summary: "Birebir'e kıyasla %35 tasarruf; aynı müfredat kalitesi.",
+          summary: "Birebir'e kıyasla bütçe dostu; aynı müfredat kalitesi.",
           content:
-            "Grup derslerinde kişi başı saat ücreti birebir dersin yaklaşık üçte ikisidir. Kurumsal firmalar için 4–10 kişilik özel grup paketleri de sunulur.",
-          related: "Yüz Yüze Eğitim — Aynı fiyat avantajı kampüste de geçerli",
+            "Grup dersleri, birebir derse göre daha bütçe dostu bir seçenektir ve sosyal öğrenme avantajı sunar. Kurumsal firmalar için 4–10 kişilik özel grup paketleri de sunulur.",
+          related: "Yüz Yüze Eğitim — Aynı avantaj kampüste de geçerli",
         },
       ],
     },
@@ -236,10 +236,10 @@ export const serviceAccordionSections: Record<string, AccordionSection[]> = {
         },
         {
           title: "Ekonomik Avantaj",
-          summary: "Birebir'e kıyasla %35 tasarruf; aynı müfredat kalitesi.",
+          summary: "Birebir'e kıyasla bütçe dostu; aynı müfredat kalitesi.",
           content:
-            "Grup derslerinde kişi başı saat ücreti birebir dersin yaklaşık üçte ikisidir. Kurumsal firmalar için 4–10 kişilik özel grup paketleri de sunulur.",
-          related: "Online Eğitim — Benzer fiyat avantajı online grup dersinde de geçerli",
+            "Grup dersleri, birebir derse göre daha bütçe dostu bir seçenektir ve sosyal öğrenme avantajı sunar. Kurumsal firmalar için 4–10 kişilik özel grup paketleri de sunulur.",
+          related: "Online Eğitim — Benzer avantaj online grup dersinde de geçerli",
         },
       ],
     },
@@ -315,9 +315,9 @@ export const onlineProgramDetails: ExpandableDetail[] = [
   },
   {
     title: "Grup Dersi (Maks 8–10 Kişi)",
-    summary: "Seviye bazlı homojen gruplar, %35'e varan maliyet avantajı.",
+    summary: "Seviye bazlı homojen gruplar, bütçe dostu seçenek.",
     content:
-      "Language Hub placement testi ve kısa sözlü görüşme sonrası maksimum 8–10 kişilik gruplar oluşturulur. Derslerin %60'ı konuşma ve dinleme aktivitelerinden oluşur; havaalanı, restoran, iş görüşmesi gibi senaryolar canlandırılır. Grup dersi saat ücreti birebir dersin yaklaşık %65'idir; 3 ay ve üzeri kayıtlarda ek %10 indirim uygulanır.",
+      "Language Hub placement testi ve kısa sözlü görüşme sonrası maksimum 8–10 kişilik gruplar oluşturulur. Derslerin %60'ı konuşma ve dinleme aktivitelerinden oluşur; havaalanı, restoran, iş görüşmesi gibi senaryolar canlandırılır. Grup dersleri birebir derse göre daha bütçe dostudur ve sosyal öğrenme avantajı sunar; güncel fiyat için bize yazın.",
     bullets: [
       "Haftada 3 gün × 2 saat veya 4 gün × 2 saat program seçenekleri",
       "Sabah 10:00 ve akşam 19:00 grup seansları",
@@ -376,7 +376,7 @@ export const yuzYuzeProgramDetails: ExpandableDetail[] = [
     bullets: [
       "Haftalık program: 3 gün × 2 saat veya 4 gün × 2 saat",
       "Aylık grup projesi ve peer-feedback oturumları",
-      "Birebir'e kıyasla %35'e varan maliyet avantajı",
+      "Birebir derse kıyasla daha bütçe dostu bir seçenek",
     ],
     related: "Online Eğitim — Aynı program online grup olarak da sunulur",
   },
@@ -536,7 +536,7 @@ export const yurtDisiProcessDetails: ExpandableDetail[] = [
 export const ingilizceLevelDetails: ExpandableDetail[] = [
   {
     title: "A1 — Başlangıç",
-    summary: "Tanışma, sayılar, günlük rutinler — 48 saatlik program.",
+    summary: "Tanışma, sayılar, günlük rutinler — 32 derslik program.",
     content:
       "Sıfırdan başlayanlar için temel kelime ve kalıp cümleler öğretilir. Program sonunda basit soru–cevap ve tanışma diyalogları kurabilirsiniz.",
     bullets: [
@@ -548,7 +548,7 @@ export const ingilizceLevelDetails: ExpandableDetail[] = [
   },
   {
     title: "A2 — Temel",
-    summary: "Alışveriş, yol tarifi, geçmiş zaman — 48 saatlik program.",
+    summary: "Alışveriş, yol tarifi, geçmiş zaman — 32 derslik program.",
     content:
       "Günlük yaşamda bağımsız iletişim hedeflenir. Past Simple ve temel gelecek zaman kalıpları çalışılır.",
     bullets: [
@@ -560,7 +560,7 @@ export const ingilizceLevelDetails: ExpandableDetail[] = [
   },
   {
     title: "B1 — Orta Alt",
-    summary: "İş görüşmeleri, deneyim anlatımı — 72 saatlik program.",
+    summary: "İş görüşmeleri, deneyim anlatımı — 32 derslik program.",
     content:
       "Orta düzey metinleri anlama ve yazma becerisi kazandırılır. Present Perfect ve koşul cümleleri derinleştirilir.",
     bullets: [
@@ -730,7 +730,7 @@ export const hakkimizdaValueDetails: ExpandableDetail[] = [
 
 export const hakkimizdaTeamDetails: ExpandableDetail[] = [
   {
-    title: "Yaşar Zararsız — Kurucu & Genel Müdür",
+    title: "Yaşar Zararsızsoy — Kurucu & Genel Müdür",
     summary: "Eğitim Yönetimi — 15+ yıl sektör deneyimi",
     content:
       "Pamukkale Üniversitesi mezunu. 2009'da Zreducation'ı Denizli'de kurdu; kurumsal strateji, eğitim kalitesi ve konuşma odaklı müfredatın gelişiminden sorumlu. Öğrencilerle ve velilerle doğrudan iletişimi sürdürür.",

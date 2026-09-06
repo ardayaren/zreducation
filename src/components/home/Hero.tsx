@@ -69,7 +69,7 @@ export default function Hero() {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
                 <Button href="/egitimlerimiz" variant="outline" size="lg">
-                  Eğitimlerimiz & Fiyatlar
+                  Eğitimlerimiz & Paketler
                 </Button>
               </motion.div>
 

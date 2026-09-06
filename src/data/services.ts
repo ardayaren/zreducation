@@ -129,7 +129,7 @@ export const services: Service[] = [
       },
       {
         title: "Grup Dersi (Maks 8–10 Kişi)",
-        text: "Homojen seviye grupları, sosyal öğrenme ve %35'e varan maliyet avantajı.",
+        text: "Homojen seviye grupları, sosyal öğrenme ve bütçe dostu seçenekler.",
       },
       {
         title: "Akıllı Sınıf Teknolojisi",
@@ -314,7 +314,7 @@ export const levels = [
     code: "A1",
     name: "Başlangıç",
     description:
-      "Tanışma, sayılar, günlük rutinler ve basit soru–cevap kalıpları. 48 saatlik program sonunda temel iletişim kurabilirsiniz.",
+      "Tanışma, sayılar, günlük rutinler ve basit soru–cevap kalıpları. 32 derslik program sonunda temel iletişim kurabilirsiniz.",
   },
   {
     code: "A2",
@@ -326,7 +326,7 @@ export const levels = [
     code: "B1",
     name: "Orta Alt",
     description:
-      "İş görüşmeleri, deneyim anlatımı ve görüş bildirme. 72 saatlik program; orta düzey metinleri anlama ve yazma becerisi kazandırır.",
+      "İş görüşmeleri, deneyim anlatımı ve görüş bildirme. 32 derslik program; orta düzey metinleri anlama ve yazma becerisi kazandırır.",
   },
   {
     code: "B2",

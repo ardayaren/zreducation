@@ -16,11 +16,11 @@ export default function SeviyeTespitPage() {
         subtitle="Ücretsiz"
       >
         <p>
-          İki aşamalı ücretsiz sınavımız: Önce 70 soruluk çoktan seçmeli
-          Language Hub yazılı testi, ardından Zoom/Teams üzerinden 15
-          dakikalık online speaking (konuşma) görüşmesi için randevu.
-          Sonucunuzu anında görün ve size en uygun programı birlikte
-          belirleyelim.
+          İki aşamalı ücretsiz sınavımız: Önce 30 dakikalık, 70 soruluk çoktan
+          seçmeli Language Hub yazılı testi, ardından Zoom/Teams üzerinden 15
+          dakikalık online speaking (konuşma) görüşmesi için randevu. Süre
+          dolduğunda sınav otomatik teslim edilir; sonucunuzu ve hangi
+          soruları doğru/yanlış yaptığınızı anında görün.
         </p>
       </PageHero>
 

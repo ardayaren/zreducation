@@ -14,6 +14,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import StudentPanelDemo from "@/components/panel/StudentPanelDemo";
 
 export const metadata: Metadata = {
   title: "Öğrenci Paneli & Ders Kayıtları",
@@ -65,6 +66,17 @@ export default function OgrenciPaneliPage() {
           raporu hazırlanır.
         </p>
       </PageHero>
+
+      <section className="py-16 md:py-20 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle
+            subtitle="Panelin İçi"
+            title="Öğrenci Panelinde Neler Var?"
+            description="Ders kayıtları, devamsızlık, ödevler, 4 haftalık ilerleme raporu ve eğitmen notları — hepsi tek panelde. Aşağıdaki örnek görünüm panelin içeriğini gösterir."
+          />
+          <StudentPanelDemo />
+        </div>
+      </section>
 
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

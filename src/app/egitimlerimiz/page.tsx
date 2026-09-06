@@ -20,12 +20,8 @@ import {
 export const metadata: Metadata = {
   title: "Eğitimlerimiz",
   description:
-    "Konuşma odaklı İngilizce eğitimi, online ve yüz yüze birebir/grup dersleri, fiyatlar, sınav hazırlık programları ve öğrenci paneli — tek sayfada.",
+    "Konuşma odaklı İngilizce eğitimi, online ve yüz yüze birebir/grup dersleri, sınav hazırlık programları ve öğrenci paneli — tek sayfada.",
 };
-
-function formatPrice(n: number) {
-  return new Intl.NumberFormat("tr-TR").format(n);
-}
 
 const overviewDetails = (paragraphs: string[]) =>
   paragraphs.map((text, i) => ({
@@ -218,9 +214,9 @@ export default function EgitimlerimizPage() {
       <section className="py-20 md:py-24 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            subtitle="Paketler & Fiyatlar"
+            subtitle="Paketler"
             title="Eğitim Paketleri"
-            description="Tüm paketler konuşma odaklıdır; Speaking, Listening, Reading ve Writing becerileri dengeli gelişir. Fiyat ve kontenjan için yazın, 7/24 yanınızdayız."
+            description="Tüm paketler konuşma odaklıdır; Speaking, Listening, Reading ve Writing becerileri dengeli gelişir. Güncel fiyat ve kontenjan için 'Bilgi Al' ile yazın, 7/24 yanınızdayız."
           />
         </div>
       </section>
@@ -279,13 +275,9 @@ export default function EgitimlerimizPage() {
                     ))}
                   </ul>
 
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className="font-heading-normal text-2xl font-bold text-gold-400 tabular-nums">
-                      {formatPrice(course.price)} ₺
-                    </span>
-                    <span className="text-sm text-white/40 line-through tabular-nums">
-                      {formatPrice(course.originalPrice)} ₺
-                    </span>
+                  <div className="mb-4 rounded-2xl bg-white/8 border border-white/10 px-4 py-3 text-xs text-white/70">
+                    Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
+                    bize yazın — güncel fiyat ve kontenjanı paylaşalım.
                   </div>
 
                   <Button
@@ -364,22 +356,18 @@ export default function EgitimlerimizPage() {
                       ))}
                     </ul>
 
-                    <div className="flex items-end gap-2 mb-4">
-                      <span className="font-heading-normal text-2xl font-bold text-navy-900 tabular-nums">
-                        {formatPrice(course.price)} ₺
-                      </span>
-                      <span className="text-sm text-slate line-through tabular-nums">
-                        {formatPrice(course.originalPrice)} ₺
-                      </span>
-                    </div>
+                    <div className="mb-4 rounded-2xl bg-surface-2 px-4 py-3 text-xs text-slate">
+                    Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
+                    bize yazın — güncel fiyat ve kontenjanı paylaşalım.
+                  </div>
 
-                    <Button
-                      href={`/iletisim?paket=${course.id}`}
-                      className="w-full"
-                      size="sm"
-                    >
-                      Bilgi Al &amp; Kayıt Ol
-                    </Button>
+                  <Button
+                    href={`/iletisim?paket=${course.id}`}
+                    className="w-full"
+                    size="sm"
+                  >
+                    Bilgi Al &amp; Kayıt Ol
+                  </Button>
                   </div>
                 </article>
               ))}

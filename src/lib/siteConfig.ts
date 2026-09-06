@@ -8,7 +8,7 @@ export const siteConfig = {
     "Zreducation Denizli — konuşma odaklı İngilizce eğitimi. 3 ayda 90 derste sıfırdan akıcı konuşmaya, online ve yüz yüze birebir/grup dersleri, Speaking/Listening/Reading/Writing odaklı CEFR müfredatı, ücretsiz seviye tespit ve 7/24 WhatsApp destek.",
   locale: "tr_TR",
   phone: "+905334137030",
-  email: "info@zreducation.com",
+  email: "zreducationn@gmail.com",
   address: "Kınıklı, 6020. Sk. No:31, 20160 Denizli Merkez/Denizli",
 };
 

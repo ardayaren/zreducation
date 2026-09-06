@@ -18,7 +18,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed top-9 left-0 right-0 z-50 bg-white/[0.97] shadow-[0_4px_24px_rgba(14,34,64,0.08)] gpu-layer border-b border-border/60"
+      className="fixed top-9 sm:top-10 left-0 right-0 z-50 bg-white/[0.97] shadow-[0_4px_24px_rgba(14,34,64,0.08)] gpu-layer border-b border-border/60"
     >
       <motion.div
         initial={{ scaleX: 0 }}

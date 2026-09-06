@@ -1,10 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { contactInfo } from "@/data/contact";
 
 export default function WhatsAppFloat() {
+  const pathname = usePathname();
+  const hiddenOnTest = pathname === "/seviye-tespit";
+
+  if (hiddenOnTest) return null;
+
   return (
     <div className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-[70] flex items-center gap-3">
       <motion.span

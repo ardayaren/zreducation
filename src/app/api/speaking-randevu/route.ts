@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendSpeakingBookingNotification } from "@/lib/email";
+import { saveSubmission } from "@/lib/submissions";
 
 export async function POST(request: NextRequest) {
   try {
@@ -38,6 +39,16 @@ export async function POST(request: NextRequest) {
     } catch (emailError) {
       console.error("Randevu e-postası gönderim hatası:", emailError);
     }
+
+    /* Admin paneli için kalıcı kayıt */
+    await saveSubmission({
+      type: "speaking",
+      name,
+      email,
+      phone,
+      summary: `${preferredDay} ${preferredTime} · ${platform || "Zoom"}${cefrLevel ? ` · ${cefrLevel}` : ""}`,
+      data: { name, email, phone, city, cefrLevel, platform, preferredDay, preferredTime, note },
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

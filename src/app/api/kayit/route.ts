@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendRegistrationNotification } from "@/lib/email";
+import { saveSubmission } from "@/lib/submissions";
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,6 +29,16 @@ export async function POST(request: NextRequest) {
     } catch (emailError) {
       console.error("Kayıt e-postası gönderim hatası:", emailError);
     }
+
+    /* Admin paneli için kalıcı kayıt */
+    await saveSubmission({
+      type: "registration",
+      name,
+      email,
+      phone,
+      summary: `${program || "Program belirtilmedi"} · ${format || ""} · ${city}`,
+      data: { name, email, phone, city, program, format, targetLevel, startPreference, message },
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

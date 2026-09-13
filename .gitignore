@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# admin paneli başvuru kayıtları (sunucuda kalır, repoya girmez)
+/data/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AtSign, PlayCircle, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { galleryItems } from "@/data/gallery";
@@ -12,7 +11,6 @@ import {
   instagramProfileUrl,
 } from "@/data/instagramFeed";
 import { contactInfo } from "@/data/contact";
-import { fadeUp, staggerContainer, transition, viewportOnce } from "@/lib/motion";
 
 interface OEmbedPost {
   id: string;
@@ -93,21 +91,17 @@ export default function InstagramGallery() {
           </Button>
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          variants={staggerContainer}
+        <div
+          data-reveal-group
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
         >
           {galleryItems.map((item) => (
-            <motion.a
+            <a
               key={item.id}
               href={item.href || instagramProfileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              variants={fadeUp}
-              transition={transition.fast}
+              data-reveal-item
               className="group relative aspect-square rounded-2xl overflow-hidden gpu-layer"
             >
               {item.type === "video" ? (
@@ -137,9 +131,9 @@ export default function InstagramGallery() {
               <p className="absolute bottom-0 left-0 right-0 p-3 text-[11px] text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {item.caption}
               </p>
-            </motion.a>
+            </a>
           ))}
-        </motion.div>
+        </div>
 
         {livePosts.length > 0 && (
           <div className="mt-12">
@@ -151,15 +145,14 @@ export default function InstagramGallery() {
                 oEmbed ile otomatik aktarılır
               </span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+            <div data-reveal-group className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
               {livePosts.map((post) => (
-                <motion.a
+                <a
                   key={post.id}
                   href={post.postUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variants={fadeUp}
-                  transition={transition.fast}
+                  data-reveal-item
                   className="group relative aspect-square rounded-2xl overflow-hidden gpu-layer"
                 >
                   {post.thumbnail ? (
@@ -179,7 +172,7 @@ export default function InstagramGallery() {
                   <p className="absolute bottom-0 left-0 right-0 p-3 text-[11px] text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {post.caption}
                   </p>
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>

@@ -1,13 +1,12 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
+import type { MotionVariant } from "@/lib/motion";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
-import {
-  type MotionVariant,
-  transition,
-  variantMap,
-  viewportOnce,
-} from "@/lib/motion";
+const variantAttr: Record<MotionVariant, string> = {
+  fadeUp: "up",
+  fadeIn: "fade",
+  slideLeft: "left",
+  slideRight: "right",
+};
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -17,6 +16,10 @@ interface AnimatedSectionProps {
   once?: boolean;
 }
 
+/**
+ * Kaydırdıkça yumuşak giriş. Animasyon saf CSS'tir; tetikleme ScrollFx'in
+ * tek paylaşımlı observer'ından gelir. Prop API değişmedi.
+ */
 export default function AnimatedSection({
   children,
   className = "",
@@ -25,15 +28,13 @@ export default function AnimatedSection({
   once = true,
 }: AnimatedSectionProps) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={once ? viewportOnce : { once: false, amount: 0.12 }}
-      variants={variantMap[variant]}
-      transition={{ ...transition.default, delay }}
+    <div
+      data-reveal={variantAttr[variant]}
+      data-reveal-repeat={once ? undefined : ""}
+      style={{ "--rv-d": `${delay}s` } as CSSProperties}
       className={`gpu-layer ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

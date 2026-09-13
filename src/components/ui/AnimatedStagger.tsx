@@ -1,8 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
-import { staggerContainer, transition, viewportOnce } from "@/lib/motion";
+import type { CSSProperties, ReactNode } from "react";
 
 interface AnimatedStaggerProps {
   children: ReactNode;
@@ -11,6 +7,10 @@ interface AnimatedStaggerProps {
   once?: boolean;
 }
 
+/**
+ * Grup reveal: çocuklar ([data-reveal-item] / AnimatedItem) saf CSS ile
+ * kademeli gelir. Prop API değişmedi.
+ */
 export function AnimatedStagger({
   children,
   className = "",
@@ -18,16 +18,14 @@ export function AnimatedStagger({
   once = true,
 }: AnimatedStaggerProps) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={once ? viewportOnce : { once: false, amount: 0.12 }}
-      variants={staggerContainer}
-      transition={{ ...transition.default, delayChildren: delay }}
+    <div
+      data-reveal-group
+      data-reveal-repeat={once ? undefined : ""}
+      style={{ "--rv-d": `${delay}s` } as CSSProperties}
       className={`gpu-layer ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -38,18 +36,8 @@ interface AnimatedItemProps {
 
 export function AnimatedItem({ children, className = "" }: AnimatedItemProps) {
   return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 12 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: transition.default,
-        },
-      }}
-      className={className}
-    >
+    <div data-reveal-item className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 }

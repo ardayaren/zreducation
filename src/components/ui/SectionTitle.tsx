@@ -1,13 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-import {
-  accentBarReveal,
-  fadeUp,
-  staggerContainer,
-  transition,
-} from "@/lib/motion";
-
 interface SectionTitleProps {
   subtitle?: string;
   title: string;
@@ -26,7 +16,6 @@ export default function SectionTitle({
   animate = true,
 }: SectionTitleProps) {
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
-  const origin = align === "center" ? "center" : "left";
 
   if (!animate) {
     return (
@@ -64,49 +53,39 @@ export default function SectionTitle({
   }
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-      variants={staggerContainer}
-      className={`max-w-3xl mb-14 ${alignClass}`}
-    >
+    <div data-reveal-group className={`max-w-3xl mb-14 ${alignClass}`}>
       {subtitle && (
-        <motion.span
-          variants={fadeUp}
-          transition={transition.fast}
+        <span
+          data-reveal-item
           className={`label-caps block mb-4 ${
             light ? "text-gold-300" : "text-gold-500"
           }`}
         >
           {subtitle}
-        </motion.span>
+        </span>
       )}
-      <motion.h2
-        variants={fadeUp}
-        transition={transition.default}
+      <h2
+        data-reveal-item
         className={`font-heading-normal text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight ${
           light ? "text-white" : "text-navy-900"
         }`}
       >
         {title}
-      </motion.h2>
+      </h2>
       {description && (
-        <motion.p
-          variants={fadeUp}
-          transition={transition.default}
+        <p
+          data-reveal-item
           className={`mt-4 text-base leading-relaxed ${
             light ? "text-white/75" : "text-slate"
           }`}
         >
           {description}
-        </motion.p>
+        </p>
       )}
-      <motion.div
-        variants={accentBarReveal}
-        style={{ originX: origin }}
+      <div
+        data-reveal-item
         className={`mt-5 accent-bar ${align === "center" ? "mx-auto" : ""}`}
       />
-    </motion.div>
+    </div>
   );
 }

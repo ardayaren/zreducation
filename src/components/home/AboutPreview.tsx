@@ -1,12 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import StatCard from "@/components/ui/StatCard";
 import { stats } from "@/data/services";
-import { fadeUp, staggerContainer, transition } from "@/lib/motion";
 
 export default function AboutPreview() {
   return (
@@ -14,11 +12,8 @@ export default function AboutPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <AnimatedSection variant="slideRight">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
+            <div
+              data-reveal-group
               className="surface-navy navy-panel overflow-hidden relative"
             >
               <div
@@ -30,16 +25,12 @@ export default function AboutPreview() {
 
               <div className="relative grid grid-cols-2 gap-3 p-4">
                 {stats.map((stat) => (
-                  <motion.div
-                    key={stat.label}
-                    variants={fadeUp}
-                    transition={transition.default}
-                  >
+                  <div key={stat.label} data-reveal-item>
                     <StatCard stat={stat} onDark size="md" showDot />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection variant="slideLeft" delay={0.1}>

@@ -372,3 +372,100 @@ body {
     transition: none;
   }
 }
+
+/* ============================================================
+   Smooth scroll reveal — paylaşımlı sistem (tek observer + CSS)
+   Sadece opacity + translate3d: compositor'da koşar, kaydırırken
+   takılmaz. JS kare başına iş yapmaz.
+   ============================================================ */
+:root {
+  --rv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --rv-dur: 0.9s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal="up"] {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  [data-reveal="fade"] {
+    opacity: 0;
+  }
+  [data-reveal="left"] {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  [data-reveal="right"] {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  [data-reveal="scale"] {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.97);
+  }
+  [data-reveal].rv-on {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--rv-dur) var(--rv-ease),
+      transform var(--rv-dur) var(--rv-ease);
+    transition-delay: var(--rv-d, 0s);
+  }
+
+  /* grup: çocuklar saf CSS ile kademeli gelir (70ms adımlar) */
+  [data-reveal-group] [data-reveal-item] {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  [data-reveal-group].rv-on [data-reveal-item] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.85s var(--rv-ease),
+      transform 0.85s var(--rv-ease);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(1) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.03s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(2) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.1s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(3) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.17s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(4) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.24s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(5) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.31s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(6) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.38s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(7) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.45s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(8) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.52s);
+  }
+  [data-reveal-group].rv-on [data-reveal-item]:nth-child(n + 9) {
+    transition-delay: calc(var(--rv-d, 0s) + 0.59s);
+  }
+
+  /* scroll-paralel katman: kenarlar açılmasın diye hafif overscan */
+  [data-plx] {
+    scale: 1.1;
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-group] [data-reveal-item] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-plx] {
+    scale: 1;
+  }
+}

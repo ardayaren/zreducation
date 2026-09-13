@@ -124,7 +124,7 @@ export function KageEduHero() {
   return (
     <div ref={scope} className="kage-edu ke-edu">
       <div className="ke-night" aria-hidden>
-        <div className="ke-night-photo" />
+        <div className="ke-night-photo" data-plx="0.1" />
         <div className="ke-grain" />
         <div className="ke-vignette" />
       </div>

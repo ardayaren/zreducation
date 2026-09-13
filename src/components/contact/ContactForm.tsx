@@ -7,8 +7,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { contactInfo } from "@/data/contact";
-import { fadeUp, staggerContainer, transition } from "@/lib/motion";
-
+import { transition } from "@/lib/motion";
 const inputClass =
   "w-full px-5 py-3 rounded-2xl border-0 bg-surface text-sm shadow-[inset_0_1px_2px_rgba(14,34,64,0.04)] focus:ring-4 focus:ring-gold-500/15 focus:outline-none";
 
@@ -108,13 +107,7 @@ export default function ContactForm() {
               align="left"
             />
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-              className="space-y-5"
-            >
+            <div data-reveal-group className="space-y-5">
               {[
                 {
                   icon: MapPin,
@@ -140,10 +133,9 @@ export default function ContactForm() {
                   content: `${contactInfo.hours.office}\n${contactInfo.hours.support}`,
                 },
               ].map((item) => (
-                <motion.div
+                <div
                   key={item.title}
-                  variants={fadeUp}
-                  transition={transition.fast}
+                  data-reveal-item
                   className="flex items-start gap-4 border-b border-border pb-5 last:border-0"
                 >
                   <item.icon className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
@@ -170,9 +162,9 @@ export default function ContactForm() {
                       </p>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             <div className="mt-8 rounded-3xl overflow-hidden border border-border shadow-sm">
               <iframe
@@ -187,13 +179,7 @@ export default function ContactForm() {
           </AnimatedSection>
 
           <AnimatedSection variant="slideRight" delay={0.1}>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={transition.default}
-              className="soft-card p-8 md:p-10"
-            >
+            <div data-reveal="up" className="soft-card p-8 md:p-10">
               <span className="badge-pill bg-gold-100 text-gold-700 mb-4">
                 Ücretsiz Kayıt Formu
               </span>
@@ -401,7 +387,7 @@ export default function ContactForm() {
                   </Button>
                 </form>
               )}
-            </motion.div>
+            </div>
           </AnimatedSection>
         </div>
       </div>

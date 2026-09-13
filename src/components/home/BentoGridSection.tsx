@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, ClipboardCheck, Sparkles } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import StatCard from "@/components/ui/StatCard";
 import { services, performanceStats } from "@/data/services";
-import { fadeUp, staggerContainer, transition, viewportOnce } from "@/lib/motion";
 
 type BentoVariant = "navy" | "gold" | "light" | "surface";
 
@@ -226,29 +224,17 @@ export default function BentoGridSection() {
           description="Modüler ve orantılı düzenle hizmetlerimizi keşfedin."
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          variants={staggerContainer}
+        <div
+          data-reveal-group
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4"
         >
-          {tiles.map((tile, index) => (
-            <motion.div
-              key={tile.id}
-              variants={fadeUp}
-              transition={{ ...transition.default, delay: index * 0.05 }}
-              className={tile.span}
-            >
+          {tiles.map((tile) => (
+            <div key={tile.id} data-reveal-item className={tile.span}>
               <BentoCard tile={tile} large={tile.id === "ingilizce"} />
-            </motion.div>
+            </div>
           ))}
 
-          <motion.div
-            variants={fadeUp}
-            transition={{ ...transition.default, delay: 0.4 }}
-            className="md:col-span-2 lg:col-span-6"
-          >
+          <div data-reveal-item className="md:col-span-2 lg:col-span-6">
             <div className="relative h-full min-h-[160px] rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(14,34,64,0.06)] p-6 md:p-7 flex flex-col justify-between">
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -271,8 +257,8 @@ export default function BentoGridSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

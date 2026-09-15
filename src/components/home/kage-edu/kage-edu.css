@@ -3,15 +3,15 @@
    marka token'ları Zreducation'a aittir (navy + gold). Hafif DOM/CSS. */
 
 .kage-edu {
-  --ke-ink: #081526;
-  --ke-ink-2: #0e2240;
-  --ke-bone: #f2f5f1;
-  --ke-bone-dim: #b9c4bc;
-  --ke-muted: #7e8a83;
-  --ke-line: rgba(242, 245, 241, 0.14);
-  --ke-line-soft: rgba(242, 245, 241, 0.08);
-  --ke-gold: #c9a83a;
-  --ke-gold-soft: #dbb84f;
+  --ke-ink: #16334f;
+  --ke-ink-2: #1e4165;
+  --ke-bone: #f5f8fb;
+  --ke-bone-dim: #c6d2de;
+  --ke-muted: #96a8ba;
+  --ke-line: rgba(246, 250, 255, 0.16);
+  --ke-line-soft: rgba(246, 250, 255, 0.1);
+  --ke-gold: #d4af4e;
+  --ke-gold-soft: #e3c46a;
   --ke-pad: clamp(20px, 3.4vw, 56px);
   --ke-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -20,21 +20,21 @@
   overflow-x: clip;
 }
 
-/* gece atmosferi: sabit degrade + foto, hepsi CSS */
+/* gece atmosferi: sabit degrade + foto, hepsi CSS — ton açık */
 .ke-night {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(60% 42% at 72% 12%, rgba(201, 168, 58, 0.16), transparent 62%),
-    radial-gradient(90% 60% at 50% 108%, rgba(14, 34, 64, 0.9), transparent 70%),
-    linear-gradient(180deg, #0b1c33 0%, #081526 42%, #060f1d 100%);
+    radial-gradient(60% 42% at 72% 12%, rgba(212, 175, 78, 0.2), transparent 62%),
+    radial-gradient(90% 60% at 50% 108%, rgba(30, 65, 101, 0.85), transparent 70%),
+    linear-gradient(180deg, #1c3b5c 0%, #16334f 42%, #122a42 100%);
 }
 .ke-night-photo {
   position: absolute;
   inset: 0;
   background: url("/images/harvard.jpg") center 30% / cover no-repeat;
-  opacity: 0.22;
+  opacity: 0.18;
   mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
   -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
 }
@@ -42,7 +42,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.4;
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 3px 3px;
 }
@@ -50,7 +50,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(125% 95% at 50% 42%, transparent 46%, rgba(2, 5, 9, 0.6) 100%);
+  background: radial-gradient(125% 95% at 50% 42%, transparent 52%, rgba(8, 22, 38, 0.45) 100%);
 }
 
 .ke-eyebrow {
@@ -86,13 +86,13 @@
 .ke-body-lg {
   font-size: clamp(14px, 1.05vw, 17px);
   line-height: 1.72;
-  color: #b7c2ba;
+  color: #d6dfe9;
   font-weight: 400;
 }
 .ke-body {
   font-size: 15px;
   line-height: 1.75;
-  color: #98a29c;
+  color: #b9c6d3;
 }
 
 /* reveal: IntersectionObserver .rv-in ekler */
@@ -164,7 +164,7 @@
   color: var(--ke-bone-dim);
   margin-bottom: 6px;
 }
-.ke-chip p { margin: 0; font-size: 12.5px; line-height: 1.55; color: #7d8781; max-width: 24ch; }
+.ke-chip p { margin: 0; font-size: 12.5px; line-height: 1.55; color: #a2b3c4; max-width: 24ch; }
 .ke-chip:hover .num { color: var(--ke-gold-soft); }
 .ke-side {
   position: absolute;
@@ -175,7 +175,7 @@
   writing-mode: vertical-rl;
   font-size: 13px;
   letter-spacing: 0.5em;
-  color: rgba(242, 245, 241, 0.45);
+  color: rgba(246, 250, 255, 0.6);
   pointer-events: none;
 }
 
@@ -205,7 +205,7 @@
   align-items: start;
 }
 .ke-gate-grid h2 { max-width: 14ch; }
-.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #c4cfc7; }
+.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #dee7f0; }
 .ke-arrowlink {
   display: inline-flex;
   align-items: center;
@@ -249,7 +249,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid var(--ke-line-soft);
-  background: #0b1526;
+  background: #1b3a5c;
 }
 .ke-card-fr img {
   position: absolute;
@@ -304,8 +304,8 @@
 .ke-les:hover .k { color: var(--ke-gold-soft); }
 .ke-les h3 { margin: 0; font-size: clamp(16px, 1.5vw, 23px); font-weight: 600; letter-spacing: -0.005em; }
 .ke-les h3 em { font-style: normal; font-size: 0.72em; color: var(--ke-muted); margin-left: 12px; letter-spacing: 0.2em; }
-.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #909b95; }
-.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #8b958f; font-variant-numeric: tabular-nums; }
+.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #adbdcc; }
+.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #a2b3c4; font-variant-numeric: tabular-nums; }
 .ke-les .bar {
   position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%;
   background: var(--ke-gold);

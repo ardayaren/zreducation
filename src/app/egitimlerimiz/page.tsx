@@ -41,20 +41,26 @@ export default function EgitimlerimizPage() {
             {onlineCourses.map((course) => (
               <article
                 key={course.id}
-                className={`relative h-full flex flex-col rounded-3xl overflow-hidden border ${
+                className={`relative h-full flex flex-col rounded-3xl overflow-hidden border transition-shadow duration-300 ${
                   course.popular
-                    ? "border-gold-400 shadow-[0_8px_32px_rgba(201,168,58,0.15)] navy-card-glass"
-                    : "border-white/10 navy-card-glass"
-                } bg-white/5`}
+                    ? "border-gold-400/70 shadow-[0_8px_32px_rgba(201,168,58,0.2)] bg-gradient-to-br from-gold-500/[0.14] via-white/[0.05] to-transparent"
+                    : "border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.12)]"
+                } navy-card-glass`}
               >
                 {course.badge && (
-                  <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-[10px]">
+                  <span
+                    className={`absolute top-4 right-4 badge-pill text-[11px] ${
+                      course.popular
+                        ? "bg-gold-500 text-navy-950"
+                        : "bg-white/15 text-white"
+                    }`}
+                  >
                     {course.badge}
                   </span>
                 )}
-                <div className="p-5 md:p-6 flex flex-col flex-1">
+                <div className="p-6 md:p-7 flex flex-col flex-1">
                   <span
-                    className={`badge-pill w-fit mb-3 text-[10px] ${
+                    className={`badge-pill w-fit mb-3 ${
                       course.format === "Birebir Ders"
                         ? "bg-white/15 text-white"
                         : "bg-emerald-500/15 text-emerald-300"
@@ -65,26 +71,28 @@ export default function EgitimlerimizPage() {
                   <span className="label-caps text-gold-300 mb-2">
                     {course.level} · {course.duration} · {course.lessons} ders
                   </span>
-                  <h3 className="font-heading-normal text-lg font-bold text-white mb-1">
+                  <h3 className="font-heading-normal text-lg md:text-xl font-bold text-white mb-1.5">
                     {course.title}
                   </h3>
-                  <p className="text-sm text-white/60 mb-4">{course.subtitle}</p>
+                  <p className="text-sm md:text-[15px] text-white/60 mb-5">
+                    {course.subtitle}
+                  </p>
 
-                  <ul className="space-y-1.5 mb-6 flex-1">
+                  <ul className="space-y-2 mb-6 flex-1">
                     {course.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-start gap-2 text-sm text-white/70"
+                        className="flex items-start gap-2.5 text-sm md:text-[15px] text-white/75"
                       >
-                        <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                         {f}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mb-4 rounded-2xl bg-white/8 border border-white/10 px-4 py-3 text-sm text-white/70">
+                  <div className="mb-4 rounded-2xl bg-gold-500/[0.08] border border-gold-400/20 px-4 py-3 text-sm text-gold-200 leading-relaxed">
                     Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
-                    bize yazın — güncel fiyat ve kontenjanı paylaşalım.
+                    yazın — güncel fiyat ve kontenjanı paylaşalım.
                   </div>
 
                   <Button

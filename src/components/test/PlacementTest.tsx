@@ -65,7 +65,7 @@ function renderPassage(passage: string) {
       const speaker = line.slice(0, colonIndex);
       const text = line.slice(colonIndex + 1).trim();
       return (
-        <p key={index} className="text-[15px] md:text-base leading-relaxed">
+        <p key={index} className="text-base md:text-lg leading-relaxed">
           <span className="font-semibold text-navy-900">{speaker}:</span>{" "}
           <span className="text-navy-700">{text}</span>
         </p>
@@ -74,7 +74,7 @@ function renderPassage(passage: string) {
     return (
       <p
         key={index}
-        className="text-[15px] md:text-base text-navy-700 leading-relaxed"
+        className="text-base md:text-lg text-navy-700 leading-relaxed"
       >
         {line}
       </p>
@@ -194,15 +194,15 @@ export default function PlacementTest() {
   const renderStep = () => {
     if (step === "info") {
       return (
-        <div className="max-w-lg mx-auto">
-          <div className="soft-card p-8 md:p-10">
+        <div className="max-w-lg mx-auto px-1 sm:px-0">
+          <div className="soft-card p-6 sm:p-8 md:p-10">
             <span className="badge-pill bg-gold-100 text-gold-700 mb-4">
               Başvuru Formu
             </span>
-            <h2 className="font-heading-normal text-2xl font-bold text-navy-900 mb-2">
+            <h2 className="font-heading-normal text-2xl sm:text-3xl font-bold text-navy-900 mb-2">
               Sınava Başlamadan Önce
             </h2>
-            <p className="text-slate text-sm md:text-base mb-8 leading-relaxed">
+            <p className="text-slate text-base md:text-lg mb-8 leading-relaxed">
               Bilgilerinizi girin ve 70 soruluk Language Hub seviye tespit
               sınavına başlayın. Sınavınız için{" "}
               <span className="font-semibold text-navy-900">30 dakika</span>{" "}
@@ -264,7 +264,7 @@ export default function PlacementTest() {
               </Button>
             </form>
 
-            <p className="text-xs md:text-sm text-slate-light mt-6 pt-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-light mt-6 pt-4 leading-relaxed">
               70 soruluk Language Hub testi. Tüm soruları çözmeniz gerekmez;
               istediğiniz zaman &quot;Sınavı Bitir&quot; ile erken
               tamamlayabilirsiniz. Seviye, barem kurallarına göre belirlenir
@@ -278,23 +278,23 @@ export default function PlacementTest() {
     if (step === "test") {
       return (
         <div className="max-w-3xl mx-auto">
-          <div className="soft-card mb-6 p-5 md:p-6">
-            <div className="flex justify-between items-center mb-4 gap-3 flex-wrap">
-              <span className="badge-pill bg-gradient-to-r from-navy-700 to-navy-900 text-white shadow-sm">
+          <div className="soft-card mb-4 sm:mb-6 p-4 sm:p-5 md:p-6">
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-between sm:items-center mb-4">
+              <span className="badge-pill bg-gradient-to-r from-navy-700 to-navy-900 text-white shadow-sm w-fit">
                 Soru {currentQuestion + 1} / {placementQuestions.length}
               </span>
               <span
-                className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-bold tabular-nums ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-base font-bold tabular-nums w-fit ${
                   timerLow
                     ? "bg-red-50 text-red-600 border border-red-200 animate-pulse"
                     : "bg-surface text-navy-800"
                 }`}
               >
-                <Clock className="w-4 h-4" />
+                <Clock className="w-5 h-5" />
                 {formatTime(timeLeft)}
                 {timeUp && " · Süre Doldu"}
               </span>
-              <span className="text-sm text-slate">
+              <span className="text-sm sm:text-base text-slate">
                 <span className="font-semibold text-navy-900">
                   {realAnswerCount}
                 </span>{" "}
@@ -327,13 +327,13 @@ export default function PlacementTest() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.99 }}
               transition={transition.fast}
-              className="soft-card p-6 md:p-10"
+              className="soft-card p-5 sm:p-6 md:p-10"
             >
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 <span className="badge-pill bg-gradient-to-r from-gold-600 to-gold-500 text-white shadow-sm">
                   {hubInfo.label}
                 </span>
-                <span className="text-xs md:text-sm text-slate-light bg-surface px-3 py-1 rounded-full">
+                <span className="text-xs sm:text-sm text-slate-light bg-surface px-3 py-1.5 rounded-full">
                   {hubInfo.labelTr} · {hubInfo.cefr} · Soru {hubInfo.itemRange}
                 </span>
               </div>
@@ -354,14 +354,14 @@ export default function PlacementTest() {
                       whileHover={{ scale: isSelected ? 1 : 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => selectAnswer(option.key)}
-                      className={`w-full flex items-center gap-4 p-4 md:p-5 rounded-3xl text-left transition-all duration-300 min-h-[64px] ${
+                      className={`w-full flex items-center gap-4 p-4 sm:p-5 rounded-3xl text-left transition-all duration-300 min-h-[72px] ${
                         isSelected
                           ? "bg-gradient-to-r from-gold-100/90 to-gold-50 shadow-[0_6px_24px_rgba(201,168,58,0.18)]"
                           : "bg-white/80 hover:bg-white shadow-[0_2px_12px_rgba(14,34,64,0.05)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.08)]"
                       }`}
                     >
                       <span
-                        className={`w-11 h-11 md:w-12 md:h-12 flex items-center justify-center text-sm md:text-base font-bold shrink-0 rounded-2xl transition-all duration-300 ${
+                        className={`w-12 h-12 flex items-center justify-center text-base font-bold shrink-0 rounded-2xl transition-all duration-300 ${
                           isSelected
                             ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md"
                             : "bg-surface text-slate"
@@ -370,7 +370,7 @@ export default function PlacementTest() {
                         {option.key}
                       </span>
                       <span
-                        className={`text-[15px] md:text-base leading-relaxed ${
+                        className={`text-base md:text-lg leading-relaxed ${
                           isSelected
                             ? "text-navy-900 font-medium"
                             : "text-navy-700"
@@ -391,14 +391,14 @@ export default function PlacementTest() {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={selectBlank}
-                  className={`w-full flex items-center gap-4 p-4 md:p-5 rounded-3xl text-left transition-all duration-300 min-h-[64px] ${
+                  className={`w-full flex items-center gap-4 p-4 sm:p-5 rounded-3xl text-left transition-all duration-300 min-h-[72px] ${
                     isBlankAnswer(answers[question.id])
                       ? "bg-slate-100/80 shadow-[0_4px_16px_rgba(14,34,64,0.06)]"
                       : "bg-white/80 hover:bg-white shadow-[0_2px_12px_rgba(14,34,64,0.05)] hover:shadow-[0_6px_20px_rgba(14,34,64,0.08)]"
                   }`}
                 >
                   <span
-                    className={`w-11 h-11 md:w-12 md:h-12 flex items-center justify-center text-sm md:text-base font-bold shrink-0 rounded-2xl ${
+                    className={`w-12 h-12 flex items-center justify-center text-base font-bold shrink-0 rounded-2xl ${
                       isBlankAnswer(answers[question.id])
                         ? "bg-slate-500 text-white"
                         : "bg-surface text-slate"
@@ -407,7 +407,7 @@ export default function PlacementTest() {
                     —
                   </span>
                   <span
-                    className={`text-[15px] md:text-base ${
+                    className={`text-base md:text-lg ${
                       isBlankAnswer(answers[question.id])
                         ? "text-navy-900 font-medium"
                         : "text-slate"
@@ -426,22 +426,24 @@ export default function PlacementTest() {
             </p>
           )}
 
-          <div className="sticky bottom-2 z-30 mt-6">
-            <div className="flex flex-col sm:flex-row justify-between gap-3 p-3 sm:p-4 rounded-3xl bg-white/90 backdrop-blur-md border border-border/60 shadow-[0_8px_32px_rgba(14,34,64,0.12)]">
+          <div className="sticky bottom-2 z-30 mt-6" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+            <div className="flex flex-col gap-3 p-3 sm:p-4 rounded-3xl bg-white/95 backdrop-blur-md border border-border/60 shadow-[0_8px_32px_rgba(14,34,64,0.12)] sm:flex-row sm:justify-between">
               <Button
                 variant="secondary"
                 onClick={() => setCurrentQuestion((c) => Math.max(0, c - 1))}
                 disabled={currentQuestion === 0}
+                className="w-full sm:w-auto min-h-[52px] text-base"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
                 Önceki
               </Button>
 
-              <div className="flex flex-wrap gap-2 sm:justify-end">
+              <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
                 <Button
                   variant="outline"
                   onClick={() => submitTest(false)}
                   disabled={loading}
+                  className="w-full sm:w-auto min-h-[52px] text-base"
                 >
                   {loading ? (
                     <>
@@ -460,12 +462,17 @@ export default function PlacementTest() {
                         Math.min(placementQuestions.length - 1, c + 1)
                       )
                     }
+                    className="w-full sm:w-auto min-h-[52px] text-base"
                   >
                     Sonraki
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-5 h-5" />
                   </Button>
                 ) : (
-                  <Button onClick={() => submitTest(false)} disabled={loading}>
+                  <Button
+                    onClick={() => submitTest(false)}
+                    disabled={loading}
+                    className="w-full sm:w-auto min-h-[52px] text-base"
+                  >
                     {loading ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
@@ -480,9 +487,9 @@ export default function PlacementTest() {
             </div>
           </div>
 
-          <div className="soft-card mt-4 p-5 rounded-3xl">
+          <div className="soft-card mt-4 p-5 sm:p-6 rounded-3xl">
             <p className="label-caps text-slate-light mb-3">Soru Haritası</p>
-            <div className="flex flex-wrap gap-1.5 md:gap-2 max-h-44 overflow-y-auto">
+            <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
               {placementQuestions.map((q, i) => {
                 const answered = isQuestionAnswered(answers, q.id);
                 const blank = isBlankAnswer(answers[q.id]);
@@ -491,7 +498,8 @@ export default function PlacementTest() {
                   <button
                     key={q.id}
                     onClick={() => setCurrentQuestion(i)}
-                    className={`w-9 h-9 md:w-10 md:h-10 text-xs md:text-sm font-semibold rounded-full transition-all duration-200 ${
+                    aria-label={`Soru ${i + 1}`}
+                    className={`w-11 h-11 text-sm font-semibold rounded-full transition-all duration-200 ${
                       i === currentQuestion
                         ? "bg-gradient-to-br from-gold-600 to-gold-500 text-white shadow-md scale-110"
                         : answered && blank
@@ -523,7 +531,7 @@ export default function PlacementTest() {
                   exit={{ opacity: 0, scale: 0.96, y: 12 }}
                   transition={transition.fast}
                   onClick={(e) => e.stopPropagation()}
-                  className="soft-card w-full max-w-md p-8 text-center"
+                  className="soft-card w-full max-w-md p-6 sm:p-8 text-center"
                 >
                   <span className="w-14 h-14 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center mx-auto mb-4">
                     <AlertTriangle className="w-7 h-7" />
@@ -847,23 +855,23 @@ function QuestionDetailReview({ answers }: { answers: Record<number, string> }) 
                   )}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="text-xs font-bold text-navy-900">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className="text-sm font-bold text-navy-900">
                       Soru {q.id}
                     </span>
-                    <span className="text-[10px] uppercase tracking-wide text-slate-light">
+                    <span className="text-xs uppercase tracking-wide text-slate-light">
                       {q.hubLevel} · {q.cefrLevel}
                     </span>
                   </div>
                   {blank ? (
-                    <p className="text-sm text-slate-light">
+                    <p className="text-[15px] sm:text-base text-slate-light leading-relaxed">
                       Boş bırakıldı · Doğru cevap:{" "}
                       <span className="font-semibold text-navy-900">
                         {q.correctAnswer}. {correctOption?.text}
                       </span>
                     </p>
                   ) : (
-                    <div className="text-sm leading-relaxed space-y-0.5">
+                    <div className="text-[15px] sm:text-base leading-relaxed space-y-1">
                       <p
                         className={
                           correct ? "text-emerald-700" : "text-red-600"

@@ -25,7 +25,7 @@ export const onlineCourses: OnlineCourse[] = [
     lessons: 90,
     price: 14900,
     originalPrice: 19900,
-    badge: "En Popüler",
+    badge: "En Çok Tercih Edilen",
     popular: true,
     features: [
       "90 canlı ders + kayıt arşivi",
@@ -122,6 +122,23 @@ export const onlineCourses: OnlineCourse[] = [
     ],
   },
   {
+    id: "c2-uzman",
+    title: "Proficiency C2",
+    subtitle: "Anadile yakın akıcılık ve akademik yayın dili",
+    level: "C2",
+    format: "Grup Dersi (Maks 8–10 Kişi)",
+    duration: "8 Hafta",
+    lessons: 32,
+    price: 11900,
+    originalPrice: 15900,
+    features: [
+      "Edebi metin analizi",
+      "Akademik yayın dili",
+      "CPE sınav pratiği",
+      "C2 sertifika",
+    ],
+  },
+  {
     id: "ielts-paket",
     title: "IELTS Online Hazırlık",
     subtitle: "Band 6.5 hedefli yoğun program",
@@ -131,7 +148,6 @@ export const onlineCourses: OnlineCourse[] = [
     lessons: 40,
     price: 9900,
     originalPrice: 13900,
-    popular: true,
     features: [
       "Haftalık mock exam",
       "Writing koçluğu",
@@ -166,7 +182,8 @@ export const onlineCourses: OnlineCourse[] = [
     lessons: 10,
     price: 12900,
     originalPrice: 15900,
-    badge: "Premium",
+    badge: "En Çok Tercih Edilen",
+    popular: true,
     features: [
       "1-1 eğitmen",
       "Esnek saat",
@@ -202,7 +219,7 @@ export const yuzYuzeCourses: YuzYuzeCourse[] = [
     lessons: 90,
     price: 13900,
     originalPrice: 17900,
-    badge: "En Popüler",
+    badge: "En Çok Tercih Edilen",
     popular: true,
     features: [
       "Kampüste 90 yüz yüze ders",
@@ -298,6 +315,23 @@ export const yuzYuzeCourses: YuzYuzeCourse[] = [
     ],
   },
   {
+    id: "yy-c2-uzman",
+    title: "Proficiency C2 (Kampüs)",
+    subtitle: "Anadile yakın akıcılık ve akademik yayın dili",
+    level: "C2",
+    format: "Grup Dersi (Maks 8–10 Kişi)",
+    duration: "8 Hafta",
+    lessons: 32,
+    price: 10900,
+    originalPrice: 14900,
+    features: [
+      "Edebi metin analizi",
+      "Akademik yayın dili",
+      "CPE sınav pratiği",
+      "C2 sertifika",
+    ],
+  },
+  {
     id: "yy-birebir",
     title: "Birebir Kampüs Dersi",
     subtitle: "Denizli merkezde tamamen size özel oturumlar",
@@ -307,7 +341,8 @@ export const yuzYuzeCourses: YuzYuzeCourse[] = [
     lessons: 10,
     price: 11900,
     originalPrice: 14900,
-    badge: "Premium",
+    badge: "En Çok Tercih Edilen",
+    popular: true,
     features: [
       "1-1 eğitmen",
       "Kişisel program",

@@ -8,7 +8,7 @@ const featured90 = onlineCourses.find((c) => c.id === "3-ayda-90-ders");
 const featuredBirebir = onlineCourses.find((c) => c.id === "birebir-online");
 
 const levelCourses = onlineCourses.filter((c) =>
-  ["A1", "A2", "B1", "B2", "C1"].includes(c.level)
+  ["A1", "A2", "B1", "B2", "C1", "C2"].includes(c.level)
 );
 
 const levelNames: Record<string, string> = {
@@ -17,6 +17,7 @@ const levelNames: Record<string, string> = {
   B1: "Orta Alt",
   B2: "Orta Üst",
   C1: "İleri",
+  C2: "Uzman",
 };
 
 export default function PackagesSection() {
@@ -124,7 +125,7 @@ export default function PackagesSection() {
         </div>
 
         <AnimatedSection delay={0.15}>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
             {levelCourses.map((course) => (
               <div
                 key={course.id}

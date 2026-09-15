@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageLayout from "@/components/layout/PageLayout";
 import { KageEduHero, KageEduChapters, KageEduClosing } from "@/components/home/kage-edu/KageEdu";
+import PackagesSection from "@/components/home/PackagesSection";
 import ScrollingTestimonials from "@/components/home/ScrollingTestimonials";
 import InstagramGallery from "@/components/home/InstagramGallery";
 
@@ -16,6 +17,7 @@ export default function HomePage() {
     <PageLayout>
       <KageEduHero />
       <KageEduChapters />
+      <PackagesSection />
       <ScrollingTestimonials />
       <InstagramGallery />
       <KageEduClosing />

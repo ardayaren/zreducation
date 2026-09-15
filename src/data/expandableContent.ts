@@ -572,7 +572,7 @@ export const ingilizceLevelDetails: ExpandableDetail[] = [
   },
   {
     title: "B2 — Orta Üst",
-    summary: "Akademik sunum, tartışma — IELTS 6.0+ hedefi.",
+    summary: "Akademik sunum, tartışma — 32 derslik program.",
     content:
       "Üniversite hazırlık atlama ve IELTS 6.0+ hedefleyenler için tasarlandı. Karmaşık metin analizi ve argüman geliştirme çalışılır.",
     bullets: [
@@ -584,7 +584,7 @@ export const ingilizceLevelDetails: ExpandableDetail[] = [
   },
   {
     title: "C1 — İleri",
-    summary: "Akademik makale, profesyonel rapor — IELTS 7.0+ hedefi.",
+    summary: "Akademik makale, profesyonel rapor — 32 derslik program.",
     content:
       "Yüksek lisans başvuruları ve profesyonel kariyer için ileri düzey program. Nüanslı ifade ve akademik yazım odaklıdır.",
     bullets: [
@@ -596,7 +596,7 @@ export const ingilizceLevelDetails: ExpandableDetail[] = [
   },
   {
     title: "C2 — Uzman",
-    summary: "Anadile yakın akıcılık — akademik yayın dili.",
+    summary: "Anadile yakın akıcılık — 32 derslik program.",
     content:
       "Doktora, hakemli dergi ve üst düzey iş İngilizcesi için en üst seviye program. Edebi metin analizi ve stilistik nüanslar çalışılır.",
     related: "Sınav Hazırlık — IELTS 8.0+ ve Cambridge CPE",

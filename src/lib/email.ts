@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import type { TestResult } from "@/lib/levelCalculator";
 import {
   levelDescriptions,
@@ -12,8 +13,52 @@ interface UserInfo {
   phone: string;
 }
 
-function getTransporter() {
-  return nodemailer.createTransport({
+/* Resend önceliklidir; anahtar yoksa SMTP (nodemailer) fallback çalışır. */
+let resendClient: Resend | null = null;
+
+function getResend(): Resend | null {
+  if (!resendClient && process.env.RESEND_API_KEY) {
+    resendClient = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendClient;
+}
+
+function getFromAddress() {
+  if (process.env.RESEND_FROM) return process.env.RESEND_FROM;
+  if (process.env.SMTP_USER) return `"Zreducation" <${process.env.SMTP_USER}>`;
+  return "Zreducation <onboarding@resend.dev>";
+}
+
+function getAdminEmail() {
+  return process.env.ADMIN_EMAIL || process.env.SMTP_USER;
+}
+
+async function sendMail(opts: {
+  to: string;
+  subject: string;
+  text: string;
+  html: string;
+}): Promise<void> {
+  const resend = getResend();
+
+  if (resend) {
+    const { error } = await resend.emails.send({
+      from: getFromAddress(),
+      to: opts.to,
+      subject: opts.subject,
+      text: opts.text,
+      html: opts.html,
+    });
+    if (error) throw new Error(error.message);
+    return;
+  }
+
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.warn("Email credentials not configured. Skipping email send.");
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: Number(process.env.SMTP_PORT) || 587,
     secure: false,
@@ -22,10 +67,14 @@ function getTransporter() {
       pass: process.env.SMTP_PASS,
     },
   });
-}
 
-function getAdminEmail() {
-  return process.env.ADMIN_EMAIL || process.env.SMTP_USER;
+  await transporter.sendMail({
+    from: getFromAddress(),
+    to: opts.to,
+    subject: opts.subject,
+    text: opts.text,
+    html: opts.html,
+  });
 }
 
 interface RegistrationLead {
@@ -44,15 +93,12 @@ export async function sendRegistrationNotification(
   lead: RegistrationLead
 ): Promise<void> {
   const adminEmail = getAdminEmail();
-  if (!adminEmail || !process.env.SMTP_USER) {
-    console.warn("Email credentials not configured. Skipping email send.");
+  if (!adminEmail) {
+    console.warn("Admin email not configured. Skipping email send.");
     return;
   }
 
-  const transporter = getTransporter();
-
-  await transporter.sendMail({
-    from: `"Zreducation Kayıt Formu" <${process.env.SMTP_USER}>`,
+  await sendMail({
     to: adminEmail,
     subject: `Yeni Kayıt Talebi — ${lead.name} (${lead.city})`,
     text: `
@@ -110,15 +156,12 @@ export async function sendSpeakingBookingNotification(
   lead: SpeakingBookingLead
 ): Promise<void> {
   const adminEmail = getAdminEmail();
-  if (!adminEmail || !process.env.SMTP_USER) {
-    console.warn("Email credentials not configured. Skipping email send.");
+  if (!adminEmail) {
+    console.warn("Admin email not configured. Skipping email send.");
     return;
   }
 
-  const transporter = getTransporter();
-
-  await transporter.sendMail({
-    from: `"Zreducation Speaking Randevu" <${process.env.SMTP_USER}>`,
+  await sendMail({
     to: adminEmail,
     subject: `Speaking Sınavı Randevu Talebi — ${lead.name}`,
     text: `
@@ -167,12 +210,10 @@ export async function sendAdminNotification(
 ): Promise<void> {
   const adminEmail = getAdminEmail();
 
-  if (!adminEmail || !process.env.SMTP_USER) {
-    console.warn("Email credentials not configured. Skipping email send.");
+  if (!adminEmail) {
+    console.warn("Admin email not configured. Skipping email send.");
     return;
   }
-
-  const transporter = getTransporter();
 
   const breakdownText = Object.values(result.breakdown)
     .map((data) => `${data.label}: ${data.correct}/${data.total} doğru`)
@@ -221,8 +262,7 @@ export async function sendAdminNotification(
         ].join("\n")
       : "Tüm cevaplar doğru.";
 
-  await transporter.sendMail({
-    from: `"Zreducation Sınav Sistemi" <${process.env.SMTP_USER}>`,
+  await sendMail({
     to: adminEmail,
     subject: `Yeni Seviye Tespit Sınavı - ${user.name} (${result.level} / ${result.hubLabel})`,
     text: `

@@ -84,7 +84,18 @@ a {
 /* Mobil dokunmatik hedefler: en az 44px */
 @media (max-width: 640px) {
   body {
-    font-size: 17px;
+    font-size: 18px;
+  }
+
+  /* Küçük yazılar mobilde bir basamak büyür */
+  .text-xs {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .text-sm {
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   .soft-card {
@@ -327,10 +338,16 @@ a {
 
 .label-caps {
   font-family: var(--font-jakarta), system-ui, sans-serif;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+@media (min-width: 641px) {
+  .label-caps {
+    font-size: 12.5px;
+  }
 }
 
 .gold-glow {

@@ -24,9 +24,20 @@ export async function POST(request: NextRequest) {
 
     const result = calculateLevel(answers);
 
+    let emailStatus: { ok: boolean; provider?: string | null; error?: string } = {
+      ok: false,
+      error: "gönderim yapılmadı",
+    };
+
     try {
-      await sendAdminNotification(userInfo, result, answers);
+      const provider = await sendAdminNotification(userInfo, result, answers);
+      emailStatus = { ok: true, provider };
     } catch (emailError) {
+      emailStatus = {
+        ok: false,
+        error:
+          emailError instanceof Error ? emailError.message : String(emailError),
+      };
       console.error("Email gönderim hatası:", emailError);
     }
 
@@ -37,10 +48,10 @@ export async function POST(request: NextRequest) {
       email: String(userInfo.email ?? ""),
       phone: String(userInfo.phone ?? ""),
       summary: `${result.level} · %${result.percentage} (${result.correctAnswers}/${result.totalQuestions} doğru)`,
-      data: { userInfo, result, answers },
+      data: { userInfo, result, answers, emailStatus },
     });
 
-    return NextResponse.json({ success: true, result });
+    return NextResponse.json({ success: true, result, emailStatus });
   } catch (error) {
     console.error("Sınav işleme hatası:", error);
     return NextResponse.json(

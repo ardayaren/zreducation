@@ -43,45 +43,60 @@ async function sendMail(opts: {
   subject: string;
   text: string;
   html: string;
-}): Promise<void> {
+}): Promise<"resend" | "smtp" | null> {
   const resend = getResend();
 
   if (resend) {
-    const { error } = await resend.emails.send({
+    try {
+      const { error } = await resend.emails.send({
+        from: getFromAddress(),
+        to: opts.to,
+        subject: opts.subject,
+        text: opts.text,
+        html: opts.html,
+      });
+      if (error) throw new Error(error.message);
+      console.log(`[email] Resend ile gönderildi -> ${opts.to}`);
+      return "resend";
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.warn(
+        `[email] Resend hatası, SMTP'ye geçiliyor (${opts.to}): ${msg}`
+      );
+    }
+  }
+
+  if (!process.env.SMTP_PASS) {
+    console.warn(
+      `[email] SMTP_PASS tanımlı değil — e-posta gönderilmedi (alıcı: ${opts.to}).`
+    );
+    return null;
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: Number(process.env.SMTP_PORT) || 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER || DEFAULT_SENDER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    await transporter.sendMail({
       from: getFromAddress(),
       to: opts.to,
       subject: opts.subject,
       text: opts.text,
       html: opts.html,
     });
-    if (error) throw new Error(error.message);
-    return;
+    console.log(`[email] SMTP ile gönderildi -> ${opts.to}`);
+    return "smtp";
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    throw new Error(`SMTP gönderim hatası: ${msg}`);
   }
-
-  if (!process.env.SMTP_PASS) {
-    console.warn(
-      `SMTP_PASS tanımlı değil — e-posta gönderilmedi (alıcı: ${opts.to}).`
-    );
-    return;
-  }
-
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER || DEFAULT_SENDER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-
-  await transporter.sendMail({
-    from: getFromAddress(),
-    to: opts.to,
-    subject: opts.subject,
-    text: opts.text,
-    html: opts.html,
-  });
 }
 
 interface RegistrationLead {
@@ -98,14 +113,14 @@ interface RegistrationLead {
 
 export async function sendRegistrationNotification(
   lead: RegistrationLead
-): Promise<void> {
+): Promise<"resend" | "smtp" | null> {
   const adminEmail = getAdminEmail();
   if (!adminEmail) {
     console.warn("Admin email not configured. Skipping email send.");
-    return;
+    return null;
   }
 
-  await sendMail({
+  return sendMail({
     to: adminEmail,
     subject: `Yeni Kayıt Talebi — ${lead.name} (${lead.city})`,
     text: `
@@ -161,14 +176,14 @@ interface SpeakingBookingLead {
 
 export async function sendSpeakingBookingNotification(
   lead: SpeakingBookingLead
-): Promise<void> {
+): Promise<"resend" | "smtp" | null> {
   const adminEmail = getAdminEmail();
   if (!adminEmail) {
     console.warn("Admin email not configured. Skipping email send.");
-    return;
+    return null;
   }
 
-  await sendMail({
+  return sendMail({
     to: adminEmail,
     subject: `Speaking Sınavı Randevu Talebi — ${lead.name}`,
     text: `
@@ -214,12 +229,12 @@ export async function sendAdminNotification(
   user: UserInfo,
   result: TestResult,
   answers: Record<number, string>
-): Promise<void> {
+): Promise<"resend" | "smtp" | null> {
   const adminEmail = getAdminEmail();
 
   if (!adminEmail) {
     console.warn("Admin email not configured. Skipping email send.");
-    return;
+    return null;
   }
 
   const breakdownText = Object.values(result.breakdown)
@@ -269,7 +284,7 @@ export async function sendAdminNotification(
         ].join("\n")
       : "Tüm cevaplar doğru.";
 
-  await sendMail({
+  return sendMail({
     to: adminEmail,
     subject: `Yeni Seviye Tespit Sınavı - ${user.name} (${result.level} / ${result.hubLabel})`,
     text: `

@@ -23,8 +23,8 @@ export const contactInfo = {
   },
   studentPanel: {
     name: "Yöntek",
-    url: "https://yontek.com",
-    display: "yontek.com",
+    url: "https://yöntek.com",
+    display: "yöntek.com",
   },
   maps: {
     embedUrl:

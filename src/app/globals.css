@@ -45,6 +45,14 @@
   --color-border-dark: var(--border-dark);
   --font-sans: var(--font-source);
   --font-heading: var(--font-jakarta);
+
+  /* Tüm site genelinde okunabilir, büyük yazı boyutları */
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.55;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.65;
+  --text-base: 1.125rem;
+  --text-base--line-height: 1.75;
 }
 
 html {
@@ -65,8 +73,8 @@ body {
   background: var(--white);
   color: var(--navy-700);
   font-family: var(--font-source), system-ui, sans-serif;
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.75;
   letter-spacing: 0.005em;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -86,21 +94,6 @@ a {
 
 /* Mobil dokunmatik hedefler: en az 44px */
 @media (max-width: 640px) {
-  body {
-    font-size: 18px;
-  }
-
-  /* Küçük yazılar mobilde bir basamak büyür */
-  .text-xs {
-    font-size: 0.875rem;
-    line-height: 1.55;
-  }
-
-  .text-sm {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
   .soft-card {
     border-radius: 24px;
   }

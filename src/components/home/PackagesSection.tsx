@@ -35,7 +35,7 @@ export default function PackagesSection() {
             <AnimatedSection>
               <div className="relative h-full flex flex-col rounded-3xl overflow-hidden border border-gold-400 shadow-[0_8px_32px_rgba(201,168,58,0.18)] surface-navy">
                 <div className="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-                <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-[10px] inline-flex items-center gap-1">
+                <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-xs inline-flex items-center gap-1">
                   <Star className="w-3 h-3" />
                   En Çok Tercih Edilen
                 </span>
@@ -80,7 +80,7 @@ export default function PackagesSection() {
           {featuredBirebir && (
             <AnimatedSection delay={0.1}>
               <div className="relative h-full flex flex-col rounded-3xl overflow-hidden border border-gold-400 shadow-[0_8px_32px_rgba(201,168,58,0.18)] bg-white">
-                <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-[10px] inline-flex items-center gap-1">
+                <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-xs inline-flex items-center gap-1">
                   <Star className="w-3 h-3" />
                   En Çok Tercih Edilen
                 </span>
@@ -146,7 +146,7 @@ export default function PackagesSection() {
                 <div className="mt-auto">
                   <a
                     href={`/iletisim?paket=${course.id}`}
-                    className="inline-flex items-center gap-1.5 label-caps text-gold-600 group-hover:text-navy-900 transition-colors text-[11px]"
+                    className="inline-flex items-center gap-1.5 label-caps text-gold-600 group-hover:text-navy-900 transition-colors text-sm"
                   >
                     Bilgi Al
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

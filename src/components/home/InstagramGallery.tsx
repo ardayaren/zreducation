@@ -128,7 +128,7 @@ export default function InstagramGallery() {
                   <PlayCircle className="w-4 h-4 text-white" />
                 </span>
               )}
-              <p className="absolute bottom-0 left-0 right-0 p-3 text-[11px] text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p className="absolute bottom-0 left-0 right-0 p-3 text-sm text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {item.caption}
               </p>
             </a>
@@ -169,7 +169,7 @@ export default function InstagramGallery() {
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <p className="absolute bottom-0 left-0 right-0 p-3 text-[11px] text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="absolute bottom-0 left-0 right-0 p-3 text-sm text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {post.caption}
                   </p>
                 </a>

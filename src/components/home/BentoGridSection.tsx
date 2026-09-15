@@ -158,14 +158,14 @@ function BentoCard({
           <div className="space-y-1">
             {tile.eyebrow && (
               <span
-                className={`label-caps text-[10px] block ${hasImage ? "text-white/80" : "opacity-70"}`}
+                className={`label-caps text-xs block ${hasImage ? "text-white/80" : "opacity-70"}`}
               >
                 {tile.eyebrow}
               </span>
             )}
             {tile.stat && large && (
               <span
-                className={`inline-flex badge-pill text-[10px] mt-1 ${hasImage ? "bg-white/15 text-gold-300" : "bg-white/10 text-gold-300"}`}
+                className={`inline-flex badge-pill text-xs mt-1 ${hasImage ? "bg-white/15 text-gold-300" : "bg-white/10 text-gold-300"}`}
               >
                 {tile.stat}
               </span>
@@ -195,7 +195,7 @@ function BentoCard({
 
           <div className="flex items-center justify-between mt-5">
             <span
-              className={`label-caps inline-flex items-center gap-1.5 text-[10px] transition-colors ${hasImage ? "text-gold-300 hover:text-gold-200" : styles.link}`}
+              className={`label-caps inline-flex items-center gap-1.5 text-xs transition-colors ${hasImage ? "text-gold-300 hover:text-gold-200" : styles.link}`}
             >
               Keşfet
               <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
@@ -246,7 +246,7 @@ export default function BentoGridSection() {
               <div className="relative">
                 <div className="flex items-center gap-2 mb-4">
                   <Sparkles className="w-4 h-4 text-gold-600" />
-                  <span className="label-caps text-gold-600 text-[10px]">
+                  <span className="label-caps text-gold-600 text-xs">
                     Rakamlarla Zreducation
                   </span>
                 </div>

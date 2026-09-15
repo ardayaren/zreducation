@@ -72,7 +72,7 @@ export default function Header() {
             >
               <Phone className="w-4 h-4 text-gold-600" />
               {contactInfo.phone.display}
-              <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
+              <span className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
                 7/24 WhatsApp
               </span>
             </a>

@@ -1051,11 +1051,11 @@ function ResultReview({ answers }: { answers: Record<number, string> }) {
                   ) : (
                     <XCircle className="w-5 h-5 text-red-500 shrink-0" />
                   )}
-                  <span className="flex-1 min-w-0 text-[15px] sm:text-base font-medium text-navy-900 leading-snug">
+                  <span className="flex-1 min-w-0 text-base sm:text-base font-medium text-navy-900 leading-snug">
                     {questionStem(q.passage)}
                   </span>
                   <span
-                    className={`shrink-0 text-[11px] sm:text-xs font-extrabold tracking-wide px-2.5 py-1 rounded-full ${badge}`}
+                    className={`shrink-0 text-sm sm:text-xs font-extrabold tracking-wide px-2.5 py-1 rounded-full ${badge}`}
                   >
                     {badgeText}
                   </span>
@@ -1077,7 +1077,7 @@ function ResultReview({ answers }: { answers: Record<number, string> }) {
                           {q.passage.split("\n").map((line, li) => (
                             <p
                               key={li}
-                              className="text-sm sm:text-[15px] text-slate leading-relaxed"
+                              className="text-sm sm:text-base text-slate leading-relaxed"
                             >
                               {line}
                             </p>
@@ -1090,7 +1090,7 @@ function ResultReview({ answers }: { answers: Record<number, string> }) {
                             return (
                               <div
                                 key={o.key}
-                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-sm sm:text-[15px] ${
+                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-sm sm:text-base ${
                                   isCorrect
                                     ? "bg-emerald-50 border-emerald-300"
                                     : isUser
@@ -1121,12 +1121,12 @@ function ResultReview({ answers }: { answers: Record<number, string> }) {
                                   {o.text}
                                 </span>
                                 {isCorrect && (
-                                  <span className="shrink-0 text-[10px] sm:text-[11px] font-extrabold tracking-wide bg-emerald-500 text-white px-2 py-0.5 rounded-full">
+                                  <span className="shrink-0 text-xs sm:text-sm font-extrabold tracking-wide bg-emerald-500 text-white px-2 py-0.5 rounded-full">
                                     {isUser ? "CEVABIN · DOĞRU" : "DOĞRU CEVAP"}
                                   </span>
                                 )}
                                 {isUser && !isCorrect && (
-                                  <span className="shrink-0 text-[10px] sm:text-[11px] font-extrabold tracking-wide bg-red-500 text-white px-2 py-0.5 rounded-full">
+                                  <span className="shrink-0 text-xs sm:text-sm font-extrabold tracking-wide bg-red-500 text-white px-2 py-0.5 rounded-full">
                                     SENİN CEVABIN
                                   </span>
                                 )}
@@ -1135,14 +1135,14 @@ function ResultReview({ answers }: { answers: Record<number, string> }) {
                           })}
                         </div>
                         {blank && (
-                          <p className="text-sm sm:text-[15px] text-slate-light mt-3">
+                          <p className="text-sm sm:text-base text-slate-light mt-3">
                             Bu soruyu boş bıraktın. Doğru cevap:{" "}
                             <span className="font-semibold text-navy-900">
                               {q.correctAnswer}
                             </span>
                           </p>
                         )}
-                        <p className="text-[11px] sm:text-xs uppercase tracking-wide text-slate-light mt-3">
+                        <p className="text-sm sm:text-xs uppercase tracking-wide text-slate-light mt-3">
                           {hubLevelConfig[q.hubLevel].labelTr} · {q.cefrLevel}
                         </p>
                       </div>

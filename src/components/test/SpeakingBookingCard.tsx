@@ -115,7 +115,7 @@ export default function SpeakingBookingCard({
         <form onSubmit={handleSubmit} className="space-y-4 relative">
           <div className="grid sm:grid-cols-3 gap-3">
             <div>
-              <label className="text-[10px] uppercase tracking-wide text-white/50 block mb-2">
+              <label className="text-xs uppercase tracking-wide text-white/50 block mb-2">
                 Şehir
               </label>
               <input
@@ -127,7 +127,7 @@ export default function SpeakingBookingCard({
               />
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-wide text-white/50 block mb-2">
+              <label className="text-xs uppercase tracking-wide text-white/50 block mb-2">
                 Tercih Edilen Gün
               </label>
               <input
@@ -138,7 +138,7 @@ export default function SpeakingBookingCard({
               />
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-wide text-white/50 block mb-2">
+              <label className="text-xs uppercase tracking-wide text-white/50 block mb-2">
                 Tercih Edilen Saat
               </label>
               <input
@@ -151,7 +151,7 @@ export default function SpeakingBookingCard({
           </div>
 
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-white/50 block mb-2">
+            <label className="text-xs uppercase tracking-wide text-white/50 block mb-2">
               Platform Tercihi
             </label>
             <div className="flex gap-2">
@@ -174,7 +174,7 @@ export default function SpeakingBookingCard({
           </div>
 
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-white/50 block mb-2">
+            <label className="text-xs uppercase tracking-wide text-white/50 block mb-2">
               Not (opsiyonel)
             </label>
             <input

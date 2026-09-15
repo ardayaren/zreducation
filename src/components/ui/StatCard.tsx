@@ -14,7 +14,7 @@ interface StatCardProps {
 }
 
 const sizeClasses = {
-  sm: { value: "text-xl md:text-2xl", label: "text-[10px]", padding: "px-4 py-3" },
+  sm: { value: "text-xl md:text-2xl", label: "text-xs", padding: "px-4 py-3" },
   md: { value: "text-2xl md:text-3xl", label: "text-xs", padding: "p-8" },
   lg: { value: "text-xl", label: "text-sm", padding: "px-5 py-4" },
 };
@@ -50,7 +50,7 @@ export default function StatCard({
       </div>
       {stat.hint && (
         <div
-          className={`text-[10px] mt-1 ${tone === "negative" ? "text-red-500" : "text-emerald-600"}`}
+          className={`text-xs mt-1 ${tone === "negative" ? "text-red-500" : "text-emerald-600"}`}
         >
           {stat.hint}
         </div>

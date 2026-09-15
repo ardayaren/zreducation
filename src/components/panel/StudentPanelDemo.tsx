@@ -212,7 +212,7 @@ export default function StudentPanelDemo() {
                       <div className="font-heading-normal text-xl md:text-2xl font-bold text-navy-900 tabular-nums">
                         {s.value}
                       </div>
-                      <div className="label-caps text-slate-light mt-1 text-[10px]">
+                      <div className="label-caps text-slate-light mt-1 text-xs">
                         {s.label}
                       </div>
                     </div>
@@ -433,7 +433,7 @@ export default function StudentPanelDemo() {
               <div className="space-y-3">
                 {instructorNotes.map((n) => (
                   <div key={n.lesson} className="rounded-2xl border border-border bg-white p-5">
-                    <span className="text-[10px] uppercase tracking-wide text-gold-600 font-semibold block mb-2">
+                    <span className="text-xs uppercase tracking-wide text-gold-600 font-semibold block mb-2">
                       {n.lesson}
                     </span>
                     <p className="text-sm text-slate leading-relaxed">&quot;{n.text}&quot;</p>

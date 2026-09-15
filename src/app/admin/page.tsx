@@ -158,7 +158,7 @@ export default function AdminPage() {
           <Logo size={40} />
           <div className="mr-auto">
             <p className="font-heading-normal font-bold leading-none">Zreducation Admin</p>
-            <p className="text-[11px] text-white/60 mt-1 tracking-widest uppercase">
+            <p className="text-sm text-white/60 mt-1 tracking-widest uppercase">
               Başvurular & Sınav Sonuçları
             </p>
           </div>
@@ -224,7 +224,7 @@ export default function AdminPage() {
               return (
                 <article key={s.id} className="bg-white rounded-3xl shadow-sm overflow-hidden">
                   <div className="p-4 sm:p-5 flex flex-wrap items-center gap-3">
-                    <span className={`badge-pill text-[10px] ${TYPE_BADGE[s.type]}`}>
+                    <span className={`badge-pill text-xs ${TYPE_BADGE[s.type]}`}>
                       {TYPE_LABEL[s.type]}
                     </span>
                     <div className="min-w-0 mr-auto">

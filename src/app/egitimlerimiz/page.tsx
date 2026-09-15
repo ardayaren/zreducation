@@ -49,7 +49,7 @@ export default function EgitimlerimizPage() {
               >
                 {course.badge && (
                   <span
-                    className={`absolute top-4 right-4 badge-pill text-[11px] ${
+                    className={`absolute top-4 right-4 badge-pill text-sm ${
                       course.popular
                         ? "bg-gold-500 text-navy-950"
                         : "bg-white/15 text-white"
@@ -74,7 +74,7 @@ export default function EgitimlerimizPage() {
                   <h3 className="font-heading-normal text-lg md:text-xl font-bold text-white mb-1.5">
                     {course.title}
                   </h3>
-                  <p className="text-sm md:text-[15px] text-white/60 mb-5">
+                  <p className="text-sm md:text-base text-white/60 mb-5">
                     {course.subtitle}
                   </p>
 
@@ -82,7 +82,7 @@ export default function EgitimlerimizPage() {
                     {course.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-start gap-2.5 text-sm md:text-[15px] text-white/75"
+                        className="flex items-start gap-2.5 text-sm md:text-base text-white/75"
                       >
                         <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                         {f}

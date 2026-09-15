@@ -219,7 +219,7 @@ export default function OgrenciPaneliPage() {
                 <FileText className="w-5 h-5 text-gold-400" />
                 <h3 className="text-white font-semibold text-sm">Ders Notu Örneği</h3>
               </div>
-              <span className="text-[10px] text-white/40 uppercase tracking-wide block mb-2">
+              <span className="text-xs text-white/40 uppercase tracking-wide block mb-2">
                 12. Ders · Speaking Odaklı
               </span>
               <p className="text-white/70 text-sm leading-relaxed">

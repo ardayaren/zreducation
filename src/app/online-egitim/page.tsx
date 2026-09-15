@@ -73,14 +73,14 @@ export default function OnlineEgitimPage() {
                   } bg-white`}
                 >
                   {course.badge && (
-                    <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-[10px]">
+                    <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-xs">
                       {course.badge}
                     </span>
                   )}
 
                   <div className="p-5 md:p-6 flex flex-col flex-1">
                     <span
-                      className={`badge-pill w-fit mb-3 text-[10px] ${
+                      className={`badge-pill w-fit mb-3 text-xs ${
                         course.format === "Birebir Ders"
                           ? "bg-navy-900 text-white"
                           : "bg-emerald-50 text-emerald-700 border border-emerald-200"

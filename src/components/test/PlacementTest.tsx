@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   MapPin,
   Phone,
   Mail,
@@ -15,6 +16,8 @@ import {
   XCircle,
   MinusCircle,
   AlertTriangle,
+  RotateCcw,
+  Share2,
 } from "lucide-react";
 import {
   placementQuestions,
@@ -97,6 +100,7 @@ export default function PlacementTest() {
   const [timeLeft, setTimeLeft] = useState(TEST_DURATION_SECONDS);
   const [showConfirm, setShowConfirm] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
+  const [shareMsg, setShareMsg] = useState("");
   const autoSubmittedRef = useRef(false);
   const submittingRef = useRef(false);
 
@@ -170,6 +174,69 @@ export default function PlacementTest() {
     }
 
     void doSubmit();
+  };
+
+  const restartTest = () => {
+    setAnswers({});
+    setResult(null);
+    setError("");
+    setShareMsg("");
+    setTimeUp(false);
+    autoSubmittedRef.current = false;
+    submittingRef.current = false;
+    setCurrentQuestion(0);
+    setTimeLeft(TEST_DURATION_SECONDS);
+    setStep("test");
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const shareResult = async () => {
+    if (!result) return;
+    const pageUrl =
+      typeof window !== "undefined"
+        ? window.location.href
+        : "https://zreducation.org/seviye-tespit";
+    const text = `Zreducation Seviye Tespit sonucum: ${result.level} — ${result.correctAnswers}/${result.totalQuestions} doğru (%${result.percentage})`;
+    if (
+      typeof navigator !== "undefined" &&
+      "share" in navigator &&
+      navigator.share
+    ) {
+      try {
+        await navigator.share({
+          title: "Zreducation Seviye Tespit Sonucum",
+          text,
+          url: pageUrl,
+        });
+        return;
+      } catch (err) {
+        if (err instanceof Error && err.name === "AbortError") return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(`${text} ${pageUrl}`);
+      setShareMsg("Sonucun panoya kopyalandı — yapıştırıp paylaşabilirsin.");
+    } catch {
+      setShareMsg(
+        "Paylaşım desteklenmiyor; ekran görüntüsü alıp paylaşabilirsin."
+      );
+    }
+    window.setTimeout(() => setShareMsg(""), 5000);
+  };
+
+  const shareLinkedIn = () => {
+    const url = encodeURIComponent(
+      typeof window !== "undefined"
+        ? window.location.href
+        : "https://zreducation.org/seviye-tespit"
+    );
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   useEffect(() => {
@@ -580,61 +647,89 @@ export default function PlacementTest() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={transition.default}
-          className="max-w-3xl mx-auto soft-card overflow-hidden"
+          className="max-w-3xl mx-auto space-y-4"
         >
-          <div className="surface-navy navy-panel p-8 md:p-10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-3xl" />
-            <span className="badge-pill bg-white/10 text-gold-300 mb-4 relative">
-              Sınav Sonucu
-            </span>
-            <div className="flex items-end gap-6 flex-wrap relative">
-              <motion.span
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.15, ...optionSpring }}
-                className="font-heading-normal text-5xl md:text-6xl font-bold text-gold-400 tabular-nums"
-              >
-                {result.level}
-              </motion.span>
-              <div>
-                <h2 className="font-heading-normal text-xl md:text-2xl font-bold text-white">
-                  {levelInfo.title}
-                </h2>
-                <p className="text-gold-400 text-sm mt-1">
-                  Language Hub: {result.hubLabel}
-                </p>
-                <p className="text-white/60 text-sm mt-2 max-w-md leading-relaxed">
-                  {levelInfo.description}
-                </p>
+          <div className="soft-card overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y divide-border sm:divide-y-0 sm:divide-x">
+              <div className="p-6 sm:p-8 text-center">
+                <motion.div
+                  initial={{ scale: 0.85, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, ...optionSpring }}
+                  className="font-heading-normal text-4xl sm:text-5xl font-extrabold text-emerald-600 tabular-nums"
+                >
+                  %{result.percentage}
+                </motion.div>
+                <div className="label-caps text-slate-light mt-2">
+                  Başarı Oranı
+                </div>
+              </div>
+              <div className="p-6 sm:p-8 text-center">
+                <motion.div
+                  initial={{ scale: 0.85, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.18, ...optionSpring }}
+                  className="font-heading-normal text-4xl sm:text-5xl font-extrabold tabular-nums"
+                >
+                  <span className="text-blue-700">
+                    {result.correctAnswers}
+                  </span>
+                  <span className="text-slate-light text-2xl sm:text-3xl font-bold">
+                    /{result.totalQuestions}
+                  </span>
+                </motion.div>
+                <div className="label-caps text-slate-light mt-2">
+                  Doğru Cevap
+                </div>
+              </div>
+              <div className="p-6 sm:p-8 text-center">
+                <motion.div
+                  initial={{ scale: 0.85, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.26, ...optionSpring }}
+                  className="font-heading-normal text-3xl sm:text-4xl font-extrabold text-navy-950 leading-tight"
+                >
+                  {result.level} {levelInfo.title}
+                </motion.div>
+                <div className="label-caps text-slate-light mt-2">
+                  Yetkinlik Düzeyi
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="p-6 md:p-10">
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
-              {[
-                { label: "Doğru", value: result.correctAnswers, color: "from-emerald-500/10 to-emerald-500/5 text-emerald-700" },
-                { label: "Yanlış", value: result.incorrectAnswers, color: "from-red-500/10 to-red-500/5 text-red-600" },
-                { label: "Boş", value: result.blankAnswers, color: "from-slate-500/10 to-slate-500/5 text-slate-600" },
-                { label: "Toplam", value: result.totalQuestions, color: "from-navy-500/10 to-navy-500/5 text-navy-800" },
-                { label: "Oran", value: `%${result.percentage}`, color: "from-gold-500/15 to-gold-500/5 text-gold-700" },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06, ...optionSpring }}
-                  className={`rounded-3xl bg-gradient-to-br ${item.color} p-5 text-center shadow-sm`}
-                >
-                  <div className="font-heading-normal text-xl font-bold tabular-nums">
-                    {item.value}
-                  </div>
-                  <div className="label-caps opacity-70 mt-1 text-[10px]">
-                    {item.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className="flex flex-col sm:flex-row gap-2.5">
+            <button
+              onClick={restartTest}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-semibold text-base px-6 min-h-[52px] flex-1 shadow-[0_8px_24px_rgba(5,150,105,0.3)] transition"
+            >
+              <RotateCcw className="w-5 h-5" />
+              Tekrar Dene
+            </button>
+            <button
+              onClick={shareResult}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white border border-border hover:border-navy-900 text-navy-900 font-semibold text-base px-6 min-h-[52px] flex-1 shadow-sm transition"
+            >
+              <Share2 className="w-5 h-5" />
+              Başarını Paylaş
+            </button>
+            <button
+              onClick={shareLinkedIn}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white border border-border hover:border-[#0A66C2] text-[#0A66C2] font-semibold text-base px-6 min-h-[52px] flex-1 shadow-sm transition"
+            >
+              <LinkedInIcon className="w-5 h-5" />
+              LinkedIn
+            </button>
+          </div>
+
+          {shareMsg && (
+            <p className="text-sm sm:text-base text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-2xl px-4 py-2.5">
+              {shareMsg}
+            </p>
+          )}
+
+          <div className="soft-card p-5 sm:p-6 md:p-10">
+            <ResultReview answers={answers} />
 
             <div className="mb-8">
               <h3 className="label-caps text-gold-600 mb-4">Barem Sonuçları</h3>
@@ -699,8 +794,6 @@ export default function PlacementTest() {
               </div>
             </div>
 
-            <QuestionDetailReview answers={answers} />
-
             <div className="rounded-3xl bg-gradient-to-br from-gold-50/80 to-white p-6 mb-8 shadow-sm">
               <h3 className="label-caps text-gold-600 mb-2">Program Önerisi</h3>
               <p className="text-sm text-slate leading-relaxed">
@@ -763,9 +856,35 @@ export default function PlacementTest() {
   );
 }
 
-function QuestionDetailReview({ answers }: { answers: Record<number, string> }) {
-  const [filter, setFilter] = useState<DetailFilter>("all");
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+    </svg>
+  );
+}
 
+function questionStem(passage: string): string {
+  const lines = passage
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+  const withBlank = lines.find((l) => l.includes("___"));
+  const raw = withBlank ?? lines[0] ?? passage;
+  const colonIndex = raw.indexOf(":");
+  const text =
+    colonIndex > 0 && colonIndex < 24
+      ? raw.slice(colonIndex + 1).trim()
+      : raw;
+  return text.length > 90 ? `${text.slice(0, 90).trimEnd()}…` : text;
+}
+
+function ResultReview({ answers }: { answers: Record<number, string> }) {
   const items = placementQuestions.map((q) => {
     const userAnswer = answers[q.id];
     const blank = userAnswer === undefined || isBlankAnswer(userAnswer);
@@ -780,6 +899,11 @@ function QuestionDetailReview({ answers }: { answers: Record<number, string> }) 
     blank: items.filter((i) => i.blank).length,
   };
 
+  const [filter, setFilter] = useState<DetailFilter>("all");
+  const [openId, setOpenId] = useState<number | null>(
+    () => items.find((i) => !i.correct)?.q.id ?? null
+  );
+
   const visibleItems = items.filter((i) => {
     if (filter === "correct") return i.correct;
     if (filter === "wrong") return !i.blank && !i.correct;
@@ -789,104 +913,233 @@ function QuestionDetailReview({ answers }: { answers: Record<number, string> }) 
 
   const filters: { key: DetailFilter; label: string }[] = [
     { key: "all", label: "Tümü" },
-    { key: "correct", label: "Doğru" },
-    { key: "wrong", label: "Yanlış" },
-    { key: "blank", label: "Boş" },
+    { key: "wrong", label: "Yanlışlar" },
+    { key: "correct", label: "Doğrular" },
+    { key: "blank", label: "Atlananlar" },
   ];
+
+  const dotColor = (item: { blank: boolean; correct: boolean }) =>
+    item.blank
+      ? "bg-slate-300"
+      : item.correct
+        ? "bg-emerald-500"
+        : "bg-red-500";
 
   return (
     <div className="mb-8">
-      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-        <h3 className="label-caps text-gold-600">Soru Detayı</h3>
-        <div className="flex gap-1.5 flex-wrap">
-          {filters.map((f) => (
-            <button
-              key={f.key}
-              onClick={() => setFilter(f.key)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-                filter === f.key
-                  ? "bg-navy-900 text-white"
-                  : "bg-surface text-slate hover:bg-gold-100 hover:text-gold-700"
-              }`}
-            >
-              {f.label} ({counts[f.key]})
-            </button>
-          ))}
+      <div className="rounded-3xl border border-border bg-white p-5 sm:p-7 mb-4 shadow-sm">
+        <div className="flex items-start gap-3 sm:gap-4">
+          <span className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-6 h-6 sm:w-7 sm:h-7" />
+          </span>
+          <div className="min-w-0">
+            <h3 className="font-heading-normal text-lg sm:text-xl font-bold text-navy-950">
+              Cevaplarını incele
+            </h3>
+            <p className="text-sm sm:text-base text-slate-light leading-relaxed">
+              Her soruyu açarak doğru ve yanlışlarını gör
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm sm:text-base text-navy-800 mt-4">
+          <span className="inline-flex items-center gap-1.5">
+            <i className="w-2.5 h-2.5 rounded-full bg-red-500 not-italic" />
+            {counts.wrong} yanlış
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <i className="w-2.5 h-2.5 rounded-full bg-emerald-500 not-italic" />
+            {counts.correct} doğru
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <i className="w-2.5 h-2.5 rounded-full bg-slate-300 not-italic" />
+            {counts.blank} atlandı
+          </span>
+        </div>
+
+        <div className="rounded-2xl border border-border bg-surface/70 px-4 py-3.5 mt-4">
+          <div className="flex flex-wrap gap-[5px]">
+            {items.map((i) => (
+              <span
+                key={i.q.id}
+                title={`Soru ${i.q.id}`}
+                className={`w-2.5 h-2.5 rounded-full ${dotColor(i)}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-h-[420px] overflow-y-auto space-y-2 pr-1">
+      <div className="flex gap-2 overflow-x-auto pb-1 mb-3 -mx-1 px-1">
+        {filters.map((f) => (
+          <button
+            key={f.key}
+            onClick={() => setFilter(f.key)}
+            className={`inline-flex items-center gap-1.5 shrink-0 rounded-full px-4 py-2.5 min-h-[48px] text-sm sm:text-base font-semibold transition-colors ${
+              filter === f.key
+                ? "bg-navy-950 text-white shadow-sm"
+                : "bg-white text-slate border border-border hover:border-navy-900 hover:text-navy-900"
+            }`}
+          >
+            {f.label}
+            <span
+              className={`rounded-full px-1.5 py-0.5 text-xs font-bold tabular-nums ${
+                filter === f.key
+                  ? "bg-white/20 text-white"
+                  : "bg-surface text-slate"
+              }`}
+            >
+              {counts[f.key]}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <p className="text-sm sm:text-base text-slate-light mb-3">
+        Detayları görmek için bir soruya dokun.
+      </p>
+
+      <div className="space-y-2.5">
         {visibleItems.length === 0 ? (
-          <p className="text-sm text-slate-light bg-surface rounded-2xl px-5 py-4">
-            Bu filtrelere uygun soru bulunamadı.
+          <p className="text-sm sm:text-base text-slate-light bg-surface rounded-2xl px-5 py-4">
+            Bu filtreye uygun soru bulunamadı.
           </p>
         ) : (
           visibleItems.map(({ q, userAnswer, blank, correct }) => {
-            const userOption = q.options.find((o) => o.key === userAnswer);
-            const correctOption = q.options.find(
-              (o) => o.key === q.correctAnswer
-            );
+            const open = openId === q.id;
+            const accent = blank
+              ? "border-l-slate-300"
+              : correct
+                ? "border-l-emerald-500"
+                : "border-l-red-500";
+            const badge = blank
+              ? "bg-slate-200 text-slate-600"
+              : correct
+                ? "bg-emerald-100 text-emerald-700"
+                : "bg-red-100 text-red-700";
+            const badgeText = blank
+              ? "ATLANDI"
+              : correct
+                ? "DOĞRU"
+                : "YANLIŞ";
             return (
               <div
                 key={q.id}
-                className={`flex items-start gap-3 rounded-2xl border px-4 py-3 ${
-                  blank
-                    ? "bg-surface border-border"
-                    : correct
-                      ? "bg-emerald-50/70 border-emerald-200"
-                      : "bg-red-50/70 border-red-200"
-                }`}
+                className={`bg-white rounded-2xl border border-border border-l-4 ${accent} shadow-sm overflow-hidden`}
               >
-                <span
-                  className={`w-8 h-8 md:w-9 md:h-9 shrink-0 rounded-full flex items-center justify-center ${
-                    blank
-                      ? "bg-slate-300 text-white"
-                      : correct
-                        ? "bg-emerald-500 text-white"
-                        : "bg-red-500 text-white"
-                  }`}
+                <button
+                  onClick={() => setOpenId(open ? null : q.id)}
+                  aria-expanded={open}
+                  className="w-full flex items-center gap-2.5 sm:gap-3 p-4 sm:p-5 text-left min-h-[68px]"
                 >
+                  <span className="w-8 h-8 rounded-lg bg-surface text-navy-900 text-sm font-bold flex items-center justify-center shrink-0 tabular-nums">
+                    {q.id}
+                  </span>
                   {blank ? (
-                    <MinusCircle className="w-4 h-4" />
+                    <MinusCircle className="w-5 h-5 text-slate-400 shrink-0" />
                   ) : correct ? (
-                    <CheckCircle2 className="w-4 h-4" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
                   ) : (
-                    <XCircle className="w-4 h-4" />
+                    <XCircle className="w-5 h-5 text-red-500 shrink-0" />
                   )}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                    <span className="text-sm font-bold text-navy-900">
-                      Soru {q.id}
-                    </span>
-                    <span className="text-xs uppercase tracking-wide text-slate-light">
-                      {q.hubLevel} · {q.cefrLevel}
-                    </span>
-                  </div>
-                  {blank ? (
-                    <p className="text-[15px] sm:text-base text-slate-light leading-relaxed">
-                      Boş bırakıldı · Doğru cevap:{" "}
-                      <span className="font-semibold text-navy-900">
-                        {q.correctAnswer}. {correctOption?.text}
-                      </span>
-                    </p>
-                  ) : (
-                    <div className="text-[15px] sm:text-base leading-relaxed space-y-1">
-                      <p
-                        className={
-                          correct ? "text-emerald-700" : "text-red-600"
-                        }
-                      >
-                        Cevabınız: {userAnswer}. {userOption?.text}
-                      </p>
-                      {!correct && (
-                        <p className="text-navy-800">
-                          Doğru cevap: {q.correctAnswer}. {correctOption?.text}
+                  <span className="flex-1 min-w-0 text-[15px] sm:text-base font-medium text-navy-900 leading-snug">
+                    {questionStem(q.passage)}
+                  </span>
+                  <span
+                    className={`shrink-0 text-[11px] sm:text-xs font-extrabold tracking-wide px-2.5 py-1 rounded-full ${badge}`}
+                  >
+                    {badgeText}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-slate-light shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {open && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-1 border-t border-border/70">
+                        <div className="py-3 space-y-1">
+                          {q.passage.split("\n").map((line, li) => (
+                            <p
+                              key={li}
+                              className="text-sm sm:text-[15px] text-slate leading-relaxed"
+                            >
+                              {line}
+                            </p>
+                          ))}
+                        </div>
+                        <div className="space-y-1.5">
+                          {q.options.map((o) => {
+                            const isCorrect = o.key === q.correctAnswer;
+                            const isUser = o.key === userAnswer && !blank;
+                            return (
+                              <div
+                                key={o.key}
+                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-sm sm:text-[15px] ${
+                                  isCorrect
+                                    ? "bg-emerald-50 border-emerald-300"
+                                    : isUser
+                                      ? "bg-red-50 border-red-300"
+                                      : "bg-surface/60 border-border"
+                                }`}
+                              >
+                                <span
+                                  className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${
+                                    isCorrect
+                                      ? "bg-emerald-500 text-white"
+                                      : isUser
+                                        ? "bg-red-500 text-white"
+                                        : "bg-white text-slate border border-border"
+                                  }`}
+                                >
+                                  {o.key}
+                                </span>
+                                <span
+                                  className={`flex-1 leading-snug ${
+                                    isCorrect
+                                      ? "text-emerald-900 font-medium"
+                                      : isUser
+                                        ? "text-red-700"
+                                        : "text-slate"
+                                  }`}
+                                >
+                                  {o.text}
+                                </span>
+                                {isCorrect && (
+                                  <span className="shrink-0 text-[10px] sm:text-[11px] font-extrabold tracking-wide bg-emerald-500 text-white px-2 py-0.5 rounded-full">
+                                    {isUser ? "CEVABIN · DOĞRU" : "DOĞRU CEVAP"}
+                                  </span>
+                                )}
+                                {isUser && !isCorrect && (
+                                  <span className="shrink-0 text-[10px] sm:text-[11px] font-extrabold tracking-wide bg-red-500 text-white px-2 py-0.5 rounded-full">
+                                    SENİN CEVABIN
+                                  </span>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                        {blank && (
+                          <p className="text-sm sm:text-[15px] text-slate-light mt-3">
+                            Bu soruyu boş bıraktın. Doğru cevap:{" "}
+                            <span className="font-semibold text-navy-900">
+                              {q.correctAnswer}
+                            </span>
+                          </p>
+                        )}
+                        <p className="text-[11px] sm:text-xs uppercase tracking-wide text-slate-light mt-3">
+                          {hubLevelConfig[q.hubLevel].labelTr} · {q.cefrLevel}
                         </p>
-                      )}
-                    </div>
+                      </div>
+                    </motion.div>
                   )}
-                </div>
+                </AnimatePresence>
               </div>
             );
           })

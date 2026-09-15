@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
-import { ArrowRight, Check, MessageCircle } from "lucide-react";
+import { Check, MessageCircle } from "lucide-react";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import NavySection from "@/components/ui/NavySection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { ExpandableList } from "@/components/ui/ExpandablePanel";
-import ServiceAccordionBlock from "@/components/ui/ServiceAccordionBlock";
-import { services, coreSkills } from "@/data/services";
+import { coreSkills } from "@/data/services";
 import { onlineCourses, yuzYuzeCourses } from "@/data/onlineCourses";
 import { contactInfo } from "@/data/contact";
-import { getStatCardClass, getStatValueClass, inferStatTone } from "@/lib/statTone";
 import {
-  serviceAccordionSections,
   onlineProgramDetails,
   yuzYuzeProgramDetails,
 } from "@/data/expandableContent";
@@ -22,13 +19,6 @@ export const metadata: Metadata = {
   description:
     "Konuşma odaklı İngilizce eğitimi, online ve yüz yüze birebir/grup dersleri, sınav hazırlık programları ve öğrenci paneli — tek sayfada.",
 };
-
-const overviewDetails = (paragraphs: string[]) =>
-  paragraphs.map((text, i) => ({
-    title: `Program Özeti ${i + 1}`,
-    summary: text.slice(0, 80) + (text.length > 80 ? "…" : ""),
-    content: text,
-  }));
 
 export default function EgitimlerimizPage() {
   return (
@@ -288,134 +278,6 @@ export default function EgitimlerimizPage() {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-gradient-to-b from-white to-surface/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            subtitle="Tüm Programlar"
-            title="Eğitim Portföyümüz"
-            description="Her program için süreç, kapsam ve sonuç odaklı detaylı bilgiler aşağıdadır. Başlıklara tıklayarak içerikleri açabilirsiniz."
-          />
-
-          <div className="space-y-10">
-            {services.map((service, index) => {
-              const accordionSections = serviceAccordionSections[service.id];
-              const isSecondary = service.id === "yurt-disi";
-
-              return (
-                <div key={service.id}>
-                  {isSecondary && (
-                    <div className="flex items-center gap-3 mb-6 mt-2">
-                      <span className="h-px flex-1 bg-border" />
-                      <span className="label-caps text-slate-light">
-                        Ek Danışmanlık Hizmeti
-                      </span>
-                      <span className="h-px flex-1 bg-border" />
-                    </div>
-                  )}
-                  <AnimatedSection delay={index * 0.05}>
-                    <article
-                      id={service.id}
-                      className="soft-card scroll-mt-28 overflow-hidden"
-                    >
-                      <div className="grid lg:grid-cols-12 gap-0">
-                        <div className="lg:col-span-5 p-8 md:p-10 bg-gradient-to-br from-surface to-white border-b lg:border-b-0 lg:border-r border-border/40">
-                          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center mb-5 shadow-md">
-                            <service.icon className="w-7 h-7 text-gold-400" />
-                          </div>
-                          <h3 className="font-heading-normal text-2xl md:text-3xl font-bold text-navy-900 mb-3">
-                            {service.title}
-                          </h3>
-                          <p className="text-base md:text-lg text-slate leading-relaxed mb-4">
-                            {service.description}
-                          </p>
-                          <p className="text-base text-navy-700/80 leading-relaxed mb-6">
-                            {service.detailIntro}
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {service.highlights.map((h) => {
-                              const tone = h.tone ?? inferStatTone(h.label, h.value);
-                              return (
-                                <span
-                                  key={h.label}
-                                  className={`inline-flex flex-col rounded-2xl px-3 py-2 shadow-sm ${getStatCardClass(tone)}`}
-                                >
-                                  <span className="text-[11px] text-slate uppercase tracking-wide">
-                                    {h.label}
-                                  </span>
-                                  <span
-                                    className={`text-sm font-semibold ${getStatValueClass(tone)}`}
-                                  >
-                                    {h.value}
-                                  </span>
-                                </span>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className="lg:col-span-7 p-8 md:p-10">
-                          <span className="label-caps text-gold-600 block mb-4">
-                            Detaylı Bilgi
-                          </span>
-
-                          <div className="mb-6">
-                            <h4 className="text-sm font-semibold text-navy-700/70 uppercase tracking-wide mb-3">
-                              Genel Bakış
-                            </h4>
-                            <ExpandableList
-                              items={overviewDetails(service.details)}
-                              variant="surface"
-                              defaultOpenIndex={0}
-                            />
-                          </div>
-
-                          {accordionSections ? (
-                            <div className="mb-8">
-                              <ServiceAccordionBlock sections={accordionSections} />
-                            </div>
-                          ) : (
-                            <div className="mb-8">
-                              <h4 className="text-sm font-semibold text-navy-700/70 uppercase tracking-wide mb-3">
-                                Program Detayları
-                              </h4>
-                              <ExpandableList
-                                items={service.features.map((f) => ({
-                                  title: f.title,
-                                  summary: f.text,
-                                  content: f.text,
-                                }))}
-                                variant="surface"
-                              />
-                            </div>
-                          )}
-
-                          <div className="flex flex-wrap gap-3">
-                            <Button
-                              href={`/iletisim?paket=${service.id}`}
-                              size="sm"
-                            >
-                              Bilgi Al &amp; Kayıt Ol
-                              <ArrowRight className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              href={service.href}
-                              variant="outline"
-                              size="sm"
-                            >
-                              Program Detayları
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </AnimatedSection>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>

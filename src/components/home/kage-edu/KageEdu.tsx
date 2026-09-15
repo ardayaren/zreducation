@@ -281,7 +281,7 @@ export function KageEduChapters() {
               <span>02 / 03</span>
             </span>
           </Link>
-          <Link href="/egitimlerimiz#yuz-yuze" className="ke-card" data-rv="up">
+          <Link href="/iletisim" className="ke-card" data-rv="up">
             <span className="ke-card-fr">
               <img src="/images/campus-classroom.jpg" alt="Denizli yüz yüze sınıf" loading="lazy" />
               <span className="ke-card-lab">

@@ -11,7 +11,7 @@ export const footerLinks = {
   hizmetler: [
     { href: "/egitimlerimiz", label: "Tüm Eğitimlerimiz" },
     { href: "/egitimlerimiz#online", label: "Online Eğitim — Birebir & Grup" },
-    { href: "/egitimlerimiz#yuz-yuze", label: "Denizli Yüz Yüze — Birebir & Grup" },
+    { href: "/iletisim", label: "Denizli Yüz Yüze Eğitim" },
     { href: "/seviye-tespit", label: "Ücretsiz Seviye Tespit Sınavı" },
     { href: "/ogrenci-paneli", label: "Öğrenci Paneli" },
     { href: "/sss", label: "SSS" },

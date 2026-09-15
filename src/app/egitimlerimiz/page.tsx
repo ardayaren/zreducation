@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Check, MessageCircle } from "lucide-react";
+import { Check } from "lucide-react";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import NavySection from "@/components/ui/NavySection";
@@ -7,12 +7,8 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { ExpandableList } from "@/components/ui/ExpandablePanel";
 import { coreSkills } from "@/data/services";
-import { onlineCourses, yuzYuzeCourses } from "@/data/onlineCourses";
-import { contactInfo } from "@/data/contact";
-import {
-  onlineProgramDetails,
-  yuzYuzeProgramDetails,
-} from "@/data/expandableContent";
+import { onlineCourses } from "@/data/onlineCourses";
+import { onlineProgramDetails } from "@/data/expandableContent";
 
 export const metadata: Metadata = {
   title: "Eğitimlerimiz",
@@ -112,134 +108,6 @@ export default function EgitimlerimizPage() {
           />
         </AnimatedSection>
       </NavySection>
-
-      <section id="yuz-yuze" className="py-20 md:py-24 bg-surface scroll-mt-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            subtitle="Yüz Yüze Eğitim Paketleri"
-            title="Denizli Merkez Kampüsümüz — Birebir & Grup (Maks 8–10 Kişi)"
-            description="Kınıklı'da ulaşımı kolay, tam donanımlı merkezimizde birebir veya küçük grup dersleriyle eğitim deneyimi. Denizli'deyseniz yüz yüze görüşme için bize ulaşın."
-          />
-
-          <AnimatedSection>
-            <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
-              {yuzYuzeCourses.map((course) => (
-                <article
-                  key={course.id}
-                  className={`relative h-full flex flex-col rounded-3xl overflow-hidden border ${
-                    course.popular
-                      ? "border-gold-400 shadow-[0_8px_32px_rgba(201,168,58,0.15)]"
-                      : "border-border shadow-sm"
-                  } bg-white`}
-                >
-                  {course.badge && (
-                    <span className="absolute top-4 right-4 badge-pill bg-gold-500 text-navy-950 text-[10px]">
-                      {course.badge}
-                    </span>
-                  )}
-                  <div className="p-5 md:p-6 flex flex-col flex-1">
-                    <span
-                      className={`badge-pill w-fit mb-3 text-[10px] ${
-                        course.format === "Birebir Ders"
-                          ? "bg-navy-900 text-white"
-                          : "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                      }`}
-                    >
-                      {course.format}
-                    </span>
-                    <span className="label-caps text-gold-600 mb-2">
-                      {course.level} · {course.duration} · {course.lessons} ders
-                    </span>
-                    <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-1">
-                      {course.title}
-                    </h3>
-                    <p className="text-sm text-slate mb-4">{course.subtitle}</p>
-
-                    <ul className="space-y-1.5 mb-6 flex-1">
-                      {course.features.map((f) => (
-                        <li
-                          key={f}
-                          className="flex items-start gap-2 text-sm text-slate"
-                        >
-                          <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mb-4 rounded-2xl bg-surface-2 px-4 py-3 text-sm text-slate">
-                    Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
-                    bize yazın — güncel fiyat ve kontenjanı paylaşalım.
-                  </div>
-
-                  <Button
-                    href={`/iletisim?paket=${course.id}`}
-                    className="w-full"
-                    size="sm"
-                  >
-                    Bilgi Al &amp; Kayıt Ol
-                  </Button>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.15}>
-            <ExpandableList
-              items={yuzYuzeProgramDetails}
-              variant="light"
-              defaultOpenIndex={-1}
-            />
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.3}>
-            <div className="grid md:grid-cols-3 gap-4 mt-12">
-              <div className="soft-card p-6">
-                <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
-                  Hangi seviyeden başlamalıyım?
-                </h3>
-                <p className="text-base text-slate mb-4">
-                  Ücretsiz seviye tespit sınavımız ile seviyenizi belirleyin,
-                  ardından konuşma (speaking) görüşmesiyle netleşsin.
-                </p>
-                <Button href="/seviye-tespit" size="sm">
-                  Ücretsiz Seviye Tespit
-                </Button>
-              </div>
-              <div className="soft-card p-6">
-                <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
-                  Birebir mi, grup mu?
-                </h3>
-                <p className="text-base text-slate mb-4">
-                  Hızlı ilerleme için birebir, sosyal öğrenme için maks 8–10
-                  kişilik grup dersini seçin. Danışmanlarımız önerir.
-                </p>
-                <Button
-                  href={contactInfo.whatsapp.href}
-                  variant="outline"
-                  size="sm"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp&apos;tan Sorun
-                </Button>
-              </div>
-              <div className="soft-card p-6">
-                <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
-                  Gelişiminizi nasıl takip edersiniz?
-                </h3>
-                <p className="text-base text-slate mb-4">
-                  Eğitmenlerimiz her ders sonrası not alır, her 4 haftada
-                  rapor hazırlanır; öğrenci panelinizden tümünü izlersiniz.
-                </p>
-                <Button href="/ogrenci-paneli" variant="outline" size="sm">
-                  Öğrenci Paneli
-                </Button>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
       <section className="py-16 md:py-20 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

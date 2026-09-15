@@ -7,14 +7,17 @@ export interface BandRule {
   from: number;
   to: number;
   required: number;
+  /** Eşiğin altında kalınca verilecek seviye ("aşağısı") */
+  below: CEFRLevel;
   label: string;
 }
 
 /** Band geçiş kuralları — sabit soru aralığı bazlı seviye belirleme.
  *
- * En üst (en yüksek) bandı geçen kişi, alttaki soruları boş bıraksa bile
- * o seviyeyi alır. Ör: 49–62 arasını tamamlayan biri (13 doğru) alt
- * soruları yapamasa da C1 çıkar. */
+ * En üst (en yüksek) band, alttaki soruları boş bıraksa bile sonucu belirler.
+ * Ör: 49–62 arasını tamamlayan biri (13 doğru) alt soruları yapamasa da C1
+ * çıkar. Bir bandda doğru cevap verilmiş ama eşik tutturulamamışsa "aşağısı"
+ * (bir alt seviye) uygulanır: 63–70'te 8'den az doğru → C1. */
 export const bandRules: BandRule[] = [
   {
     level: "A2",
@@ -22,6 +25,7 @@ export const bandRules: BandRule[] = [
     from: 1,
     to: 21,
     required: 15,
+    below: "A1",
     label: "1–21 arası 15 doğru → A2",
   },
   {
@@ -30,6 +34,7 @@ export const bandRules: BandRule[] = [
     from: 22,
     to: 34,
     required: 10,
+    below: "A2",
     label: "22–34 arası 10 doğru → B1",
   },
   {
@@ -38,6 +43,7 @@ export const bandRules: BandRule[] = [
     from: 35,
     to: 48,
     required: 12,
+    below: "B1",
     label: "35–48 arası 12 doğru → B2",
   },
   {
@@ -46,6 +52,7 @@ export const bandRules: BandRule[] = [
     from: 49,
     to: 62,
     required: 13,
+    below: "B2",
     label: "49–62 arası 13 doğru → C1",
   },
   {
@@ -54,6 +61,7 @@ export const bandRules: BandRule[] = [
     from: 63,
     to: 70,
     required: 8,
+    below: "C1",
     label: "63–70 arası 8 doğru → C2",
   },
 ];
@@ -77,30 +85,47 @@ export function countCorrectInRange(
   return { correct, total };
 }
 
+const levelToHub: Record<CEFRLevel, HubLevel> = {
+  A1: "beginner",
+  A2: "elementary",
+  B1: "pre-intermediate",
+  B2: "intermediate",
+  C1: "upper-intermediate",
+  C2: "advanced",
+};
+
 export function determineLevelFromBands(
   answers: Record<number, string>,
   questionMap: Map<number, string>
 ): { level: CEFRLevel; hubLevel: HubLevel; passedRule: BandRule | null } {
-  let passedRule: BandRule | null = null;
-
-  for (const rule of bandRules) {
+  /* En yüksek banddan aşağıya in: doğru cevap verilmiş ilk band sonucu belirler.
+   * - Eşik tutuyorsa band seviyesi
+   * - Eşik tutmuyorsa "aşağısı" (bir alt seviye)
+   * Hiçbir bandda doğru yoksa A1. */
+  for (let i = bandRules.length - 1; i >= 0; i--) {
+    const rule = bandRules[i];
     const { correct } = countCorrectInRange(
       answers,
       questionMap,
       rule.from,
       rule.to
     );
-    if (correct >= rule.required) {
-      passedRule = rule;
-    }
-  }
 
-  if (passedRule) {
-    return {
-      level: passedRule.level,
-      hubLevel: passedRule.hubLevel,
-      passedRule,
-    };
+    if (correct > 0) {
+      if (correct >= rule.required) {
+        return {
+          level: rule.level,
+          hubLevel: rule.hubLevel,
+          passedRule: rule,
+        };
+      }
+      const level: CEFRLevel = rule.below;
+      return {
+        level,
+        hubLevel: levelToHub[level],
+        passedRule: null,
+      };
+    }
   }
 
   return {

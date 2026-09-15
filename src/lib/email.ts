@@ -13,6 +13,11 @@ interface UserInfo {
   phone: string;
 }
 
+/* Varsayılan gönderen / alıcı — her girişte seviye tespit sonucu ve kişisel
+ * bilgiler zreducationn@gmail.com adresine düşer. */
+const DEFAULT_SENDER = "yzararszsoy@gmail.com";
+const DEFAULT_ADMIN = "zreducationn@gmail.com";
+
 /* Resend önceliklidir; anahtar yoksa SMTP (nodemailer) fallback çalışır. */
 let resendClient: Resend | null = null;
 
@@ -25,12 +30,12 @@ function getResend(): Resend | null {
 
 function getFromAddress() {
   if (process.env.RESEND_FROM) return process.env.RESEND_FROM;
-  if (process.env.SMTP_USER) return `"Zreducation" <${process.env.SMTP_USER}>`;
-  return "Zreducation <onboarding@resend.dev>";
+  const sender = process.env.SMTP_USER || DEFAULT_SENDER;
+  return `"Zreducation" <${sender}>`;
 }
 
 function getAdminEmail() {
-  return process.env.ADMIN_EMAIL || process.env.SMTP_USER;
+  return process.env.ADMIN_EMAIL || DEFAULT_ADMIN;
 }
 
 async function sendMail(opts: {
@@ -53,8 +58,10 @@ async function sendMail(opts: {
     return;
   }
 
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.warn("Email credentials not configured. Skipping email send.");
+  if (!process.env.SMTP_PASS) {
+    console.warn(
+      `SMTP_PASS tanımlı değil — e-posta gönderilmedi (alıcı: ${opts.to}).`
+    );
     return;
   }
 
@@ -63,7 +70,7 @@ async function sendMail(opts: {
     port: Number(process.env.SMTP_PORT) || 587,
     secure: false,
     auth: {
-      user: process.env.SMTP_USER,
+      user: process.env.SMTP_USER || DEFAULT_SENDER,
       pass: process.env.SMTP_PASS,
     },
   });

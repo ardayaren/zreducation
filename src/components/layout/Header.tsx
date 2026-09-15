@@ -18,7 +18,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed top-10 sm:top-11 left-0 right-0 z-50 bg-white/[0.97] shadow-[0_4px_24px_rgba(14,34,64,0.08)] gpu-layer border-b border-border/60"
+      className="fixed top-11 sm:top-12 left-0 right-0 z-50 bg-white/[0.97] shadow-[0_4px_24px_rgba(14,34,64,0.08)] gpu-layer border-b border-border/60"
     >
       <motion.div
         initial={{ scaleX: 0 }}
@@ -40,7 +40,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center">
+          <nav className="hidden xl:flex items-center">
             {navLinks.map((link, i) => (
               <motion.div
                 key={link.href}
@@ -50,7 +50,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-slate hover:text-navy-900 border-b-2 border-transparent hover:border-gold-500 transition-colors"
+                  className="px-3 py-2 text-sm font-medium text-slate hover:text-navy-900 border-b-2 border-transparent hover:border-gold-500 transition-colors whitespace-nowrap"
                 >
                   {link.label}
                 </Link>
@@ -62,17 +62,17 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ ...transition.default, delay: 0.45 }}
-            className="hidden lg:flex items-center gap-6"
+            className="hidden xl:flex items-center gap-5"
           >
             <a
               href={contactInfo.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-medium text-slate hover:text-navy-900 transition-colors"
+              className="flex items-center gap-2 text-sm font-medium text-slate hover:text-navy-900 transition-colors whitespace-nowrap"
             >
               <Phone className="w-4 h-4 text-gold-600" />
               {contactInfo.phone.display}
-              <span className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
+              <span className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5 whitespace-nowrap">
                 7/24 WhatsApp
               </span>
             </a>
@@ -83,7 +83,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-navy-900"
+            className="xl:hidden p-2 text-navy-900"
             aria-label="Menü"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -98,7 +98,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:hidden bg-white/[0.98] overflow-hidden rounded-b-3xl shadow-lg gpu-layer border-t border-border/60"
+            className="xl:hidden bg-white/[0.98] overflow-hidden rounded-b-3xl shadow-lg gpu-layer border-t border-border/60"
           >
             <motion.nav
               initial="hidden"

@@ -52,10 +52,10 @@ export default function SssPage() {
 
           <AnimatedSection>
             <div className="soft-card p-8 md:p-10 text-center">
-              <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
+              <h3 className="font-heading-normal text-xl md:text-2xl font-bold text-navy-900 mb-2">
                 Sorunuzun cevabını bulamadınız mı?
               </h3>
-              <p className="text-sm text-slate mb-6 max-w-md mx-auto">
+              <p className="text-base text-slate mb-6 max-w-md mx-auto">
                 WhatsApp destek hattımız 7/24 açık. İstediğiniz an yazın,
                 danışmanlarımız size yardımcı olsun.
               </p>

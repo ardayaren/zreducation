@@ -353,9 +353,10 @@ export const yuzYuzeCourses: YuzYuzeCourse[] = [
 ];
 
 export const promoMessages = [
-  "Konuşma odaklı İngilizce — 3 ayda 90 derste 0'dan akıcı konuşmaya",
-  "WhatsApp destek hattımız 7/24 açık — istediğiniz an yazın",
-  "Maks 8–10 kişilik sınıflar, her derste herkes konuşur",
-  "Ücretsiz seviye tespit sınavı + online speaking görüşmesi",
-  "Online ve yüz yüze birebir/grup paketleri",
+  "Zreducation — Konuşma Odaklı İngilizce Eğitimi | Denizli",
+  "3 Ayda 90 Dersle 0'dan Akıcı Konuşmaya Ulaşın",
+  "Maksimum 8–10 Kişilik Sınıflar, Her Derste Aktif Katılım",
+  "Ücretsiz Seviye Tespit Sınavı ve Online Speaking Görüşmesi",
+  "Online ve Yüz Yüze Birebir / Grup Eğitim Paketleri",
+  "7/24 WhatsApp Destek Hattı — Bilgi ve Kayıt İçin Bize Ulaşın",
 ];

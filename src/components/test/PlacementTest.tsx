@@ -256,6 +256,15 @@ export default function PlacementTest() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, step]);
 
+  /* Adım değişince (test başlarken ve sonuç gelirken) sayfayı en üste al */
+  useEffect(() => {
+    if (step === "test" || step === "result") {
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+    }
+  }, [step]);
+
   const timerLow = timeLeft <= 5 * 60 && timeLeft > 0;
 
   const renderStep = () => {

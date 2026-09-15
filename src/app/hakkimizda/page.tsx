@@ -54,7 +54,7 @@ export default function HakkimizdaPage() {
                 title="Denizli'den, Konuşma Odaklı Eğitim"
                 align="left"
               />
-              <div className="space-y-4 text-slate leading-relaxed text-sm md:text-base">
+              <div className="space-y-5 text-slate leading-relaxed text-base md:text-lg">
                 <p>
                   Zreducation, 2009 yılında Denizli Kınıklı&apos;da kuruldu.
                   Bugüne dek 5.000&apos;den fazla öğrenciyi İngilizce
@@ -105,7 +105,7 @@ export default function HakkimizdaPage() {
               <span className="badge-pill bg-gold-100 text-gold-700 mb-5">
                 Kurucudan Mesaj
               </span>
-              <p className="text-lg md:text-xl font-heading-normal text-navy-900 leading-relaxed mb-6 max-w-3xl">
+              <p className="text-xl md:text-2xl font-heading-normal text-navy-900 leading-relaxed mb-6 max-w-3xl">
                 &quot;Bizim için İngilizce öğrenmek demek, İngilizce
                 konuşabilmek demektir. Amacımız her öğrencimizin sınıfta en az
                 bir kez söz alması, kendine güvenerek konuşması ve bunu günlük
@@ -148,10 +148,10 @@ export default function HakkimizdaPage() {
             {milestones.map((m) => (
               <AnimatedSection key={m.year}>
                 <div className="rounded-3xl bg-surface p-6 h-full">
-                  <span className="font-heading-normal text-2xl font-bold text-gold-600 block mb-2">
+                  <span className="font-heading-normal text-3xl font-bold text-gold-600 block mb-2">
                     {m.year}
                   </span>
-                  <p className="text-sm text-slate leading-relaxed">{m.text}</p>
+                  <p className="text-base text-slate leading-relaxed">{m.text}</p>
                 </div>
               </AnimatedSection>
             ))}

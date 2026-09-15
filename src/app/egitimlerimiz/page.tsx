@@ -42,185 +42,6 @@ export default function EgitimlerimizPage() {
         </p>
       </PageHero>
 
-      <section className="py-16 md:py-20 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            subtitle="Metodolojimiz"
-            title="Dört Temel Beceri, Konuşma Önceliğiyle"
-            description="Speaking, Listening, Reading ve Writing dengeli işlenir; ancak her dersin merkezinde konuşma pratiği vardır."
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {coreSkills.map((skill) => (
-              <div
-                key={skill.key}
-                className={`rounded-3xl p-6 h-full ${
-                  skill.priority
-                    ? "bg-gradient-to-br from-gold-500 to-gold-600 text-navy-950 shadow-[0_8px_28px_rgba(201,168,58,0.28)]"
-                    : "bg-surface text-navy-900"
-                }`}
-              >
-                {skill.priority && (
-                  <span className="label-caps text-navy-900/70 block mb-2">
-                    #1 Öncelik
-                  </span>
-                )}
-                <h3 className="font-heading-normal text-lg font-bold mb-1">
-                  {skill.title}
-                </h3>
-                <p
-                  className={`text-xs mb-3 ${skill.priority ? "text-navy-900/70" : "text-slate-light"}`}
-                >
-                  {skill.titleTr}
-                </p>
-                <p
-                  className={`text-sm leading-relaxed ${skill.priority ? "text-navy-900/85" : "text-slate"}`}
-                >
-                  {skill.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-gradient-to-b from-white to-surface/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            subtitle="Tüm Programlar"
-            title="Eğitim Portföyümüz"
-            description="Her program için süreç, kapsam ve sonuç odaklı detaylı bilgiler aşağıdadır. Başlıklara tıklayarak içerikleri açabilirsiniz."
-          />
-
-          <div className="space-y-10">
-            {services.map((service, index) => {
-              const accordionSections = serviceAccordionSections[service.id];
-              const isSecondary = service.id === "yurt-disi";
-
-              return (
-                <div key={service.id}>
-                  {isSecondary && (
-                    <div className="flex items-center gap-3 mb-6 mt-2">
-                      <span className="h-px flex-1 bg-border" />
-                      <span className="label-caps text-slate-light">
-                        Ek Danışmanlık Hizmeti
-                      </span>
-                      <span className="h-px flex-1 bg-border" />
-                    </div>
-                  )}
-                  <AnimatedSection delay={index * 0.05}>
-                    <article
-                      id={service.id}
-                      className="soft-card scroll-mt-28 overflow-hidden"
-                    >
-                      <div className="grid lg:grid-cols-12 gap-0">
-                        <div className="lg:col-span-5 p-8 md:p-10 bg-gradient-to-br from-surface to-white border-b lg:border-b-0 lg:border-r border-border/40">
-                          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center mb-5 shadow-md">
-                            <service.icon className="w-7 h-7 text-gold-400" />
-                          </div>
-                          <h3 className="font-heading-normal text-2xl font-bold text-navy-900 mb-3">
-                            {service.title}
-                          </h3>
-                          <p className="text-slate leading-relaxed mb-4">
-                            {service.description}
-                          </p>
-                          <p className="text-sm text-navy-700/80 leading-relaxed mb-6">
-                            {service.detailIntro}
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {service.highlights.map((h) => {
-                              const tone = h.tone ?? inferStatTone(h.label, h.value);
-                              return (
-                                <span
-                                  key={h.label}
-                                  className={`inline-flex flex-col rounded-2xl px-3 py-2 shadow-sm ${getStatCardClass(tone)}`}
-                                >
-                                  <span className="text-[10px] text-slate uppercase tracking-wide">
-                                    {h.label}
-                                  </span>
-                                  <span
-                                    className={`text-xs font-semibold ${getStatValueClass(tone)}`}
-                                  >
-                                    {h.value}
-                                  </span>
-                                </span>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className="lg:col-span-7 p-8 md:p-10">
-                          <span className="label-caps text-gold-600 block mb-4">
-                            Detaylı Bilgi
-                          </span>
-
-                          <div className="mb-6">
-                            <h4 className="text-xs font-semibold text-navy-700/70 uppercase tracking-wide mb-3">
-                              Genel Bakış
-                            </h4>
-                            <ExpandableList
-                              items={overviewDetails(service.details)}
-                              variant="surface"
-                              defaultOpenIndex={0}
-                            />
-                          </div>
-
-                          {accordionSections ? (
-                            <div className="mb-8">
-                              <ServiceAccordionBlock sections={accordionSections} />
-                            </div>
-                          ) : (
-                            <div className="mb-8">
-                              <h4 className="text-xs font-semibold text-navy-700/70 uppercase tracking-wide mb-3">
-                                Program Detayları
-                              </h4>
-                              <ExpandableList
-                                items={service.features.map((f) => ({
-                                  title: f.title,
-                                  summary: f.text,
-                                  content: f.text,
-                                }))}
-                                variant="surface"
-                              />
-                            </div>
-                          )}
-
-                          <div className="flex flex-wrap gap-3">
-                            <Button
-                              href={`/iletisim?paket=${service.id}`}
-                              size="sm"
-                            >
-                              Bilgi Al &amp; Kayıt Ol
-                              <ArrowRight className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              href={service.href}
-                              variant="outline"
-                              size="sm"
-                            >
-                              Program Detayları
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </AnimatedSection>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            subtitle="Paketler"
-            title="Eğitim Paketleri"
-            description="Tüm paketler konuşma odaklıdır; Speaking, Listening, Reading ve Writing becerileri dengeli gelişir. Güncel fiyat ve kontenjan için 'Bilgi Al' ile yazın, 7/24 yanınızdayız."
-          />
-        </div>
-      </section>
-
       <NavySection id="online" className="scroll-mt-28">
         <SectionTitle
           subtitle="Online Eğitim Paketleri"
@@ -267,7 +88,7 @@ export default function EgitimlerimizPage() {
                     {course.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-start gap-2 text-xs text-white/70"
+                        className="flex items-start gap-2 text-sm text-white/70"
                       >
                         <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                         {f}
@@ -275,7 +96,7 @@ export default function EgitimlerimizPage() {
                     ))}
                   </ul>
 
-                  <div className="mb-4 rounded-2xl bg-white/8 border border-white/10 px-4 py-3 text-xs text-white/70">
+                  <div className="mb-4 rounded-2xl bg-white/8 border border-white/10 px-4 py-3 text-sm text-white/70">
                     Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
                     bize yazın — güncel fiyat ve kontenjanı paylaşalım.
                   </div>
@@ -348,7 +169,7 @@ export default function EgitimlerimizPage() {
                       {course.features.map((f) => (
                         <li
                           key={f}
-                          className="flex items-start gap-2 text-xs text-slate"
+                          className="flex items-start gap-2 text-sm text-slate"
                         >
                           <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
                           {f}
@@ -356,7 +177,7 @@ export default function EgitimlerimizPage() {
                       ))}
                     </ul>
 
-                    <div className="mb-4 rounded-2xl bg-surface-2 px-4 py-3 text-xs text-slate">
+                    <div className="mb-4 rounded-2xl bg-surface-2 px-4 py-3 text-sm text-slate">
                     Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
                     bize yazın — güncel fiyat ve kontenjanı paylaşalım.
                   </div>
@@ -385,10 +206,10 @@ export default function EgitimlerimizPage() {
           <AnimatedSection delay={0.3}>
             <div className="grid md:grid-cols-3 gap-4 mt-12">
               <div className="soft-card p-6">
-                <h3 className="font-heading-normal text-sm font-bold text-navy-900 mb-2">
+                <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
                   Hangi seviyeden başlamalıyım?
                 </h3>
-                <p className="text-sm text-slate mb-4">
+                <p className="text-base text-slate mb-4">
                   Ücretsiz seviye tespit sınavımız ile seviyenizi belirleyin,
                   ardından konuşma (speaking) görüşmesiyle netleşsin.
                 </p>
@@ -397,10 +218,10 @@ export default function EgitimlerimizPage() {
                 </Button>
               </div>
               <div className="soft-card p-6">
-                <h3 className="font-heading-normal text-sm font-bold text-navy-900 mb-2">
+                <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
                   Birebir mi, grup mu?
                 </h3>
-                <p className="text-sm text-slate mb-4">
+                <p className="text-base text-slate mb-4">
                   Hızlı ilerleme için birebir, sosyal öğrenme için maks 8–10
                   kişilik grup dersini seçin. Danışmanlarımız önerir.
                 </p>
@@ -414,10 +235,10 @@ export default function EgitimlerimizPage() {
                 </Button>
               </div>
               <div className="soft-card p-6">
-                <h3 className="font-heading-normal text-sm font-bold text-navy-900 mb-2">
+                <h3 className="font-heading-normal text-lg font-bold text-navy-900 mb-2">
                   Gelişiminizi nasıl takip edersiniz?
                 </h3>
-                <p className="text-sm text-slate mb-4">
+                <p className="text-base text-slate mb-4">
                   Eğitmenlerimiz her ders sonrası not alır, her 4 haftada
                   rapor hazırlanır; öğrenci panelinizden tümünü izlersiniz.
                 </p>
@@ -427,6 +248,175 @@ export default function EgitimlerimizPage() {
               </div>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle
+            subtitle="Metodolojimiz"
+            title="Dört Temel Beceri, Konuşma Önceliğiyle"
+            description="Speaking, Listening, Reading ve Writing dengeli işlenir; ancak her dersin merkezinde konuşma pratiği vardır."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {coreSkills.map((skill) => (
+              <div
+                key={skill.key}
+                className={`rounded-3xl p-6 h-full ${
+                  skill.priority
+                    ? "bg-gradient-to-br from-gold-500 to-gold-600 text-navy-950 shadow-[0_8px_28px_rgba(201,168,58,0.28)]"
+                    : "bg-surface text-navy-900"
+                }`}
+              >
+                {skill.priority && (
+                  <span className="label-caps text-navy-900/70 block mb-2">
+                    #1 Öncelik
+                  </span>
+                )}
+                <h3 className="font-heading-normal text-xl font-bold mb-1">
+                  {skill.title}
+                </h3>
+                <p
+                  className={`text-sm mb-3 ${skill.priority ? "text-navy-900/70" : "text-slate-light"}`}
+                >
+                  {skill.titleTr}
+                </p>
+                <p
+                  className={`text-base leading-relaxed ${skill.priority ? "text-navy-900/85" : "text-slate"}`}
+                >
+                  {skill.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-24 bg-gradient-to-b from-white to-surface/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle
+            subtitle="Tüm Programlar"
+            title="Eğitim Portföyümüz"
+            description="Her program için süreç, kapsam ve sonuç odaklı detaylı bilgiler aşağıdadır. Başlıklara tıklayarak içerikleri açabilirsiniz."
+          />
+
+          <div className="space-y-10">
+            {services.map((service, index) => {
+              const accordionSections = serviceAccordionSections[service.id];
+              const isSecondary = service.id === "yurt-disi";
+
+              return (
+                <div key={service.id}>
+                  {isSecondary && (
+                    <div className="flex items-center gap-3 mb-6 mt-2">
+                      <span className="h-px flex-1 bg-border" />
+                      <span className="label-caps text-slate-light">
+                        Ek Danışmanlık Hizmeti
+                      </span>
+                      <span className="h-px flex-1 bg-border" />
+                    </div>
+                  )}
+                  <AnimatedSection delay={index * 0.05}>
+                    <article
+                      id={service.id}
+                      className="soft-card scroll-mt-28 overflow-hidden"
+                    >
+                      <div className="grid lg:grid-cols-12 gap-0">
+                        <div className="lg:col-span-5 p-8 md:p-10 bg-gradient-to-br from-surface to-white border-b lg:border-b-0 lg:border-r border-border/40">
+                          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center mb-5 shadow-md">
+                            <service.icon className="w-7 h-7 text-gold-400" />
+                          </div>
+                          <h3 className="font-heading-normal text-2xl md:text-3xl font-bold text-navy-900 mb-3">
+                            {service.title}
+                          </h3>
+                          <p className="text-base md:text-lg text-slate leading-relaxed mb-4">
+                            {service.description}
+                          </p>
+                          <p className="text-base text-navy-700/80 leading-relaxed mb-6">
+                            {service.detailIntro}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {service.highlights.map((h) => {
+                              const tone = h.tone ?? inferStatTone(h.label, h.value);
+                              return (
+                                <span
+                                  key={h.label}
+                                  className={`inline-flex flex-col rounded-2xl px-3 py-2 shadow-sm ${getStatCardClass(tone)}`}
+                                >
+                                  <span className="text-[11px] text-slate uppercase tracking-wide">
+                                    {h.label}
+                                  </span>
+                                  <span
+                                    className={`text-sm font-semibold ${getStatValueClass(tone)}`}
+                                  >
+                                    {h.value}
+                                  </span>
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="lg:col-span-7 p-8 md:p-10">
+                          <span className="label-caps text-gold-600 block mb-4">
+                            Detaylı Bilgi
+                          </span>
+
+                          <div className="mb-6">
+                            <h4 className="text-sm font-semibold text-navy-700/70 uppercase tracking-wide mb-3">
+                              Genel Bakış
+                            </h4>
+                            <ExpandableList
+                              items={overviewDetails(service.details)}
+                              variant="surface"
+                              defaultOpenIndex={0}
+                            />
+                          </div>
+
+                          {accordionSections ? (
+                            <div className="mb-8">
+                              <ServiceAccordionBlock sections={accordionSections} />
+                            </div>
+                          ) : (
+                            <div className="mb-8">
+                              <h4 className="text-sm font-semibold text-navy-700/70 uppercase tracking-wide mb-3">
+                                Program Detayları
+                              </h4>
+                              <ExpandableList
+                                items={service.features.map((f) => ({
+                                  title: f.title,
+                                  summary: f.text,
+                                  content: f.text,
+                                }))}
+                                variant="surface"
+                              />
+                            </div>
+                          )}
+
+                          <div className="flex flex-wrap gap-3">
+                            <Button
+                              href={`/iletisim?paket=${service.id}`}
+                              size="sm"
+                            >
+                              Bilgi Al &amp; Kayıt Ol
+                              <ArrowRight className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              href={service.href}
+                              variant="outline"
+                              size="sm"
+                            >
+                              Program Detayları
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </AnimatedSection>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </PageLayout>

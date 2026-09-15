@@ -10,31 +10,27 @@ export interface BandRule {
   label: string;
 }
 
-/** Band geçiş kuralları — Language Hub placement mantığı */
+/** Band geçiş kuralları — sabit soru aralığı bazlı seviye belirleme.
+ *
+ * En üst (en yüksek) bandı geçen kişi, alttaki soruları boş bıraksa bile
+ * o seviyeyi alır. Ör: 49–62 arasını tamamlayan biri (13 doğru) alt
+ * soruları yapamasa da C1 çıkar. */
 export const bandRules: BandRule[] = [
-  {
-    level: "A1",
-    hubLevel: "beginner",
-    from: 1,
-    to: 20,
-    required: 15,
-    label: "İlk 20 soruda 15 doğru → A1",
-  },
   {
     level: "A2",
     hubLevel: "elementary",
-    from: 7,
-    to: 20,
-    required: 12,
-    label: "7–20 arası 12 doğru → A2",
+    from: 1,
+    to: 21,
+    required: 15,
+    label: "1–21 arası 15 doğru → A2",
   },
   {
     level: "B1",
     hubLevel: "pre-intermediate",
-    from: 21,
+    from: 22,
     to: 34,
-    required: 12,
-    label: "21–34 arası 12 doğru → B1",
+    required: 10,
+    label: "22–34 arası 10 doğru → B1",
   },
   {
     level: "B2",
@@ -49,16 +45,16 @@ export const bandRules: BandRule[] = [
     hubLevel: "upper-intermediate",
     from: 49,
     to: 62,
-    required: 12,
-    label: "49–62 arası 12 doğru → C1",
+    required: 13,
+    label: "49–62 arası 13 doğru → C1",
   },
   {
     level: "C2",
     hubLevel: "advanced",
     from: 63,
     to: 70,
-    required: 6,
-    label: "63–70 arası 6 doğru → C2",
+    required: 8,
+    label: "63–70 arası 8 doğru → C2",
   },
 ];
 

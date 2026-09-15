@@ -50,6 +50,9 @@
 html {
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
+  /* Yatay taşma kayan şeritlerden kaynaklanıyor; tüm tarayıcılarda kökten kapat */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: no-preference) {

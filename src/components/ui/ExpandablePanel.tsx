@@ -67,14 +67,14 @@ export function ExpandablePanel({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-start justify-between gap-4 p-5 text-left"
+        className="w-full flex items-start justify-between gap-4 p-5 md:p-6 text-left"
         aria-expanded={open}
       >
         <div className="min-w-0 flex-1">
-          <h4 className={`text-sm font-semibold mb-1 ${styles.title}`}>
+          <h4 className={`text-base md:text-lg font-semibold mb-1.5 ${styles.title}`}>
             {item.title}
           </h4>
-          <p className={`text-xs leading-relaxed ${styles.summary}`}>
+          <p className={`text-sm md:text-base leading-relaxed ${styles.summary}`}>
             {item.summary}
           </p>
         </div>
@@ -93,9 +93,9 @@ export function ExpandablePanel({
       >
         <div className="accordion-inner">
           <div
-            className={`px-5 pb-5 pt-0 border-t ${variant === "navy" ? "border-white/10" : "border-border/40"}`}
+            className={`px-5 md:px-6 pb-5 md:pb-6 pt-0 border-t ${variant === "navy" ? "border-white/10" : "border-border/40"}`}
           >
-            <p className={`text-xs leading-relaxed mb-3 ${styles.body}`}>
+            <p className={`text-sm md:text-base leading-relaxed mb-3 ${styles.body}`}>
               {item.content}
             </p>
             {item.bullets && item.bullets.length > 0 && (
@@ -103,10 +103,10 @@ export function ExpandablePanel({
                 {item.bullets.map((bullet) => (
                   <li
                     key={bullet}
-                    className={`flex items-start gap-2 text-xs leading-relaxed ${styles.body}`}
+                    className={`flex items-start gap-2 text-sm md:text-base leading-relaxed ${styles.body}`}
                   >
                     <span
-                      className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 ${variant === "navy" ? "bg-gold-400" : "bg-gold-600"}`}
+                      className={`w-1.5 h-1.5 rounded-full shrink-0 mt-2 ${variant === "navy" ? "bg-gold-400" : "bg-gold-600"}`}
                     />
                     {bullet}
                   </li>
@@ -115,7 +115,7 @@ export function ExpandablePanel({
             )}
             {item.related && (
               <p
-                className={`text-[11px] leading-relaxed rounded-xl px-3 py-2 ${styles.related}`}
+                className={`text-xs md:text-sm leading-relaxed rounded-xl px-3 py-2 ${styles.related}`}
               >
                 <span className="font-semibold">İlgili hizmet: </span>
                 {item.related}

@@ -246,8 +246,6 @@
 /* program kartları */
 .ke-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.4vw, 22px); align-items: start; }
 .ke-card { position: relative; display: block; }
-.ke-card:nth-child(2) { transform: translateY(clamp(20px, 4vw, 60px)); }
-.ke-card:nth-child(3) { transform: translateY(clamp(40px, 8vw, 120px)); }
 .ke-card-fr {
   position: relative;
   aspect-ratio: 4 / 5;

@@ -61,9 +61,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ke-bone-dim);
 }
@@ -84,17 +84,17 @@
   line-height: 1.06;
   text-wrap: balance;
 }
-.ke-h-hero { font-size: clamp(30px, 4.6vw, 58px); }
-.ke-h-sec { font-size: clamp(28px, 3.8vw, 54px); }
+.ke-h-hero { font-size: clamp(34px, 5vw, 64px); }
+.ke-h-sec { font-size: clamp(32px, 4.3vw, 60px); }
 
 .ke-body-lg {
-  font-size: clamp(14px, 1.05vw, 17px);
+  font-size: clamp(16px, 1.25vw, 19px);
   line-height: 1.72;
   color: #d6dfe9;
   font-weight: 400;
 }
 .ke-body {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.75;
   color: #b9c6d3;
 }
@@ -127,8 +127,8 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 14px;
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 12px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ke-muted);
 }
@@ -152,7 +152,7 @@
 }
 .ke-chip { display: flex; gap: 14px; align-items: flex-start; }
 .ke-chip .num {
-  font-size: clamp(26px, 2.5vw, 36px);
+  font-size: clamp(28px, 2.7vw, 40px);
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -161,14 +161,14 @@
 }
 .ke-chip b {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ke-bone-dim);
   margin-bottom: 6px;
 }
-.ke-chip p { margin: 0; font-size: 12.5px; line-height: 1.55; color: #a2b3c4; max-width: 24ch; }
+.ke-chip p { margin: 0; font-size: 14px; line-height: 1.55; color: #a2b3c4; max-width: 24ch; }
 .ke-chip:hover .num { color: var(--ke-gold-soft); }
 .ke-side {
   position: absolute;
@@ -177,7 +177,7 @@
   top: 50%;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.5em;
   color: rgba(246, 250, 255, 0.6);
   pointer-events: none;
@@ -192,7 +192,7 @@
   margin-bottom: clamp(30px, 5vh, 64px);
 }
 .ke-sec-head .k {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -209,13 +209,13 @@
   align-items: start;
 }
 .ke-gate-grid h2 { max-width: 14ch; }
-.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #dee7f0; }
+.ke-lead { font-size: clamp(17px, 1.4vw, 21px); line-height: 1.68; color: #dee7f0; }
 .ke-arrowlink {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   margin-top: 30px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -240,8 +240,8 @@
   padding-top: 24px;
   flex-wrap: wrap;
 }
-.ke-stats b { display: block; font-size: clamp(22px, 2.1vw, 32px); font-weight: 300; letter-spacing: -0.02em; }
-.ke-stats span { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ke-muted); }
+.ke-stats b { display: block; font-size: clamp(26px, 2.4vw, 36px); font-weight: 300; letter-spacing: -0.02em; }
+.ke-stats span { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ke-muted); }
 
 /* program kartları */
 .ke-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.4vw, 22px); align-items: start; }
@@ -281,13 +281,13 @@
   justify-content: space-between;
   gap: 10px;
 }
-.ke-card-lab b { font-size: clamp(13px, 1.15vw, 17px); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
-.ke-card-lab .jp { font-size: 11px; letter-spacing: 0.24em; color: rgba(242, 245, 241, 0.65); }
+.ke-card-lab b { font-size: clamp(15px, 1.3vw, 19px); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+.ke-card-lab .jp { font-size: 13px; letter-spacing: 0.24em; color: rgba(242, 245, 241, 0.65); }
 .ke-card-meta {
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ke-muted);
@@ -304,12 +304,12 @@
   padding: clamp(20px, 2.4vw, 30px) 0;
   border-bottom: 1px solid var(--ke-line-soft);
 }
-.ke-les .k { font-size: 11px; letter-spacing: 0.16em; color: var(--ke-muted); font-variant-numeric: tabular-nums; }
+.ke-les .k { font-size: 13px; letter-spacing: 0.16em; color: var(--ke-muted); font-variant-numeric: tabular-nums; }
 .ke-les:hover .k { color: var(--ke-gold-soft); }
-.ke-les h3 { margin: 0; font-size: clamp(16px, 1.5vw, 23px); font-weight: 600; letter-spacing: -0.005em; }
+.ke-les h3 { margin: 0; font-size: clamp(18px, 1.7vw, 26px); font-weight: 600; letter-spacing: -0.005em; }
 .ke-les h3 em { font-style: normal; font-size: 0.72em; color: var(--ke-muted); margin-left: 12px; letter-spacing: 0.2em; }
-.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #adbdcc; }
-.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #a2b3c4; font-variant-numeric: tabular-nums; }
+.ke-les p { margin: 0; font-size: 16px; line-height: 1.65; color: #adbdcc; }
+.ke-les .t { text-align: right; font-size: 13px; letter-spacing: 0.12em; color: #a2b3c4; font-variant-numeric: tabular-nums; }
 .ke-les .bar {
   position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%;
   background: var(--ke-gold);
@@ -339,9 +339,9 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 15px 28px;
+  padding: 16px 30px;
   border-radius: 100px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;

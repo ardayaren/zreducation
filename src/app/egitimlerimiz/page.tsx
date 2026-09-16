@@ -90,7 +90,7 @@ export default function EgitimlerimizPage() {
                     ))}
                   </ul>
 
-                  <div className="mb-4 rounded-2xl bg-gold-500/[0.08] border border-gold-400/20 px-4 py-3 text-sm text-gold-200 leading-relaxed">
+                  <div className="mb-4 rounded-2xl bg-white/[0.08] border border-white/15 px-4 py-3 text-sm text-white leading-relaxed">
                     Fiyat bilgisi için &quot;Bilgi Al &amp; Kayıt Ol&quot; ile
                     yazın — güncel fiyat ve kontenjanı paylaşalım.
                   </div>

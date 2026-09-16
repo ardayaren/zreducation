@@ -3,38 +3,42 @@
    marka token'ları Zreducation'a aittir (navy + gold). Hafif DOM/CSS. */
 
 .kage-edu {
-  --ke-ink: #16334f;
-  --ke-ink-2: #1e4165;
-  --ke-bone: #f5f8fb;
-  --ke-bone-dim: #c6d2de;
-  --ke-muted: #96a8ba;
-  --ke-line: rgba(246, 250, 255, 0.16);
-  --ke-line-soft: rgba(246, 250, 255, 0.1);
+  --ke-ink: #1e4166;
+  --ke-ink-2: #2a5687;
+  --ke-bone: #f6f9fc;
+  --ke-bone-dim: #ccd8e4;
+  --ke-muted: #a2b4c6;
+  --ke-line: rgba(246, 250, 255, 0.18);
+  --ke-line-soft: rgba(246, 250, 255, 0.12);
   --ke-gold: #d4af4e;
   --ke-gold-soft: #e3c46a;
   --ke-pad: clamp(20px, 3.4vw, 56px);
   --ke-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  background: var(--ke-ink);
+  /* Açık deniz laciverti — siyah gibi görünmez, mavi ton öne çıkar */
+  background:
+    radial-gradient(90% 70% at 15% 0%, rgba(42, 86, 135, 0.55), transparent 60%),
+    radial-gradient(70% 55% at 90% 100%, rgba(212, 175, 78, 0.12), transparent 55%),
+    linear-gradient(180deg, #254b75 0%, #1e4166 45%, #1a3a5a 100%);
   color: var(--ke-bone);
   overflow-x: clip;
 }
 
-/* gece atmosferi: sabit degrade + foto, hepsi CSS — ton açık */
+/* gece atmosferi: sabit degrade + foto, hepsi CSS — açık mavi ton */
 .ke-night {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(60% 42% at 72% 12%, rgba(212, 175, 78, 0.2), transparent 62%),
-    radial-gradient(90% 60% at 50% 108%, rgba(30, 65, 101, 0.85), transparent 70%),
-    linear-gradient(180deg, #1c3b5c 0%, #16334f 42%, #122a42 100%);
+    radial-gradient(60% 42% at 72% 12%, rgba(212, 175, 78, 0.22), transparent 62%),
+    radial-gradient(90% 60% at 50% 108%, rgba(42, 86, 135, 0.8), transparent 70%),
+    linear-gradient(180deg, #27507c 0%, #1e4166 42%, #1a3a5a 100%);
 }
 .ke-night-photo {
   position: absolute;
   inset: 0;
   background: url("/images/harvard.jpg") center 30% / cover no-repeat;
-  opacity: 0.18;
+  opacity: 0.14;
   mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
   -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
 }
@@ -42,7 +46,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.35;
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 3px 3px;
 }
@@ -50,7 +54,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(125% 95% at 50% 42%, transparent 52%, rgba(8, 22, 38, 0.45) 100%);
+  background: radial-gradient(125% 95% at 50% 42%, transparent 58%, rgba(16, 34, 56, 0.35) 100%);
 }
 
 .ke-eyebrow {

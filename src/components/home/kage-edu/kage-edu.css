@@ -3,32 +3,32 @@
    marka token'ları Zreducation'a aittir (navy + gold). Hafif DOM/CSS. */
 
 .kage-edu {
-  --ke-ink: #1e4166;
-  --ke-ink-2: #2a5687;
-  --ke-bone: #f6f9fc;
-  --ke-bone-dim: #ccd8e4;
-  --ke-muted: #a2b4c6;
-  --ke-line: rgba(246, 250, 255, 0.18);
-  --ke-line-soft: rgba(246, 250, 255, 0.12);
-  --ke-gold: #d4af4e;
-  --ke-gold-soft: #e3c46a;
+  --ke-ink: #ffffff;
+  --ke-ink-2: #fdf9f0;
+  --ke-bone: #b8942e;
+  --ke-bone-dim: #c9a83a;
+  --ke-muted: #9a8140;
+  --ke-line: rgba(184, 148, 46, 0.3);
+  --ke-line-soft: rgba(184, 148, 46, 0.16);
+  --ke-gold: #b8942e;
+  --ke-gold-soft: #a8842a;
   --ke-pad: clamp(20px, 3.4vw, 56px);
   --ke-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  /* Minimal temiz degrade — süsleme yok */
-  background: linear-gradient(180deg, #254b75 0%, #1e4166 50%, #1a3a5a 100%);
+  /* Beyaz minimal zemin — hafif sıcak altın dokunuş */
+  background: linear-gradient(180deg, #ffffff 0%, #fdfaf1 100%);
   color: var(--ke-bone);
   overflow-x: clip;
 }
 
-/* minimal arka plan: sade temiz degrade — foto/grain/vignette yok */
+/* minimal arka plan: beyaz + hafif altın ışıltı — foto/grain/vignette yok */
 .ke-night {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(55% 40% at 75% 10%, rgba(212, 175, 78, 0.14), transparent 62%),
-    linear-gradient(180deg, #27507c 0%, #1e4166 45%, #1a3a5a 100%);
+    radial-gradient(55% 40% at 75% 10%, rgba(212, 175, 78, 0.18), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #fdfaf1 100%);
 }
 .ke-night-photo { display: none; }
 .ke-grain { display: none; }
@@ -67,13 +67,13 @@
 .ke-body-lg {
   font-size: clamp(14px, 1.05vw, 17px);
   line-height: 1.72;
-  color: #d6dfe9;
+  color: #7a6422;
   font-weight: 400;
 }
 .ke-body {
   font-size: 15px;
   line-height: 1.75;
-  color: #b9c6d3;
+  color: #6d5a22;
 }
 
 /* reveal: IntersectionObserver .rv-in ekler */
@@ -134,12 +134,13 @@
   padding: 16px 18px;
   border: 1px solid var(--ke-line-soft);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
-  transition: border-color 0.35s, background 0.35s, transform 0.35s;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(184, 148, 46, 0.08);
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
 }
 .ke-chip:hover {
-  border-color: rgba(212, 175, 78, 0.55);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(184, 148, 46, 0.5);
+  box-shadow: 0 8px 24px rgba(184, 148, 46, 0.16);
   transform: translateY(-2px);
 }
 .ke-chip .num {
@@ -159,7 +160,7 @@
   color: var(--ke-bone-dim);
   margin-top: 4px;
 }
-.ke-chip p { margin: 0; font-size: 13px; line-height: 1.55; color: #a2b3c4; }
+.ke-chip p { margin: 0; font-size: 13px; line-height: 1.55; color: #8a7340; }
 .ke-chip:hover .num { color: var(--ke-gold-soft); }
 .ke-side {
   display: none;
@@ -191,7 +192,7 @@
   align-items: start;
 }
 .ke-gate-grid h2 { max-width: 14ch; }
-.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #dee7f0; }
+.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #6d5a22; }
 .ke-arrowlink {
   display: inline-flex;
   align-items: center;
@@ -212,6 +213,7 @@
   transition: background 0.4s, border-color 0.4s;
 }
 .ke-arrowlink:hover .ar { background: var(--ke-gold); border-color: var(--ke-gold); }
+.ke-arrowlink:hover .ar svg { color: #ffffff; }
 .ke-arrowlink:hover .ar svg { transform: translate(2px, -2px); }
 .ke-arrowlink .ar svg { transition: transform 0.4s; }
 .ke-stats {
@@ -234,7 +236,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid var(--ke-line-soft);
-  background: #1b3a5c;
+  background: #f3ecd6;
 }
 .ke-card-fr img {
   position: absolute;
@@ -301,8 +303,8 @@
 .ke-les:hover .k { color: var(--ke-gold-soft); }
 .ke-les h3 { margin: 0; font-size: clamp(16px, 1.5vw, 23px); font-weight: 600; letter-spacing: -0.005em; }
 .ke-les h3 em { font-style: normal; font-size: 0.72em; color: var(--ke-muted); margin-left: 12px; letter-spacing: 0.2em; }
-.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #adbdcc; }
-.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #a2b3c4; font-variant-numeric: tabular-nums; }
+.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #6d5a22; }
+.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #8a7340; font-variant-numeric: tabular-nums; }
 .ke-les .bar {
   position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%;
   background: var(--ke-gold);
@@ -363,8 +365,8 @@
   align-items: center;
 }
 .ke-rail a { width: 22px; height: 12px; display: grid; place-items: center; }
-.ke-rail i { display: block; width: 14px; height: 1px; background: rgba(242, 245, 241, 0.28); transition: 0.5s var(--ke-ease-out); }
-.ke-rail a.on i { width: 22px; background: var(--ke-bone); }
+.ke-rail i { display: block; width: 14px; height: 2px; background: rgba(184, 148, 46, 0.35); border-radius: 2px; transition: 0.5s var(--ke-ease-out); }
+.ke-rail a.on i { width: 22px; background: var(--ke-gold); }
 .ke-rail a:hover i { width: 22px; background: var(--ke-bone-dim); }
 
 .ke-sec { scroll-margin-top: 90px; }

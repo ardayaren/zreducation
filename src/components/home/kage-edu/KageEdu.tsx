@@ -215,7 +215,7 @@ export function KageEduChapters() {
         </div>
         <div className="ke-gate-grid">
           <h2 className="ke-display ke-h-sec" data-rv="up">
-            Önce seviyeni bil, sonra hızlı ilerle.
+            Önce seviyeni öğren, sonra hızlı ilerle.
           </h2>
           <div>
             <p className="ke-lead" data-rv="up">

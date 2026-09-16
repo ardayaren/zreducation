@@ -145,7 +145,7 @@ export function KageEduHero() {
           <h1 className="ke-display ke-h-hero" data-rv="up">
             Sessizlikten
             <br />
-            akıcı konuşmaya.
+            <span className="ke-grad">akıcı konuşmaya.</span>
           </h1>
           <p className="ke-body ke-hero-sub" data-rv="up">
             Denizli&apos;de konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste 0&apos;dan akıcı
@@ -217,7 +217,7 @@ export function KageEduChapters() {
           <h2 className="ke-display ke-h-sec" data-rv="up">
             Önce seviyeni öğren, sonra hızlı ilerle.
           </h2>
-          <div>
+          <div className="ke-panel">
             <p className="ke-lead" data-rv="up">
               İki aşamalı ücretsiz sınav: çoktan seçmeli yazılı test ve 15 dakikalık online
               speaking görüşmesi. Sonuçların anında paylaşılır, sana en uygun program önerilir.
@@ -237,7 +237,7 @@ export function KageEduChapters() {
         </div>
         <div className="ke-stats" data-rv="up">
           {STATS.map((s) => (
-            <div key={s.l}>
+            <div className="ke-stat" key={s.l}>
               <b>{s.v}</b>
               <span>{s.l}</span>
             </div>
@@ -345,7 +345,7 @@ export function KageEduClosing() {
           <span className="dot" /> Bölüm 04 — Işık
         </p>
         <h2 className="ke-display" data-rv="up">
-          Işık
+          <span className="ke-grad">Işık</span>
         </h2>
         <p className="ke-body-lg" data-rv="up">
           Kapı kapanmıyor: seviyeni belirle, programını seç, ilk derste konuşmaya başla.

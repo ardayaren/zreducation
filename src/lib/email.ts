@@ -15,7 +15,7 @@ interface UserInfo {
 
 /* Varsayılan gönderen / alıcı — her girişte seviye tespit sonucu ve kişisel
  * bilgiler zreducationn@gmail.com adresine düşer. */
-const DEFAULT_SENDER = "yzararszsoy@gmail.com";
+const DEFAULT_SENDER = "trerdogantayyip@gmail.com";
 const DEFAULT_ADMIN = "zreducationn@gmail.com";
 
 /* Resend önceliklidir; anahtar yoksa SMTP (nodemailer) fallback çalışır. */

@@ -112,8 +112,6 @@ a {
 .gpu-marquee {
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  contain: layout style paint;
 }
 
 .gpu-hover {
@@ -395,9 +393,6 @@ a {
     scroll-behavior: auto;
   }
 
-  .animate-marquee,
-  .animate-marquee-slow,
-  .animate-marquee-slow-reverse,
   .gpu-hover,
   .card-corporate {
     animation: none;

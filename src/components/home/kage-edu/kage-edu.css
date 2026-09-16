@@ -3,32 +3,36 @@
    marka token'ları Zreducation'a aittir (navy + gold). Hafif DOM/CSS. */
 
 .kage-edu {
-  --ke-ink: #ffffff;
-  --ke-ink-2: #fdf9f0;
-  --ke-bone: #b8942e;
-  --ke-bone-dim: #c9a83a;
-  --ke-muted: #9a8140;
-  --ke-line: rgba(184, 148, 46, 0.3);
-  --ke-line-soft: rgba(184, 148, 46, 0.16);
-  --ke-gold: #b8942e;
-  --ke-gold-soft: #a8842a;
+  /* Premium renk şeması: derin lacivert + altın */
+  --ke-ink: #143a63;
+  --ke-ink-2: #1c4a7a;
+  --ke-bone: #ffffff;
+  --ke-bone-dim: #dbe7f5;
+  --ke-muted: #9fb6cf;
+  --ke-line: rgba(255, 255, 255, 0.16);
+  --ke-line-soft: rgba(255, 255, 255, 0.1);
+  --ke-gold: #d4af37;
+  --ke-gold-soft: #e6c25c;
   --ke-pad: clamp(20px, 3.4vw, 56px);
   --ke-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  /* Beyaz minimal zemin — hafif sıcak altın dokunuş */
-  background: linear-gradient(180deg, #ffffff 0%, #fdfaf1 100%);
-  color: var(--ke-bone);
+  /* Zengin lacivert degrade + altın ışıltı */
+  background:
+    radial-gradient(70% 55% at 80% 0%, rgba(212, 175, 55, 0.16), transparent 55%),
+    radial-gradient(60% 50% at 8% 100%, rgba(28, 74, 122, 0.6), transparent 62%),
+    linear-gradient(180deg, #1c4a7a 0%, #143a63 45%, #0f2e50 100%);
+  color: #ffffff;
   overflow-x: clip;
 }
 
-/* minimal arka plan: beyaz + hafif altın ışıltı — foto/grain/vignette yok */
+/* minimal arka plan: derin lacivert degrade + üstte altın ışıltı */
 .ke-night {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(55% 40% at 75% 10%, rgba(212, 175, 78, 0.18), transparent 62%),
-    linear-gradient(180deg, #ffffff 0%, #fdfaf1 100%);
+    radial-gradient(55% 40% at 78% 8%, rgba(212, 175, 55, 0.18), transparent 60%),
+    linear-gradient(180deg, #1d4c7d 0%, #143a63 45%, #102f52 100%);
 }
 .ke-night-photo { display: none; }
 .ke-grain { display: none; }
@@ -67,13 +71,13 @@
 .ke-body-lg {
   font-size: clamp(14px, 1.05vw, 17px);
   line-height: 1.72;
-  color: #7a6422;
+  color: #dbe7f5;
   font-weight: 400;
 }
 .ke-body {
   font-size: 15px;
   line-height: 1.75;
-  color: #6d5a22;
+  color: #c7d6e8;
 }
 
 /* reveal: IntersectionObserver .rv-in ekler */
@@ -134,13 +138,12 @@
   padding: 16px 18px;
   border: 1px solid var(--ke-line-soft);
   border-radius: 18px;
-  background: #ffffff;
-  box-shadow: 0 4px 18px rgba(184, 148, 46, 0.08);
-  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+  background: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.35s, background 0.35s, transform 0.35s;
 }
 .ke-chip:hover {
-  border-color: rgba(184, 148, 46, 0.5);
-  box-shadow: 0 8px 24px rgba(184, 148, 46, 0.16);
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(255, 255, 255, 0.09);
   transform: translateY(-2px);
 }
 .ke-chip .num {
@@ -160,7 +163,7 @@
   color: var(--ke-bone-dim);
   margin-top: 4px;
 }
-.ke-chip p { margin: 0; font-size: 13px; line-height: 1.55; color: #8a7340; }
+.ke-chip p { margin: 0; font-size: 13px; line-height: 1.55; color: #9fb6cf; }
 .ke-chip:hover .num { color: var(--ke-gold-soft); }
 .ke-side {
   display: none;
@@ -192,7 +195,7 @@
   align-items: start;
 }
 .ke-gate-grid h2 { max-width: 14ch; }
-.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #6d5a22; }
+.ke-lead { font-size: clamp(15px, 1.2vw, 19px); line-height: 1.66; color: #c7d6e8; }
 .ke-arrowlink {
   display: inline-flex;
   align-items: center;
@@ -213,7 +216,7 @@
   transition: background 0.4s, border-color 0.4s;
 }
 .ke-arrowlink:hover .ar { background: var(--ke-gold); border-color: var(--ke-gold); }
-.ke-arrowlink:hover .ar svg { color: #ffffff; }
+.ke-arrowlink:hover .ar svg { color: #081526; }
 .ke-arrowlink:hover .ar svg { transform: translate(2px, -2px); }
 .ke-arrowlink .ar svg { transition: transform 0.4s; }
 .ke-stats {
@@ -236,7 +239,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid var(--ke-line-soft);
-  background: #f3ecd6;
+  background: #163a61;
 }
 .ke-card-fr img {
   position: absolute;
@@ -303,8 +306,8 @@
 .ke-les:hover .k { color: var(--ke-gold-soft); }
 .ke-les h3 { margin: 0; font-size: clamp(16px, 1.5vw, 23px); font-weight: 600; letter-spacing: -0.005em; }
 .ke-les h3 em { font-style: normal; font-size: 0.72em; color: var(--ke-muted); margin-left: 12px; letter-spacing: 0.2em; }
-.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #6d5a22; }
-.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #8a7340; font-variant-numeric: tabular-nums; }
+.ke-les p { margin: 0; font-size: 14px; line-height: 1.65; color: #c7d6e8; }
+.ke-les .t { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: #9fb6cf; font-variant-numeric: tabular-nums; }
 .ke-les .bar {
   position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%;
   background: var(--ke-gold);
@@ -365,9 +368,9 @@
   align-items: center;
 }
 .ke-rail a { width: 22px; height: 12px; display: grid; place-items: center; }
-.ke-rail i { display: block; width: 14px; height: 2px; background: rgba(184, 148, 46, 0.35); border-radius: 2px; transition: 0.5s var(--ke-ease-out); }
+.ke-rail i { display: block; width: 14px; height: 2px; background: rgba(255, 255, 255, 0.3); border-radius: 2px; transition: 0.5s var(--ke-ease-out); }
 .ke-rail a.on i { width: 22px; background: var(--ke-gold); }
-.ke-rail a:hover i { width: 22px; background: var(--ke-bone-dim); }
+.ke-rail a:hover i { width: 22px; background: var(--ke-gold-soft); }
 
 .ke-sec { scroll-margin-top: 90px; }
 .ke-hero { scroll-margin-top: 0; }

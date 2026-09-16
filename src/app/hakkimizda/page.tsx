@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Quote } from "lucide-react";
+import { Quote, Award, Users, GraduationCap, TrendingUp } from "lucide-react";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
-import StatCard from "@/components/ui/StatCard";
 import Button from "@/components/ui/Button";
 import { ExpandableList } from "@/components/ui/ExpandablePanel";
 import {
   hakkimizdaValueDetails,
   hakkimizdaTeamDetails,
 } from "@/data/expandableContent";
-import { stats } from "@/data/services";
 import { siteConfig } from "@/lib/siteConfig";
 import { contactInfo } from "@/data/contact";
 
@@ -24,6 +22,13 @@ export const metadata: Metadata = {
       "Denizli'den konuşma odaklı İngilizce eğitimi ve İtalya/Almanya danışmanlığı.",
   },
 };
+
+const aboutStats = [
+  { icon: Award, value: "15+", label: "Yıllık Deneyim", percent: 100 },
+  { icon: Users, value: "5000+", label: "Mezun Öğrenci", percent: 92 },
+  { icon: GraduationCap, value: "90", label: "Derste Akıcı Konuşma", percent: 100 },
+  { icon: TrendingUp, value: "%94", label: "Memnuniyet Oranı", percent: 94 },
+];
 
 const milestones = [
   { year: "2009", text: "Zreducation, Denizli Kınıklı'da eğitim vermeye başladı." },
@@ -87,10 +92,33 @@ export default function HakkimizdaPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
-                {stats.map((stat) => (
-                  <StatCard key={stat.label} stat={stat} size="md" showDot />
-                ))}
+              <div className="rounded-3xl border border-border bg-white shadow-[0_8px_32px_rgba(14,34,64,0.06)] p-5 md:p-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {aboutStats.map((s) => (
+                    <div
+                      key={s.label}
+                      className="flex items-center gap-4 rounded-2xl border border-border/70 bg-gradient-to-br from-surface to-white p-4"
+                    >
+                      <span className="w-12 h-12 shrink-0 rounded-2xl bg-navy-900 flex items-center justify-center shadow-md">
+                        <s.icon className="w-6 h-6 text-gold-400" />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-heading-normal text-2xl md:text-3xl font-bold text-navy-900 leading-none tabular-nums">
+                          {s.value}
+                        </div>
+                        <div className="text-sm text-slate mt-1.5 leading-snug">
+                          {s.label}
+                        </div>
+                        <div className="progress-track h-1.5 mt-2.5">
+                          <div
+                            className="progress-fill h-full"
+                            style={{ width: `${s.percent}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </AnimatedSection>
           </div>

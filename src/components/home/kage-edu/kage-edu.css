@@ -15,47 +15,24 @@
   --ke-pad: clamp(20px, 3.4vw, 56px);
   --ke-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  /* Açık deniz laciverti — siyah gibi görünmez, mavi ton öne çıkar */
-  background:
-    radial-gradient(90% 70% at 15% 0%, rgba(42, 86, 135, 0.55), transparent 60%),
-    radial-gradient(70% 55% at 90% 100%, rgba(212, 175, 78, 0.12), transparent 55%),
-    linear-gradient(180deg, #254b75 0%, #1e4166 45%, #1a3a5a 100%);
+  /* Minimal temiz degrade — süsleme yok */
+  background: linear-gradient(180deg, #254b75 0%, #1e4166 50%, #1a3a5a 100%);
   color: var(--ke-bone);
   overflow-x: clip;
 }
 
-/* gece atmosferi: sabit degrade + foto, hepsi CSS — açık mavi ton */
+/* minimal arka plan: sade temiz degrade — foto/grain/vignette yok */
 .ke-night {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(60% 42% at 72% 12%, rgba(212, 175, 78, 0.22), transparent 62%),
-    radial-gradient(90% 60% at 50% 108%, rgba(42, 86, 135, 0.8), transparent 70%),
-    linear-gradient(180deg, #27507c 0%, #1e4166 42%, #1a3a5a 100%);
+    radial-gradient(55% 40% at 75% 10%, rgba(212, 175, 78, 0.14), transparent 62%),
+    linear-gradient(180deg, #27507c 0%, #1e4166 45%, #1a3a5a 100%);
 }
-.ke-night-photo {
-  position: absolute;
-  inset: 0;
-  background: url("/images/harvard.jpg") center 30% / cover no-repeat;
-  opacity: 0.14;
-  mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
-  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
-}
-.ke-grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 3px 3px;
-}
-.ke-vignette {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(125% 95% at 50% 42%, transparent 58%, rgba(16, 34, 56, 0.35) 100%);
-}
+.ke-night-photo { display: none; }
+.ke-grain { display: none; }
+.ke-vignette { display: none; }
 
 .ke-eyebrow {
   display: flex;
@@ -185,16 +162,7 @@
 .ke-chip p { margin: 0; font-size: 13px; line-height: 1.55; color: #a2b3c4; }
 .ke-chip:hover .num { color: var(--ke-gold-soft); }
 .ke-side {
-  position: absolute;
-  z-index: 2;
-  right: var(--ke-pad);
-  top: 50%;
-  transform: translateY(-50%);
-  writing-mode: vertical-rl;
-  font-size: 13px;
-  letter-spacing: 0.5em;
-  color: rgba(246, 250, 255, 0.6);
-  pointer-events: none;
+  display: none;
 }
 
 /* bölümler */

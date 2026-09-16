@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /* JS (requestAnimationFrame) tabanlı marquee — CSS animasyonunun bazı
-   Chrome'larda donması (compositor bug'ı) sorununu kökten çözer, her cihazda
-   ve tarayıcıda çalışır. */
+   Chrome'larda donması (compositor bug'ı) sorununu kökten çözer.
+   Performans için: bölüm ekranda görünmüyorken ve sekme arka plandayken
+   animasyon durur (CPU/GPU tasarrufu). */
 export default function Marquee({
   children,
   reverse = false,
@@ -36,6 +37,7 @@ export default function Marquee({
     let raf = 0;
     let last = performance.now();
     let x = 0;
+    let running = true;
 
     const step = (ts: number) => {
       const dt = Math.min((ts - last) / 1000, 0.06);
@@ -46,8 +48,35 @@ export default function Marquee({
       raf = requestAnimationFrame(step);
     };
 
+    const start = () => {
+      if (running) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(step);
+    };
+    const stop = () => {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    /* görünürlük + sekme durumu kontrolü */
+    const io = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { rootMargin: "80px" }
+    );
+    io.observe(track);
+
+    const onVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener("visibilitychange", onVisibility);
+
     raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+      cancelAnimationFrame(raf);
+    };
   }, [half, reverse, speed]);
 
   return (

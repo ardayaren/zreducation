@@ -2,6 +2,7 @@
 
 import { testimonials } from "@/data/testimonials";
 import SectionTitle from "@/components/ui/SectionTitle";
+import Marquee from "@/components/ui/Marquee";
 
 function ReviewCard({
   item,
@@ -12,7 +13,7 @@ function ReviewCard({
 }) {
   return (
     <article
-      className="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-3xl p-5 shadow-[0_4px_24px_rgba(14,34,64,0.06)] border border-border/50 gpu-layer"
+      className="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-3xl p-5 shadow-[0_4px_24px_rgba(14,34,64,0.06)] border border-border/50"
       aria-hidden={duplicate}
     >
       <div className="flex gap-0.5 mb-3">
@@ -43,10 +44,6 @@ function MarqueeRow({
   rowItems: typeof testimonials;
   direction: "left" | "right";
 }) {
-  const items = [...rowItems, ...rowItems];
-  const animationClass =
-    direction === "left" ? "animate-marquee-slow" : "animate-marquee-slow-reverse";
-
   return (
     <div className="relative overflow-hidden">
       <div
@@ -57,15 +54,13 @@ function MarqueeRow({
         className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-surface to-transparent"
         aria-hidden
       />
-      <div className={`flex gap-4 ${animationClass} gpu-marquee w-max`}>
-        {items.map((item, index) => (
-          <ReviewCard
-            key={`${item.name}-${index}`}
-            item={item}
-            duplicate={index >= rowItems.length}
-          />
-        ))}
-      </div>
+      <Marquee reverse={direction === "right"} speed={40}>
+        <div className="flex gap-4 pr-4">
+          {rowItems.map((item) => (
+            <ReviewCard key={item.name} item={item} />
+          ))}
+        </div>
+      </Marquee>
     </div>
   );
 }

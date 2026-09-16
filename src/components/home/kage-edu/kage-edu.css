@@ -102,13 +102,20 @@
   transition: opacity 0.9s var(--ke-ease-out), transform 1.05s var(--ke-ease-out);
 }
 
-/* hero */
+/* hero — beyaz zemin; bölümler lacivert kalmaya devam eder.
+   Açık zemin + lacivert yazı + altın vurgular (site paket dili). */
 .ke-hero {
   position: relative;
+  z-index: 1;
   min-height: 100svh;
   padding: calc(112px + clamp(12px, 2.6vh, 34px)) var(--ke-pad) 0;
   display: flex;
   flex-direction: column;
+  background:
+    radial-gradient(55% 45% at 85% 0%, rgba(201, 168, 58, 0.12), transparent 60%),
+    radial-gradient(50% 45% at 0% 100%, rgba(21, 48, 84, 0.06), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 55%, #f3f6fa 100%);
+  color: var(--ke-ink);
 }
 .ke-hero::after {
   content: "";
@@ -118,13 +125,42 @@
   width: 60vw;
   height: 60vw;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(212, 175, 55, 0.14), transparent 70%);
+  background: radial-gradient(closest-side, rgba(201, 168, 58, 0.1), transparent 70%);
   pointer-events: none;
 }
 .ke-hero-top { max-width: min(660px, 92vw); position: relative; z-index: 2; }
 .ke-hero-top h1 { margin: 24px 0 20px; }
 .ke-hero-sub { max-width: 46ch; }
 .ke-hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+
+/* hero açık temada yazı/çizgi renkleri */
+.ke-hero .ke-eyebrow { color: var(--ke-ink-2); }
+.ke-hero .ke-body, .ke-hero .ke-hero-sub { color: #3f5878; }
+.ke-hero .ke-cue { color: var(--ke-muted); }
+.ke-hero .ke-cue .track { background: rgba(20, 58, 99, 0.18); }
+.ke-hero .ke-cue .track i { background: var(--ke-ink-2); }
+.ke-hero .ke-chapters { border-top-color: rgba(20, 58, 99, 0.12); }
+.ke-hero .ke-chip {
+  border-color: rgba(201, 168, 58, 0.35);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 20px rgba(14, 34, 64, 0.06);
+}
+.ke-hero .ke-chip:hover {
+  border-color: rgba(201, 168, 58, 0.7);
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(201, 168, 58, 0.16);
+}
+.ke-hero .ke-chip b { color: var(--ke-ink); }
+.ke-hero .ke-chip p { color: var(--ke-muted); }
+.ke-hero .ke-btn-ghost {
+  border-color: rgba(21, 48, 84, 0.25);
+  color: var(--ke-ink);
+}
+.ke-hero .ke-btn-ghost:hover {
+  background: var(--ke-ink);
+  border-color: var(--ke-ink);
+  color: #ffffff;
+}
 
 /* butonlar — site butonu (altın degrade hap) */
 .ke-btn {
@@ -542,7 +578,7 @@
   align-items: center;
 }
 .ke-rail a { width: 22px; height: 12px; display: grid; place-items: center; }
-.ke-rail i { display: block; width: 14px; height: 2px; background: rgba(255, 255, 255, 0.3); border-radius: 2px; transition: 0.5s var(--ke-ease-out); }
+.ke-rail i { display: block; width: 14px; height: 2px; background: rgba(120, 140, 165, 0.55); border-radius: 2px; transition: 0.5s var(--ke-ease-out); }
 .ke-rail a.on i { width: 22px; background: var(--ke-gold); }
 .ke-rail a:hover i { width: 22px; background: var(--ke-gold-soft); }
 

@@ -80,7 +80,8 @@ async function sendMail(opts: {
       secure: false,
       auth: {
         user: process.env.SMTP_USER || DEFAULT_SENDER,
-        pass: process.env.SMTP_PASS,
+        /* Gmail uygulama şifreleri boşluklu kopyalanabilir; SMTP'ye boşluksuz gitmeli */
+        pass: (process.env.SMTP_PASS || "").replace(/\s+/g, ""),
       },
     });
 

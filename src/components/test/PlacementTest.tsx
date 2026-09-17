@@ -28,6 +28,7 @@ import {
   isQuestionAnswered,
   isBlankAnswer,
 } from "@/data/placementQuestions";
+import { bandRules } from "@/data/bandScoring";
 import type { TestResult } from "@/lib/levelCalculator";
 import {
   countRealAnswers,
@@ -59,6 +60,10 @@ function formatTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function bandForQuestion(id: number) {
+  return bandRules.find((r) => id >= r.from && id <= r.to);
 }
 
 function renderPassage(passage: string) {
@@ -340,12 +345,39 @@ export default function PlacementTest() {
               </Button>
             </form>
 
-            <p className="text-sm sm:text-base text-slate-light mt-6 pt-4 leading-relaxed">
-              70 soruluk Language Hub testi. Tüm soruları çözmeniz gerekmez;
-              istediğiniz zaman &quot;Sınavı Bitir&quot; ile erken
-              tamamlayabilirsiniz. Seviye, barem kurallarına göre belirlenir
-              (ör. ilk 20 soruda 15 doğru → A1).
-            </p>
+            <div className="rounded-3xl border border-border bg-surface/60 p-5 sm:p-6">
+              <h4 className="label-caps text-navy-900 mb-3">
+                Seviye Barem Kuralları
+              </h4>
+              <ul className="space-y-2 text-sm text-slate">
+                {bandRules.map((rule) => (
+                  <li key={rule.level} className="flex items-start gap-2">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0" />
+                    <span>
+                      <span className="font-semibold text-navy-900">
+                        {rule.label}
+                      </span>
+                      <span className="text-slate-light">
+                        {" "}
+                        (aşağısı {rule.below})
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm sm:text-base text-slate-light mt-4 leading-relaxed">
+                Tüm soruları çözmeniz gerekmez; istediğiniz zaman
+                &quot;Sınavı Bitir&quot; ile erken tamamlayabilirsiniz.
+              </p>
+            </div>
+
+            <div className="mt-4 rounded-3xl border border-amber-200 bg-amber-50 p-5 sm:p-6 flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+              <p className="text-sm sm:text-base text-amber-900 leading-relaxed">
+                Detaylı seviye tespit açıklamanız size bir uzman tarafından
+                bildirilecektir.
+              </p>
+            </div>
           </div>
         </div>
       );
@@ -409,9 +441,10 @@ export default function PlacementTest() {
                 <span className="badge-pill bg-gradient-to-r from-gold-600 to-gold-500 text-white shadow-sm">
                   {hubInfo.label}
                 </span>
-                <span className="text-xs sm:text-sm text-slate-light bg-surface px-3 py-1.5 rounded-full">
-                  {hubInfo.labelTr} · {hubInfo.cefr} · Soru {hubInfo.itemRange}
-                </span>
+<span className="text-xs sm:text-sm text-slate-light bg-surface px-3 py-1.5 rounded-full">
+  {hubInfo.labelTr} · {hubInfo.cefr} · Soru {question.id} ·{" "}
+  {bandForQuestion(question.id)?.label}
+</span>
               </div>
 
               <div className="soft-panel space-y-2 mb-8 p-5 md:p-6">
@@ -705,6 +738,15 @@ export default function PlacementTest() {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 sm:p-6 flex items-start gap-3 shadow-sm">
+            <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+            <p className="text-sm sm:text-base text-amber-900 leading-relaxed">
+              Bu sonuç ön değerlendirmedir. Detaylı seviye tespit açıklamanız
+              ve doğru program öneriniz size bir uzman tarafından
+              bildirilecektir.
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-2.5">

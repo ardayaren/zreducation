@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, GraduationCap, Star } from "lucide-react";
 import "./kage-edu.css";
 
 /**
@@ -138,30 +138,75 @@ export function KageEduHero() {
       </nav>
 
       <section className="ke-hero" id="kage-top">
-        <div className="ke-hero-top">
-          <p className="ke-eyebrow" data-rv="fade">
-            <span className="dot" /> Bölüm 00 — Eşik
-          </p>
-          <h1 className="ke-display ke-h-hero" data-rv="up">
-            Sessizlikten
-            <br />
-            <span className="ke-grad">akıcı konuşmaya.</span>
-          </h1>
-          <p className="ke-body ke-hero-sub" data-rv="up">
-            Denizli&apos;de konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste 0&apos;dan akıcı
-            konuşmaya. Önce seviyeni öğren, sonra doğru sınıfa yerleş.
-          </p>
-          <div className="ke-hero-cta" data-rv="up">
-            <Link href="/seviye-tespit" className="ke-btn ke-btn-solid">
-              Ücretsiz Seviye Tespit <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="/egitimlerimiz" className="ke-btn ke-btn-ghost">
-              Programlar
-            </Link>
+        <div className="ke-hero-grid">
+          <div className="ke-hero-copy">
+            <span className="ke-pill" data-rv="fade">
+              <span className="dot" />
+              Denizli&apos;de Konuşma Odaklı İngilizce
+            </span>
+            <h1 className="ke-display ke-h-hero" data-rv="up">
+              Sessizlikten
+              <br />
+              <span className="ke-grad">akıcı konuşmaya.</span>
+            </h1>
+            <p className="ke-body ke-hero-sub" data-rv="up">
+              Denizli&apos;de konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste
+              0&apos;dan akıcı konuşmaya. Önce seviyeni öğren, sonra doğru sınıfa
+              yerleş.
+            </p>
+            <div className="ke-hero-cta" data-rv="up">
+              <Link href="/seviye-tespit" className="ke-btn ke-btn-solid">
+                Ücretsiz Seviye Tespit <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/egitimlerimiz" className="ke-btn ke-btn-ghost">
+                Programlar
+              </Link>
+            </div>
+            <div className="ke-hero-meta" data-rv="up">
+              <div className="ke-hero-stat">
+                <b>90</b>
+                <span>Ders / 3 Ay</span>
+              </div>
+              <div className="ke-hero-stat">
+                <b>A1–C2</b>
+                <span>CEFR Seviye</span>
+              </div>
+              <div className="ke-hero-stat">
+                <b>%94</b>
+                <span>Memnuniyet</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="ke-hero-visual" data-rv="up">
+            <div className="ke-mock">
+              <img
+                src="/images/english-classroom.jpg"
+                alt="Konuşma odaklı İngilizce sınıfı"
+                loading="lazy"
+              />
+              <span className="ke-mock-badge">
+                <Star className="w-3.5 h-3.5" />
+                A1 → C2 · CEFR
+              </span>
+              <span className="ke-mock-chip ke-mock-chip--a">
+                <b>%94</b> Memnuniyet
+              </span>
+              <span className="ke-mock-chip ke-mock-chip--b">
+                <b>90</b> Ders / 3 Ay
+              </span>
+              <a href="/seviye-tespit" className="ke-mock-card">
+                <span>
+                  <i className="dot" />
+                  Ücretsiz Seviye Tespit
+                </span>
+                <span className="ar">
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </a>
+            </div>
           </div>
         </div>
-
-        <div className="ke-spacer" />
 
         <div className="ke-hero-foot">
           <div className="ke-cue" data-rv="fade" data-exit>

@@ -3,12 +3,6 @@ import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import Button from "@/components/ui/Button";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
-const HERO_STATS = [
-  { v: "90", l: "Ders / 3 Ay" },
-  { v: "A1–C2", l: "CEFR Seviye" },
-  { v: "%94", l: "Memnuniyet" },
-];
-
 const QUICK_LINKS = [
   {
     n: "01",
@@ -88,20 +82,6 @@ export default function LandingHero() {
                 Programlar
               </Button>
             </div>
-
-            <div
-              data-reveal-item
-              className="flex flex-wrap gap-8 md:gap-12 mt-10 pt-7 border-t border-navy-900/10"
-            >
-              {HERO_STATS.map((s) => (
-                <div key={s.l}>
-                  <div className="font-heading-normal text-2xl md:text-3xl font-bold bg-gradient-to-r from-gold-600 to-gold-400 bg-clip-text text-transparent">
-                    {s.v}
-                  </div>
-                  <div className="label-caps text-slate-light mt-1">{s.l}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           <AnimatedSection delay={0.15} className="relative">
@@ -141,18 +121,22 @@ export default function LandingHero() {
                 </a>
               </div>
 
-              <div className="absolute -top-4 -right-4 rounded-2xl bg-white/95 backdrop-blur border border-gold-500/40 shadow-xl px-4 py-3">
-                <div className="font-heading-normal text-xl font-bold text-navy-900">
-                  %94
+              <div className="relative mt-4 grid grid-cols-2 rounded-2xl border border-gold-500/40 bg-white shadow-[0_10px_28px_rgba(14,34,64,0.1)] overflow-hidden">
+                <div className="p-4 sm:p-5 text-center">
+                  <div className="font-heading-normal text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gold-600 to-gold-400 bg-clip-text text-transparent">
+                    90
+                  </div>
+                  <div className="label-caps text-slate-light mt-1">
+                    Ders / 3 Ay
+                  </div>
                 </div>
-                <div className="text-[10px] uppercase tracking-widest text-slate-light">
-                  Memnuniyet
-                </div>
-              </div>
-              <div className="absolute -bottom-5 -left-4 rounded-2xl bg-navy-900 text-white border border-navy-800 shadow-xl px-4 py-3">
-                <div className="font-heading-normal text-xl font-bold">90</div>
-                <div className="text-[10px] uppercase tracking-widest text-white/60">
-                  Ders / 3 Ay
+                <div className="p-4 sm:p-5 text-center border-l border-border">
+                  <div className="font-heading-normal text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gold-600 to-gold-400 bg-clip-text text-transparent">
+                    %94
+                  </div>
+                  <div className="label-caps text-slate-light mt-1">
+                    Memnuniyet
+                  </div>
                 </div>
               </div>
             </div>

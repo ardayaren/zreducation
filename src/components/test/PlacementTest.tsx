@@ -23,14 +23,14 @@ import {
   placementQuestions,
   levelDescriptions,
   hubLevelConfig,
-  hubLevelOrder,
   BLANK_ANSWER,
   isQuestionAnswered,
   isBlankAnswer,
 } from "@/data/placementQuestions";
-import { bandRules } from "@/data/bandScoring";
 import type { TestResult } from "@/lib/levelCalculator";
 import {
+  AVERAGE_THRESHOLDS,
+  cefrGroupRanges,
   countRealAnswers,
   hasMinimumAnswers,
 } from "@/lib/levelCalculator";
@@ -60,10 +60,6 @@ function formatTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-}
-
-function bandForQuestion(id: number) {
-  return bandRules.find((r) => id >= r.from && id <= r.to);
 }
 
 function renderPassage(passage: string) {
@@ -334,25 +330,52 @@ export default function PlacementTest() {
 
             <div className="rounded-3xl border border-border bg-surface/60 p-5 sm:p-6">
               <h4 className="label-caps text-navy-900 mb-3">
-                Seviye Barem Kuralları
+                Seviye Değerlendirmesi
               </h4>
+              <p className="text-sm sm:text-base text-slate leading-relaxed mb-4">
+                70 soru A1&apos;den C2&apos;ye 6 seviye grubuna ayrılmıştır. Her
+                grup kendi içinde 100 üzerinden değerlendirilir; final
+                seviyeniz, tüm grupların başarı ortalamasına göre belirlenir.
+              </p>
               <ul className="space-y-2 text-sm text-slate">
-                {bandRules.map((rule) => (
-                  <li key={rule.level} className="flex items-start gap-2">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0" />
-                    <span>
-                      <span className="font-semibold text-navy-900">
-                        {rule.label}
-                      </span>
-                      <span className="text-slate-light">
-                        {" "}
-                        (aşağısı {rule.below})
-                      </span>
-                    </span>
-                  </li>
-                ))}
+                {placementQuestions
+                  .filter(
+                    (q, i, arr) =>
+                      arr.findIndex((x) => x.cefrLevel === q.cefrLevel) === i
+                  )
+                  .map((q) => {
+                    const r = cefrGroupRanges()[q.cefrLevel];
+                    return (
+                      <li
+                        key={q.cefrLevel}
+                        className="flex items-start gap-2"
+                      >
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0" />
+                        <span>
+                          <span className="font-semibold text-navy-900">
+                            {q.cefrLevel}
+                          </span>{" "}
+                          <span className="text-slate-light">
+                            {r.from}–{r.to}. sorular
+                          </span>
+                        </span>
+                      </li>
+                    );
+                  })}
               </ul>
-              <p className="text-sm sm:text-base text-slate-light mt-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate leading-relaxed mt-4">
+                Ortalama eşiği:{" "}
+                {AVERAGE_THRESHOLDS.filter((t) => t.level !== "A1").map(
+                  (t, i) => (
+                    <span key={t.level}>
+                      {i > 0 && " · "}
+                      %{t.min}+ {t.level}
+                    </span>
+                  )
+                )}
+                {" "}· altı %{AVERAGE_THRESHOLDS[4].min} → A1.
+              </p>
+              <p className="text-sm sm:text-base text-slate-light mt-3 leading-relaxed">
                 Tüm soruları çözmeniz gerekmez; istediğiniz zaman
                 &quot;Sınavı Bitir&quot; ile erken tamamlayabilirsiniz.
               </p>
@@ -429,8 +452,7 @@ export default function PlacementTest() {
                   {hubInfo.label}
                 </span>
 <span className="text-xs sm:text-sm text-slate-light bg-surface px-3 py-1.5 rounded-full">
-  {hubInfo.labelTr} · {hubInfo.cefr} · Soru {question.id} ·{" "}
-  {bandForQuestion(question.id)?.label}
+  {hubInfo.labelTr} · {hubInfo.cefr} · Soru {question.id}
 </span>
               </div>
 
@@ -678,6 +700,21 @@ export default function PlacementTest() {
           transition={transition.default}
           className="max-w-3xl mx-auto space-y-4"
         >
+          <div className="rounded-3xl border-2 border-amber-300 bg-amber-50 p-5 sm:p-6 flex items-start gap-3 alert-pop">
+            <span className="w-10 h-10 shrink-0 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
+              <AlertTriangle className="w-5 h-5" />
+            </span>
+            <div>
+              <h3 className="font-heading-normal text-sm font-bold text-amber-900 uppercase tracking-wide">
+                Bu sonuç ön değerlendirmedir
+              </h3>
+              <p className="text-sm sm:text-base text-amber-900 leading-relaxed mt-1">
+                Detaylı seviye tespit açıklamanız ve doğru program öneriniz
+                size bir uzman tarafından bildirilecektir.
+              </p>
+            </div>
+          </div>
+
           <div className="soft-card overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-3 divide-y divide-border sm:divide-y-0 sm:divide-x">
               <div className="p-6 sm:p-8 text-center">
@@ -687,10 +724,10 @@ export default function PlacementTest() {
                   transition={{ delay: 0.1, ...optionSpring }}
                   className="font-heading-normal text-4xl sm:text-5xl font-extrabold text-emerald-600 tabular-nums"
                 >
-                  %{result.percentage}
+                  %{result.averagePercentage}
                 </motion.div>
                 <div className="label-caps text-slate-light mt-2">
-                  Başarı Oranı
+                  Grup Ortalaması
                 </div>
               </div>
               <div className="p-6 sm:p-8 text-center">
@@ -727,15 +764,6 @@ export default function PlacementTest() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 sm:p-6 flex items-start gap-3 shadow-sm">
-            <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-            <p className="text-sm sm:text-base text-amber-900 leading-relaxed">
-              Bu sonuç ön değerlendirmedir. Detaylı seviye tespit açıklamanız
-              ve doğru program öneriniz size bir uzman tarafından
-              bildirilecektir.
-            </p>
-          </div>
-
           <div className="flex flex-col sm:flex-row gap-2.5">
             <button
               onClick={restartTest}
@@ -763,65 +791,59 @@ export default function PlacementTest() {
             <ResultReview answers={answers} />
 
             <div className="mb-8">
-              <h3 className="label-caps text-gold-600 mb-4">Barem Sonuçları</h3>
-              <div className="space-y-2">
-                {result.bandProgress.map((band) => (
-                  <div
-                    key={band.level}
-                    className={`flex flex-wrap items-center justify-between gap-2 rounded-2xl px-4 py-3 text-sm ${
-                      band.passed
-                        ? "bg-emerald-50 border border-emerald-200"
-                        : "bg-surface border border-border"
-                    }`}
+              <h3 className="label-caps text-gold-600 mb-4">
+                Seviye Tespit Analizi
+              </h3>
+              <p className="text-sm text-slate mb-4">
+                Her seviye grubu 100 üzerinden değerlendirilir; final seviyen
+                grupların ortalamasıyla (%{result.averagePercentage})
+                belirlenir.
+              </p>
+              <div className="space-y-3">
+                {result.groups.map((g, i) => (
+                  <motion.div
+                    key={g.level}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, ...optionSpring }}
+                    className="flex items-center gap-3 text-sm rounded-3xl bg-surface/60 p-4 shadow-sm"
                   >
-                    <span className="font-semibold text-navy-900">
-                      {band.level} · {band.label}
+                    <span className="w-24 md:w-28 shrink-0 font-semibold text-navy-900 text-xs sm:text-sm">
+                      {g.level} · {g.label}
                     </span>
-                    <span
-                      className={`tabular-nums ${band.passed ? "text-emerald-700" : "text-slate"}`}
-                    >
-                      {band.correct}/{band.total} (min. {band.required})
-                      {band.passed ? " ✓" : ""}
+                    <div className="flex-1 progress-track h-2">
+                      <motion.div
+                        className="progress-fill h-full"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${g.percent}%` }}
+                        transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
+                      />
+                    </div>
+                    <span className="w-12 text-right font-bold text-navy-900 tabular-nums text-xs sm:text-sm">
+                      %{g.percent}
                     </span>
-                  </div>
+                    <span className="w-10 text-right text-slate-light tabular-nums text-xs">
+                      {g.correct}/{g.total}
+                    </span>
+                  </motion.div>
                 ))}
               </div>
-            </div>
 
-            <div className="mb-8">
-              <h3 className="label-caps text-gold-600 mb-4">Bölüm Dağılımı</h3>
-              <div className="space-y-3">
-                {hubLevelOrder.map((level, i) => {
-                  const data = result.breakdown[level];
-                  const bandPercent =
-                    data.total > 0
-                      ? Math.round((data.correct / data.total) * 100)
-                      : 0;
-                  return (
-                    <motion.div
-                      key={level}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05, ...optionSpring }}
-                      className="flex items-center gap-3 text-sm rounded-3xl bg-surface/60 p-4 shadow-sm"
-                    >
-                      <span className="w-28 md:w-32 shrink-0 font-medium text-navy-900 text-xs sm:text-sm">
-                        {data.label}
-                      </span>
-                      <div className="flex-1 progress-track h-2">
-                        <motion.div
-                          className="progress-fill h-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${bandPercent}%` }}
-                          transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
-                        />
-                      </div>
-                      <span className="w-14 text-right text-slate tabular-nums text-xs font-medium">
-                        {data.correct}/{data.total}
-                      </span>
-                    </motion.div>
-                  );
-                })}
+              <div className="mt-4 rounded-3xl border border-gold-500/40 bg-gradient-to-br from-gold-50/80 to-white p-5 flex flex-wrap items-center justify-between gap-3 shadow-sm">
+                <div>
+                  <div className="label-caps text-gold-600">
+                    Grup Ortalaması
+                  </div>
+                  <div className="font-heading-normal text-3xl font-bold text-navy-900 tabular-nums mt-1">
+                    %{result.averagePercentage}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="label-caps text-slate-light">Final Seviye</div>
+                  <div className="font-heading-normal text-2xl font-bold text-emerald-600 mt-1">
+                    {result.level} · {levelInfo.title}
+                  </div>
+                </div>
               </div>
             </div>
 

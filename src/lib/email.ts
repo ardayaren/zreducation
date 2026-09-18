@@ -238,15 +238,8 @@ export async function sendAdminNotification(
     return null;
   }
 
-  const breakdownText = Object.values(result.breakdown)
-    .map((data) => `${data.label}: ${data.correct}/${data.total} doğru`)
-    .join("\n");
-
-  const bandProgressText = result.bandProgress
-    .map(
-      (band) =>
-        `${band.level} (${band.label}): ${band.correct}/${band.total} — min. ${band.required}${band.passed ? " ✓" : ""}`
-    )
+  const breakdownText = result.groups
+    .map((g) => `${g.level} (${g.label}): %${g.percent} — ${g.correct}/${g.total}`)
     .join("\n");
 
   const levelInfo = levelDescriptions[result.level];
@@ -304,12 +297,10 @@ Sınav Sonucu:
 - Yanlış: ${result.incorrectAnswers}/${result.totalQuestions}
 - Boş: ${result.blankAnswers}/${result.totalQuestions}
 - Başarı Oranı: %${result.percentage}
+- Grup Ortalaması: %${result.averagePercentage}
 
-Bölüm Dağılımı:
+Seviye Grup Analizi:
 ${breakdownText}
-
-Band Geçiş Durumu:
-${bandProgressText}
 
 Yanlış Cevaplar:
 ${wrongSummary}
@@ -369,27 +360,26 @@ Bu e-posta Zreducation web sitesi seviye tespit sınavından otomatik gönderilm
               </td>
               <td style="width:10px;"></td>
               <td style="background:#fefce8; border-radius:8px; padding:14px 8px;">
-                <div style="font-size:24px; font-weight:bold; color:#d4af37;">%${result.percentage}</div>
-                <div style="color:#64748b; font-size:12px;">BAŞARI</div>
+                <div style="font-size:24px; font-weight:bold; color:#d4af37;">%${result.averagePercentage}</div>
+                <div style="color:#64748b; font-size:12px;">GRUP ORT.</div>
               </td>
             </tr>
           </table>
         </div>
 
         <div style="padding: 24px 32px; background: #ffffff; border-top: 1px solid #eef1f6;">
-          <h3 style="color: #0b1d3a; font-size: 16px; margin: 0 0 10px;">Band Geçiş Durumu</h3>
+          <h3 style="color: #0b1d3a; font-size: 16px; margin: 0 0 10px;">Seviye Grup Analizi (%{result.averagePercentage} ortalama)</h3>
           <table style="width:100%; border-collapse:collapse; font-size:13px;">
-            ${result.bandProgress
+            ${result.groups
               .map(
-                (b) => `<tr style="border-bottom:1px solid #eef1f6;">
-                  <td style="padding:8px 6px; color:#0b1d3a; font-weight:600;">${b.level}</td>
-                  <td style="padding:8px 6px; color:#64748b;">${b.correct}/${b.total} (min. ${b.required})</td>
-                  <td style="padding:8px 6px; text-align:right;">${b.passed ? '<span style="color:#10b981;font-weight:700;">✓ GEÇTİ</span>' : '<span style="color:#ef4444;font-weight:700;">KALDI</span>'}</td>
+                (g) => `<tr style="border-bottom:1px solid #eef1f6;">
+                  <td style="padding:8px 6px; color:#0b1d3a; font-weight:600;">${g.level} · ${g.label}</td>
+                  <td style="padding:8px 6px; color:#64748b;">${g.correct}/${g.total}</td>
+                  <td style="padding:8px 6px; text-align:right; color:#b8942e; font-weight:700;">%${g.percent}</td>
                 </tr>`
               )
               .join("")}
           </table>
-          <p style="color:#64748b; font-size:13px; margin:10px 0 0; white-space:pre-line;">${bandProgressText}</p>
         </div>
 
         <div style="padding: 24px 32px; background: #ffffff; border-top: 1px solid #eef1f6;">

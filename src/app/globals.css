@@ -361,6 +361,21 @@ a {
   animation: marquee 24s linear infinite;
 }
 
+/* dikkat çeken uyarı popu — kenarlarda yayılan amber halka */
+@keyframes alert-pop {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(245, 158, 11, 0);
+  }
+}
+
+.alert-pop {
+  animation: alert-pop 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
 .animate-marquee-slow {
   animation: marquee 48s linear infinite;
 }

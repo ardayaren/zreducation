@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Video, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { Video, Send, Loader2, CheckCircle2, MessageCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { transition } from "@/lib/motion";
 import { contactInfo } from "@/data/contact";
@@ -206,14 +206,15 @@ export default function SpeakingBookingCard({
                 </>
               )}
             </Button>
-            <Button
+            <a
               href={contactInfo.whatsapp.href}
-              variant="outline"
-              size="lg"
-              className="border-white/30 text-white hover:bg-white hover:text-navy-900 hover:border-white"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#1fb857] text-white font-semibold text-sm px-8 py-4 shadow-[0_8px_24px_rgba(37,211,102,0.4)] hover:-translate-y-0.5 transition-all duration-200"
             >
+              <MessageCircle className="w-5 h-5" fill="white" fillOpacity={0.15} />
               WhatsApp&apos;tan Hızlıca Yazın
-            </Button>
+            </a>
           </div>
         </form>
       )}

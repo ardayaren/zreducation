@@ -2,15 +2,9 @@ import type { CEFRLevel, HubLevel } from "@/data/placementQuestions";
 import {
   BLANK_ANSWER,
   hubLevelConfig,
-  hubLevelOrder,
   isBlankAnswer,
   placementQuestions,
 } from "@/data/placementQuestions";
-import {
-  bandRules,
-  determineLevelFromBands,
-  getBandProgress,
-} from "@/data/bandScoring";
 
 export interface WrongAnswer {
   questionId: number;
@@ -18,13 +12,12 @@ export interface WrongAnswer {
   correctAnswer: string;
 }
 
-export interface BandProgress {
+export interface LevelGroup {
   level: CEFRLevel;
-  hubLevel: HubLevel;
   correct: number;
   total: number;
-  required: number;
-  passed: boolean;
+  /** Grup içi başarı yüzdesi (100 üzerinden) */
+  percent: number;
   label: string;
 }
 
@@ -39,17 +32,63 @@ export interface TestResult {
   incorrectAnswers: number;
   blankAnswers: number;
   percentage: number;
-  breakdown: Record<
-    HubLevel,
-    { correct: number; total: number; label: string; labelTr: string }
-  >;
-  bandProgress: BandProgress[];
+  /** Tüm grupların yüzdelik ortalaması */
+  averagePercentage: number;
+  /** A1 → C2 grup bazlı analiz */
+  groups: LevelGroup[];
   wrongAnswers: WrongAnswer[];
 }
 
-const answerKeyMap = new Map(
-  placementQuestions.map((q) => [q.id, q.correctAnswer])
-);
+const CEFR_ORDER: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
+const levelToHub: Record<CEFRLevel, HubLevel> = {
+  A1: "beginner",
+  A2: "elementary",
+  B1: "pre-intermediate",
+  B2: "intermediate",
+  C1: "upper-intermediate",
+  C2: "advanced",
+};
+
+const levelShortLabel: Record<CEFRLevel, string> = {
+  A1: "Başlangıç",
+  A2: "Temel",
+  B1: "Orta Alt",
+  B2: "Orta",
+  C1: "Orta Üst",
+  C2: "İleri",
+};
+
+/** Ortalama yüzde → final seviye eşik haritası */
+export const AVERAGE_THRESHOLDS: { level: CEFRLevel; min: number }[] = [
+  { level: "C2", min: 90 },
+  { level: "C1", min: 80 },
+  { level: "B2", min: 65 },
+  { level: "B1", min: 50 },
+  { level: "A2", min: 35 },
+  { level: "A1", min: 0 },
+];
+
+export function determineLevelFromAverage(avg: number): CEFRLevel {
+  for (const t of AVERAGE_THRESHOLDS) {
+    if (avg >= t.min) return t.level;
+  }
+  return "A1";
+}
+
+export function cefrGroupRanges(): Record<CEFRLevel, { from: number; to: number }> {
+  const ranges = {} as Record<CEFRLevel, { from: number; to: number }>;
+  CEFR_ORDER.forEach((level) => {
+    const ids = placementQuestions
+      .filter((q) => q.cefrLevel === level)
+      .map((q) => q.id);
+    ranges[level] = {
+      from: Math.min(...ids),
+      to: Math.max(...ids),
+    };
+  });
+  return ranges;
+}
 
 export function calculateLevel(
   answers: Record<number, string>
@@ -59,41 +98,35 @@ export function calculateLevel(
   let answeredCount = 0;
   const wrongAnswers: WrongAnswer[] = [];
 
-  const breakdown = hubLevelOrder.reduce(
-    (acc, level) => {
-      acc[level] = {
-        correct: 0,
-        total: 0,
-        label: hubLevelConfig[level].label,
-        labelTr: hubLevelConfig[level].labelTr,
-      };
-      return acc;
-    },
-    {} as TestResult["breakdown"]
-  );
-
-  placementQuestions.forEach((q) => {
-    breakdown[q.hubLevel].total++;
-
-    const userAnswer = answers[q.id];
-
-    if (!userAnswer || isBlankAnswer(userAnswer)) {
-      if (userAnswer === BLANK_ANSWER) blankAnswers++;
-      return;
-    }
-
-    answeredCount++;
-
-    if (userAnswer === q.correctAnswer) {
-      correctAnswers++;
-      breakdown[q.hubLevel].correct++;
-    } else {
-      wrongAnswers.push({
-        questionId: q.id,
-        userAnswer,
-        correctAnswer: q.correctAnswer,
-      });
-    }
+  const groups: LevelGroup[] = CEFR_ORDER.map((level) => {
+    const questions = placementQuestions.filter((q) => q.cefrLevel === level);
+    let correct = 0;
+    questions.forEach((q) => {
+      const userAnswer = answers[q.id];
+      if (!userAnswer || isBlankAnswer(userAnswer)) {
+        if (userAnswer === BLANK_ANSWER) blankAnswers++;
+        return;
+      }
+      answeredCount++;
+      if (userAnswer === q.correctAnswer) {
+        correct++;
+        correctAnswers++;
+      } else {
+        wrongAnswers.push({
+          questionId: q.id,
+          userAnswer,
+          correctAnswer: q.correctAnswer,
+        });
+      }
+    });
+    const total = questions.length;
+    return {
+      level,
+      correct,
+      total,
+      percent: total > 0 ? Math.round((correct / total) * 100) : 0,
+      label: levelShortLabel[level],
+    };
   });
 
   const totalQuestions = placementQuestions.length;
@@ -103,16 +136,11 @@ export function calculateLevel(
       ? Math.round((correctAnswers / answeredCount) * 100)
       : 0;
 
-  const { level, hubLevel } = determineLevelFromBands(answers, answerKeyMap);
-
-  const bandProgress: BandProgress[] = bandRules.map((rule) => {
-    const progress = getBandProgress(answers, answerKeyMap, rule);
-    return {
-      level: rule.level,
-      hubLevel: rule.hubLevel,
-      ...progress,
-    };
-  });
+  const averagePercentage = Math.round(
+    groups.reduce((sum, g) => sum + g.percent, 0) / groups.length
+  );
+  const level = determineLevelFromAverage(averagePercentage);
+  const hubLevel = levelToHub[level];
 
   return {
     level,
@@ -125,8 +153,8 @@ export function calculateLevel(
     incorrectAnswers,
     blankAnswers,
     percentage,
-    breakdown,
-    bandProgress,
+    averagePercentage,
+    groups,
     wrongAnswers,
   };
 }

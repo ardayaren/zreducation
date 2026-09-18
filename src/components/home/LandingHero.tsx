@@ -50,7 +50,7 @@ export default function LandingHero() {
               className="inline-flex items-center gap-2.5 badge-pill bg-gold-100 text-gold-700 border border-gold-500/30"
             >
               <i className="w-2 h-2 rounded-full bg-gold-500 shadow-[0_0_10px_rgba(201,168,58,0.9)]" />
-              Denizli&apos;de Konuşma Odaklı İngilizce
+              Online Konuşma Odaklı İngilizce
             </span>
 
             <h1
@@ -68,7 +68,7 @@ export default function LandingHero() {
               data-reveal-item
               className="text-slate text-base md:text-lg leading-relaxed mt-5 max-w-xl"
             >
-              Denizli&apos;de konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste
+              Online konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste
               0&apos;dan akıcı konuşmaya. Önce seviyeni öğren, sonra doğru sınıfa
               yerleş.
             </p>

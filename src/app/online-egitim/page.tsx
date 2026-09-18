@@ -11,7 +11,7 @@ import { contactInfo } from "@/data/contact";
 export const metadata: Metadata = {
   title: "Online İngilizce Eğitimi",
   description:
-    "Canlı Zoom dersleri, kayıt arşivi ve dijital platform ile online İngilizce kursları. A1–C1, IELTS hazırlık ve birebir ders paketleri. Denizli merkezli Zreducation.",
+    "Canlı Zoom dersleri, kayıt arşivi ve dijital platform ile online İngilizce kursları. A1–C1, IELTS hazırlık ve birebir ders paketleri. Merkezi Denizli'de olan Zreducation.",
   keywords: [
     "online ingilizce kursu",
     "zoom ingilizce dersi",

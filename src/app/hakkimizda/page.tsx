@@ -15,11 +15,11 @@ import { contactInfo } from "@/data/contact";
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "Denizli Kınıklı merkezli Zreducation — konuşma odaklı İngilizce eğitimi, online ve yüz yüze dersler, İtalya & Almanya danışmanlığı.",
+    "Merkezi Denizli'de olan Zreducation — konuşma odaklı İngilizce eğitimi, online ve yüz yüze dersler, İtalya & Almanya danışmanlığı.",
   openGraph: {
-    title: "Hakkımızda | Zreducation Denizli",
+    title: "Hakkımızda | Zreducation",
     description:
-      "Denizli'den konuşma odaklı İngilizce eğitimi ve İtalya/Almanya danışmanlığı.",
+      "Konuşma odaklı İngilizce eğitimi ve İtalya/Almanya danışmanlığı.",
   },
 };
 
@@ -41,11 +41,11 @@ const milestones = [
 export default function HakkimizdaPage() {
   return (
     <PageLayout>
-      <PageHero title="Hakkımızda" subtitle="Denizli Merkez">
+      <PageHero title="Hakkımızda" subtitle="Online & Denizli Merkez">
         <p>
-          Zreducation, Denizli&apos;den konuşma odaklı İngilizce eğitimiyle
-          Türkiye&apos;nin her yerine ulaşan bir eğitim kurumudur. Asıl
-          amacımız öğrencilerimizi İngilizce konuşturmak — online ve yüz
+          Zreducation, merkezi Denizli&apos;de olan, konuşma odaklı İngilizce
+          eğitimiyle Türkiye&apos;nin her yerine ulaşan bir eğitim kurumudur.
+          Asıl amacımız öğrencilerimizi İngilizce konuşturmak — online ve yüz
           yüze, birebir ve grup derslerinde.
         </p>
       </PageHero>
@@ -56,7 +56,7 @@ export default function HakkimizdaPage() {
             <AnimatedSection>
               <SectionTitle
                 subtitle="Hikayemiz"
-                title="Denizli'den, Konuşma Odaklı Eğitim"
+                title="Konuşma Odaklı Eğitim"
                 align="left"
               />
               <div className="space-y-5 text-slate leading-relaxed text-base md:text-lg">
@@ -209,7 +209,7 @@ export default function HakkimizdaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Ekibimiz"
-            title="Denizli Uzman Kadromuz"
+            title="Uzman Kadromuz"
             description="Konuşma odaklı İngilizce eğitimi, online eğitim, sınav hazırlık ve öğrenci takibi konusunda deneyimli ekip."
           />
 

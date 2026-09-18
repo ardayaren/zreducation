@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "Yurt Dışı Eğitim — İtalya & Almanya",
   description:
-    "İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı. Denizli merkezli Zreducation.",
+    "İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı. Merkezi Denizli'de olan Zreducation.",
   keywords: [
     "italya üniversite başvurusu",
     "almanya öğrenci vizesi",

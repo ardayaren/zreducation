@@ -150,7 +150,7 @@ export function KageEduHero() {
               <span className="ke-grad">akıcı konuşmaya.</span>
             </h1>
             <p className="ke-body ke-hero-sub" data-rv="up">
-              Denizli&apos;de konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste
+              Online konuşma odaklı İngilizce eğitimi: 3 ayda 90 derste
               0&apos;dan akıcı konuşmaya. Önce seviyeni öğren, sonra doğru sınıfa
               yerleş.
             </p>

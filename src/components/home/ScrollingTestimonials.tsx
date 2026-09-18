@@ -76,7 +76,7 @@ export default function ScrollingTestimonials() {
         <SectionTitle
           subtitle="Referanslar"
           title="Öğrenci Yorumları"
-          description={`${testimonials.length}+ gerçek öğrenci deneyimi — Denizli merkezimiz ve online programlarımız.`}
+          description={`${testimonials.length}+ gerçek öğrenci deneyimi — online programlarımız ve Denizli merkezimiz.`}
         />
       </div>
 

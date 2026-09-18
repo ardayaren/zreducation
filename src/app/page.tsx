@@ -7,9 +7,9 @@ import ScrollingTestimonials from "@/components/home/ScrollingTestimonials";
 import InstagramGallery from "@/components/home/InstagramGallery";
 
 export const metadata: Metadata = {
-  title: "Denizli Konuşma Odaklı İngilizce Eğitimi | Online & Yüz Yüze",
+  title: "Konuşma Odaklı İngilizce Eğitimi | Online & Yüz Yüze",
   description:
-    "Zreducation Denizli — konuşma odaklı İngilizce eğitimi, 3 ayda 90 derste akıcı konuşma, online ve yüz yüze birebir/grup dersleri, ücretsiz seviye tespit sınavı ve İtalya/Almanya danışmanlığı.",
+    "Zreducation — konuşma odaklı İngilizce eğitimi, 3 ayda 90 derste akıcı konuşma, online ve yüz yüze birebir/grup dersleri, ücretsiz seviye tespit sınavı ve İtalya/Almanya danışmanlığı.",
   alternates: { canonical: "https://zreducation.org" },
 };
 

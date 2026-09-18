@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "Zreducation",
   url: "https://zreducation.org",
   description:
-    "Zreducation Denizli — konuşma odaklı İngilizce eğitimi. 3 ayda 90 derste sıfırdan akıcı konuşmaya, online ve yüz yüze birebir/grup dersleri, Speaking/Listening/Reading/Writing odaklı CEFR müfredatı, ücretsiz seviye tespit ve 7/24 WhatsApp destek.",
+    "Zreducation — konuşma odaklı İngilizce eğitimi. 3 ayda 90 derste sıfırdan akıcı konuşmaya, online ve yüz yüze birebir/grup dersleri, Speaking/Listening/Reading/Writing odaklı CEFR müfredatı, ücretsiz seviye tespit ve 7/24 WhatsApp destek. Merkez Denizli.",
   locale: "tr_TR",
   phone: "+905334137030",
   email: "zreducationn@gmail.com",
@@ -15,8 +15,8 @@ export const siteConfig = {
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Zreducation | Denizli — Konuşma Odaklı İngilizce Eğitimi",
-    template: "%s | Zreducation Denizli",
+    default: "Zreducation | Konuşma Odaklı İngilizce Eğitimi",
+    template: "%s | Zreducation",
   },
   description: siteConfig.description,
   keywords: [
@@ -40,7 +40,7 @@ export const defaultMetadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Zreducation — Denizli Konuşma Odaklı İngilizce Eğitimi",
+    title: "Zreducation — Konuşma Odaklı İngilizce Eğitimi",
     description: siteConfig.description,
     images: [{ url: brandLogo.mark, width: 533, height: 533, alt: "Zreducation Logo" }],
   },

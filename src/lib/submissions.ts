@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
-import { put, list, del } from "@vercel/blob";
+import { put, list, del, get } from "@vercel/blob";
 
 export type SubmissionType = "exam" | "registration" | "speaking";
 
@@ -37,7 +37,9 @@ async function readAllBlob(): Promise<Submission[]> {
     for (const blob of res.blobs) {
       if (!blob.pathname.endsWith(".json")) continue;
       try {
-        const text = await (await fetch(blob.url)).text();
+        const result = await get(blob.pathname, { access: "private" });
+        if (!result || result.statusCode !== 200) continue;
+        const text = await new Response(result.stream).text();
         const parsed: unknown = JSON.parse(text);
         items.push(parsed as Submission);
       } catch {
@@ -91,7 +93,6 @@ export async function saveSubmission(
       await put(`${PREFIX}${item.id}.json`, JSON.stringify(item), {
         access: "private",
         addRandomSuffix: false,
-        contentType: "application/json",
       });
       return item;
     } catch (error) {

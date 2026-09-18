@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageLayout from "@/components/layout/PageLayout";
-import { KageEduHero, KageEduChapters, KageEduClosing } from "@/components/home/kage-edu/KageEdu";
+import LandingHero from "@/components/home/LandingHero";
+import { KageEduChapters, KageEduClosing } from "@/components/home/kage-edu/KageEdu";
 import PackagesSection from "@/components/home/PackagesSection";
 import ScrollingTestimonials from "@/components/home/ScrollingTestimonials";
 import InstagramGallery from "@/components/home/InstagramGallery";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <PageLayout>
-      <KageEduHero />
+      <LandingHero />
       <KageEduChapters />
       <PackagesSection />
       <ScrollingTestimonials />

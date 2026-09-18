@@ -51,45 +51,135 @@ function fmtDate(iso: string): string {
   }
 }
 
-/** Detay görünümü: sınav sonucunu öne çıkarır, gerisini satır satır dizer. */
+/** Detay görünümü: sınav sonucunu ve tüm ham veriyi öne çıkarır. */
 function DetailView({ item }: { item: Submission }) {
   const data = item.data as Record<string, unknown>;
   const result = data.result as Record<string, unknown> | undefined;
+  const userInfo = data.userInfo as Record<string, unknown> | undefined;
+  const answers = data.answers as Record<string, unknown> | undefined;
+  const emailStatus = data.emailStatus as Record<string, unknown> | undefined;
+  const wrongAnswers = result?.wrongAnswers as
+    | { questionId: number; userAnswer: string; correctAnswer: string }[]
+    | undefined;
+  const groups = result?.groups as
+    | { level: string; label: string; correct: number; total: number; percent: number }[]
+    | undefined;
 
-  const rows: [string, string][] = [];
-  const push = (k: string, v: unknown) => {
-    if (v === undefined || v === null || v === "") return;
-    rows.push([k, typeof v === "object" ? JSON.stringify(v) : String(v)]);
-  };
+  const kv = (k: string, v: unknown) =>
+    v === undefined || v === null || v === "" ? null : (
+      <div key={k} className="flex gap-2 min-w-0">
+        <dt className="shrink-0 font-semibold text-navy-900 capitalize">{k}:</dt>
+        <dd className="text-slate break-words min-w-0">
+          {typeof v === "object" ? JSON.stringify(v) : String(v)}
+        </dd>
+      </div>
+    );
 
-  if (item.type === "exam" && result) {
-    push("Seviye", result.level);
-    push("Skor", `${String(result.percentage)}% (${String(result.correctAnswers)}/${String(result.totalQuestions)} doğru)`);
-    const info = data.userInfo as Record<string, unknown> | undefined;
-    if (info) {
-      push("Ad", info.name);
-      push("E-posta", info.email);
-      push("Telefon", info.phone);
-    }
-    const answers = data.answers as Record<string, unknown> | undefined;
-    if (answers) push("Cevaplanan soru", Object.keys(answers).length);
-  } else {
-    Object.entries(data).forEach(([k, v]) => {
-      if (["name", "email", "phone"].includes(k)) return;
-      push(k, v);
-    });
-  }
-
-  if (!rows.length) return <p className="text-sm text-slate-light">Ek detay yok.</p>;
   return (
-    <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
-      {rows.map(([k, v]) => (
-        <div key={k} className="flex gap-2 min-w-0">
-          <dt className="shrink-0 font-semibold text-navy-900 capitalize">{k}:</dt>
-          <dd className="text-slate break-words min-w-0">{v}</dd>
+    <div className="space-y-5">
+      {item.type === "exam" && (
+        <>
+          <div>
+            <p className="label-caps text-gold-600 mb-2">Sınav Sonucu</p>
+            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+              {kv("Seviye", result?.level)}
+              {kv("Program", result?.hubLabel)}
+              {kv("Grup Ortalaması", result ? `%${String(result.averagePercentage)}` : undefined)}
+              {kv("Başarı", result ? `%${String(result.percentage)}` : undefined)}
+              {kv("Doğru", result ? `${String(result.correctAnswers)}/${String(result.totalQuestions)}` : undefined)}
+              {kv("Yanlış", result?.incorrectAnswers)}
+              {kv("Boş", result?.blankAnswers)}
+              {kv("Cevaplanan soru", result?.answeredCount)}
+            </div>
+          </div>
+
+          {groups && (
+            <div>
+              <p className="label-caps text-gold-600 mb-2">Grup Analizi</p>
+              <div className="flex flex-wrap gap-2">
+                {groups.map((g) => (
+                  <span
+                    key={g.level}
+                    className="rounded-xl bg-surface border border-border px-3 py-1.5 text-xs text-slate"
+                  >
+                    <b className="text-navy-900">{g.level}</b> · {g.label} ·{" "}
+                    %{g.percent} ({g.correct}/{g.total})
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {wrongAnswers && wrongAnswers.length > 0 && (
+            <div>
+              <p className="label-caps text-gold-600 mb-2">
+                Yanlış Cevaplar ({wrongAnswers.length})
+              </p>
+              <div className="space-y-1.5 text-sm">
+                {wrongAnswers.map((w) => (
+                  <div key={w.questionId} className="rounded-xl bg-surface px-3 py-2">
+                    <b className="text-navy-900">Soru {w.questionId}</b>
+                    <span className="text-red-600"> yanıt: {w.userAnswer}</span>
+                    <span className="text-emerald-600"> · doğru: {w.correctAnswer}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {userInfo && (
+            <div>
+              <p className="label-caps text-gold-600 mb-2">Kişisel Bilgiler</p>
+              <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+                {kv("Ad", userInfo.name)}
+                {kv("E-posta", userInfo.email)}
+                {kv("Telefon", userInfo.phone)}
+              </div>
+            </div>
+          )}
+
+          {answers && (
+            <div>
+              <p className="label-caps text-gold-600 mb-2">
+                Cevaplar ({Object.keys(answers).length} soru)
+              </p>
+              <p className="text-xs text-slate-light break-all">
+                {JSON.stringify(answers)}
+              </p>
+            </div>
+          )}
+        </>
+      )}
+
+      {item.type !== "exam" && (
+        <div>
+          <p className="label-caps text-gold-600 mb-2">Form Bilgileri</p>
+          <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+            {Object.entries(data)
+              .filter(([k]) => !["name", "email", "phone", "emailStatus"].includes(k))
+              .map(([k, v]) => kv(k, v))}
+          </div>
         </div>
-      ))}
-    </dl>
+      )}
+
+      {emailStatus && (
+        <div>
+          <p className="label-caps text-gold-600 mb-2">E-posta Gönderimi</p>
+          <p className="text-sm text-slate">
+            {emailStatus.ok
+              ? `Gönderildi${emailStatus.provider ? ` (${String(emailStatus.provider)})` : ""}`
+              : `Hata: ${String(emailStatus.error ?? "bilinmiyor")}`}
+          </p>
+        </div>
+      )}
+
+      <div>
+        <p className="label-caps text-gold-600 mb-2">Ham Veri (JSON)</p>
+        <pre className="rounded-2xl bg-surface p-4 text-xs text-slate overflow-x-auto whitespace-pre-wrap break-words">
+          {JSON.stringify(data, null, 2)}
+        </pre>
+      </div>
+    </div>
   );
 }
 

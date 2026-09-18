@@ -11,17 +11,14 @@ import {
 } from "@/data/expandableContent";
 import { siteConfig } from "@/lib/siteConfig";
 import { contactInfo } from "@/data/contact";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Hakkımızda",
   description:
     "Merkezi Denizli'de olan Zreducation — konuşma odaklı İngilizce eğitimi, online ve yüz yüze dersler, İtalya & Almanya danışmanlığı.",
-  openGraph: {
-    title: "Hakkımızda | Zreducation",
-    description:
-      "Konuşma odaklı İngilizce eğitimi ve İtalya/Almanya danışmanlığı.",
-  },
-};
+  path: "/hakkimizda",
+});
 
 const aboutStats = [
   { icon: Award, value: "15+", label: "Yıllık Deneyim", percent: 100 },

@@ -9,12 +9,14 @@ import { ExpandableList } from "@/components/ui/ExpandablePanel";
 import { coreSkills } from "@/data/services";
 import { onlineCourses } from "@/data/onlineCourses";
 import { onlineProgramDetails } from "@/data/expandableContent";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Eğitimlerimiz",
   description:
     "Konuşma odaklı İngilizce eğitimi, online ve yüz yüze birebir/grup dersleri, sınav hazırlık programları ve öğrenci paneli — tek sayfada.",
-};
+  path: "/egitimlerimiz",
+});
 
 export default function EgitimlerimizPage() {
   return (

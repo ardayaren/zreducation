@@ -6,18 +6,38 @@ import Button from "@/components/ui/Button";
 import { ExpandableList } from "@/components/ui/ExpandablePanel";
 import { faqCategories } from "@/data/faq";
 import { contactInfo } from "@/data/contact";
+import { buildMetadata } from "@/lib/seo";
+import JsonLd from "@/components/ui/JsonLd";
+import { siteConfig } from "@/lib/siteConfig";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Sıkça Sorulan Sorular",
   description:
     "Zreducation eğitim programları, seviye tespit sınavı, kayıt ve ödeme, online/yüz yüze dersler ile yurt dışı danışmanlığı hakkında sıkça sorulan sorular.",
-};
+  path: "/sss",
+});
 
 const variants = ["surface", "light", "gold", "navy"] as const;
 
 export default function SssPage() {
+  const faqItems = faqCategories.flatMap((cat) => cat.items);
   return (
     <PageLayout>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "@id": `${siteConfig.url}/sss#faq`,
+          mainEntity: faqItems.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }}
+      />
       <PageHero title="Sıkça Sorulan Sorular" subtitle="SSS">
         <p>
           Eğitim programlarımız, seviye tespit sınavı, kayıt süreci ve daha

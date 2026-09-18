@@ -36,14 +36,20 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const all = await listSubmissions();
   const counts = {
-    all: (await listSubmissions()).length,
-    exam: (await listSubmissions("exam")).length,
-    registration: (await listSubmissions("registration")).length,
-    speaking: (await listSubmissions("speaking")).length,
+    all: all.length,
+    exam: all.filter((s) => s.type === "exam").length,
+    registration: all.filter((s) => s.type === "registration").length,
+    speaking: all.filter((s) => s.type === "speaking").length,
   };
 
-  return NextResponse.json({ items, counts });
+  const now = Date.now();
+  const dayMs = 24 * 60 * 60 * 1000;
+  const today = all.filter((s) => now - new Date(s.createdAt).getTime() < dayMs).length;
+  const week = all.filter((s) => now - new Date(s.createdAt).getTime() < 7 * dayMs).length;
+
+  return NextResponse.json({ items, counts, stats: { today, week } });
 }
 
 /** Sil: DELETE ?id=... */

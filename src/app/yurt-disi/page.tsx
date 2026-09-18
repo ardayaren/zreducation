@@ -11,17 +11,20 @@ import {
   yurtDisiProcessDetails,
 } from "@/data/expandableContent";
 
-export const metadata: Metadata = {
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
   title: "Yurt Dışı Eğitim — İtalya & Almanya",
   description:
     "İtalya ve Almanya üniversitelerine öğrenci yerleştirme danışmanlığı. Merkezi Denizli'de olan Zreducation.",
+  path: "/yurt-disi",
   keywords: [
     "italya üniversite başvurusu",
     "almanya öğrenci vizesi",
-    "yurt dışı eğitim denizli",
+    "yurt dışı eğitim",
     "uni-assist danışmanlık",
   ],
-};
+});
 
 export default function YurtDisiPage() {
   return (

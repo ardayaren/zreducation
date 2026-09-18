@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ClipboardList,
+  Download,
   GraduationCap,
   LogOut,
   Phone,
@@ -98,6 +99,7 @@ export default function AdminPage() {
   const [q, setQ] = useState("");
   const [items, setItems] = useState<Submission[]>([]);
   const [counts, setCounts] = useState({ all: 0, exam: 0, registration: 0, speaking: 0 });
+  const [stats, setStats] = useState({ today: 0, week: 0 });
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -115,12 +117,38 @@ export default function AdminPage() {
       const data = await res.json();
       setItems(data.items || []);
       if (data.counts) setCounts(data.counts);
+      if (data.stats) setStats(data.stats);
     } catch {
       /* ağ hatasında eski liste korunur */
     } finally {
       setLoading(false);
     }
   }, [router]);
+
+  function exportCsv() {
+    if (!items.length) return;
+    const header = ["Tarih", "Tür", "Ad", "E-posta", "Telefon", "Özet"];
+    const rows = items.map((s) => [
+      fmtDate(s.createdAt),
+      TYPE_LABEL[s.type],
+      s.name,
+      s.email,
+      s.phone,
+      s.summary,
+    ]);
+    const csv = [header, ...rows]
+      .map((r) =>
+        r.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")
+      )
+      .join("\n");
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `zreducation-basvurular-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 
   useEffect(() => {
     const t = setTimeout(() => load(tab, q), q ? 300 : 0);
@@ -172,6 +200,25 @@ export default function AdminPage() {
       </header>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+        {/* özet istatistikler */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+          {[
+            { label: "Bugün", value: stats.today },
+            { label: "Son 7 Gün", value: stats.week },
+            { label: "Toplam Başvuru", value: counts.all },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl bg-white shadow-sm p-4 flex items-center justify-between"
+            >
+              <span className="label-caps text-slate-light">{s.label}</span>
+              <span className="font-heading-normal text-2xl font-bold text-navy-900 tabular-nums">
+                {s.value}
+              </span>
+            </div>
+          ))}
+        </div>
+
         {/* sekmeler */}
         <div className="flex flex-wrap gap-2 mb-4">
           {TABS.map((t) => {
@@ -195,15 +242,25 @@ export default function AdminPage() {
           })}
         </div>
 
-        {/* arama */}
-        <div className="relative mb-4">
-          <Search className="w-4 h-4 text-slate-light absolute left-4 top-1/2 -translate-y-1/2" />
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Ad, e-posta, telefon veya özet ile ara…"
-            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white text-sm shadow-sm focus:ring-4 focus:ring-gold-500/20 focus:outline-none"
-          />
+        {/* arama + dışa aktar */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-4">
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 text-slate-light absolute left-4 top-1/2 -translate-y-1/2" />
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Ad, e-posta, telefon veya özet ile ara…"
+              className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white text-sm shadow-sm focus:ring-4 focus:ring-gold-500/20 focus:outline-none"
+            />
+          </div>
+          <button
+            onClick={exportCsv}
+            disabled={!items.length}
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-navy-900 text-white text-sm font-semibold px-5 py-3 hover:bg-navy-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            <Download className="w-4 h-4" />
+            CSV İndir
+          </button>
         </div>
 
         {/* liste */}

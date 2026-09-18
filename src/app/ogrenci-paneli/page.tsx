@@ -18,12 +18,14 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import StudentPanelDemo from "@/components/panel/StudentPanelDemo";
 import { contactInfo } from "@/data/contact";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Öğrenci Paneli & Ders Kayıtları",
   description:
     "Zreducation öğrenci paneli — ders kayıtlarınız, devamsızlık durumunuz, ödevleriniz, kursun bitiş süresi ve her 4 haftada bir hazırlanan ilerleme raporları. Panel Yöntek üzerinde çalışır; kişisel giriş kodunuz WhatsApp'tan paylaşılır.",
-};
+  path: "/ogrenci-paneli",
+});
 
 const features = [
   {

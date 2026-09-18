@@ -10,16 +10,33 @@ import {
   ingilizceExamDetails,
   ingilizceMethodDetails,
 } from "@/data/expandableContent";
+import { buildMetadata } from "@/lib/seo";
+import JsonLd from "@/components/ui/JsonLd";
+import { siteConfig } from "@/lib/siteConfig";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "İngilizce Eğitimi",
   description:
     "A1'den C2'ye kadar CEFR uyumlu İngilizce eğitim programları, IELTS ve TOEFL hazırlık kursları.",
-};
+  path: "/ingilizce-egitimi",
+});
 
 export default function IngilizceEgitimiPage() {
   return (
     <PageLayout>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "@id": `${siteConfig.url}/ingilizce-egitimi#course`,
+          name: "Konuşma Odaklı İngilizce Eğitimi (A1–C2)",
+          description:
+            "CEFR uyumlu, konuşma odaklı İngilizce eğitimi; online ve yüz yüze birebir/grup dersleri.",
+          provider: { "@id": `${siteConfig.url}/#organization` },
+          inLanguage: "tr",
+          educationalLevel: "Beginner to Advanced",
+        }}
+      />
       <PageHero title="İngilizce Eğitimi" subtitle="A1 - C2">
         <p>
           Temel seviyeden ileri düzeye, CEFR uyumlu müfredat ile kapsamlı

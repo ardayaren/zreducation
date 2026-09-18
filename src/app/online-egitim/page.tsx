@@ -7,27 +7,43 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 import { onlineCourses } from "@/data/onlineCourses";
 import { contactInfo } from "@/data/contact";
+import { buildMetadata } from "@/lib/seo";
+import JsonLd from "@/components/ui/JsonLd";
+import { siteConfig } from "@/lib/siteConfig";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Online İngilizce Eğitimi",
   description:
     "Canlı Zoom dersleri, kayıt arşivi ve dijital platform ile online İngilizce kursları. A1–C1, IELTS hazırlık ve birebir ders paketleri. Merkezi Denizli'de olan Zreducation.",
+  path: "/online-egitim",
   keywords: [
     "online ingilizce kursu",
     "zoom ingilizce dersi",
     "online ielts",
-    "ingilizce online eğitim denizli",
+    "ingilizce online eğitim",
     "zreducation online",
   ],
-  openGraph: {
-    title: "Online İngilizce Eğitimi | Zreducation",
-    description:
-      "Canlı online İngilizce kursları — A1'den C1'e, IELTS hazırlık ve birebir ders paketleri.",
-  },
-};
+});
 
 export default function OnlineEgitimPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "@id": `${siteConfig.url}/online-egitim#course`,
+          name: "Online İngilizce Eğitimi (A1–C1)",
+          description:
+            "Canlı Zoom dersleri, kayıt arşivi ve dijital platform ile online İngilizce kursları.",
+          provider: { "@id": `${siteConfig.url}/#organization` },
+          inLanguage: "tr",
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "online",
+          },
+        }}
+      />
     <PageLayout>
       <PageHero title="Online Eğitim" subtitle="Canlı & Kayıtlı">
         <p>
@@ -177,5 +193,6 @@ export default function OnlineEgitimPage() {
         </div>
       </NavySection>
     </PageLayout>
+    </>
   );
 }

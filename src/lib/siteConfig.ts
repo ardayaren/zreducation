@@ -19,6 +19,13 @@ export const defaultMetadata: Metadata = {
     template: "%s | Zreducation",
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: siteConfig.url,
+    languages: {
+      tr: siteConfig.url,
+      "x-default": siteConfig.url,
+    },
+  },
   keywords: [
     "denizli ingilizce kursu",
     "konuşma odaklı ingilizce eğitimi",
@@ -55,7 +62,6 @@ export const defaultMetadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  alternates: { canonical: siteConfig.url },
   icons: {
     icon: [
       { url: "/icon", type: "image/png", sizes: "32x32" },

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, GraduationCap, Star } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import "./kage-edu.css";
 
 /**
@@ -180,10 +181,11 @@ export function KageEduHero() {
 
           <div className="ke-hero-visual" data-rv="up">
             <div className="ke-mock">
-              <img
+              <Image
                 src="/images/english-classroom.jpg"
                 alt="Konuşma odaklı İngilizce sınıfı"
-                loading="lazy"
+                fill
+                sizes="(max-width: 820px) 100vw, 440px"
               />
               <span className="ke-mock-badge">
                 <Star className="w-3.5 h-3.5" />
@@ -302,7 +304,13 @@ export function KageEduChapters() {
         <div className="ke-cards">
           <Link href="/ingilizce-egitimi" className="ke-card" data-rv="up">
             <span className="ke-card-fr">
-              <img src="/images/english-classroom.jpg" alt="Konuşma odaklı İngilizce sınıfı" loading="lazy" />
+              <Image
+                src="/images/english-classroom.jpg"
+                alt="Konuşma odaklı İngilizce sınıfı"
+                fill
+                sizes="(max-width: 1080px) 100vw, 33vw"
+                className="ke-card-img"
+              />
               <span className="ke-card-lab">
                 <b>Konuşma Odaklı</b>
                 <span className="jp">SPEAKING</span>
@@ -315,7 +323,13 @@ export function KageEduChapters() {
           </Link>
           <Link href="/online-egitim" className="ke-card" data-rv="up">
             <span className="ke-card-fr">
-              <img src="/images/online-learning.jpg" alt="Online canlı İngilizce dersi" loading="lazy" />
+              <Image
+                src="/images/online-learning.jpg"
+                alt="Online canlı İngilizce dersi"
+                fill
+                sizes="(max-width: 1080px) 100vw, 33vw"
+                className="ke-card-img"
+              />
               <span className="ke-card-lab">
                 <b>Online Eğitim</b>
                 <span className="jp">CANLI</span>
@@ -328,7 +342,13 @@ export function KageEduChapters() {
           </Link>
           <Link href="/iletisim" className="ke-card" data-rv="up">
             <span className="ke-card-fr">
-              <img src="/images/campus-classroom.jpg" alt="Denizli yüz yüze sınıf" loading="lazy" />
+              <Image
+                src="/images/campus-classroom.jpg"
+                alt="Denizli yüz yüze sınıf"
+                fill
+                sizes="(max-width: 1080px) 100vw, 33vw"
+                className="ke-card-img"
+              />
               <span className="ke-card-lab">
                 <b>Yüz Yüze · Denizli</b>
                 <span className="jp">KAMPÜS</span>

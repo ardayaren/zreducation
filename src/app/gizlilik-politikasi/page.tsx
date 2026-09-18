@@ -4,12 +4,14 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { siteConfig } from "@/lib/siteConfig";
 import { contactInfo } from "@/data/contact";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Gizlilik Politikası, Kullanım Koşulları & KVKK",
   description:
     "Zreducation gizlilik politikası, web sitesi kullanım koşulları ve KVKK aydınlatma metni.",
-};
+  path: "/gizlilik-politikasi",
+});
 
 export default function GizlilikPage() {
   return (

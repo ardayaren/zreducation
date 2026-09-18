@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import PageLayout, { PageHero } from "@/components/layout/PageLayout";
 import PlacementTest from "@/components/test/PlacementTest";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Seviye Tespit Sınavı",
   description:
     "Ücretsiz İngilizce seviye tespit sınavı ile mevcut seviyenizi öğrenin ve size özel program önerisi alın.",
-};
+  path: "/seviye-tespit",
+});
 
 export default function SeviyeTespitPage() {
   return (

@@ -6,6 +6,7 @@ import {
   isAdminConfigured,
   verifySessionValue,
 } from "@/lib/adminAuth";
+import { clientKey, isRateLimited, RATE } from "@/lib/rateLimit";
 
 /** Oturum kontrolü (panel açılışında kullanılır). */
 export async function GET(request: NextRequest) {
@@ -18,6 +19,13 @@ export async function GET(request: NextRequest) {
 
 /** Giriş: doğru şifrede httpOnly çerez yazar. */
 export async function POST(request: NextRequest) {
+  if (isRateLimited(`login:${clientKey(request)}`, RATE.login.limit, RATE.login.windowMs)) {
+    return NextResponse.json(
+      { error: "Çok fazla deneme yaptınız. Lütfen biraz sonra tekrar deneyin." },
+      { status: 429 }
+    );
+  }
+
   if (!isAdminConfigured()) {
     return NextResponse.json(
       { error: "Admin şifresi tanımlı değil (ADMIN_PASSWORD)" },

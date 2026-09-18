@@ -2,19 +2,40 @@ import { NextRequest, NextResponse } from "next/server";
 import { calculateLevel, hasMinimumAnswers } from "@/lib/levelCalculator";
 import { sendAdminNotification } from "@/lib/email";
 import { saveSubmission } from "@/lib/submissions";
+import { cleanText, isValidEmail, isValidPhone } from "@/lib/validation";
+import { clientKey, isRateLimited, RATE } from "@/lib/rateLimit";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { userInfo, answers } = body;
+    if (isRateLimited(`exam:${clientKey(request)}`, RATE.exam.limit, RATE.exam.windowMs)) {
+      return NextResponse.json(
+        { error: "Çok fazla istek aldık. Lütfen bir dakika sonra tekrar deneyin." },
+        { status: 429 }
+      );
+    }
 
-    if (!userInfo?.name || !userInfo?.email || !userInfo?.phone) {
+    const body = await request.json();
+    const rawInfo = body?.userInfo ?? {};
+    const userInfo = {
+      name: cleanText(rawInfo.name, 120),
+      email: cleanText(rawInfo.email, 120),
+      phone: cleanText(rawInfo.phone, 24),
+    };
+    const answers: Record<number, string> =
+      body?.answers && typeof body.answers === "object" ? body.answers : {};
+
+    if (!userInfo.name || !userInfo.email || !userInfo.phone) {
       return NextResponse.json(
         { error: "Kullanıcı bilgileri eksik" },
         { status: 400 }
       );
     }
-
+    if (!isValidEmail(userInfo.email)) {
+      return NextResponse.json({ error: "Geçerli bir e-posta adresi girin" }, { status: 400 });
+    }
+    if (!isValidPhone(userInfo.phone)) {
+      return NextResponse.json({ error: "Geçerli bir telefon numarası girin" }, { status: 400 });
+    }
     if (!answers || !hasMinimumAnswers(answers)) {
       return NextResponse.json(
         { error: "Sınavı bitirmek için en az 1 soru cevaplanmalıdır" },

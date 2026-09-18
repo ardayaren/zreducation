@@ -96,6 +96,7 @@ export default function LandingHero() {
                     src="/images/english-classroom.jpg"
                     alt="Konuşma odaklı İngilizce sınıfı"
                     fill
+                    priority
                     sizes="(max-width: 1024px) 100vw, 480px"
                     className="object-cover"
                   />

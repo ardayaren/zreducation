@@ -231,19 +231,6 @@ export default function PlacementTest() {
     window.setTimeout(() => setShareMsg(""), 5000);
   };
 
-  const shareLinkedIn = () => {
-    const url = encodeURIComponent(
-      typeof window !== "undefined"
-        ? window.location.href
-        : "https://zreducation.org/seviye-tespit"
-    );
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
-
   useEffect(() => {
     if (step !== "test") return;
 
@@ -764,13 +751,6 @@ export default function PlacementTest() {
               <Share2 className="w-5 h-5" />
               Başarını Paylaş
             </button>
-            <button
-              onClick={shareLinkedIn}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white border border-border hover:border-[#0A66C2] text-[#0A66C2] font-semibold text-base px-6 min-h-[52px] flex-1 shadow-sm transition"
-            >
-              <LinkedInIcon className="w-5 h-5" />
-              LinkedIn
-            </button>
           </div>
 
           {shareMsg && (
@@ -904,19 +884,6 @@ export default function PlacementTest() {
         {renderStep()}
       </motion.div>
     </AnimatePresence>
-  );
-}
-
-function LinkedInIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
-    </svg>
   );
 }
 

@@ -435,22 +435,23 @@ a {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  [data-reveal="up"] {
+  /* Gizleme yalnızca JS aktifken (html.js): JS engellenirse içerik görünür kalır. */
+  html.js [data-reveal="up"] {
     opacity: 0;
     transform: translate3d(0, 26px, 0);
   }
-  [data-reveal="fade"] {
+  html.js [data-reveal="fade"] {
     opacity: 0;
   }
-  [data-reveal="left"] {
+  html.js [data-reveal="left"] {
     opacity: 0;
     transform: translate3d(-24px, 0, 0);
   }
-  [data-reveal="right"] {
+  html.js [data-reveal="right"] {
     opacity: 0;
     transform: translate3d(24px, 0, 0);
   }
-  [data-reveal="scale"] {
+  html.js [data-reveal="scale"] {
     opacity: 0;
     transform: translate3d(0, 10px, 0) scale(0.97);
   }
@@ -464,7 +465,7 @@ a {
   }
 
   /* grup: çocuklar saf CSS ile kademeli gelir (70ms adımlar) */
-  [data-reveal-group] [data-reveal-item] {
+  html.js [data-reveal-group] [data-reveal-item] {
     opacity: 0;
     transform: translate3d(0, 22px, 0);
   }
@@ -504,7 +505,7 @@ a {
   }
 
   /* scroll-paralel katman: kenarlar açılmasın diye hafif overscan */
-  [data-plx] {
+  html.js [data-plx] {
     scale: 1.1;
     will-change: transform;
   }

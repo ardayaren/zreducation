@@ -93,9 +93,9 @@
   color: #c7d6e8;
 }
 
-/* reveal: IntersectionObserver .rv-in ekler */
-.ke-edu [data-rv] { opacity: 0; }
-.ke-edu [data-rv="up"] { transform: translate3d(0, 26px, 0); }
+/* reveal: IntersectionObserver .rv-in ekler — yalnızca JS aktifken gizle */
+html.js .ke-edu [data-rv] { opacity: 0; }
+html.js .ke-edu [data-rv="up"] { transform: translate3d(0, 26px, 0); }
 .ke-edu [data-rv].rv-in {
   opacity: 1;
   transform: none;

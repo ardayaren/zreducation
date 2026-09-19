@@ -38,6 +38,12 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${jakarta.variable} ${sourceSans.variable}`}>
       <body className="min-h-screen flex flex-col antialiased touch-manipulation">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js')",
+          }}
+        />
         <JsonLd
           data={{
             "@context": "https://schema.org",
